@@ -46,12 +46,35 @@ function valeurRecup($nom) {
 	global $config_ini;
 	if (isset($_GET[$nom])) {
 		echo $_GET[$nom]; 
-	} else if ($config_ini['formulaire'][$nom]) {
+	} else if (isset($config_ini['formulaire'][$nom])) {
 		echo $config_ini['formulaire'][$nom];
 	} else {
 		echo '';
 	}
 }
+function valeurRecupCookie($nom) {
+	global $config_ini;
+	if (isset($_GET[$nom])) {
+		echo $_GET[$nom]; 
+	} else if (isset($_COOKIE[$nom])) {
+		echo $_COOKIE[$nom];
+	} else if (isset($config_ini['formulaire'][$nom])) {
+		echo $config_ini['formulaire'][$nom];
+	} else {
+		echo '';
+	}
+}
+function valeurRecupCookieSansConfig($nom) {
+	global $config_ini;
+	if (isset($_GET[$nom])) {
+		echo $_GET[$nom]; 
+	} else if (isset($_COOKIE[$nom])) {
+		echo $_COOKIE[$nom];
+	} else {
+		echo '';
+	}
+}
+
 // Forumaire sur les select mettre le "selected" au bon endroit selon le get ou la config
 function valeurRecupSelect($nom, $valeur) {
 	global $config_ini;
@@ -256,4 +279,83 @@ function erreurPrint($id, $msg) {
 	return '<li>'.$msg.'</li>';
 }
 
+// Récupérer l'IP
+function get_ip() {
+	// IP si internet partagé
+	if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+		return $_SERVER['HTTP_CLIENT_IP'];
+	}
+	// IP derrière un proxy
+	elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		return $_SERVER['HTTP_X_FORWARDED_FOR'];
+	}
+	// Sinon : IP normale
+	else {
+		return (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+	}
+}
+
+function pgvisGetDRcalc($FichierDataCsv, $raddatabase) {
+	// Documentation PVGIS : 
+	// http://re.jrc.ec.europa.eu/pvg_static/web_service.html#DR
+	global $config_ini;
+	// Vide le cache trop vieux
+	if (file_exists($FichierDataCsv) && filemtime($FichierDataCsv)+$config_ini['pvgis']['cacheTime'] < time()) {
+		debug('Le fichier de cache de PGVIS '.$FichierDataCsv.' est trop vieux, on le supprime !','p');
+		unlink($FichierDataCsv);
+	}
+	if (!file_exists($FichierDataCsv)) {
+		if (isset($_GET['tracking'])) {
+			$url=$config_ini['pvgis']['urlDRcalc'].'?raddatabase='.$raddatabase.'&lat='.$_GET['lat'].'&lon='.$_GET['lon'].'&month=0&global=0&usehorizon=1&glob_2axis=1&clearsky=0&clearsky_2axis=0&showtemperatures=0&localtime=0&outputformat=csv&browser=0';
+		} else {
+			$url=$config_ini['pvgis']['urlDRcalc'].'?raddatabase='.$raddatabase.'&lat='.$_GET['lat'].'&lon='.$_GET['lon'].'&angle='.$_GET['inclinaison'].'&aspect='.$_GET['orientation'].'&month=0&global=1&usehorizon=1&glob_2axis=0&clearsky=0&clearsky_2axis=0&showtemperatures=0&localtime=0&outputformat=csv&browser=0';
+		}
+		debug('On télécharge les données depuis PGVIS avec l\'URL '.$url, 'p');
+		$fp = fopen($FichierDataCsv, 'w');
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_FILE, $fp);
+		$data = curl_exec($ch);
+		$curl_errno = curl_errno($ch);
+		$curl_error = curl_error($ch);
+		curl_close($ch);
+		fclose($fp);
+		if ($curl_errno > 0) {
+			debug('Erreur de téléchargement cURL Error ('.$curl_errno.'): '.$curl_error.'\n', 'p');
+			unlink($FichierDataCsv);
+			return false;
+		} else {
+			return true;
+		}
+	} else {
+		debug('On utilise le cache de PGVIS '.$FichierDataCsv, 'p');
+		return true;
+	}
+}
+
+function pgvisParseData($FichierDataCsv) {
+	$csv = array_map('str_getcsv', file($FichierDataCsv));
+	$mois=0;
+	$debutCollecte=false;
+	$finCollecte=false;
+	foreach($csv as $csvLigne) {
+		//echo $csvLigne[0]."\n";
+		if ($debutCollecte==true && $finCollecte==false) {
+			$Datas = explode("\t\t", $csvLigne[0]);
+			if (substr($Datas[0], 0, 3) == '00:') {
+				$mois++;
+				$GlobalIradiation[$mois]=0;
+			}
+			$GlobalIradiation[$mois]=$GlobalIradiation[$mois]+$Datas[1]/1000;
+		}
+		// on trouve 'time" c'est que c'est le début des données
+		if ($csvLigne[0] == 'Time') {
+			$debutCollecte=true;
+		}
+		// Une ligne blanche signifie la fin des données
+		if ($debutCollecte==true && $csvLigne[0] == '') {
+			$finCollecte=true;
+		}
+	}
+	return $GlobalIradiation;
+}
 ?>

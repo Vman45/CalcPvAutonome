@@ -1,11 +1,30 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+
 <?php 
 // Les fonctions
 include('./lib/Fonction.php');
-// Les données du site InesSolaire
-include('./ines.solaire/FormData.php'); 
 // Le fichier de config
 $config_ini = parse_ini_file('./config.ini', true); 
 
+// Définition du pays
+$country = @geoip_country_code_by_name(get_ip());
+
+// Mois
+$mois = array (
+	1 => 'janvier',
+	2 => 'fevrier',
+	3 => 'mars',
+	4 => 'avril',
+	5 => 'mai',
+	6 => 'juin',
+	7 => 'juillet',
+	8 => 'aout',
+	9 => 'septembre',
+	10 => 'octobre',
+	11 => 'novembre',
+	12 => 'decembre',
+);
 // Les bules d'aides 
 $aideInclinaison='(<a onClick="window.open(\'http://ines.solaire.free.fr/pages/inclinaison.htm\',\'Z\',\'status=no ,scrollbars=no,width=350,height=350,top=50,left=50\')">?</a>)';
 $aideOrientation='(<a onClick="window.open(\'http://ines.solaire.free.fr/pages/orientation.htm\',\'Z\',\'status=no ,scrollbars=no,width=350,height=350,top=50,left=50\')">?</a>)';
@@ -17,6 +36,7 @@ $aideAlbedo='(<a onClick="window.open(\'http://ines.solaire.free.fr/pages/albedo
 
 if (isset($_GET['submit'])) {
 	echo '<div class="part result">';
+	debug('Cette couleur représente le mode transparent / debug','p');
 	// Détection des erreurs de formulaires
 	$erreurDansLeFormulaire['nb']=0;
 	
@@ -55,43 +75,51 @@ if (isset($_GET['submit'])) {
 	if (empty($_GET['cablageRegleAparMm'])) {
 		$_GET['cablageRegleAparMm'] = $config_ini['formulaire']['cablageRegleAparMm'];
 	}
-	// S'il faut utilise la base INES Solaire (en mode automatique
+	// S'il faut utilise PGVIS (en mode automatique)
 	if (empty($_GET['Ej'])) {
-		// Connect DB
-		try {
-			if (preg_match('/^sqlite/', $config_ini['irradiation']['db'])) {
-				$dbco = new PDO($config_ini['irradiation']['db']);
-			} else {
-				$dbco = new PDO($config_ini['irradiation']['db'], $config_ini['irradiation']['dbUser'], $config_ini['irradiation']['dbPass']);
-			}
-			$dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		} catch ( PDOException $e ) {
-			die('Impossible de se connecter à la base de donnée de rayonnement solaire (Ines Solaire), merci de <a href="http://david.mercereau.info/contact/">le signaler</a>. Vous pouvez tout de même utiliser le mode manuel pour faire votre simulation.');
-		}
-		if (isset($_GET['InesSolaireAuto'])) {
-			// Choix optimum 
-			$InesSolaireAuto = null;
-			try {
-				$InesSolaireAuto=$dbco->query("SELECT mois, inclinaison, orientation, igp FROM ".$config_ini['irradiation']['dbTableOptimum']." WHERE ville = \"".$_GET['InesVille']."\"")->fetch();
-			} catch ( PDOException $e ) {
-				$erreurDansLeFormulaire['nb']++;
-				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('InesSolaireAuto', 'Impossible de choisir l\'orientation et l\'inclinaison la plus favorable pour cette ville. Elle n\'a pas été trouvé dans la base (INES Solaire), merci de <a href="http://david.mercereau.info/contact/">le signaler</a>. Vous pouvez tout de même utiliser le mode manuel pour faire votre simulation. <br />Détail de l\'erreur :.'.$e);
-			}
-			if ($InesSolaireAuto != null) {
-				$InesSolaireAuto['inclinaison']=ajoutDegSiAngleChiffre($InesSolaireAuto['inclinaison']);
-				$InesSolaireAuto['orientation']=ajoutDegSiAngleChiffre($InesSolaireAuto['orientation']);
-			}
+		if ($_GET['orientation'] < -180 || $_GET['orientation'] > 180) {
+			$erreurDansLeFormulaire['nb']++;
+			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('orientation', 'L\'orientation des panneaux n\'est pas correcte. ');
+		} else if ($_GET['inclinaison'] < 0 || $_GET['inclinaison'] > 90) {
+			$erreurDansLeFormulaire['nb']++;
+			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('inclinaison', 'L\'inclinaison des panneaux n\'est pas correcte, elle  doit être comprise entre 0 (horizontal) et 90 (vertical)');
+		} else if (empty($_GET['lat']) || empty($_GET['lon'])) {
+			$erreurDansLeFormulaire['nb']++;
+			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('LatLon', 'Vous devez indiquez la latitude et la longitude pour en déduire l\'ensoleillement vi un clique sur la carte du monde.');
 		} else {
-			// Orientation & inclinaison sélectionné
-			$villeTableName=wd_remove_accents($config_ini['irradiation']['dbTablePrefix'].str_replace(' ','',$_GET['InesVille']));
-			$InesSolaire = null;
-			$Rqt="SELECT igp1, igp2, igp3, igp4, igp5, igp6, igp7, igp8, igp9, igp10, igp11, igp12 FROM ".$villeTableName." WHERE inclinaison = \"".$_GET['InesInclinaison']."\" AND orientation = \"".$_GET['InesOrientation']."\" AND albedo = \"".$_GET['InesAlbedo']."\"";
-			try {
-				$InesSolaire=$dbco->query($Rqt)->fetch();
-			} catch ( PDOException $e ) {
-				$erreurDansLeFormulaire['nb']++;
-				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('InesSolaire', 'Impossible de trouver le rayonnement avec les informations indiqué dans la base de donnée (INES Solaire), merci de <a href="http://david.mercereau.info/contact/">le signaler</a>. Vous pouvez tout de même utiliser le mode manuel pour faire votre simulation. <br />Voici la requête qui a échoué '.$Rqt.' <br />Détail de l\'erreur :.'.$e);
+			// On sauvegarde les coordonnées dans les cookies histoire de faciliter la vie de l'utilisateur
+			setcookie('lat', $_GET['lat'], time() + 365*24*3600);
+			setcookie('lon', $_GET['lon'], time() + 365*24*3600);
+			// On récupère tout depuis PGVIS
+			$raddatabases = array (
+				'PVGIS-CMSAF',
+				'PVGIS-SARAH',
+				'PVGIS-NSRDB',
+			);
+			foreach ($raddatabases as $RadDatabase) {
+				debug('Importation des données d\'irradiation PVGIS, on test avec la raddatabase '.$RadDatabase, 'p');	
+				if (isset($_GET['tracking'])) {
+					$FichierDataCsv = $config_ini['pvgis']['cachePath'].'/pvgis5_DRcalc_'.$_GET['lat'].'_'.$_GET['lon'].'_'.$RadDatabase.'_tracking.csv';
+				} else {
+					$FichierDataCsv = $config_ini['pvgis']['cachePath'].'/pvgis5_DRcalc_'.$_GET['lat'].'_'.$_GET['lon'].'_'.$RadDatabase.'_'.$_GET['inclinaison'].'_'.$_GET['orientation'].'.csv';
+				}
+				if (!pgvisGetDRcalc($FichierDataCsv, $RadDatabase)) {
+					$erreurDansLeFormulaire['nb']++;
+					$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisGet', 'Impossible de télécharger les données d\'irradiation solaire depuis <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>, passez en mode manuel ou utilisez <a href="http://calcpvautonome.zici.fr/v2.2/">la version précédente</a> de calcpvautonome.');
+					break;
+				} else {
+					$GlobalIradiation = pgvisParseData($FichierDataCsv);
+					if (isset($GlobalIradiation[12]) && $GlobalIradiation[12] != 0) {
+						break;
+					}
+				}
+				
 			}
+			if (empty($GlobalIradiation[12]) &&  $GlobalIradiation[12] == 0) {
+				$erreurDansLeFormulaire['nb']++;
+				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisParse', 'Données d\'irradiation solaire illisible. La localisation indiqué sur la carte n\'est peut être pas couverte par <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>.');	
+			}
+
 		}
 	} else if ($_GET['Ej'] < 0) {
 		$erreurDansLeFormulaire['nb']++;
@@ -104,7 +132,6 @@ if (isset($_GET['submit'])) {
 		echo '</div>';
 	} else {
 	// Pas d'erreur
-	debug('Cette couleur représente le mode transparent / debug','p');
 	?>
 
 	<h2 class="titre">Résultat du dimensionnement</h2>
@@ -123,61 +150,41 @@ if (isset($_GET['submit'])) {
 			<li>Ri : rendement électrique du reste de l’installation (régulateur de charge…) = <?= $_GET['Ri'] ?></li>
 			<li>Ej : rayonnement moyen quotidien du mois le plus défavorable dans le plan du panneau (kWh/m²/j)</li>
 			<?php 
-			// S'il faut utilise la base INES Solaire (en mode automatique)
+			// S'il faut utilise PGVIS
 			if (empty($_GET['Ej'])) {	
-				if (isset($_GET['InesSolaireAuto'])) {
-					// Choix optimum 
-					$Ej=$InesSolaireAuto['igp'];
-					echo '<ul><li>'.$Ej.' pour '.$_GET['InesVille'].' selon le logiciel <a href="ines.solaire.free.fr/gisesol.php" target="_blank">Ines Solaire</a>, avec comme paramètre : ';
-					echo '<ul>';
-					echo '<li>Autonomie complète de Janvier à Décembre</li>';
-					echo '<li>Orientation : '.$InesSolaireAuto['orientation'].' '.$aideOrientation.' </li>';
-					echo '<li>Inclinaison : '.$InesSolaireAuto['inclinaison'].' '.$aideInclinaison.'</li>';
-				} else {
-					// Orientation & inclinaison sélectionné
-					// InesPeriode=partielle&InesPeriodeDebut=10&InesPeriodeFin=2&
-					if (isset($_GET['InesPeriode']) && $_GET['InesPeriode'] == 'partielle') {
-						$moiEnCours=0;
-						while($moiEnCours != $_GET['InesPeriodeFin']) {
-							if ($moiEnCours == 0){
-								$moiEnCours = $_GET['InesPeriodeDebut'];
+				// Pour une période saisonnière sélectionné
+				if (isset($_GET['periode']) && $_GET['periode'] == 'partielle') {
+					$moiEnCours=0;
+					while($moiEnCours != $_GET['periodeFin']) {
+						if ($moiEnCours == 0){
+							$moiEnCours = $_GET['periodeDebut'];
+						} else {
+							if ($moiEnCours == 12){
+								$moiEnCours=1;
 							} else {
-								if ($moiEnCours == 12){
-									$moiEnCours=1;
-								} else {
-									$moiEnCours++;
-								}
+								$moiEnCours++;
 							}
-							$InesPeriode[]=$moiEnCours;
 						}
+						$periode[]=$moiEnCours;
 					}
-					$Ej=9999;
-					debug('<ul>');
-					debug('On ne gardera l\'IGP du mois le plus défavorable :', 'li');
-					for ($igpNb = 1; $igpNb <= 12; $igpNb++) {
-						// pour l'autonomie partielle
-						if (isset($_GET['InesPeriode']) && $_GET['InesPeriode'] == 'partielle' && !in_array($igpNb, $InesPeriode)) {
-							continue;
-						}
-						debug('Pour '.$_GET['InesVille'].', au mois de '.utf8_encode($mois[$igpNb]).' l\'IGP est de '.$InesSolaire['igp'.$igpNb], 'li');
-						if ($InesSolaire['igp'.$igpNb] < $Ej) {
-							$Ej=$InesSolaire['igp'.$igpNb];
-						}
-					}
-					debug('</ul>');
-
-					echo '<ul>';
-					echo '<li>'.$Ej.' pour '.$_GET['InesVille'].' selon le logiciel <a href="ines.solaire.free.fr/gisesol.php" target="_blank">Ines Solaire</a>, avec comme paramètre : ';
-					echo '<ul>';
-					if (isset($_GET['InesPeriode']) && $_GET['InesPeriode'] == 'partielle') {
-						echo '<li>Autonomie partiel sur la période de '.utf8_encode($mois[$_GET['InesPeriodeDebut']]).' à '.utf8_encode($mois[$_GET['InesPeriodeFin']]).'</li>';
-					} else {
-						echo '<li>Autonomie complète de Janvier à Décembre</li>';
-					}
-					echo '<li>Orientation : '.ajoutDegSiAngleChiffre($_GET['InesOrientation']).' '.$aideOrientation.' </li>';
-					echo '<li>Inclinaison : '.ajoutDegSiAngleChiffre($_GET['InesInclinaison']).' '.$aideInclinaison.'</li>';
 				}
-				echo '<li>Albédo : '.$_GET['InesAlbedo'].' '.$aideAlbedo.'. </li></ul> ';
+				$Ej=9999;
+				debug('<ul>');
+				debug('On ne gardera l\'irradiation du mois le plus défavorable pour la localisation '.$_GET['lat'].' '.$_GET['lon'].' :', 'li');
+				for ($GiNb = 1; $GiNb <= 12; $GiNb++) {
+					// pour l'autonomie partielle
+					if (isset($_GET['periode']) && $_GET['periode'] == 'partielle' && !in_array($GiNb, $periode)) {
+						continue;
+					}
+					debug('Au mois de '.utf8_encode($mois[$GiNb]).' l\'irradiation global est de '.$GlobalIradiation[$GiNb], 'li');
+					if ($GlobalIradiation[$GiNb] < $Ej) {
+						$Ej=$GlobalIradiation[$GiNb];
+					}
+				}
+				debug('</ul>');
+
+				echo '<ul>';
+				echo '<li>Selon les données <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>, la valeur pour la localisation choisie est de '.$Ej.'kWh/m²/j';
 				echo '</ul>';
 			} else {
 				$Ej = $Ej = $_GET['Ej'];
@@ -192,16 +199,7 @@ if (isset($_GET['submit'])) {
 		<p>Pc = <?= $_GET['Bj'] ?> / (<?= $_GET['Rb'] ?> * <?= $_GET['Ri'] ?> * <?= $Ej ?>) = <b><?= convertNumber($Pc, 'print') ?> Wc</b></p>
 	</div>
 	
-	<p>Les panneaux photovoltaïques produisent de l'électricité à partir des rayonnements du soleil.
-	<?php
-	if (empty($_GET['Ej']) && isset($_GET['InesSolaireAuto'])) {
-		// Choix optimum 
-		echo 'Afin d\'être autonome toute l\'année il convient de positionner les panneaux de façon optimum pour le mois le plus défavorable. Pour '.$_GET['InesVille'].', le mois le plus défavorable en ensoleillement est le mois de '.$InesSolaireAuto['mois'].'. Il vous est donc conseillé d\'orienter vos panneaux <b>'.$InesSolaireAuto['orientation'].'</b> '.$aideOrientation.' avec une inclinaison de <b>'.$InesSolaireAuto['inclinaison'].'</b> '.$aideInclinaison.'.';
-	} else if (empty($_GET['Ej'])) {
-		echo 'Vous avez choisi, pour la ville de '.$_GET['InesVille'].', une orientation de vos panneaux <b>'.ajoutDegSiAngleChiffre($_GET['InesOrientation']).'</b> '.$aideOrientation.' ainsi qu\'une inclinaison <b>'.ajoutDegSiAngleChiffre($_GET['InesInclinaison']).'</b> '.$aideInclinaison.'.';
-	}
-	?>
-	</p>
+	<p>Les panneaux photovoltaïques produisent de l'électricité à partir des rayonnements du soleil.</p>
 	<p>Dans ces conditions vous auriez besoin d'une puissance de panneau photovoltaïque équivalente à <b><?= convertNumber($Pc, 'print') ?>Wc</b> afin de satisfaire vos besoins journaliers de <?= $_GET['Bj'] ?>Wh/j.</p>
 	<p><a id="resultCalcPvShow">Voir, comprendre la démarche, le calcul</a></p>
 	
@@ -493,13 +491,8 @@ if (isset($_GET['submit'])) {
 				<?php } ?>
 				<li>Consommation journalière : <?= $_GET['Bj'] ?></li>
 				<?php 
-				if (isset($_GET['InesSolaireAuto'])) {
-					echo '<li>Inclinaison du module : '.$InesSolaireAuto['inclinaison'].'</li>';
-					echo '<li>Orientation : '.nomEnAngle($InesSolaireAuto['orientation']).'</li>';
-				} else {
-					echo '<li>Inclinaison du module : '.ajoutDegSiAngleChiffre($_GET['InesInclinaison']).'</li>';
-					echo '<li>Orientation : '.nomEnAngle(ajoutDegSiAngleChiffre($_GET['InesOrientation'])).'</li>';
-				}
+					echo '<li>Inclinaison du module : '.ajoutDegSiAngleChiffre($_GET['inclinaison']).'</li>';
+					echo '<li>Orientation : '.nomEnAngle(ajoutDegSiAngleChiffre($_GET['orientation'])).'</li>';
 				?>
 			</ul>
 			<li>Puis cliquer sur calculer</li>
@@ -660,9 +653,9 @@ if (isset($_GET['submit'])) {
 		// Annoncer limite batterie
 		$CourantDechargeMaxParcBatterieHypothetique=$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle']*$_GET['IbatDecharge']/100;
 		$PuissanceMaxDechargeBatterie=$CourantDechargeMaxParcBatterieHypothetique*$U;
-		echo '<p>Une hypothèse serait d\'opter pour un <b>convertisseur type '.$meilleurConvertisseur['nom'].'</b> qui monte en puissance maximum de sortie à '.$meilleurConvertisseur['Pmax'].'W avec des pointes possible à '.$meilleurConvertisseur['Ppointe'].'W.';
+		echo '<p>Une hypothèse serait d\'opter pour un <b>convertisseur type '.$meilleurConvertisseur['nom'].'</b> qui monte en puissance maximum de sortie à '.$meilleurConvertisseur['Pmax'].'W avec des pointes possibles à '.$meilleurConvertisseur['Ppointe'].'W.';
 		if ($PuissanceMaxDechargeBatterie < $meilleurConvertisseur['Pmax']) {
-			echo 'Ceci dit, pour ne pas endommager vos batteries, vous ne pourrez aller au delas des '.$PuissanceMaxDechargeBatterie.'W <a rel="tooltip" class="bulles" title="('.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah de batterie * '.$_GET['IbatDecharge'].'/100 de courant max de décharge des batterie) * '.$U.'V">?</a>';
+			echo 'Ceci dit, pour ne pas endommager vos batteries, vous ne pourrez aller au delà des '.$PuissanceMaxDechargeBatterie.'W <a rel="tooltip" class="bulles" title="('.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah de batterie * '.$_GET['IbatDecharge'].'/100 de courant max de décharge des batterie) * '.$U.'V">?</a>';
 		}
 		echo '</p>';
 	}
@@ -730,7 +723,7 @@ if (isset($_GET['submit'])) {
 		} else { 
 			$BudgetCable=$BudgetCable+$_GET['distancePvRegu']*$meilleurCable['prix'];
 			?>
-			<li>Section de câble la plus proche proposé : <b><?= $meilleurCable['nom'] ?></b>, pour un coût d'environ <?= $_GET['distancePvRegu']*$meilleurCable['prix'] ?>€</li>
+			<li>Section de câble la plus proche proposée : <b><?= $meilleurCable['nom'] ?></b>, pour un coût d'environ <?= $_GET['distancePvRegu']*$meilleurCable['prix'] ?>€</li>
 		<?php } ?>
 		</ul>
 		<?php
@@ -780,7 +773,7 @@ if (isset($_GET['submit'])) {
 		} else { 
 			$BudgetCable=$BudgetCable+$_GET['distanceReguBat']*$meilleurCable['prix'];
 			?>
-			<li>Section de câble la plus proche proposé : <b><?= $meilleurCable['nom'] ?></b>, pour un coût d'environ <?= $_GET['distanceReguBat']*$meilleurCable['prix'] ?>€</li>
+			<li>Section de câble la plus proche proposée : <b><?= $meilleurCable['nom'] ?></b>, pour un coût d'environ <?= $_GET['distanceReguBat']*$meilleurCable['prix'] ?>€</li>
 		<?php } ?>
 		</ul>
 	</ul>
@@ -791,7 +784,7 @@ if (isset($_GET['submit'])) {
 		<?php
 		$BudgetPvBas=$config_ini['prix']['pv_bas']*$meilleurParcPv['W']*$meilleurParcPv['nbPv'];
 		$BudgetPvHaut=$config_ini['prix']['pv_haut']*$meilleurParcPv['W']*$meilleurParcPv['nbPv'];
-		echo '<li>Panneaux photovoltaïque : entre '.convertNumber($BudgetPvBas, 'print').'€ et '.convertNumber($BudgetPvHaut, 'print').'€ (<a rel="tooltip" class="bulles" title="Coût estimé de '.$config_ini['prix']['pv_bas'] .'€/Wc en fourchette basse & '.$config_ini['prix']['pv_haut'] .'€/Wc en haute">?</a>)</li>';
+		echo '<li>Panneau photovoltaïque : entre '.convertNumber($BudgetPvBas, 'print').'€ et '.convertNumber($BudgetPvHaut, 'print').'€ (<a rel="tooltip" class="bulles" title="Coût estimé de '.$config_ini['prix']['pv_bas'] .'€/Wc en fourchette basse & '.$config_ini['prix']['pv_haut'] .'€/Wc en haute">?</a>)</li>';
 		if ($meilleurParcBatterie['nbBatterieParalle'] != 99999) { 
 			$BudgetBarBas=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
 			$BudgetBarHaut=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
@@ -822,12 +815,12 @@ if (isset($_GET['submit'])) {
 		$budgetTotalHaut=$BudgetPvHaut+$BudgetBarHaut+$budgetRegulateur+$budgetConvertisseurHaut+$BudgetCable+$BudgetBatControleur;
 		?>
 	</ul>
-	<p>Ce qui nous fait un budget total <b>entre <?= convertNumber($budgetTotalBas, 'print') ?> et <?= convertNumber($budgetTotalHaut, 'print') ?>€</b>. A ça il faut ajouter le prix des supports de panneau, du câblage/cosse ainsi des éléments de protecions (fusible, coup batterie...).</p>
+	<p>Ce qui nous fait un budget total <b>entre <?= convertNumber($budgetTotalBas, 'print') ?> et <?= convertNumber($budgetTotalHaut, 'print') ?>€</b>. A ça il faut ajouter le prix des supports de panneau, du câblage/cosse ainsi des éléments de protections (fusible, coup batterie...).</p>
 	<h3 id="resultatDon">Soutenir, contribuer</h3>
 	<p>Si ce logiciel vous a été utile et/ou que vous voulez exprimer de la reconnaissance :  </p>
 	<ul>
 		<li><a href="http://david.mercereau.info/contact/"  target="_blank">Dites merci !</a> (ça fait toujours plaisir)</li>
-		<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"  target="_blank">Soutener en faisant un don</a> (sécurisé)</li>
+		<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"  target="_blank">Soutenez en faisant un don</a> (sécurisé)</li>
 		<li><a href="" target="_blank">Contribuer / améliorer le logiciel</a> si vous avez des compétences en programmation</li>
 	</ul>
 	<!-- Afficher ou non les informations complémentaire du formulaire -->
@@ -900,166 +893,197 @@ if (isset($_GET['submit'])) {
 ?>
 <form method="get" action="#" id="formulaireCalcPvAutonome">
 	
-	<div class="form Ni">
-		<label>Votre degré de connaisance en photovoltaïque : </label>
-		<select id="Ni" name="Ni">
-			<option value="1"<?php echo valeurRecupSelect('Ni', 1); ?>>Débutant</option>
-			<option value="2"<?php echo valeurRecupSelect('Ni', 2); ?>>Eclairé</option>
-			<option value="3"<?php echo valeurRecupSelect('Ni', 3); ?>>Expert</option>
-		</select>
-	</div>
-	
-	<div class="conseil debutant">
-		<p><a href="http://david.mercereau.info/formation-pv/" target="_blank"><img style="float: right; padding: 10ppx" width="100	" src="./lib/FormationPv.png" alt="" /></a><b>Suggestion</b> : regarder la petite <a href="http://david.mercereau.info/formation-pv/" target="_blank">formation vidéo sur l'autonomie électrique photovoltaîque</a> pour un meilleur usage de ce calculateur.</p>
-	</div>
-	
-	<h2 class="titre vous">Votre consommation :</h2>	
+	<div class="blocs" id="BlocIntro">
+		<div class="form Ni">
+			<label>Votre degré de connaissance en photovoltaïque : </label>
+			<select id="Ni" name="Ni">
+				<option value="1"<?php echo valeurRecupSelect('Ni', 1); ?>>Débutant</option>
+				<option value="2"<?php echo valeurRecupSelect('Ni', 2); ?>>Eclairé</option>
+				<option value="3"<?php echo valeurRecupSelect('Ni', 3); ?>>Expert</option>
+			</select>
+		</div>
 			
-		<p>C'est l'étape la plus importante pour votre dimensionnement. Si vous ne connaissez pas cette valeur rendez-vous sur notre <b><a href="<?= $config_ini['formulaire']['UrlCalcConsommation'] ?>?from=CalcPvAutonome" id="DemandeCalcPvAutonome">interface de calcul de besoins journaliers</a></b></p>
-		
-		<div class="form Bj">
-			<label>Vos besoins électriques journaliers :</label>
-			<input id="Bj" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Bj'); ?>" name="Bj" />  Wh/j
+		<div class="conseil debutant">
+			<p><a href="http://david.mercereau.info/formation-pv/" target="_blank"><img style="float: right; padding: 10ppx" width="100	" src="./lib/FormationPv.png" alt="" /></a><b>Suggestion</b> : regarder la petite <a href="http://david.mercereau.info/formation-pv/" target="_blank">formation vidéo sur l'autonomie électrique photovoltaïque</a> pour un meilleur usage de ce calculateur.</p>
 		</div>
-		
-		<div class="form Pmax">
-			<label>Votre besoin en puissance électrique maximum :</label>
-			<input id="Pmax" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Pmax'); ?>" name="Pmax" />  W <a rel="tooltip" class="bulles" title="Il s'agit de la somme des puissances des appareils branché au même moment. <br />Par exemple si vous aviez un réfrégirateur de (70W), une scie sauteuse (500W) et une ampoule (7W) qui sont suceptibles d'être allumés en même temps votre besoin en puissance max est de 577W (70+500+7)">?</a>
-		</div>
-		
-		<?php
-		function ongletActif($id) {
-			if ($_GET['Ej'] != '' && $id == 'valeur') {
-				echo ' class="actif"';
-			} elseif ($_GET['Ej'] == '' && $id == 'auto') {
-				echo ' class="actif"';
-			}
-		}
-		?>
 
-	<div class="part pv">
-		<h2 class="titre pv">Dimensionnement des panneaux photovoltaïques</h2>
+		<h2 class="titre vous">Votre consommation :</h2>	
+				
+			<p>C'est l'étape la plus importante pour votre dimensionnement. Si vous ne connaissez pas cette valeur rendez-vous sur notre <b><a href="<?= $config_ini['formulaire']['UrlCalcConsommation'] ?>?from=CalcPvAutonome" id="DemandeCalcPvAutonome">interface de calcul de besoins journaliers</a></b></p>
+			
+			<div class="form Bj">
+				<label>Vos besoins électriques journaliers :</label>
+				<input id="Bj" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Bj'); ?>" name="Bj" />  Wh/j
+			</div>
+			
+			<div class="form Pmax">
+				<label>Votre besoin en puissance électrique maximum :</label>
+				<input id="Pmax" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Pmax'); ?>" name="Pmax" />  W <a rel="tooltip" class="bulles" title="Il s'agit de la somme des puissances des appareils branché au même moment. <br />Par exemple si vous aviez un réfrégirateur de (70W), une scie sauteuse (500W) et une ampoule (7W) qui sont suceptibles d'être allumés en même temps votre besoin en puissance max est de 577W (70+500+7)">?</a>
+			</div>
+			
+			<?php
+			function ongletActif($id) {
+				if ($_GET['Ej'] != '' && $id == 'valeur') {
+					echo ' class="actif"';
+				} elseif ($_GET['Ej'] == '' && $id == 'auto') {
+					echo ' class="actif"';
+				}
+			}
+			?>
+	</div>
 	
-		<p>Rayonnement en fonction de votre situation géographique : </p>
+	<div id="BlocLocalisation" class="blocs part localisation">
+		<h2 class="titre localisation">Localisation géographique</h2>
+
 		<ul id="onglets">
-			<li<?php echo ongletActif('auto'); ?>>Automatique</li>
+			<li<?php echo ongletActif('auto'); ?>>Carte</li>
 			<li<?php echo ongletActif('valeur'); ?> id="EjOnglet">Manuel</li>
 		</ul>
 		<div id="contenu">
 			
-			<div class="modeInesSolaire item">				
-				<p>Les données de rayonnement sont celles du site de  <a href="http://ines.solaire.free.fr/gisesol_1.php" target="_blank">INES</a>.</p>
-				
-				<div class="form InesVille">
-					<label>Sélectionner la ville la plus proche de chez vous :</label>
-					<select name="InesVille">
-						<?php 
-						foreach ($villes as $ville) { 
-							$ville=utf8_encode($ville);
-							echo '<option value="'.$ville.'"';
-							valeurRecupSelect('InesVille', $ville);
-							echo '>'.$ville.'</option>';
-						}
-						?>
-					</select>
-				</div>
-				
-				<div class="form InesSolaireAuto">
-					<input type="checkbox" id="InesSolaireAuto" name="InesSolaireAuto"
-					<?php
-					if (empty($_GET['submit']) || isset($_GET['InesSolaireAuto'])) {
-						echo ' checked="checked"'; 
+			<div class="modePvgis item">				
+				<p>Cliquer sur la carte afin de déterminer votre position géographique afin d'en déduire l'ensoleillement : </p>
+
+				<div id="mapid" style="width: 100%; height: 300px;"></div>
+				<script>
+					// Création de la carte
+					<?php 
+					// Exception pour la france on ce met sur la France (le public principal)
+					$mapZoom=$config_ini['formulaire']['zoomDefaut'];
+					if ($country == 'FR') {
+						$config_ini['formulaire']['lat'] = 47;
+						$config_ini['formulaire']['lon'] = 3;
+						$mapZoom=5;
+					}
+					if (isset($_GET['lat']) || isset($_COOKIE['lat'])) {
+						$mapZoom=$config_ini['formulaire']['zoom'];
+					}
+					
+					?>
+					var mymap = L.map('mapid').setView([<?php valeurRecupCookie('lat') ?>, <?php valeurRecupCookie('lon') ?>], <?= $mapZoom ?>);
+
+					L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+						maxZoom: 18,
+						attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+						id: 'mapbox.streets'
+					}).addTo(mymap);
+
+					var popup = L.popup();
+
+					<?php 
+					if (isset($_GET['lat'])) {
+						echo "var Marker = L.marker([".$_GET['lat'].", ".$_GET['lon']."]);\n";
+						echo "Marker.addTo(mymap);\n";
+					} else if (isset($_COOKIE['lat'])) {
+						echo "var Marker = L.marker([".$_COOKIE['lat'].", ".$_COOKIE['lon']."]);\n";
+						echo "Marker.addTo(mymap);\n";
 					}
 					?>
-					/> Choisir l'orientation et l'inclinaison la plus favorable dans ma ville
-				</div>
-				
-				<div class="form InesManuel InesInclinaison">
-					<label>Inclinaison des panneaux :</label>
-					<select name="InesInclinaison">
-						<?php 
-						foreach ($inclinaisons as $inclinaison) { 
-							$inclinaison=utf8_encode($inclinaison);
-							echo '<option value="'.$inclinaison.'"';
-							valeurRecupSelect('InesInclinaison', $inclinaison);
-							echo '>'.$inclinaison.'°</option>';
-						}
-						?>
-					</select>
-					<?= $aideInclinaison ?>
 					
+					function onMapClick(e) {
+						popup
+							.setLatLng(e.latlng)
+							.setContent("Position sélectionné : " + e.latlng.toString())
+							.openOn(mymap);
 					
-				</div>
-				<div class="form InesManuel InesOrientation">
-					<label>Orientation des panneaux :</label>
-					<select name="InesOrientation">
+						var split1 = e.latlng.toString().split("(")
+						var split2 = split1[1].split(")")
+						var split3 = split2[0].split(", ")
+						var lat = split3[0];
+						var lon = split3[1];
+						$( "#lat" ).val(lat);	
+						$( "#lon" ).val(lon);
+						sumbitEnable();	 
 						<?php 
-						foreach ($orientations as $orientation) { 
-							$orientation=utf8_encode($orientation);
-							echo '<option value="'.$orientation.'"';
-							echo valeurRecupSelect('InesOrientation', $orientation);
-							echo '>'.$orientation.'°</option>';
+						if (isset($_GET['lat']) || isset($_COOKIE['lat'])) {
+							echo "Marker.remove(mymap);\n";
 						}
 						?>
-					</select>
-					<?= $aideOrientation ?>
-				</div>
-				<div class="form InesAlbedo">
-					<label>Albédo du sol :</label>
-					<select name="InesAlbedo">
-						<?php 
-						foreach ($albedos as $albedo) { 
-							$albedo=utf8_encode($albedo);
-							echo '<option value="'.$albedo.'"';
-							echo valeurRecupSelect('InesAlbedo', $albedo);
-							echo '>'.$albedo.'</option>';
-						}
-						?>
-					</select>
-					<?= $aideAlbedo ?>
-				</div>
-				<div class="form InesPeriode">
-					<label>Autonomie souhaité :</label>
-					<select name="InesPeriode" id="InesPeriode">
-						<option value="complete"<?php echo valeurRecupSelect('InesPeriode', 'complete'); ?>>Annuelle / complète</option>
-						<option value="partielle"<?php echo valeurRecupSelect('InesPeriode', 'partielle'); ?>>Saisonnière / partielle</option>
-					</select>
-					<div class="form InesPeriodeDebutFin">
-						<label>Sélectiononer la période :</label>
-						<select name="InesPeriodeDebut">
-							<?php
-							foreach ($mois as $moisId=>$moisNom) { 
-								$moisNom=utf8_encode($moisNom);
-								echo '<option value="'.$moisId.'"';
-								valeurRecupSelect('InesPeriodeDebut', $moisId);
-								echo '>'.$moisNom.'</option>';
-							}
-							?>
-						</select>
-						<select name="InesPeriodeFin">
-							<?php
-							foreach ($mois as $moisId=>$moisNom) { 
-								$moisNom=utf8_encode($moisNom);
-								echo '<option value="'.$moisId.'"';
-								valeurRecupSelect('InesPeriodeFin', $moisId);
-								echo '>'.$moisNom.'</option>';
-							}
-							?>
-						</select>
-					</div>
-				</div>
-				
+					}
+					
+					mymap.on('click', onMapClick);
+				</script>
+				<div style="text-align: center">
+					Latitude : 
+					<input type="number" min="-180" max="180" step="0.00001" style="width: 100px;"  name="lat" id="lat" value="<?= valeurRecupCookieSansConfig('lat'); ?>" />
+					Longitude : 
+					<input type="number" min="-180" max="180" step="0.00001" style="width: 100px;" name="lon" id="lon" value="<?= valeurRecupCookieSansConfig('lon'); ?>" />
+				</div>				
+				<p><small>Les données de rayonnement sont collectées sur <a href="hhttp://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>.</small></p>
 			</div>
 			<div class="modeInput item">
 				<div class="form Ej">
 					<label>Donner la valeur du rayonnement moyen quotidien du mois le plus défavorable dans le plan (l'inclinaison) du panneau :</label>
 					<input maxlength="4" size="4" id="Ej" type="number" step="0.01" min="0" max="10" style="width: 100px;" value="<?php echo valeurRecup('Ej'); ?>" name="Ej" /> kWh/m²/j
-					<p>Pour obtenir cette valeur rendez vous sur le site de <a href="http://ines.solaire.free.fr/gisesol_1.php" target="_blank">INES</a>, choisir votre ville, l'inclinaison & l'orientation des panneaux puis valider. Il s'agit ensuite de prendre la plus basse valeur de la ligne "Globale (IGP)" (dernière ligne du second tableau) Plus d'informations en bas de cette page : <a href="http://www.photovoltaique.guidenr.fr/cours-photovoltaique-autonome/VI_calcul-puissance-crete.php">Comment obtenir la valeur de Ei, Min sur le site de l'INES ?</a></p>
+					<?php
+					if ($country == 'FR') {	
+						echo '<p>Pour obtenir cette valeur rendez vous sur le site de <a href="http://ines.solaire.free.fr/gisesol_1.php" target="_blank">INES</a>, choisir votre ville, l\'inclinaison & l\'orientation des panneaux puis valider. Il s\'agit ensuite de prendre la plus basse valeur de la ligne "Globale (IGP)" (dernière ligne du second tableau) Plus d\'informations en bas de cette page : <a href="http://www.photovoltaique.guidenr.fr/cours-photovoltaique-autonome/VI_calcul-puissance-crete.php">Comment obtenir la valeur de Ei, Min sur le site de l\'INES ?</a></p>';
+					}
+					?>
 				</div>
 			</div>
 			
 		</div>
 		
+	</div>
+	
+	
+	<div id="BlocPV" class="blocs part pv">
+		<h2 class="titre pv">Dimensionnement des panneaux photovoltaïques</h2>
+		
+		<?php
+		if ($country == 'FR') {
+			// Pour la France on conseil 65° d'inclinaison par défaut
+			$config_ini['formulaire']['inclinaison'] = 65;
+			$config_ini['formulaire']['orientation'] = 0;
+		}
+		?>
+		
+		<div class="form inclinaison">
+			<label>Inclinaison des panneaux :</label>
+			<input name="inclinaison" id="inclinaison" type="number" min="-90" max="90" style="width: 100px;" value="<?= valeurRecup('inclinaison'); ?>" />
+			<?= $aideInclinaison ?>
+
+		</div>
+		<div class="form orientation">
+			<label>Orientation des panneaux :</label>
+			<input name="orientation" id="orientation" type="number" min="-180" max="180" style="width: 100px;" value="<?= valeurRecup('orientation'); ?>" />
+			<?= $aideOrientation ?>
+		</div>
+		
+		<p><input type="checkbox" id="tracking" name="tracking" <?php if (isset($_GET['tracking'])) echo 'checked="tracking"'; ?> /> J'utilise un traqueur solaire sur les 2 axes</p>
+		
+		<div class="form periode">
+			<label>Autonomie souhaitée :</label>
+			<select name="periode" id="periode">
+				<option value="complete"<?php echo valeurRecupSelect('periode', 'complete'); ?>>Annuelle / complète</option>
+				<option value="partielle"<?php echo valeurRecupSelect('periode', 'partielle'); ?>>Saisonnière / partielle</option>
+			</select>
+			<div class="form periodeDebutFin">
+				<label>Sélectiononer la période :</label>
+				<select name="periodeDebut">
+					<?php
+					foreach ($mois as $moisId=>$moisNom) { 
+						$moisNom=utf8_encode($moisNom);
+						echo '<option value="'.$moisId.'"';
+						valeurRecupSelect('periodeDebut', $moisId);
+						echo '>'.$moisNom.'</option>';
+					}
+					?>
+				</select>
+				<select name="periodeFin">
+					<?php
+					foreach ($mois as $moisId=>$moisNom) { 
+						$moisNom=utf8_encode($moisNom);
+						echo '<option value="'.$moisId.'"';
+						valeurRecupSelect('periodeFin', $moisId);
+						echo '>'.$moisNom.'</option>';
+					}
+					?>
+				</select>
+			</div>
+		</div>
+
 		<div class="form ModPv">
 			<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=pv','Les modèles de panneaux','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');">Modèle de panneau</a> : </label>
 			<select id="ModPv" name="ModPv">
@@ -1076,7 +1100,7 @@ if (isset($_GET['submit'])) {
 			</select> 
 		</div>
 		<div class="form TypePv">
-			<label>Technologie préféré de panneau : </label>
+			<label>Technologie préférée de panneau : </label>
 			<select id="TypePv" name="TypePv">
 				<option value="monocristalin"<?php echo valeurRecupSelect('TypePv', 'monocristalin'); ?>>Monocristalin</option>
 				<option value="polycristallin"<?php echo valeurRecupSelect('TypePv', 'polycristallin'); ?>>Polycristallin</option>
@@ -1115,153 +1139,158 @@ if (isset($_GET['submit'])) {
 		</div>
 	</div>
 	
-	<div class="part bat">
-		<h2 class="titre bat">Dimensionnement du parc de batteries</h2>
-		<p>Cette application est pré-paramétrée pour des batteries plomb (AGM/Gel/OPvS/OPzV)</p>
-		<div class="form Aut">
-			<label>Nombre de jours d'autonomie : </label>
-			<input maxlength="2" size="2" id="Aut" type="number" step="1" min="0" max="50" style="width: 50px" value="<?php echo valeurRecup('Aut'); ?>" name="Aut" />
-		</div>
-		<div class="form U">
-			<label>Tension finale du parc de batteries : </label>
-			<select id="U" name="U">
-				<option value="0"<?php echo valeurRecupSelect('U', 0); ?>>Auto</option>
-				<option value="12"<?php echo valeurRecupSelect('U', 12); ?>>12</option>
-				<option value="24"<?php echo valeurRecupSelect('U', 24); ?>>24</option>
-				<option value="48"<?php echo valeurRecupSelect('U', 48); ?>>48</option>
-			</select> V <a rel="tooltip" class="bulles" title="En mode automatique la tension des batteries sera déduite du besoin en panneaux<br />De 0 à 500Wc : 12V<br />De 500 à 1500 Wc : 24V<br />Au dessus de 1500 Wc : 48V">(?)</a>
-		</div>
-		<div class="form DD">
-			<label>Degré de décharge limite : </label>
-			<input maxlength="2" size="2" id="DD" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('DD'); ?>" name="DD" /> %
-		</div>
-		<div class="form ModBat">
-			<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','Les modèles des batteries','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');">Modèle de batterie</a> (<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">donné en C10</a>) : </label>
-			<select id="ModBat" name="ModBat">
-				<option value="auto">Automatique</option>
-				<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModBat', 'perso'); ?>>Personnaliser</option>
-				<?php 
-				foreach ($config_ini['batterie'] as $batModele => $batValeur) {
-					echo '<option value="'.$batModele.'"';
-					echo valeurRecupSelect('ModBat', $batModele);
-					echo '>'.$batValeur['nom'].'</option>';
-					echo "\n";
-				}
-				?>
-			</select> <a rel="tooltip" class="bulles" title="En mode automatique, au dessus de 500A, il sera utilisé des batteries GEL OPzV 2V">(?)</a>
-		</div>
-		<div class="form TypeBat">
-			<label>Technologie de batteries préféré : </label>
-			<select id="TypeBat" name="TypeBat">
-				<option value="auto"<?php echo valeurRecupSelect('TypeBat', 'auto'); ?>>Auto.</option>
-				<option value="AGM"<?php echo valeurRecupSelect('TypeBat', 'AGM'); ?>>AGM</option>
-				<option value="GEL"<?php echo valeurRecupSelect('TypeBat', 'GEL'); ?>>Gel</option>
-				<option value="OPzV"<?php echo valeurRecupSelect('TypeBat', 'OPzV'); ?>>OPzV</option>
-				<option value="OPzS"<?php echo valeurRecupSelect('TypeBat', 'OPzS'); ?>>OPzS</option>
-			</select> 
-		</div>
-		<div class="form PersoBat">
-			<p>Vous pouvez détailler les caractéristiques techniques de votre batterie : </p>
-			<ul>
-				<li>
-					<label>Capacité (C10) : </label>
-					<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoBatAh'); ?>"  name="PersoBatAh" />Ah
-				</li>
-				<li>
-					<label>Tension : </label>
-					<select id="PersoBatV" name="PersoBatV">
-						<option value="2"<?php echo valeurRecupSelect('PersoBatV', 2); ?>>2</option>
-						<option value="4"<?php echo valeurRecupSelect('PersoBatV', 4); ?>>4</option>
-						<option value="6"<?php echo valeurRecupSelect('PersoBatV', 6); ?>>6</option>
-						<option value="12"<?php echo valeurRecupSelect('PersoBatV', 12); ?>>12</option>
-					</select> V
-				</li>
-			</ul>
-		</div>
-		<div class="form IbatCharge">
-			<label>Capacité de courant de charge max : </label>
-			<input maxlength="2" size="2" id="IbatCharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatCharge'); ?>" name="IbatCharge" /> %
-		</div>
-		<div class="form IbatDecharge">
-			<label>Capacité de courant de décharge max : </label>
-			<input  maxlength="2" size="2" id="IbatDecharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatDecharge'); ?>" name="IbatDecharge" /> %
-		</div>
-	</div>
-	
-	<div class="part regu">
-		<h2 class="titre regu">Regulateur de charge</h2>
-		<div class="form ModRegu">
-			<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=regulateur','Les modèles de régulateur','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=670,fullscreen=no');">Modèle de régulateur</a> : </label>
-			<select id="ModRegu" name="ModRegu">
-				<option value="auto">Automatique</option>
-				<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModRegu', 'perso'); ?>>Personnaliser</option>
-				<?php 
-				$ReguModeleDoublonCheck[]=null;
-				foreach ($config_ini['regulateur'] as $ReguModele => $ReguValeur) {
-					if (!in_array(substr($ReguModele, 0, -3), $ReguModeleDoublonCheck)) {	
-						echo '<option value="'.substr($ReguModele, 0, -3).'"';
-						echo valeurRecupSelect('ModRegu', substr($ReguModele, 0, -3));
-						echo '>'.$ReguValeur['nom'].'</option>';
+	<div class="blocs" id="BlocBat">
+		
+		<div class="part bat">
+			<h2 class="titre bat">Dimensionnement du parc de batteries</h2>
+			<p>Cette application est pré-paramétrée pour des batteries plomb (AGM/Gel/OPvS/OPzV)</p>
+			<div class="form Aut">
+				<label>Nombre de jours d'autonomie : </label>
+				<input maxlength="2" size="2" id="Aut" type="number" step="1" min="0" max="50" style="width: 50px" value="<?php echo valeurRecup('Aut'); ?>" name="Aut" />
+			</div>
+			<div class="form U">
+				<label>Tension finale du parc de batteries : </label>
+				<select id="U" name="U">
+					<option value="0"<?php echo valeurRecupSelect('U', 0); ?>>Auto</option>
+					<option value="12"<?php echo valeurRecupSelect('U', 12); ?>>12</option>
+					<option value="24"<?php echo valeurRecupSelect('U', 24); ?>>24</option>
+					<option value="48"<?php echo valeurRecupSelect('U', 48); ?>>48</option>
+				</select> V <a rel="tooltip" class="bulles" title="En mode automatique la tension des batteries sera déduite du besoin en panneaux<br />De 0 à 500Wc : 12V<br />De 500 à 1500 Wc : 24V<br />Au dessus de 1500 Wc : 48V">(?)</a>
+			</div>
+			<div class="form DD">
+				<label>Degré de décharge limite : </label>
+				<input maxlength="2" size="2" id="DD" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('DD'); ?>" name="DD" /> %
+			</div>
+
+			<div class="form ModBat">
+				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','Les modèles des batteries','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');">Modèle de batterie</a> (<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">donné en C10</a>) : </label>
+				<select id="ModBat" name="ModBat">
+					<option value="auto">Automatique</option>
+					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModBat', 'perso'); ?>>Personnaliser</option>
+					<?php 
+					foreach ($config_ini['batterie'] as $batModele => $batValeur) {
+						echo '<option value="'.$batModele.'"';
+						echo valeurRecupSelect('ModBat', $batModele);
+						echo '>'.$batValeur['nom'].'</option>';
 						echo "\n";
-						$ReguModeleDoublonCheck[]=substr($ReguModele, 0, -3);
 					}
-				}
-				?>
-			</select>
+					?>
+				</select> <a rel="tooltip" class="bulles" title="En mode automatique, au dessus de 500A, il sera utilisé des batteries GEL OPzV 2V">(?)</a>
+			</div>
+			
+			<div class="form TypeBat">
+				<label>Technologie de batteries préféré : </label>
+				<select id="TypeBat" name="TypeBat">
+					<option value="auto"<?php echo valeurRecupSelect('TypeBat', 'auto'); ?>>Auto.</option>
+					<option value="AGM"<?php echo valeurRecupSelect('TypeBat', 'AGM'); ?>>AGM</option>
+					<option value="GEL"<?php echo valeurRecupSelect('TypeBat', 'GEL'); ?>>Gel</option>
+					<option value="OPzV"<?php echo valeurRecupSelect('TypeBat', 'OPzV'); ?>>OPzV</option>
+					<option value="OPzS"<?php echo valeurRecupSelect('TypeBat', 'OPzS'); ?>>OPzS</option>
+				</select> 
+			</div>
+			<div class="form PersoBat">
+				<p>Vous pouvez détailler les caractéristiques techniques de votre batterie : </p>
+				<ul>
+					<li>
+						<label>Capacité (C10) : </label>
+						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoBatAh'); ?>"  name="PersoBatAh" />Ah
+					</li>
+					
+					<li>
+						<label>Tension : </label>
+						<select id="PersoBatV" name="PersoBatV">
+							<option value="2"<?php echo valeurRecupSelect('PersoBatV', 2); ?>>2</option>
+							<option value="4"<?php echo valeurRecupSelect('PersoBatV', 4); ?>>4</option>
+							<option value="6"<?php echo valeurRecupSelect('PersoBatV', 6); ?>>6</option>
+							<option value="12"<?php echo valeurRecupSelect('PersoBatV', 12); ?>>12</option>
+						</select> V
+					</li>
+				</ul>
+			</div>
+			<div class="form IbatCharge">
+				<label>Capacité de courant de charge max : </label>
+				<input maxlength="2" size="2" id="IbatCharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatCharge'); ?>" name="IbatCharge" /> %
+			</div>
+			<div class="form IbatDecharge">
+				<label>Capacité de courant de décharge max : </label>
+				<input  maxlength="2" size="2" id="IbatDecharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatDecharge'); ?>" name="IbatDecharge" /> %
+			</div>
 		</div>
-		<div class="form PersoRegu">
-			<p>Vous pouvez détailler les caractéristiques techniques de votre régulateur solair : </p>
-			<ul>
-				<li>
-					<label>Tension finale des batteries : <a rel="tooltip" class="bulles" title="Cette valeur se change dans 'Dimensionnement du parc batteries'"><span id="PersoReguVbat"></span>V</a></label>
-				</li>
-				<li>
-					<label>Puissance maximale PV : </label>
-					<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguPmaxPv'); ?>"  name="PersoReguPmaxPv" />W
-				</li>
-				<li>
-					<label>Tension PV maximale de circuit ouvert : </label>
-					<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguVmaxPv'); ?>" name="PersoReguVmaxPv" />V
-				</li>
-				<li>
-					<label>Max. PV courant (Puissance / Tension) :</label>
-					<input type="number" step="0.01" min="0,01" max="999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguImaxPv'); ?>"  name="PersoReguImaxPv" />A
-				</li>
-			</ul>
+		
+		
+		<div class="part regu">
+			<h2 class="titre regu">Regulateur de charge</h2>
+			<div class="form ModRegu">
+				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=regulateur','Les modèles de régulateur','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=670,fullscreen=no');">Modèle de régulateur</a> : </label>
+				<select id="ModRegu" name="ModRegu">
+					<option value="auto">Automatique</option>
+					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModRegu', 'perso'); ?>>Personnaliser</option>
+					<?php 
+					$ReguModeleDoublonCheck[]=null;
+					foreach ($config_ini['regulateur'] as $ReguModele => $ReguValeur) {
+						if (!in_array(substr($ReguModele, 0, -3), $ReguModeleDoublonCheck)) {	
+							echo '<option value="'.substr($ReguModele, 0, -3).'"';
+							echo valeurRecupSelect('ModRegu', substr($ReguModele, 0, -3));
+							echo '>'.$ReguValeur['nom'].'</option>';
+							echo "\n";
+							$ReguModeleDoublonCheck[]=substr($ReguModele, 0, -3);
+						}
+					}
+					?>
+				</select>
+			</div>
+			<div class="form PersoRegu">
+				<p>Vous pouvez détailler les caractéristiques techniques de votre régulateur solair : </p>
+				<ul>
+					<li>
+						<label>Tension finale des batteries : <a rel="tooltip" class="bulles" title="Cette valeur se change dans 'Dimensionnement du parc batteries'"><span id="PersoReguVbat"></span>V</a></label>
+					</li>
+					<li>
+						<label>Puissance maximale PV : </label>
+						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguPmaxPv'); ?>"  name="PersoReguPmaxPv" />W
+					</li>
+					<li>
+						<label>Tension PV maximale de circuit ouvert : </label>
+						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguVmaxPv'); ?>" name="PersoReguVmaxPv" />V
+					</li>
+					<li>
+						<label>Max. PV courant (Puissance / Tension) :</label>
+						<input type="number" step="0.01" min="0,01" max="999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguImaxPv'); ?>"  name="PersoReguImaxPv" />A
+					</li>
+				</ul>
+			</div>
+			<div class="form reguMargeIcc">
+				<label>Marge de sécurité du courant de court-circuit Icc des panneaux : </label>
+				<input maxlength="2" size="2" id="reguMargeIcc" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('reguMargeIcc'); ?>" name="reguMargeIcc" /> %
+			</div>
 		</div>
-		<div class="form reguMargeIcc">
-			<label>Marge de sécurité du courant de court-circuit Icc des panneaux : </label>
-			<input maxlength="2" size="2" id="reguMargeIcc" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('reguMargeIcc'); ?>" name="reguMargeIcc" /> %
+		
+		<div class="part cable">
+			<h2 class="titre cable">Câblage</h2>
+			<p>On considère un câblage solaire souple en cuivre.</p>
+			<div class="form cablePvRegu">
+				<label>Distance (aller simple) entre les panneaux et le régulateur : </label>
+				<input maxlength="2" size="2" id="distancePvRegu" type="number" step="0.5" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('distancePvRegu'); ?>" name="distancePvRegu" /> m
+			</div>
+			<div class="form cableReguBat">
+				<label>Distance (aller simple) entre le régulateur et les batteries : </label>
+				<input maxlength="2" size="2" id="distanceReguBat" type="number" step="0.5" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('distanceReguBat'); ?>" name="distanceReguBat" /> m
+			</div>
+			<div class="form cablageRho">
+				<label>La résistivité du conducteur (rhô) mm²/m  : </label>
+				<input maxlength="4" size="4" id="cablageRho" type="number" step="0.001" min="0" max="10" style="width: 70px" value="<?php echo valeurRecup('cablageRho'); ?>" name="cablageRho" /> ohm
+			</div>
+			<div class="form cablagePtPourcent">
+				<label>Chute de tension tolérable : </label>
+				<input maxlength="2" size="2" id="cablagePtPourcent" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablagePtPourcent'); ?>" name="cablagePtPourcent" /> %
+			</div>
+			<div class="form cablageRegleAparMm">
+				<label>Ratio pour se pérmunir de l'échauffement du câble : </label>
+				<input maxlength="2" size="2" id="cablageRegleAparMm" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablageRegleAparMm'); ?>" name="cablageRegleAparMm" /> A/mm²
+			</div>
 		</div>
 	</div>
-	
-	<div class="part cable">
-		<h2 class="titre cable">Câblage</h2>
-		<p>On considère un câblage solaire souple en cuivre.</p>
-		<div class="form cablePvRegu">
-			<label>Distance (aller simple) entre les panneaux et le régulateur : </label>
-			<input maxlength="2" size="2" id="distancePvRegu" type="number" step="0.5" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('distancePvRegu'); ?>" name="distancePvRegu" /> m
-		</div>
-		<div class="form cableReguBat">
-			<label>Distance (aller simple) entre le régulateur et les batteries : </label>
-			<input maxlength="2" size="2" id="distanceReguBat" type="number" step="0.5" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('distanceReguBat'); ?>" name="distanceReguBat" /> m
-		</div>
-		<div class="form cablageRho">
-			<label>La résistivité du conducteur (rhô) mm²/m  : </label>
-			<input maxlength="4" size="4" id="cablageRho" type="number" step="0.001" min="0" max="10" style="width: 70px" value="<?php echo valeurRecup('cablageRho'); ?>" name="cablageRho" /> ohm
-		</div>
-		<div class="form cablagePtPourcent">
-			<label>Chute de tension tolérable : </label>
-			<input maxlength="2" size="2" id="cablagePtPourcent" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablagePtPourcent'); ?>" name="cablagePtPourcent" /> %
-		</div>
-		<div class="form cablageRegleAparMm">
-			<label>Ratio pour se pérmunir de l'échauffement du câble : </label>
-			<input maxlength="2" size="2" id="cablageRegleAparMm" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablageRegleAparMm'); ?>" name="cablageRegleAparMm" /> A/mm²
-		</div>
-	</div>
-		
-	<div class="form End">
-		
+	<div id="BlocSubmit"  class="form End">
 		<input id="Reset" type="button" value="Remise à 0" name="reset" />
 		<input id="Submit" type="submit" value="Lancer le calcul" name="submit" />
 		<img style="margin-left: 150px; vertical-align:bottom;" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_SM.gif" border="0" alt="Faire un don"  onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted';" />
@@ -1270,14 +1299,6 @@ if (isset($_GET['submit'])) {
 </form>
 
 
-
-
-
-
-
-<div id="CarteZone">
-	<a href="./lib/Zone-solar-map-fr.png" target="_blank"><img src="./lib/Zone-solar-map-fr.png" /></a>
-</div>
 
 <!-- Détection des changement dans le formulaire -->
 <input type="hidden" value="0" id="ModificationDuFormulaire" />
@@ -1300,11 +1321,8 @@ $('#DemandeCalcPvAutonome').click(function() {
 	}
 });
 
-$( "#InesPeriode" ).change(function () {
-	InesPeriodeChange();
-});
-$( "#InesSolaireAuto" ).change(function () {
-	InesSolaireAutoChange();
+$( "#periode" ).change(function () {
+	periodeChange();
 });
 $( "#ModPv" ).change(function () {
 	modPvChange();
@@ -1315,13 +1333,16 @@ $( "#ModBat" ).change(function () {
 $( "#ModRegu" ).change(function () {
 	modReguChange();
 });
+$( "#tracking" ).change(function () {
+	trackingChange();
+});
 $( "#U" ).change(function () {
 	$( "#PersoReguVbat" ).text($( "#U" ).val());
 });
 
 // Bouton Submit activation / désactivation
 function sumbitEnable() {
-	if (($( "#Bj" ).val() > 0) && $( "#Pmax" ).val() > 0) {
+	if ($( "#lat" ).val() != '' && $( "#lon" ).val() != '' && $( "#Bj" ).val() > 0 && $( "#Pmax" ).val() > 0) {
 		$( "#Submit" ).prop('disabled', false);
 	} else {
 		$( "#Submit" ).prop('disabled', true);
@@ -1333,22 +1354,19 @@ $( "#Bj" ).change(function() {
 $( "#Pmax" ).change(function() {
 	sumbitEnable();
 });
+$( "#lat" ).change(function() {
+	sumbitEnable();
+});
+$( "#lon" ).change(function() {
+	sumbitEnable();
+});
 
-// INES
-function InesPeriodeChange() {
-	if ($( "#InesPeriode" ).val() == 'partielle') {
-		$( ".InesPeriodeDebutFin" ).show();
+// Période
+function periodeChange() {
+	if ($( "#periode" ).val() == 'partielle') {
+		$( ".periodeDebutFin" ).show();
 	} else {
-		$( ".InesPeriodeDebutFin" ).hide();
-	}
-}
-function InesSolaireAutoChange() {
-	if ($("#InesSolaireAuto").is(':checked')) {
-		$( ".InesManuel" ).hide();
-		$( ".InesPeriode" ).hide();
-	} else {
-		$( ".InesManuel" ).show();
-		$( ".InesPeriode" ).show();
+		$( ".periodeDebutFin" ).hide();
 	}
 }
 // Changement de modèle de PV
@@ -1399,7 +1417,15 @@ function modReguChange() {
 	}
 	
 }
-
+function trackingChange() {
+	if ($('#tracking').is(':checked')) {
+		$( ".form.orientation" ).hide();
+		$( ".form.inclinaison" ).hide();
+	} else {
+		$( ".form.orientation" ).show();
+		$( ".form.inclinaison" ).show();
+	}
+}
 // Changement de niveau
 $( "#Ni" ).change(function () {
 	changeNiveau();
@@ -1422,10 +1448,6 @@ function changeNiveau() {
 		$( ".form.ModPv" ).hide();
 		$( ".form.TypePv" ).hide();
 		$( ".part.cable" ).hide();
-		$( ".form.InesAlbedo" ).hide();
-		<?php if (isset($_GET['InesSolaireAuto'])) { ?>
-			$("#InesSolaireAuto").prop('checked', true);
-		<?php } ?>
 		$( ".form.ModeDebug" ).hide();
 	// Eclaire (2)
 	} else if  ($( "#Ni" ).val() == 2) {
@@ -1447,10 +1469,6 @@ function changeNiveau() {
 		$( ".form.cablageRho" ).hide();
 		$( ".form.cablagePtPourcent" ).hide();
 		$( ".form.cablageRegleAparMm" ).hide();
-		$( ".form.InesAlbedo" ).hide();
-		<?php if (empty($_GET['InesSolaireAuto'])) { ?>
-			$("#InesSolaireAuto").prop('checked', false);
-		<?php } ?>
 		$( ".form.ModeDebug" ).hide();
 	// Expert (3)
 	} else if ($( "#Ni" ).val() == 3) {
@@ -1472,13 +1490,8 @@ function changeNiveau() {
 		$( ".form.cablageRho" ).show();
 		$( ".form.cablagePtPourcent" ).show();
 		$( ".form.cablageRegleAparMm" ).show();
-		$( ".form.InesAlbedo" ).show();
-		<?php if (empty($_GET['InesSolaireAuto'])) { ?>
-			$("#InesSolaireAuto").prop('checked', false);
-		<?php } ?>
 		$( ".form.ModeDebug" ).show();
 	}
-	InesSolaireAutoChange();
 }
 
 // Onglet carte zone
@@ -1516,7 +1529,8 @@ $(document).ready(function() {
 	modPvChange(); 
 	modBatChange();
 	modReguChange(); 
-	InesPeriodeChange();
+	periodeChange();
+	trackingChange();
 	sumbitEnable();	
 }); 
 

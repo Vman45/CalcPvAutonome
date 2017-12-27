@@ -1,4 +1,4 @@
-<?php $CalcPvAutonomeVersion='2.2'; ?>
+<?php $CalcPvAutonomeVersion='3.0'; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -44,7 +44,7 @@
 		if ($footer == true) {
 		?>
 		<div id="footer">
-            <p class="footer_right">Par <a href="http://david.mercereau.info/">David Mercereau</a> (<a href="https://github.com/kepon85/CalcPvAutonome">Dépôt github</a>)</p>
+            <p class="footer_right">Par <a href="http://david.mercereau.info/">David Mercereau</a> (<a href="https://framagit.org/kepon/CalcPvAutonome">Dépôt GIT</a>)</p>
             <p class="footer_left">CalcPvAutonome version <?= $CalcPvAutonomeVersion ?> est un logiciel libre sous <a href="https://fr.wikipedia.org/wiki/Beerware">Licence Beerware</a></p>
         </div>
         <?php 
@@ -52,7 +52,7 @@
 		?>
 	</div>
 	<div id="bg">
-		<img src="http://calcpvautonome.zici.fr/lib/solar-panel-1393880_1280.png" alt="">
+		<img src="./lib/solar-panel-1393880_1280.png" alt="">
 	</div>
 	<?php @include_once('./footer.php'); ?>
 

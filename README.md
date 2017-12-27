@@ -40,7 +40,7 @@ Pour les utilisateurs avancés :
 
 #### Requis pour le fonctionnement / l'installation du 
 
-  * PHP (5.5-5.6 recomended) + lib gd + lib sqlite + lib PDO
+  * PHP (5.6 minimum) + lib gd + GeoIP + CURL
   * Lighttpd/Apache (ou autre serveur web, service d'hébergement mutualisé...)
 
 #### Installation
@@ -71,6 +71,13 @@ CalcConsommation :
 
 ### Changelog
 
+ - 3.0
+	- Ines Solaire à laisser place à PVGIS5 (hhttp://re.jrc.ec.europa.eu/PVGIS5-release.html) pour les données d'ensoleillement
+		- Utilisation des bases PVGIS-CMSAF, PVGIS-SARAH & PVGIS-NSRDB de PVGIS
+		- Mise en cache des données
+		- Intégration d'une carte OpenStreetMap pour sélectionner sa position
+	- Prise en compte des traqueur solaire
+	- Design Responsive (pour le calcpvautonome seulement)
  - 2.2
 	- Mode transparent/débug pour mieux comprendre le fonctionnement du logiciel (uniquement en mode expert)
 	- Prise en compte de l'autonomie partielle (pour les utilisations saisonnières type camping car...) 
