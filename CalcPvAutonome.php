@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
-
+<script src="./lib/Chart.min.js"></script>
 <?php 
+
 // Les fonctions
 include('./lib/Fonction.php');
 // Le fichier de config
@@ -141,6 +142,51 @@ if (isset($_GET['submit'])) {
 	-->
 	<h3 id="resultatPv">Panneau photovoltaïque</h3>
 	<div id="resultCalcPv" class="calcul">
+		<?php
+		if (empty($_GET['Ej'])) {	
+			// Graph 
+			echo '<div class="chart-container" style="float: right; width:45%"><canvas id="myChart"></canvas></div>';
+			echo '<script>
+			var ctx = document.getElementById("myChart").getContext(\'2d\');
+			var myChart = new Chart(ctx, {
+				type: \'bar\',
+				data: {
+					labels: [';
+			foreach ($mois as $key => $moi) {
+				echo '"'.$moi.'"';
+				if ($key != 12) {
+					echo ', ';
+				}
+			}
+			echo '],
+					datasets: [{
+						label: \'Rayonnement moyen (kWh/m²/j)\',
+						data: [';
+			for ($GiNb = 1; $GiNb <= 12; $GiNb++) {
+				echo $GlobalIradiation[$GiNb];
+				if ($GiNb != 12) {
+					echo ', ';
+				}
+			}
+			echo '],
+						backgroundColor: \'rgba(255, 206, 86, 0.2)\',
+						borderColor: \'rgba(255, 159, 64, 1)\',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+			</script>';
+		}
+		?>
 		<p>On cherche ici la puissance (crête exprimée en W) des panneaux photovoltaïques à installer pour satisfaire vos besoins en fonction de votre situation géographique. La formule est la suivante : </p>
 		<p>Pc = Bj / (Rb X Ri X Ej)</p>
 		<ul>
@@ -152,6 +198,7 @@ if (isset($_GET['submit'])) {
 			<?php 
 			// S'il faut utilise PGVIS
 			if (empty($_GET['Ej'])) {	
+				
 				// Pour une période saisonnière sélectionné
 				if (isset($_GET['periode']) && $_GET['periode'] == 'partielle') {
 					$moiEnCours=0;
@@ -1009,7 +1056,7 @@ if (isset($_GET['submit'])) {
 					Longitude : 
 					<input type="number" min="-180" max="180" step="0.00001" style="width: 100px;" name="lon" id="lon" value="<?= valeurRecupCookieSansConfig('lon'); ?>" />
 				</div>				
-				<p><small>Les données de rayonnement sont collectées sur <a href="hhttp://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>.</small></p>
+				<p><small>Les données de rayonnement sont collectées sur <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>.</small></p>
 			</div>
 			<div class="modeInput item">
 				<div class="form Ej">
@@ -1161,7 +1208,6 @@ if (isset($_GET['submit'])) {
 				<label>Degré de décharge limite : </label>
 				<input maxlength="2" size="2" id="DD" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('DD'); ?>" name="DD" /> %
 			</div>
-
 			<div class="form ModBat">
 				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','Les modèles des batteries','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');">Modèle de batterie</a> (<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">donné en C10</a>) : </label>
 				<select id="ModBat" name="ModBat">
@@ -1177,7 +1223,6 @@ if (isset($_GET['submit'])) {
 					?>
 				</select> <a rel="tooltip" class="bulles" title="En mode automatique, au dessus de 500A, il sera utilisé des batteries GEL OPzV 2V">(?)</a>
 			</div>
-			
 			<div class="form TypeBat">
 				<label>Technologie de batteries préféré : </label>
 				<select id="TypeBat" name="TypeBat">
@@ -1195,7 +1240,6 @@ if (isset($_GET['submit'])) {
 						<label>Capacité (C10) : </label>
 						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoBatAh'); ?>"  name="PersoBatAh" />Ah
 					</li>
-					
 					<li>
 						<label>Tension : </label>
 						<select id="PersoBatV" name="PersoBatV">
@@ -1216,7 +1260,6 @@ if (isset($_GET['submit'])) {
 				<input  maxlength="2" size="2" id="IbatDecharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatDecharge'); ?>" name="IbatDecharge" /> %
 			</div>
 		</div>
-		
 		
 		<div class="part regu">
 			<h2 class="titre regu">Regulateur de charge</h2>

@@ -15,9 +15,7 @@ Pour perfectionner ce logiciel j'ai besoin de vous. donc n'hésitez par à émet
 Pour l'utilisateur de base :
 
   - 3 mode au formulaire (Débutant, Eclairé, Expert)
-  - Le niveau d'ensoleillement est issus du logiciel  http://ines.solaire.free.fr/gisesol.php
-	- Soit on détermine l'orientation, l'inclinaison et de l'albédo (en expert) en fonction de la ville
-	- Soit on laisse le logiciel nous déterminer l'orientation et l'inclinaison la plus optimum en fonction de la ville
+  - Le niveau d'ensoleillement est issus des données PVGIS5 (http://re.jrc.ec.europa.eu/PVGIS5-release.html) 
   - En mode expert, ajuster le degré de décharge, les valeurs de rendement électrique des batteries ou du reste de l'installation, capacité de courant charge/décharge max...
   - Déduction automatique du nombre de panneaux, batteries et régulateur nessésaire (possibilité de forcer un modèle type ou de personnaliser ces caractéristiques)
   - Hypothèse de câblage panneaux / régulateur (exemple : 3 panneaux en série sur 2 paralèles branché sur un régulateur)
@@ -71,8 +69,10 @@ CalcConsommation :
 
 ### Changelog
 
+ - 3.1
+	- Ajout d'un graph avec les données de rayonnement moyen quotidien
  - 3.0
-	- Ines Solaire à laisser place à PVGIS5 (hhttp://re.jrc.ec.europa.eu/PVGIS5-release.html) pour les données d'ensoleillement
+	- Ines Solaire à laisser place à PVGIS5 (http://re.jrc.ec.europa.eu/PVGIS5-release.html) pour les données d'ensoleillement
 		- Utilisation des bases PVGIS-CMSAF, PVGIS-SARAH & PVGIS-NSRDB de PVGIS
 		- Mise en cache des données
 		- Intégration d'une carte OpenStreetMap pour sélectionner sa position
