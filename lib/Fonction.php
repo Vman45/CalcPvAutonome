@@ -295,6 +295,42 @@ function get_ip() {
 	}
 }
 
+function pgvisGetSHScalc($FichierDataCsv, $raddatabase) {
+	// Documentation PVGIS : 
+	// http://re.jrc.ec.europa.eu/pvg_static/web_service.html#SA
+	global $config_ini;
+	global $Pc;
+	global $Cap;
+	global $U;
+	// Vide le cache trop vieux
+	if (file_exists($FichierDataCsv) && filemtime($FichierDataCsv)+$config_ini['pvgis']['cacheTime'] < time()) {
+		debug('Le fichier de cache de PGVIS '.$FichierDataCsv.' est trop vieux, on le supprime !','p');
+		unlink($FichierDataCsv);
+	}
+	if (!file_exists($FichierDataCsv)) {
+		$url=$config_ini['pvgis']['urlSHScalc'].'?raddatabase='.$raddatabase.'&lat='.$_GET['lat'].'&lon='.$_GET['lon'].'&angle='.$_GET['inclinaison'].'&aspect='.$_GET['orientation'].'&peakpower='.convertNumber($Pc, 'print').'&batterysize='.convertNumber($Cap, 'print')*$U.'&cutoff='.$config_ini['pvgis']['cutoff'].'&consumptionday='.$_GET['Bj'].'&usehorizon=1outputformat=csv&browser=0';
+		debug('On télécharge les données depuis PGVIS avec l\'URL '.$url, 'p');
+		$fp = fopen($FichierDataCsv, 'w');
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_FILE, $fp);
+		$data = curl_exec($ch);
+		$curl_errno = curl_errno($ch);
+		$curl_error = curl_error($ch);
+		curl_close($ch);
+		fclose($fp);
+		if ($curl_errno > 0) {
+			debug('Erreur de téléchargement cURL Error ('.$curl_errno.'): '.$curl_error.'\n', 'p');
+			unlink($FichierDataCsv);
+			return false;
+		} else {
+			return true;
+		}
+	} else {
+		debug('On utilise le cache de PGVIS '.$FichierDataCsv, 'p');
+		return true;
+	}
+}
+
 function pgvisGetDRcalc($FichierDataCsv, $raddatabase) {
 	// Documentation PVGIS : 
 	// http://re.jrc.ec.europa.eu/pvg_static/web_service.html#DR
@@ -332,6 +368,56 @@ function pgvisGetDRcalc($FichierDataCsv, $raddatabase) {
 	}
 }
 
+function pgvisParseDataSHScalc($FichierDataCsv) {
+	$mois=0;
+	$debutCollecte=false;
+	$finCollecte=false;
+	$debutCollecteState=false;
+	$finCollecteState=false;
+	foreach(file($FichierDataCsv) as $line) {
+		//echo $line."\n";
+		$Datas = explode("\t\t", $line);
+		//print_r($Datas);
+		
+		// Mois :
+		// Une ligne blanche signifie la fin des données
+		if ($debutCollecte==true && empty($Datas[1])) {
+			$finCollecte=true;
+			//echo "fin";
+		}
+		if ($debutCollecte==true && $finCollecte==false) {
+			//echo "collecte";
+			$mois++;
+			$SHScalc['DataMonth'][$mois]['Ed']=$Datas[1];
+			$SHScalc['DataMonth'][$mois]['El']=$Datas[2];
+			$SHScalc['DataMonth'][$mois]['Ff']=$Datas[3];
+			$SHScalc['DataMonth'][$mois]['Fe']=$Datas[4];
+		}
+		// on trouve 'time" c'est que c'est le début des données
+		if ($Datas[0] == 'Month') {
+			//echo "début de collecte";
+			$debutCollecte=true;
+		}
+		
+		// % état charge :		
+		// Une ligne blanche signifie la fin des données
+		if ($debutCollecteState==true && empty($Datas[1])) {
+			$finCollecteState=true;
+			//echo "fin";
+		}
+		if ($debutCollecteState==true && $finCollecteState==false) {
+			//echo "collecte";
+			$SHScalc['DataState'][$Datas[0]]=$Datas[1];
+		}
+		// on trouve 'time" c'est que c'est le début des données
+		if ($Datas[0] == 'Cs') {
+			//echo "début de collecte";
+			$debutCollecteState=true;
+		}
+	}
+	return $SHScalc;
+}
+
 function pgvisParseData($FichierDataCsv) {
 	$csv = array_map('str_getcsv', file($FichierDataCsv));
 	$mois=0;
@@ -357,5 +443,33 @@ function pgvisParseData($FichierDataCsv) {
 		}
 	}
 	return $GlobalIradiation;
+}
+
+// Fonction de langue : 
+function langue2locale($langue) {
+	switch ($langue) {
+		case 'fr':
+			return 'fr_FR.utf8';
+			break;
+		/*
+		case 'es':
+			return 'es_ES.utf8';
+			break;
+		case 'pt':
+			return 'pt_PT.utf8';
+			break;
+		case 'eo':
+			return 'eo.utf8';
+			break;
+		*/
+		default:
+		   return 'en_US.utf8';
+	}
+}
+// Juste pour afficher la langue active 
+function langActive($locale, $drapeau) {
+	if (substr($locale, 0, 2) == $drapeau) {
+		echo ' drapeauActif';
+	}
 }
 ?>

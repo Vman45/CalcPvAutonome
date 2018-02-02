@@ -1,54 +1,48 @@
 <script src="./lib/jquery-3.1.1.slim.min.js"></script> 
-<?php 
-include('./lib/Fonction.php');
-$config_ini = parse_ini_file('./config.ini', true); 
-
-?>
-<p>Pour connaître la consommation (en Watt) de vos appareils électriques vous pouvez : 
+<p><?= _('In order to know the electric consumption (in Watts) of your devices you may') ?> : 
 <ul>
-	<li>Regarder sur la notice, sur l'appareil lui même parfois ;</li>
-	<li>Vous procurer un Wattmètre (~10€) il se branche entre la prise et votre appareil et vous indique précisément la consommation ;</li>
+	<li><?= _('Check on the device\'s specification sheet or label') ?> ;</li>
+	<li><?= _('You may get a Wattmeter (~10&euro;) that will show you the exact consumption if plugged between power socket and the applience') ?> ;</li>
 </ul></p>
-<p>Pour dimensioner une installation photovoltaïque autonome, réfléchissez comme si c'était l'hiver (le temps d'éclairage est plus long par exemple, le réfrigérateur est peut être débranché du fait qu'il fait déjà froid dehors...) :</p>
+<p><?= _('To calculate the dimensions of an autonomous solar installation, consider that it is wintertime (longer lighting time needed, but the fridge might be unplugged due to low temperature outside...)') ?> :</p>
 <ul>
-	<li><a href="http://calcpvautonome.zici.fr/?EquiNom1=Ordinateur%20Portable&EquiPuis1=45&EquiNb1=1&EquiUti1=6&EquiPmax1=1&EquiNom2=Aspirateur%20Classe%20A&EquiPuis2=700&EquiNb2=1&EquiUti2=0.25&EquiNom3=Ampoule%20Led&EquiPuis3=7&EquiNb3=4&EquiUti3=7&EquiNom4=Machine%20%C3%A0%20coudre&EquiPuis4=100&EquiNb4=1&EquiUti4=0.5&EquiNom5=Mini%20cha%C3%AEne%20(musique)&EquiPuis5=16&EquiNb5=1&EquiUti5=6&EquiPmax5=1&EquiNom6=Recharge%20t%C3%A9l%C3%A9phone%20portable&EquiPuis6=6&EquiNb6=1&EquiUti6=2&EquiPmax6=1&EquiNom7=Pompe%20immerg%C3%A9e&EquiPuis7=400&EquiNb7=1&EquiUti7=0.5&EquiPmax7=1&&p=CalcConsommation&equiIncrement=7">Premier exemple sobre</a></li>
-	<li><a href="http://calcpvautonome.zici.fr/?EquiNom1=Aspirateur%20Classe%20A&EquiPuis1=700&EquiNb1=1&EquiUti1=0.25&EquiPmax1=1&EquiNom2=Cong%C3%A9lateur%20Bahut%20200L%20Classe%20A&EquiPuis2=370&EquiNb2=1&EquiUti2=24&EquiTotalInput2=800&EquiPmax2=1&EquiNom3=Ampoule%20%C3%A0%20incandescence&EquiPuis3=75&EquiNb3=3&EquiUti3=8&EquiPmax3=1&EquiNom4=Ordinateur%20de%20bureau%20+%20%C3%A9cran&EquiPuis4=140&EquiNb4=1&EquiUti4=0&EquiNom5=T%C3%A9l%C3%A9phone%20fixe&EquiPuis5=2&EquiNb5=1&EquiUti5=24&EquiTotalInput5=48&EquiPmax5=1&EquiNom6=Box%20Internet&EquiPuis6=20&EquiNb6=1&EquiUti6=24&EquiTotalInput6=480&EquiPmax6=1&EquiNom7=T%C3%A9l%C3%A9&EquiPuis7=70&EquiNb7=1&EquiUti7=0&EquiPmax7=1&EquiNom8=Rasoir&EquiPuis8=5&EquiNb8=1&EquiUti8=0.08&&p=CalcConsommation&from=CalcPvAutonome&equiIncrement=8">Deuxième exemple</a></li>
+	<li><a href="http://calcpv.net/?EquiNom1=Ordinateur%20Portable&EquiPuis1=45&EquiNb1=1&EquiUti1=6&EquiPmax1=1&EquiNom2=Aspirateur%20Classe%20A&EquiPuis2=700&EquiNb2=1&EquiUti2=0.25&EquiNom3=Ampoule%20Led&EquiPuis3=7&EquiNb3=4&EquiUti3=7&EquiNom4=Machine%20%C3%A0%20coudre&EquiPuis4=100&EquiNb4=1&EquiUti4=0.5&EquiNom5=Mini%20cha%C3%AEne%20(musique)&EquiPuis5=16&EquiNb5=1&EquiUti5=6&EquiPmax5=1&EquiNom6=Recharge%20t%C3%A9l%C3%A9phone%20portable&EquiPuis6=6&EquiNb6=1&EquiUti6=2&EquiPmax6=1&EquiNom7=Pompe%20immerg%C3%A9e&EquiPuis7=400&EquiNb7=1&EquiUti7=0.5&EquiPmax7=1&&p=CalcConso&equiIncrement=7"><?= _('First sober example') ?></a></li>
+	<li><a href="http://calcpv.net/?EquiNom1=Aspirateur%20Classe%20A&EquiPuis1=700&EquiNb1=1&EquiUti1=0.25&EquiPmax1=1&EquiNom2=Cong%C3%A9lateur%20Bahut%20200L%20Classe%20A&EquiPuis2=370&EquiNb2=1&EquiUti2=24&EquiTotalInput2=800&EquiPmax2=1&EquiNom3=Ampoule%20%C3%A0%20incandescence&EquiPuis3=75&EquiNb3=3&EquiUti3=8&EquiPmax3=1&EquiNom4=Ordinateur%20de%20bureau%20+%20%C3%A9cran&EquiPuis4=140&EquiNb4=1&EquiUti4=0&EquiNom5=T%C3%A9l%C3%A9phone%20fixe&EquiPuis5=2&EquiNb5=1&EquiUti5=24&EquiTotalInput5=48&EquiPmax5=1&EquiNom6=Box%20Internet&EquiPuis6=20&EquiNb6=1&EquiUti6=24&EquiTotalInput6=480&EquiPmax6=1&EquiNom7=T%C3%A9l%C3%A9&EquiPuis7=70&EquiNb7=1&EquiUti7=0&EquiPmax7=1&EquiNom8=Rasoir&EquiPuis8=5&EquiNb8=1&EquiUti8=0.08&&p=CalcConso&from=CalcPvAutonome&equiIncrement=8"><?= _('Second example') ?></a></li>
 </ul>
 <form>
 <table>
 	<tr>
-		<th>Equipement</th>
-		<th>Puissance (Watt)</th>
-		<th>Allumer<br />simultanément</th>
-		<th>Nombre</th>
-		<th>Temps d'utilisation<br /> quotidien</th>
-		<th>Calcul consommation<br /> automatique</th>
-		<th>Consommation <br />quotidienne</th>
+		<th><?= _('Equipment') ?></th>
+		<th><?= _('Power (Watt)') ?></th>
+		<th><?= _('Turn on<br />simultaneously') ?></th>
+		<th><?= _('Number') ?></th>
+		<th><?= _('Daily use time') ?></th>
+		<th><?= _('Automatic consumption<br />calculation') ?></th>
+		<th><?= _('Daily<br />consumption') ?></th>
 		<th>.</th>
 	</tr>
 	
 </table>
 
-<p id="resultatConsoTotal">Vos besoins électriques journaliers : <b><span id="ConsoTotal">0</span> Wh/j</b>
-<br />Votre besoin en puissance électrique maximum : <b><span id="PmaxTotal">0</span> W</b> '<a rel="tooltip" class="bulles" title="Somme de la puissance des appareils suceptiblent d`êtres allumés en même temps OU valeur de l'appareil le plus puissant si celui-ci n'est pas branché en même temps que le reste">?</a>
-<br /><a href="" id="hrefCalcPvAutonome">Cliquer ici pour indiquer ces valeurs pour le calcul
-<br /> de votre installation photovoltaïque autonome</a></p>
+<p id="resultatConsoTotal"><?= _('Your daily electrical needs') ?> : <b><span id="ConsoTotal">0</span> Wh/j</b>
+<br /><?= _('Your need in maximum electrical power') ?> : <b><span id="PmaxTotal">0</span> W</b> '<a rel="tooltip" class="bulles" title="<?= _('Total addition of power required by devices that are likely to be plugged and on at the same time OR consumption of the most power demanding appliance in case it is not plugged simultaneously with the rest') ?>">?</a>
+<br /><a href="" id="hrefCalcPvAutonome"><?= _('Click here to introduce those values to calculate <br/> the dimension of your autonomous solar installation') ?></a></p>
 
-<p><input type="button" class="add" value="Ajouter une ligne vide" /> 
+<p><input type="button" class="add" value="<?= _('Add an empty line') ?>" /> 
 <select id="addEquiModele" name="addEquiModele">
-<option value="0">Ajouter une ligne selon un modèle...</option>
+<option value="0"><?= _('Add a line according to a template...') ?></option>
 <?php 
-foreach ($config_ini['equipement'] as $equipement) {
+foreach ($config_ini['equipement'] as $equipement) {	
 	echo '<option value="'.$equipement['conso'].'|'.$equipement['uti'].'|'.$equipement['consoJ'].'">'.$equipement['nom'].'</option>';
 }
 ?>
-</select> <a rel="tooltip" class="bulles" title="Les valeurs des modèles sont des estimations indicatives, afin d'être précis nous vous encourageons à vous procurer un Wattmètre afin de mesurer la consommation de chacun de vos appareils">?</a></p>
+</select> <a rel="tooltip" class="bulles" title="<?= _('The models\' values are approximate estimations, if you need more precise measurement consider using Wattmeter to determine the exact consumption of each of yours devices') ?>">?</a></p>
 
 <!-- hidden -->
 <input type="hidden" value="0" name="equiIncrement" id="equiIncrement" />
 
 <p>
-	<input type="button" value="Partager/Mémoriser ce tableau" id="share" />
+	<input type="button" value="<?= _('Share / Save this table') ?>" id="share" />
 	<!--<input type="submit" value="Sauvegarder ce tableau" id="save" />-->
 </p>
 </form>
@@ -67,7 +61,7 @@ function ajoutUneLigne() {
 			'</td>', 
 			'<td>', 
 				'<input class="EquiPmax" onChange="calcTableau();" type="checkbox" name="EquiPmax' + $('#equiIncrement').val() + '" id="EquiPmax' + $('#equiIncrement').val() + '" checked="checked" />',
-				'<a rel="tooltip" class="bulles" title="Coché tous les appareils suceptiblent d`êtres allumés en même temps (exemple : un ordinateur, le réfrigérateur, l`ampoule du salon. Par contre la perceuse non, préférez débrancher votre ordinateur si vous avez à l\'allumer">?</a>',
+				'<a rel="tooltip" class="bulles" title="<?= _('Tick all the devices that are likely to be switched on at the same time (for example: Pc, fridge, lightbulb in the livingroom). At the other hand, you might rather want to unplug your Pc when you are using a drill') ?>">?</a>',
 			'</td>', 
 			'<td>', 
 				'<input class="Nb" onChange="calcTableau();"  type="number" style="width: 60px;" value="1"  min="1" max="99" name="EquiNb' + $('#equiIncrement').val() + '" id="EquiNb' + $('#equiIncrement').val() + '" />', 
@@ -100,13 +94,13 @@ function ajoutUneLigne() {
 			'</td>', 
 			'<td>', 
 				'<input onChange="calcTableau();" class="AutoEquiTotal" type="checkbox" name="AutoEquiTotal' + $('#equiIncrement').val() + '" id="AutoEquiTotal' + $('#equiIncrement').val() + '" checked="checked" />',
-				'<a rel="tooltip" class="bulles" title="Coché : le calcul de consommation quotidienne se fera automatiquement<br />Décoché : la consommation quotidienne est à indiquer (pratique pour un réfrigérateur qui est branché 24/24 mais qui ne consomme pas sa puissance 24/24, il s\'alume uniquement si la température monte à l`intérieur">?</a>',
+				'<a rel="tooltip" class="bulles" title="<?= _('Ticked: your daily consumption will be estimated automatically<br/>Unticked: you shall specifiy your daily consumption (useful in case your fridge is plugged 24/7 yet it goes on only if room temperature rises') ?>">?</a>',
 			'</td>', 
 			'<td>', 
 				'<p>',
 					'<input onChange="calcTableau();"  class="EquiTotal" step="0.01" type="number"  style="width: 80px;" value="0" min="0,01" max="99999" name="EquiTotalInput' + $('#equiIncrement').val() + '" id="EquiTotalInput' + $('#equiIncrement').val() + '" />',
 					'<span id="EquiTotal' + $('#equiIncrement').val() + '">0</span>', 
-					' Wh/j <a rel="tooltip" class="bulles" title="Le calcul est : Puissance (W) * Temps (en heure) * Nombre = Whj (Watt Heure Jour)">?</a>',
+					' Wh/j <a rel="tooltip" class="bulles" title="<?= _('The calculation is: Power (W) * Time (in hours) * Number = Wh/j (Watt Hour Day)') ?>">?</a>',
 				'</p>', 
 			'</td>', 
 			'<td>', 
@@ -240,7 +234,7 @@ $('#share').on('click', function() {
 	?>
 	URLconstruction=URLconstruction+'&equiIncrement='+nbPourDeVrai;
 	
-	prompt('Copier l\'adresse internet ci-après gardez là précieusement ou partager là...', window.location.protocol+'//'+window.location.hostname+window.location.pathname+encodeURI(URLconstruction));
+	prompt('<?= _('Copy the internet address below keep it there or share it here...') ?>', window.location.protocol+'//'+window.location.hostname+window.location.pathname+encodeURI(URLconstruction));
 });
 
 // init

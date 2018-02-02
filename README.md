@@ -4,7 +4,7 @@ Outil web pour aider à calculer/dimensionner son installation photovoltaïque e
  
 ### Démonstration
 
-La démonstration se trouve ici : http://calcpvautonome.zici.fr/ 
+La démonstration se trouve ici : http://calcpv.net
 
 ### Appel à l'entraide
 
@@ -38,8 +38,8 @@ Pour les utilisateurs avancés :
 
 #### Requis pour le fonctionnement / l'installation du 
 
-  * PHP (5.6 minimum) + lib gd + GeoIP + CURL
-  * Lighttpd/Apache (ou autre serveur web, service d'hébergement mutualisé...)
+  * PHP (5.6 minimum) + lib gd + GeoIP + CURL + Gettext
+  * Apache/Nginx (ou autre serveur web, service d'hébergement mutualisé...)
 
 #### Installation
 
@@ -69,6 +69,11 @@ CalcConsommation :
 
 ### Changelog
 
+ - 4.0
+	- Internationalisation : https://crwd.in/calcpvautonome
+		- Traduction FR, EN
+	- 3 graph avec les données PVGIS 5 "PERFORMANCE OF OFF-GRID PV SYSTEMS" (http://re.jrc.ec.europa.eu/pvg_tools/en/tools.html#SA)
+	- BUG : suppression de la tension PV (aucunement util voir faux)
  - 3.1
 	- Ajout d'un graph avec les données de rayonnement moyen quotidien
  - 3.0

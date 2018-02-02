@@ -79,89 +79,6 @@ input {
 	}
 }
 
-/*
-@media screen and (max-width: 800px) {
-	
-	#primary {
-		width: 100%;	
-		clear: both;
-	}
-	#secondary {
-		clear: both;
-		width: 100%;
-	}
-}
-@media screen and (max-width: 900px) {
-	
-	#page {
-		width: 100%;
-	}
-	#front-page .content-page {
-		width: 50%;
-		padding: 0 3%;
-	}
-	#front-page .content-event {
-		width: 49%;
-		padding: 0 3%;
-		margin: 0px 0px 5px 5px;
-		float: right;
-	}
-	
-	#front-page .content-newer-posts {
-		clear: both;
-		padding: 0 3%;
-		width: auto;
-		float: none;
-	}
-
-	header.site-header, footer.site-footer {
-		padding: 0 3%;
-	}
-}
-
-@media screen and (max-width: 600px) {
-
-	#headimg {
-		background-image: none !important;;
-	}
-	
-	#login-in-header {
-		display: none;
-	}
-	#network {
-		width: 40px;
-		bottom: -25px;
-		right: 4px;
-	}
-	
-	#front-page .content-page {
-		width: auto;
-		float: none;
-	}
-	
-	#front-page .content-event {
-		width: auto;
-		float: none;
-		margin-left: 0px;
-	}
-	
-	#front-page .content-newer-posts {
-		width: auto;
-		float: none;
-	}
-
-}
-
-@media screen and (max-width: 480px) {
-	header.site-header {
-		height: auto;
-	}
-	h1 {
-		font-size: 2em;
-	}
-
-}
-*/
 
 /* Des trucs des formulaires */
 .part.result {
@@ -289,4 +206,38 @@ a.bulles {
 #tooltip .tipBody {
     background-color:#000;
     padding:5px;
+}
+
+#donate {
+	color: #FF6000;
+}
+
+#langues {
+    position: fixed;
+    top: 0px;
+    right: 20px;
+    padding: 6px;
+    border: 1px solid #2F2F2F;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	background: #333333; 
+	-moz-box-shadow: 0 0 10px black; 
+	-webkit-box-shadow: 0 0 10px black; 
+	box-shadow: 0 0 10px black; 
+	opacity: 0.70;
+}
+img.drapeau {
+	margin-right: 6px;
+	margin-left: 6px;
+}
+img.drapeauActif {
+	opacity: 0.50;
+}
+.formChoixDeLangue {
+	margin: 0; 
+	padding: 0; 
+}
+
+.pvgisSHScalc {
+	width: 70%;
 }

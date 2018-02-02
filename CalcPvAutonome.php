@@ -3,28 +3,26 @@
 <script src="./lib/Chart.min.js"></script>
 <?php 
 
-// Les fonctions
-include('./lib/Fonction.php');
-// Le fichier de config
-$config_ini = parse_ini_file('./config.ini', true); 
-
-// Définition du pays
-$country = @geoip_country_code_by_name(get_ip());
-
 // Mois
 $mois = array (
-	1 => 'janvier',
-	2 => 'fevrier',
-	3 => 'mars',
-	4 => 'avril',
-	5 => 'mai',
-	6 => 'juin',
-	7 => 'juillet',
-	8 => 'aout',
-	9 => 'septembre',
-	10 => 'octobre',
-	11 => 'novembre',
-	12 => 'decembre',
+	1 => _('January'),
+	2 => _('February'),
+	3 => _('March'),
+	4 => _('April'),
+	5 => _('May'),
+	6 => _('June'),
+	7 => _('July'),
+	8 => _('August'),
+	9 => _('September'),
+	10 => _('October'),
+	11 => _('November'),
+	12 => _('December'),
+);
+// PGVIS databases
+$raddatabases = array (
+	'PVGIS-CMSAF',
+	'PVGIS-SARAH',
+	'PVGIS-NSRDB',
 );
 // Les bules d'aides 
 $aideInclinaison='(<a onClick="window.open(\'http://ines.solaire.free.fr/pages/inclinaison.htm\',\'Z\',\'status=no ,scrollbars=no,width=350,height=350,top=50,left=50\')">?</a>)';
@@ -41,17 +39,16 @@ if (isset($_GET['submit'])) {
 	// Détection des erreurs de formulaires
 	$erreurDansLeFormulaire['nb']=0;
 	
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Bj', 'Le besoin journalier n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Pmax', 'Le besoin en puissance maximum n\'est pas correcte car < 0');
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Bj', _('Daily need is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Pmax', _('Maximum power requirement is not correct because < 0'));
 	if ($_GET['ModPv'] == 'perso') {
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvV', 'La tension du panneau personalisé n\'est pas correcte car < 0');
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvW', 'La puissance du panneau personalisé n\'est pas correcte car < 0');
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvVdoc', 'La tension en circuit ouvert (Vdoc) du panneau personalisé n\'est pas correcte car < 0');
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvIsc', 'Le courant de court circuit (Isc) du panneau personalisé n\'est pas correcte car < 0');
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvW', _('Panel\'s custom power is not correct because < 0'));
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvVdoc', _('Panel\'s custom open circuit voltage (Vdoc) is not correct because < 0'));
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoPvIsc', _('Panel\'s custom short circuit current (Isc) is not correct because < 0'));
 	}
 	if ($_GET['ModBat'] == 'perso') {
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoBatV', 'La tension de la batterie personalisée n\'est pas correcte car < 0');
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoBatAh', 'La capacité de la batterie personalisée n\'est pas correcte car < 0');
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoBatV', _('Custom battery voltage is not correct because < 0'));
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoBatAh', _('Custom battery capacity is not correct because < 0'));
 	} elseif ($_GET['ModBat'] == 'auto') {
 		// Assure la compatibilité avant cette fonctionnalitée
 		if (empty($_GET['TypeBat'])) {
@@ -59,19 +56,19 @@ if (isset($_GET['submit'])) {
 		}
 	}
 	if ($_GET['ModRegu'] == 'perso') {
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoReguVmaxPv', 'La tension du régulateur personalisé n\'est pas correcte car < 0');
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoReguPmaxPv', 'La puissance du régulateur personalisé n\'est pas correcte car < 0');
-		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoReguImaxPv', 'Le courant de court-circuit du régulateur personalisé n\'est pas correcte car < 0');
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoReguVmaxPv', _('Custom charge controller voltage is incorrect because < 0'));
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoReguPmaxPv', _('Custom charge controller power is not correct because < 0'));
+		$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('PersoReguImaxPv', _('Custom charge controller short-circuit current is incorrect because < 0'));
 	}
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Aut', 'Le nombre de jour d\'autonomie n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Rb', 'Le rendement électrique des batteries n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Ri', 'Le rendement électrique de l\'installation n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('DD', 'Le degré de décharge n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('reguMargeIcc', 'La marge de sécurité Icc du régulateur de charge n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('distancePvRegu', 'La distance entre les panneaux et le régulateur n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('distanceReguBat', 'La distance entre le régulateur et les batteries n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('cablageRho', 'La résistivité du conducteur n\'est pas correcte car < 0');
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('cablagePtPourcent', 'La chute de tension tolérable n\'est pas correcte car < 0');
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Aut', _('The autonomous days amount is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Rb', _('Electrical yield of batteries is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Ri', _('Installation electrical efficiency is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('DD', _('Discharge level is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('reguMargeIcc', _('The safety margin Icc of the charge controller is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('distancePvRegu', _('Panels and charge controller in-between distance is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('distanceReguBat', _('Batteries and charge controller in-between distance is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('cablageRho', _('Conductor resistivity is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('cablagePtPourcent', _('Tolerable voltage drop is not correct because < 0'));
 	// Assure la compatibilité avant cette fonctionnalitée
 	if (empty($_GET['cablageRegleAparMm'])) {
 		$_GET['cablageRegleAparMm'] = $config_ini['formulaire']['cablageRegleAparMm'];
@@ -80,23 +77,17 @@ if (isset($_GET['submit'])) {
 	if (empty($_GET['Ej'])) {
 		if ($_GET['orientation'] < -180 || $_GET['orientation'] > 180) {
 			$erreurDansLeFormulaire['nb']++;
-			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('orientation', 'L\'orientation des panneaux n\'est pas correcte. ');
+			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('orientation', _('Panels orientation is not correct. '));
 		} else if ($_GET['inclinaison'] < 0 || $_GET['inclinaison'] > 90) {
 			$erreurDansLeFormulaire['nb']++;
-			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('inclinaison', 'L\'inclinaison des panneaux n\'est pas correcte, elle  doit être comprise entre 0 (horizontal) et 90 (vertical)');
+			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('inclinaison', _('Panels inclination is not correct, it must be between 0 (horizontal) and 90 (vertical)'));
 		} else if (empty($_GET['lat']) || empty($_GET['lon'])) {
 			$erreurDansLeFormulaire['nb']++;
-			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('LatLon', 'Vous devez indiquez la latitude et la longitude pour en déduire l\'ensoleillement vi un clique sur la carte du monde.');
+			$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('LatLon', _('You must enter latitude and longitude to deduce solar irradiation with a click on the map of the world.'));
 		} else {
 			// On sauvegarde les coordonnées dans les cookies histoire de faciliter la vie de l'utilisateur
 			setcookie('lat', $_GET['lat'], time() + 365*24*3600);
 			setcookie('lon', $_GET['lon'], time() + 365*24*3600);
-			// On récupère tout depuis PGVIS
-			$raddatabases = array (
-				'PVGIS-CMSAF',
-				'PVGIS-SARAH',
-				'PVGIS-NSRDB',
-			);
 			foreach ($raddatabases as $RadDatabase) {
 				debug('Importation des données d\'irradiation PVGIS, on test avec la raddatabase '.$RadDatabase, 'p');	
 				if (isset($_GET['tracking'])) {
@@ -106,7 +97,7 @@ if (isset($_GET['submit'])) {
 				}
 				if (!pgvisGetDRcalc($FichierDataCsv, $RadDatabase)) {
 					$erreurDansLeFormulaire['nb']++;
-					$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisGet', 'Impossible de télécharger les données d\'irradiation solaire depuis <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>, passez en mode manuel ou utilisez <a href="http://calcpvautonome.zici.fr/v2.2/">la version précédente</a> de calcpvautonome.');
+					$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisGet', _('Unable to download solar irradiation data from <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank"> PVGIS </a>, switch to mode manual or use <a href="http://calcpvautonome.zici.fr/v2.2/"> the previous version </a> of CalcPvAutonome.'));
 					break;
 				} else {
 					$GlobalIradiation = pgvisParseData($FichierDataCsv);
@@ -114,38 +105,37 @@ if (isset($_GET['submit'])) {
 						break;
 					}
 				}
-				
 			}
 			if (empty($GlobalIradiation[12]) &&  $GlobalIradiation[12] == 0) {
 				$erreurDansLeFormulaire['nb']++;
-				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisParse', 'Données d\'irradiation solaire illisible. La localisation indiqué sur la carte n\'est peut être pas couverte par <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>.');	
+				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisParse', _('Incorrect solar irradiation data. The position shown on the map may not be covered by <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank"> PVGIS </a>.'));	
 			}
 
 		}
 	} else if ($_GET['Ej'] < 0) {
 		$erreurDansLeFormulaire['nb']++;
-		$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('Ej', 'Le rayonnement moyen quotidien n\'est pas correcte car < 0');
+		$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('Ej', _('Average daily radiation is not correct because < 0'));
 	}
 	if ($erreurDansLeFormulaire['nb'] != 0) {
 		echo '<div class="erreurForm">';
-		echo '<p>Il y a des erreurs dans le formulaire qui empêche de continuer, merci de corriger ::</p>';
+		echo '<p>'._('Errors in the form prevent you from continuing, please correct :').'</p>';
 		echo '<ul>'.$erreurDansLeFormulaire['msg'].'</ul>';
 		echo '</div>';
 	} else {
 	// Pas d'erreur
 	?>
 
-	<h2 class="titre">Résultat du dimensionnement</h2>
-	<p><b>Avertissement</b>: Les résultats sont donnés à titre indicatif, nous vous conseillons de vous rapprocher d'un professionnel pour l'achat du matériel, celui-ci pourra valider votre installation. </p>
+	<h2 class="titre"><?= _('Result of the dimension calculation') ?></h2>
+	<p><?= _('<b>Warning</b>: Results are approximate, it is recommended to doublecheck with sales representative and validate your installation before buying materials.') ?> </p>
 	<!-- 
 		Les PV
 	-->
-	<h3 id="resultatPv">Panneau photovoltaïque</h3>
+	<h3 id="resultatPv"><?= _('Photovoltaic panel') ?></h3>
 	<div id="resultCalcPv" class="calcul">
 		<?php
 		if (empty($_GET['Ej'])) {	
 			// Graph 
-			echo '<div class="chart-container" style="float: right; width:45%"><canvas id="myChart"></canvas></div>';
+			echo '<div class="chart-container" style="float: right; width:45%"><a target="_blank" href="'.$FichierDataCsv.'" rel="tooltip" class="bulles" title="Télécharger les données brutes" style="float: right"><img src="lib/dl.png" alt="DL" /></a><canvas id="myChart"></canvas></div>';
 			echo '<script>
 			var ctx = document.getElementById("myChart").getContext(\'2d\');
 			var myChart = new Chart(ctx, {
@@ -160,10 +150,10 @@ if (isset($_GET['submit'])) {
 			}
 			echo '],
 					datasets: [{
-						label: \'Rayonnement moyen (kWh/m²/j)\',
+						label: \''._('Average sunlight').' ('._('kWh/m&sup2;/d').')\',
 						data: [';
 			for ($GiNb = 1; $GiNb <= 12; $GiNb++) {
-				echo $GlobalIradiation[$GiNb];
+				echo str_replace(',', '.', $GlobalIradiation[$GiNb]);
 				if ($GiNb != 12) {
 					echo ', ';
 				}
@@ -186,16 +176,16 @@ if (isset($_GET['submit'])) {
 			});
 			</script>';
 		}
-		?>
-		<p>On cherche ici la puissance (crête exprimée en W) des panneaux photovoltaïques à installer pour satisfaire vos besoins en fonction de votre situation géographique. La formule est la suivante : </p>
-		<p>Pc = Bj / (Rb X Ri X Ej)</p>
-		<ul>
-			<li>Pc (Wc) : Puissance crête (recherché)</li>
-			<li>Bj (Wh/j) : Besoins journaliers = <?= $_GET['Bj'] ?></li>
-			<li>Rb : rendement électrique des batteries = <?= $_GET['Rb'] ?></li>
-			<li>Ri : rendement électrique du reste de l’installation (régulateur de charge…) = <?= $_GET['Ri'] ?></li>
-			<li>Ej : rayonnement moyen quotidien du mois le plus défavorable dans le plan du panneau (kWh/m²/j)</li>
-			<?php 
+		
+		echo '<p>'._('Here we are looking for the power (peak, expressed in W) from solar panels to be mounted to fulfill your needs according to your geographical location. The formula is as follow : ').'</p>';
+		echo '<p>'._('Pp = Dn / (Yb X Yi X Rd)').'</p>';
+		echo '<ul>';
+			echo '<li>'._('Pp (Wp) : Peak power (goal)').'</li>';
+			echo '<li>'._('Dn (Wh/d) : Daily needs').' = '.$_GET['Bj'].'</li>';
+			echo '<li>'._('Yb : electrical yield of batteries').' '.$_GET['Rb'].'</li>';
+			echo '<li>'._('Yi : electrical yield for the remaining installation (charge controller, ...)').' = '.$_GET['Ri'].'</li>';
+			echo '<li>'._('Rd : average daily radiation of the worst month in the plane of the panel (kWh/m&sup2;/d)').'</li>';
+			
 			// S'il faut utilise PGVIS
 			if (empty($_GET['Ej'])) {	
 				
@@ -231,24 +221,24 @@ if (isset($_GET['submit'])) {
 				debug('</ul>');
 
 				echo '<ul>';
-				echo '<li>Selon les données <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>, la valeur pour la localisation choisie est de '.$Ej.'kWh/m²/j';
+				printf('<li>'._('According to data from <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>, the value for the selected location is %s kWh/m&sup2;/d').'</li>', $Ej);
 				echo '</ul>';
 			} else {
 				$Ej = $Ej = $_GET['Ej'];
 			}
 			?>
 		</ul>
-		<p>Dans votre cas ça nous fait : </p>
+		<p><?= _('In your case, result is') ?> : </p>
 		<?php 
 		$Pc = convertNumber($_GET['Bj'])/(convertNumber($_GET['Rb'])*convertNumber($_GET['Ri'])*convertNumber($Ej));
 		?>
-		<p><a class="more" id="resultCalcPvHide">Cacher le calcul</a></p>
-		<p>Pc = <?= $_GET['Bj'] ?> / (<?= $_GET['Rb'] ?> * <?= $_GET['Ri'] ?> * <?= $Ej ?>) = <b><?= convertNumber($Pc, 'print') ?> Wc</b></p>
+		<p><a class="more" id="resultCalcPvHide"><?= _('Hide the process') ?></a></p>
+		<p><?= _('Pp') ?> = <?= $_GET['Bj'] ?> / (<?= $_GET['Rb'] ?> * <?= $_GET['Ri'] ?> * <?= $Ej ?>) = <b><?= convertNumber($Pc, 'print') ?> W</b></p>
 	</div>
 	
-	<p>Les panneaux photovoltaïques produisent de l'électricité à partir des rayonnements du soleil.</p>
-	<p>Dans ces conditions vous auriez besoin d'une puissance de panneau photovoltaïque équivalente à <b><?= convertNumber($Pc, 'print') ?>Wc</b> afin de satisfaire vos besoins journaliers de <?= $_GET['Bj'] ?>Wh/j.</p>
-	<p><a id="resultCalcPvShow">Voir, comprendre la démarche, le calcul</a></p>
+	<p><?= _('Photovoltaic panels produce electricity from sunlight (solar radiation).') ?></p>
+	<p><?php printf(_('According entered data, <b>%sW</b> of solar panel are required to fulfill your daily needs of %sWh/d.'), convertNumber($Pc, 'print'), $_GET['Bj']); ?> </p>
+	<p><a id="resultCalcPvShow"><?= ('See, understand the procedure, the calculation') ?></a></p>
 	
 	<?php	
 	
@@ -269,7 +259,6 @@ if (isset($_GET['submit'])) {
 		$meilleurParcPv['nbPv'] = $nbPv;
 		$meilleurParcPv['diffPcParc'] = round($diffPcParc);
 		$meilleurParcPv['W'] = $_GET['PersoPvW'];
-		$meilleurParcPv['V'] = $_GET['PersoPvV'];
 		$meilleurParcPv['Vdoc'] = $_GET['PersoPvVdoc'];
 		$meilleurParcPv['Isc'] = $_GET['PersoPvIsc'];
 	/* Automatique selon les info's */
@@ -306,7 +295,7 @@ if (isset($_GET['submit'])) {
 			$diffPcParc=$PcParcPv-$Pc;
 			// Debug
 			debug('<li>');
-			debug('Avec le panneau de '.$pv['W'].'Wc : il en faudrait '.$nbPv.' pour une puissance total de : '.$PcParcPv.'W. La différence avec le besoin est de '.convertNumber($diffPcParc,'print').'W', 'span');
+			debug('Avec le panneau de '.$pv['W'].'W : il en faudrait '.$nbPv.' pour une puissance total de : '.$PcParcPv.'W. La différence avec le besoin est de '.convertNumber($diffPcParc,'print').'W', 'span');
 			
 			$savMeilleurParcPv = false;
 
@@ -329,7 +318,6 @@ if (isset($_GET['submit'])) {
 				$meilleurParcPv['nbPv'] = $nbPv;
 				$meilleurParcPv['diffPcParc'] = round($diffPcParc);
 				$meilleurParcPv['W'] = $pv['W'];
-				$meilleurParcPv['V'] = $pv['V'];
 				$meilleurParcPv['Vdoc'] = $pv['Vdoc'];
 				$meilleurParcPv['Isc'] = $pv['Isc'];
 				$meilleurParcPv['type'] = $pv['type'];
@@ -341,62 +329,62 @@ if (isset($_GET['submit'])) {
 	}
 	debug('</div>');
 	if ($_GET['ModPv'] == 'auto') {
-		echo '<p>Une hypothèse serait d\'avoir <b>'.$meilleurParcPv['nbPv'].' panneau(x)</b> '.$meilleurParcPv['type'].' de <b>'.$meilleurParcPv['W'].'Wc</b> chacun en '.$meilleurParcPv['V'].'V (<a rel="tooltip" class="bulles" title="Caractéristique du panneau : <br />P = '.$meilleurParcPv['W'].'W<br />U = '.$meilleurParcPv['V'].'V<br />Vdoc ='.$meilleurParcPv['Vdoc'].'V<br />Isc = '.$meilleurParcPv['Isc'].'A">?</a>) ce qui pousse la capacité du parc à '.$meilleurParcPv['W']*$meilleurParcPv['nbPv'].'W :</p>';
-	}elseif ($_GET['ModPv'] == 'perso') {
-		echo '<p>Avec votre panneau personnalisé (<a rel="tooltip" class="bulles" title="Caractéristique du panneau : <br />P = '.$meilleurParcPv['W'].'W<br />U = '.$meilleurParcPv['V'].'V<br />Vdoc ='.$meilleurParcPv['Vdoc'].'V<br />Isc = '.$meilleurParcPv['Isc'].'A">détail ici</a>) l\'hypothèse serait d\'avoir <b>'.$meilleurParcPv['nbPv'].' panneau(x)</b> de <b>'.$meilleurParcPv['W'].'Wc</b> chacun en '.$meilleurParcPv['V'].'V ce qui pousse la capacité du parc à '.$meilleurParcPv['W']*$meilleurParcPv['nbPv'].'W :</p>';
+		printf('<p>'._('One possibility could be to have <b>%d panel(s)</b> %s of <b>%dW</b> each').' (<a rel="tooltip" class="bulles" title="'._('Specificity of the panel').' : <br />P = %dW<br />Vdoc =%sV<br />Isc = %sA">?</a>). '._('Which extend the unit capacity to %dW').'</p>', $meilleurParcPv['nbPv'], $meilleurParcPv['type'], $meilleurParcPv['W'], $meilleurParcPv['W'], $meilleurParcPv['Vdoc'], $meilleurParcPv['Isc'], $meilleurParcPv['W']*$meilleurParcPv['nbPv']);
+	}elseif ($_GET['ModPv'] == 'perso') {	
+		printf('<p>'._('With your personnalized solar panel the hypothesis would be to have <b>%d panel(s)</b> of <b>%dW</b> each, which could raise the plant up to %dW'), $meilleurParcPv['nbPv'], $meilleurParcPv['W'], $meilleurParcPv['W']*$meilleurParcPv['nbPv']);
 	} else {
-		echo '<p>Avec le panneau '.$meilleurParcPv['type'].' sélectionné de <b>'.$meilleurParcPv['W'].'Wc</b> en '.$meilleurParcPv['V'].'V , une hypothèse serait d\'avoir <b>'.$meilleurParcPv['nbPv'].' de ces panneau(x)</b> (<a rel="tooltip" class="bulles" title="Caractéristique du panneau : <br />P = '.$meilleurParcPv['W'].'W<br />U = '.$meilleurParcPv['V'].'V<br />Vdoc ='.$meilleurParcPv['Vdoc'].'V<br />Isc = '.$meilleurParcPv['Isc'].'A">?</a>) ce qui pousse la capacité du parc à '.$meilleurParcPv['W']*$meilleurParcPv['nbPv'].'W :</p>';
+		printf('<p>'._('With %s selected panel of <b>%dW</b>, one hypothesis would be to have <b>%d of panel(s)</b>').' (<a rel="tooltip" class="bulles" title="'._('Specificity of the panel').' : <br />P = %dW<br />Vdoc =%sV<br />Isc = %sA">?</a>) '._('Which extend the unit capacity to %dW').'</p>', $meilleurParcPv['type'], $meilleurParcPv['W'], $meilleurParcPv['nbPv'], $meilleurParcPv['W'], $meilleurParcPv['Vdoc'], $meilleurParcPv['Isc'], $meilleurParcPv['W']*$meilleurParcPv['nbPv']);
 	}
 	?>
 	<!-- 
 		Les batteries
 	-->
-	<h3 id="resultatBat">Batterie</h3>
+	<h3 id="resultatBat"><?= _('Batterie') ?></h3>
 	<div id="resultCalcBat" class="calcul">
-		<p>On cherche ici la capacité nominale des batteries exprimée en ampères heure (Ah, donné en <a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">C10</a>)</p>
+		<p><?= _('We are looking here for the nominal capacity expressed in ampere per hour (Ah, given in <a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">C10</a>)') ?></p>
 		<?php 
 		// Si la tension U à été mise en automatique ou que le niveau n'est pas expert
 		if ($_GET['U'] == 0 || $_GET['Ni'] != 3) {
-			debug('Pour la tension final du parc de batterie. Automatiquement : si Pc <500Wc on reste en 12V, entre 500 et 1500 on passe en 24V et au delas des 1500Wc on passe en 48V', 'span');
+			debug('Pour la tension final du parc de batterie. Automatiquement : si Pc <500W on reste en 12V, entre 500 et 1500 on passe en 24V et au delas des 1500W on passe en 48V', 'span');
 			if (convertNumber($Pc) < 500) {
 				$U = 12;
-				debug('Ici on est donc en '.$U.'V  car le besoin en panneaux est < à 500Wc', 'span');
+				debug('Ici on est donc en '.$U.'V  car le besoin en panneaux est < à 500W', 'span');
 			} elseif (convertNumber($Pc) > 1500) {
 				$U = 48;
-				debug('Ici on est donc en '.$U.'V  car le besoin en panneaux est > à 1500Wc', 'span');
+				debug('Ici on est donc en '.$U.'V  car le besoin en panneaux est > à 1500W', 'span');
 			} else {	
 				$U = 24;
-				debug('Ici on est donc en '.$U.'V  car le besoin en panneaux est entre 500 et 1500Wc', 'span');
+				debug('Ici on est donc en '.$U.'V  car le besoin en panneaux est entre 500 et 1500W', 'span');
 			}
 		} else {
 			$U = $_GET['U'];
 			debug('La tension final du parc de batterie est forécé à '.$U.'V', 'span');
 		}
-		?>
-		<p>Cap = (Bj x Aut) / (DD x U)</p>
-		<ul>
-			<li>Cap (Ah) : Capacité nominale des batteries (en <a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">C10</a>))</li>
-			<li>Bj (Wh/j) : Besoins journaliers = <?= $_GET['Bj'] ?></li>
-			<li>Aut : Nombre de jour d'autonomie (sans soleil) = <?= $_GET['Aut'] ?></li>
-			<li>DD (%) : <a rel="tooltip" class="bulles" title="Avec des batteries au plomb il ne faut pas passer sous le seuil critique des 50% de degré de décharge, 20% est idéal">Degré de décharge maximum</a> = <?= $_GET['DD'] ?></li>
-			<li>U (V) : <a rel="tooltip" class="bulles" title="En mode automatique la tension des batteries sera déduite du besoin en panneaux<br />De 0 à 500Wc : 12V<br />De 500 à 1500 Wc : 24V<br />Au dessus de 1500 Wc : 48V">Tension finale du parc de batterie</a> = <?= $U ?></li>
-		</ul>
-		<p>Dans votre cas ça nous fait : </p>
-		<?php 
+		echo '<p>'._('Cap = (Dn x Aut) / (DD x U)').'</p>';
+		echo '<ul>';
+		echo '	<li>'._('Cap (Ah) : Nominal capacity of batteries (in <a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">C10</a>))').'</li>';
+		echo '	<li>'._('Dn (Wh/d) : Daily needs').' = '.$_GET['Bj'].'</li>';
+		echo '	<li>'._('Aut: Autonomous days amount (no sun)').' = '.$_GET['Aut'].'</li>';
+		echo '	<li>'._('DD (%)').' : <a rel="tooltip" class="bulles" title="'._('With lead batteries, the critical threshold of 50% of discharge mustn\'t be reached, 20% being ideal').'">'._('Maximum discharge rate').'</a> = '.$_GET['DD'].'</li>';
+		echo '	<li>'._('U (V)').' : <a rel="tooltip" class="bulles" title="'._('In automatic mode the batteries voltage will be deducted from the panel need <br />From 0 to 500W : 12V<br />From 500 to 1500 W : 24V<br />Above 1500 W : 48V').'">'._('Final battery plant voltage').'</a> = '.$U.'</li>';
+		echo '</ul>';
+		echo '<p>'._('In your case, result is').' : </p>';
 		$Cap = (convertNumber($_GET['Bj'])*convertNumber($_GET['Aut']))/(convertNumber($_GET['DD'])*0.01*convertNumber($U));
 		?>
-		<p><a class="more" id="resultCalcBatHide">Cacher le calcul</a></p>
-		<p>Cap = (<?= $_GET['Bj'] ?> x <?= $_GET['Aut'] ?>) / (<?= $_GET['DD']*0.01 ?> x <?= $U ?>) = <b><?= convertNumber($Cap, 'print') ?> Ah</b></p>
+		<p><a class="more" id="resultCalcBatHide"><?= _('Hide the process') ?></a></p>
+		<p><?= _('Cap') ?> = (<?= $_GET['Bj'] ?> x <?= $_GET['Aut'] ?>) / (<?= $_GET['DD']*0.01 ?> x <?= $U ?>) = <b><?= convertNumber($Cap, 'print') ?> Ah</b></p>
 	</div>
-	<p>Les batteries servent à stocker l'énergie électrique produite par les panneaux. Vous auriez besoin d'un parc de batteries de <b><?= convertNumber($Cap, 'print') ?> Ah en <?= $U ?> V</b>.</p>
-	<p><a id="resultCalcBatShow">Voir, comprendre la démarche, le calcul</a></p>	
+	<?php printf('<p>'._('Batteries are used to store electric energy produced by the panels. You will need a battery plant of <b>%d Ah at %d V</b>.').'</p>', convertNumber($Cap, 'print'), $U); ?>
+	<p><a id="resultCalcBatShow"><?= _('See, understand the procedure, the calculation') ?></a></p>	
 	
 	<?php
 	$CourantDechargBesoinPmax=$_GET['Pmax']/$U;
 	$CourantDechargeMax = $Cap*$_GET['IbatDecharge']/100;
 	// Si le courant de décharge n'est pas respecté par rapport à la taille de la batterie
 	if ($CourantDechargBesoinPmax > $CourantDechargeMax) {
-		echo '<p>Le courant de décharge du parc batterie ne doit pas dépasser '.$_GET['IbatDecharge'].'%, ce qui fait <a rel="tooltip" class="bulles" title="'.convertNumber($Cap, 'print').'Ah * '.$_GET['IbatDecharge'].'/100">'.number_format($CourantDechargeMax, 1, ',', ' ').'A</a> dans notre cas. Hors avec un besoin en puissance max de '.$_GET['Pmax'].'W de panneau le courant de décharge est de <a rel="tooltip" class="bulles" title="'.$_GET['Pmax'].'W / '.$U.'V">'.number_format($CourantDechargBesoinPmax, 1, ',', ' ').'A</a>. Pour répondre au besoin de puissance maximum de '.$_GET['Pmax'].'W, il vous faut augmenter le parc de batterie à ';
+		printf('<p>'._('The discharge current of the battery plant must not exceed %d').'%%. '._('In our case it gives').' <a rel="tooltip" class="bulles" title="'.convertNumber($Cap, 'print').'Ah * '.$_GET['IbatDecharge'].'/100">'.number_format($CourantDechargeMax, 1, ',', ' ').'A</a>. ', $_GET['IbatDecharge']);
+		printf(_('Yet with a max power need of %dW, the discharge current is').' <a rel="tooltip" class="bulles" title="'.$_GET['Pmax'].'W / '.$U.'V">'.number_format($CourantDechargBesoinPmax, 1, ',', ' ').'A</a>. ', $_GET['Pmax']);
+		printf(_('In order to respond to a %dW max power need, you need to increase the battery plant by '), $_GET['Pmax']);
 		$Cap=$CourantDechargBesoinPmax*100/$_GET['IbatDecharge'];
 		echo '<b>'.convertNumber($Cap, 'print').'Ah</b>.</p>';
 	} else {
@@ -406,9 +394,11 @@ if (isset($_GET['submit'])) {
 	$CourantChargeMax = $Cap*$_GET['IbatCharge']/100;
 	// Si le courant de charge n'est pas respecté par rapport à la taille de la batterie
 	if ($CourantChargeDesPanneaux > $CourantChargeMax) {
-		echo '<p>Le courant de charge du parc batterie ne doit pas dépasser '.$_GET['IbatCharge'].'%, ce qui fait <a rel="tooltip" class="bulles" title="'.convertNumber($Cap, 'print').'Ah * '.$_GET['IbatCharge'].'/100">'.number_format($CourantChargeMax, 1, ',', ' ').'A</a> dans notre cas. Hors avec '.$meilleurParcPv['W']*$meilleurParcPv['nbPv'].'Wc de panneau le courant de charge est de <a rel="tooltip" class="bulles" title="'.$meilleurParcPv['W']*$meilleurParcPv['nbPv'].'W / '.$U.'V">'.number_format($CourantChargeDesPanneaux, 1, ',', ' ').'A</a>. Si votre régulateur le permet vous pouvez le brider ou augmenter votre parc de batterie à ';
+		printf('<p>'._('The battery plant charging current musn\'t exceed %d').'%%. '._('In our case it gives').' <a rel="tooltip" class="bulles" title="'.convertNumber($Cap, 'print').'Ah * '.$_GET['IbatCharge'].'/100">'.number_format($CourantChargeMax, 1, ',', ' ').'A</a>. ', $_GET['IbatCharge']);
+		printf(_('Yet with %dW panels the charge current is').' <a rel="tooltip" class="bulles" title="'.$meilleurParcPv['W']*$meilleurParcPv['nbPv'].'W / '.$U.'V">'.number_format($CourantChargeDesPanneaux, 1, ',', ' ').'A</a>. ', $meilleurParcPv['W']*$meilleurParcPv['nbPv']);
+		printf(_('If your charge controller allows it you can limit it or increase your battery plant to').' ');
 		$Cap=$CourantChargeDesPanneaux*100/$_GET['IbatCharge'];
-		echo '<b>'.convertNumber($Cap, 'print').'Ah</b>. Nous allons partir sur l\'augmentation du parc de batterie.</p>';
+		echo '<b>'.convertNumber($Cap, 'print').'Ah</b>. '._('We will state to increase the battery plant').'.</p>';
 	} else {
 		debug('On a testé que le courant de charge du parc batterie et on ne dépasse pas les '.$_GET['IbatCharge'].'%.','p');
 	}
@@ -501,56 +491,30 @@ if (isset($_GET['submit'])) {
 	debug('</div>');
 	if ($meilleurParcBatterie['nbBatterieParalle'] != 99999) {
 		if ($_GET['ModBat'] == 'auto') {
-			echo '<p>Une hypothèse de câblage serait d\'avoir <b>'.$meilleurParcBatterie['nbBatterieTotal'].' batterie(s)</b> de type <b>'.$meilleurParcBatterie['nom'].'</b> ce qui pousse la capacité du parc à '.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah.</p>';
+			printf('<p>'._('A wiring hypothesis would be to have <b>%d></b> <b>%s</b> type batteries, which increases the plant capacity up to %dAh').'</p>', $meilleurParcBatterie['nbBatterieTotal'], $meilleurParcBatterie['nom'], $meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle']);
 		} else if ($_GET['ModBat'] == 'perso') {
-			echo '<p>Vous avez choisi de travailler avec des batterie(s) personnalisé à '.$meilleurParcBatterie['Ah'].'Ah en '.$meilleurParcBatterie['V'].'V. Voici une hypothèse de câblage avec <b>'.$meilleurParcBatterie['nbBatterieTotal'].'</b> de ces batteries ce qui pousse la capacité du parc à '.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah.</p>';
+			printf('<p>'._('You chose to use custom %dAh at %dV battery. Here is a wiring hypothesis with <b>%d</b> of these batteries which raise the plant capacity to %dAh').'.</p>', $meilleurParcBatterie['Ah'], $meilleurParcBatterie['V'], $meilleurParcBatterie['nbBatterieTotal'], $meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle']);
 		} else {
-			echo '<p>Vous avez choisi de travailler avec des batterie(s) de type <b>'.$meilleurParcBatterie['nom'].'</b>. Voici une hypothèse de câblage avec <b>'.$meilleurParcBatterie['nbBatterieTotal'].'</b> de ces batteries ce qui pousse la capacité du parc à '.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah.</p>';
+			printf('<p>'._('You chose to use <b>%s</b> type batteries. Here is a wiring hypothesis with <b>%d</b> of these batteries which raise the plant capacity to %dAh').'.</p>', $meilleurParcBatterie['nom'], $meilleurParcBatterie['nbBatterieTotal'], $meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle']);
 		}
-			echo '<ul><li><b>'.$meilleurParcBatterie['nbBatterieSerie'].' batterie(s) en série</b> (<a rel="tooltip" class="bulles" title="Tension de la batterie ('.$meilleurParcBatterie['V'].'V) * '.$meilleurParcBatterie['nbBatterieSerie'].' série(s)">pour une tension de '.$U.'V</a>) ';
+			echo '<ul><li><b>'.$meilleurParcBatterie['nbBatterieSerie'].' '._('serialized batteries').'</b> (<a rel="tooltip" class="bulles" title="'._('Battery voltage').' ('.$meilleurParcBatterie['V'].'V) * '.$meilleurParcBatterie['nbBatterieSerie'].' '._('serie(s)').'">'._('for a voltage of').' '.$U.'V</a>) ';
 			if ($meilleurParcBatterie['nbBatterieParalle'] != 1) {
-				echo 'sur <b>'.$meilleurParcBatterie['nbBatterieParalle'].' parallèle(s)</b> (<a rel="tooltip" class="bulles" title="Capacité de la batterie ('.$meilleurParcBatterie['Ah'].'Ah) * '.$meilleurParcBatterie['nbBatterieParalle'].' parallèle(s)">pour une la capacité à '.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah</a>)';
+				echo _('on').' <b>'.$meilleurParcBatterie['nbBatterieParalle'].' '._('parallel(s)').'</b> (<a rel="tooltip" class="bulles" title="'._('Battery capacity').' ('.$meilleurParcBatterie['Ah'].'Ah) * '.$meilleurParcBatterie['nbBatterieParalle'].' '._('parallel(s)').'">'._('for a capacity of').' '.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah</a>)';
 			} 
-			echo '<a rel="tooltip" class="bulles" target="_blank" title="Pour comprendre le câblage des batteries cliquer ici" href="http://www.solarmad-nrj.com/cablagebatterie.html">?</a></li></ul>';
+			echo _('(<a rel="tooltip" class="bulles" target="_blank" title="To understand the battery connection click here" href="http://www.solarmad-nrj.com/cablagebatterie.html">?</a>)').'</li></ul>';
 	} else {
-		echo '<p>Désolé nous n\'avons pas réussi à faire une hypothèse de câblage pour les batteries. </p>';
+		echo '<p>'._('Sorry we failed to make a wiring hypothesis for the batteries').'. </p>';
 		if ($_GET['ModBat'] != 'auto') {
-			echo '<p>Nous vous conseillons de repasser en mode automatique, un câblage n\'est peut être pas préférable avec ce modèle.</p>';
+			echo '<p>'._('We advice you to switch back to automatic mode, a wiring isn\'t wise with this model').'.</p>';
 		}
 	}
 	?>
 	
-	<p>Vous pouvez simuler l'état de vos batteries grâce à <a href="http://re.jrc.ec.europa.eu/pvgis/apps4/pvest.php?lang=fr&map=europe" target="_blank">PVGIS</a> : <a id="aidePvgisShow">aide à la simulation</a></p>
-	<div id="aidePvgis" class="calcul">
-		<a class="more" id="aidePvgisHide">Cacher l'aide</a>
-		<ul>
-			<li>Cliquer sur ce lien : <a href="http://re.jrc.ec.europa.eu/pvgis/apps4/pvest.php?lang=fr&map=europe" target="_blank">http://re.jrc.ec.europa.eu/pvgis/apps4/pvest.php?lang=fr&map=europe</a></li>
-			<li>Indiquer la ville d'implantation à gauche au dessus de la carte</li>
-			<li>Cliquer sur l'onglet "PV hors-réseau" à droite</li>
-			<li>Puis indiquer les valeurs :</li>
-			<ul>
-				<li>Puissance PV crête : <?=  $meilleurParcPv['W']*$meilleurParcPv['nbPv'] ?></li>
-				<li>Voltage de la batterie : <?= $U ?></li>
-				<?php if ($meilleurParcBatterie['nbBatterieParalle'] != 99999) { ?>
-					<li>Capacité de la batterie : <?= $meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'] ?></li>
-				<?php } else { ?>
-					<li>Capacité de la batterie : <?= $Cap ?> en </li>
-				<?php } ?>
-				<li>Consommation journalière : <?= $_GET['Bj'] ?></li>
-				<?php 
-					echo '<li>Inclinaison du module : '.ajoutDegSiAngleChiffre($_GET['inclinaison']).'</li>';
-					echo '<li>Orientation : '.nomEnAngle(ajoutDegSiAngleChiffre($_GET['orientation'])).'</li>';
-				?>
-			</ul>
-			<li>Puis cliquer sur calculer</li>
-		</ul>
-		<p>Pour maximiser la durée de vie de vos batteries il est conseillé de ne pas descendre sous les 80% de charge (donc 20% de décharge) trop fréquement..</p>
-	</div>
 	<!-- 
 		Régulateur
 	-->
-	<h3 id="resultatRegu">Régulateur de charge</h3>
-	<p>Le régulateur de charge est entre les batteries et les panneaux, c'est lui qui gère la charge des batteries en fonction de ce que peuvent fournir les panneaux. </p>
+	<h3 id="resultatRegu"><?= _('Charge controller') ?></h3>
+	<p><?= _('The charge controller stands between batteries and panels, its role is to handle batteries charge depending on what the panels can provide') ?>. </p>
 	<?php 
 	/*
 	 * ####### Recherche d'une Config régulateur : #######
@@ -604,70 +568,73 @@ if (isset($_GET['submit'])) {
 	}
 
 	if (!$meilleurRegulateur['nom']) {
-		echo '<p>Désolé nous n\'avons pas réussi à faire une hypothèse de câblage panneaux/régulateur. ';
+		echo '<p>'._('Sorry, unable to establish a panel/charge controller wiring hypothesis').'. ';
 		if ($_GET['ModRegu'] != 'auto') {
-			echo 'Nous vous encourageons à passer le modèle du régulateur et/ou les panneaux en automatique. ';
+			echo _('We recommend to switch charge controller and/or panels to automatic mode').'. ';
 		}
 		echo '</p>';
 	} else {
 		if ($meilleurParcPv['nbPv'] != $nbPvSerie*$nbPvParalele*$nbRegulateur) {
-			echo '<p><i>Attention : pour cette hypothèse nous sommes passé à '.$nbPvSerie*$nbPvParalele*$nbRegulateur.' panneaux</i></p>';
+			printf('<p><i>'._('Warning : for this hypothesis we switched to %d panels').'</i></p>', $nbPvSerie*$nbPvParalele*$nbRegulateur);
 		}
 		if ($_GET['ModRegu'] == 'perso') {
-			echo '<p>Avec votre régulateur personélisé, une ';
+			echo '<p>'._('With your custom charge controller, a').' ';
 		} else if ($_GET['ModRegu'] != 'auto') {
-			echo '<p>Vous forcé la sélection du régulateur '.$meilleurRegulateur['nom'].', une ';
+			printf('<p>'._('You force the %s charge controller selection, a').' ', $meilleurRegulateur['nom']);
 		} else {
-			echo '<p>Une ';
+			echo '<p>'._('A').' ';
 		}
 		if ($nbRegulateur != 1) {
-			echo 'hypothèse de câblage serait d\'avoir <b>'.$nbRegulateur.' régulateur type '.$meilleurRegulateur['nom'].'</b> (<a rel="tooltip" class="bulles" title="Avec caractéristiques similaires : <br />Tension de la batterie : '.$meilleurRegulateur['Vbat'].'V<br />Puissance maximale PV : '.$meilleurRegulateur['PmaxPv'].'W<br />Tension PV circuit ouvert : '.$meilleurRegulateur['VmaxPv'].'V<br />Courant PV court circuit : '.$meilleurRegulateur['ImaxPv'].'A">?</a>) et sur chacun d\'entre eux connecter <b>'.$nbPvSerie.' panneau(x) en série';
+			printf(_('hypothesis would be to have <b>%d %s type charge controller</b>'), $nbRegulateur, $meilleurRegulateur['nom']);
+			echo '(<a rel="tooltip" class="bulles" title="'._('With similar characteristics').' : <br />'._('Battery voltage').' : '.$meilleurRegulateur['Vbat'].'V<br />'._('Maximum power panel').' : '.$meilleurRegulateur['PmaxPv'].'W<br />'._('Open circuit voltage panel').' : '.$meilleurRegulateur['VmaxPv'].'V<br />'._('Current short circuit').' : '.$meilleurRegulateur['ImaxPv'].'A">?</a>) ';
+			printf(_('and on each connect serialized <b>%d panel(s) '), $nbPvSerie);
 			if ($nbPvParalele != 1) {
-				echo ' sur '.$nbPvParalele.' parallèle(s)</b></p>';
-			} else {
-				echo '</b></p>';
-			}
+				printf(_(' on %d parallel(s)'), $nbPvParalele);
+			} 
+			echo '</b></p>';
 		} else {
-			echo 'hypothèse de câblage serait d\'avoir un <b>régulateur type '.$meilleurRegulateur['nom'].'</b> (<a rel="tooltip" class="bulles" title="Avec caractéristiques similaires : <br />Tension de la batterie : '.$meilleurRegulateur['Vbat'].'V<br />Puissance maximale PV : '.$meilleurRegulateur['PmaxPv'].'W<br />Tension PV circuit ouvert : '.$meilleurRegulateur['VmaxPv'].'V<br />Courant PV court circuit : '.$meilleurRegulateur['ImaxPv'].'A">?</a>) sur lequel serait connecté ';
+			printf(_('wiring hypothesis would be to have a <b>%s type charge controller</b>'), $meilleurRegulateur['nom']);
+			echo '(<a rel="tooltip" class="bulles" title="'._('With similar characteristics').' : <br />'._('Battery voltage').' : '.$meilleurRegulateur['Vbat'].'V<br />'._('Maximum power panel').' : '.$meilleurRegulateur['PmaxPv'].'W<br />'._('Open circuit voltage panel').' : '.$meilleurRegulateur['VmaxPv'].'V<br />'._('Current short circuit').' : '.$meilleurRegulateur['ImaxPv'].'A">?</a>) ';
+			echo _('on which would be connected ');
 			if ($nbPvSerie == 1 && $nbPvParalele == 1) {
-				echo '<b>'.$nbPvSerie.' panneau';
+				echo '<b>'.$nbPvSerie.' '._('panel');
 			} else {
-				echo '<b>'.$nbPvSerie.' panneau(x) en série';
+				echo '<b>'.$nbPvSerie.' '._('serialized panels');
 				if ($nbPvParalele != 1) {
-					echo ' sur '.$nbPvParalele.' parallèle(s)';
+					printf(_(' on %d parallel(s)'), $nbPvParalele);
 				} 
 			}
 			echo '</b></p>';
 		}
 		
-		?>
-		<div id="resultCalcRegu" class="calcul">
-			<p>Un régulateur type <?= $meilleurRegulateur['nom'] ?>, avec un parc de batterie(s) en <b><?= $meilleurRegulateur['Vbat'] ?>V</b>, accepte  : </p>
-			<ul>
-				<li><b><?= $meilleurRegulateur['PmaxPv'] ?>W</b> de puissance maximum de panneaux : </li>
-					<ul><li>Avec un total de <?= $nbPvSerie*$nbPvParalele ?> panneau(x) en <?= $meilleurParcPv['W'] ?>W, on monte à <b><?= $meilleurParcPv['W']*$nbPvParalele*$nbPvSerie ?>W</b> (<a rel="tooltip" class="bulles" title="<?= $meilleurParcPv['W'] ?>W x <?= $nbPvParalele*$nbPvSerie ?> panneau(x) ">?</a>)</li></ul>
-				<li><b><?= $meilleurRegulateur['VmaxPv'] ?>V</b> de tension PV maximale de circuit ouvert : </li>
-					<ul><li>Avec <?= $nbPvSerie ?> panneau(x) en série ayant une tension (Vdoc) de <?= $meilleurParcPv['Vdoc'] ?>V, on monte à <b><?= $nbPvSerie*$meilleurParcPv['Vdoc'] ?>V</b> (<a rel="tooltip" class="bulles" title="<?= $meilleurParcPv['Vdoc'] ?>V (Vdoc) x <?= $nbPvSerie ?> panneau(x) en série">?</a>)</li></ul>
-				<li><b><?= $meilleurRegulateur['ImaxPv'] ?>A</b> de courant de court-circuit PV maximal : </li>
-					<ul><li>Avec <?= $nbPvParalele ?> panneau(x) en parallèle(s) ayant une intensité (Isc) de <?= $meilleurParcPv['Isc'] ?>A et une marge de sécurité de <?= $_GET['reguMargeIcc'] ?>%, on monte à <b><?= $nbPvParalele*($meilleurParcPv['Isc']+$meilleurParcPv['Isc']*$_GET['reguMargeIcc']/100) ?>A</b> (<a rel="tooltip" class="bulles" title="(<?= $meilleurParcPv['Isc'] ?>A d'Isc * <?= $_GET['reguMargeIcc'] ?>/100 de marge + <?= $meilleurParcPv['Isc'] ?>A d'Isc) x <?= $nbPvParalele ?> panneau(x) en parallèle(s)">?</a>)</li></ul>
-			</ul>
-			<p>Note : La mise en série multiple la tension (V) et la mise en parallèle multiplie l'intensité (I)</p>
-			<p>Toutes ces caractéristiques sont disponibles dans la fiche technique du produit. Vous pouvez personnaliser les caractéristiques de votre régulateur en mode <i>Expert</i>.</p>
-			<p><a class="more" id="resultCalcReguHide">Cacher la démarche</a></p>
-			<p> </p>
-		</div>
-		<p><a id="resultCalcReguShow">Voir, comprendre la démarche</a></p>	
-		<?php
-		if ($nbPvParalele > 1) {
-			echo 'Quand il y a des parallèles il est recommander de poser un boitier de raccordement avec des fusibles sur chaques branches pour protéger les panneaux contre un courant inverse.';
+		
+		printf('<div id="resultCalcRegu" class="calcul">');
+		printf('	<p>'._('A type %s charge controller, with a <b>%dV</b> battery plant, allows : ').'</p>',$meilleurRegulateur['nom'], $meilleurRegulateur['Vbat']);
+		printf('	<ul>');
+		printf('		<li>'._('<b>%dW</b> max panel power : ').'</li>',$meilleurRegulateur['PmaxPv']);
+		printf('			<ul><li>'._('With a total of %d %dW panel(s), we reach <b>%dW</b>').' (<a rel="tooltip" class="bulles" title="'.$meilleurParcPv['W'].'W x '.$nbPvParalele*$nbPvSerie.' '._('panel(s)').' ">?</a>)</li></ul>', $nbPvSerie*$nbPvParalele, $meilleurParcPv['W'],$meilleurParcPv['W']*$nbPvParalele*$nbPvSerie);
+		printf('		<li>'._('<b>%dV</b> max PV voltage of open circuit : ').'</li>',$meilleurRegulateur['VmaxPv']);
+		printf('			<ul><li>'._('With %d serialized panel(s) of %dV of (Vdoc) voltage, we reach <b>%dV</b>').' (<a rel="tooltip" class="bulles" title="'.$meilleurParcPv['Vdoc'].'V (Vdoc) x '.$nbPvSerie.' '._('serialized panels').'">?</a>)</li></ul>', $nbPvSerie, $meilleurParcPv['Vdoc'], $nbPvSerie*$meilleurParcPv['Vdoc']);
+		printf('		<li>'._('<b>%dA</b> max PV short-circuit current :').' </li>', $meilleurRegulateur['ImaxPv']);
+		printf('			<ul><li>'._('With %d parallel panel(s) having %dA intensity (Isc) and a %d%% security margin, we reach <b>%dA</b>').' (<a rel="tooltip" class="bulles" title="('.$meilleurParcPv['Isc'].'A (Isc) * '.$_GET['reguMargeIcc'].'/100 + '.$meilleurParcPv['Isc'].'A (Isc)) x '.$nbPvParalele.' '._('parallel panel(s)').'">?</a>)</li></ul>', $nbPvParalele, $meilleurParcPv['Isc'], $_GET['reguMargeIcc'], $nbPvParalele*($meilleurParcPv['Isc']+$meilleurParcPv['Isc']*$_GET['reguMargeIcc']/100));
+		echo '	</ul>';
+		echo '	<p>'._('Note: serialization multiplies voltage (V) and paralleling multiplies the intensity (I)').'</p>';
+		echo '	<p>'._('All these characteristics are available in the product\'s technical sheet. You can customize your charge controller characteristics in <i>Export</i> mode.').'</p>';
+		echo '	<p><a class="more" id="resultCalcReguHide">'._('Hide process').'</a></p>';
+		echo '	<p> </p>';
+		echo '</div>';
+		echo '<p><a id="resultCalcReguShow">'._('See, understand the process').'</a></p>';
+
+		if ($nbPvParalele > 2) {
+			echo _('When having more than 2 parallels, it is recommended to have a junction box with fuses on each branch in order to protect panels against reverse current.');
 		}
 	}
 	?>
-	<h3 id="resultatSchema">Schéma de câblage</h3>
+	<h3 id="resultatSchema"><?= _('Cable diagram') ?></h3>
 	
 	<?php 
 	if (empty($meilleurRegulateur['nom']) || $meilleurParcBatterie['nbBatterieParalle'] == 99999) {
-		echo '<p>Les hypothèses de câblages n\'ont pas toutes abouties, il n\'est donc pas possible de présenter un schéma de câblage.</p>';
+		echo '<p>'._('Some wiring hypothesis did not succeed, it is not possible to submit a wiring diagram').'.</p>';
 	} else {
 		$batType=2;
 		if ($meilleurParcBatterie['V'] == 12) {
@@ -684,194 +651,405 @@ if (isset($_GET['submit'])) {
 		if ($nbPvSerie > 5 || $meilleurParcBatterie['nbBatterieSerie'] > 5) {
 			$widthImage=100;
 		}
-		echo '<p>Un schéma de câblage a été établie en fonction des hypothèses panneau/régulateur/batterie émises précédemment :</p>';
+		echo '<p>'._('A wiring diagram was established according to panel/charge controller/battery hypothesis :').'</p>';
 		echo '<p><a target="_blank" href="'.$SchemaUrl.'"><img width="'.$widthImage.'%"  src="'.$SchemaUrl.'" /></a></p>';
 	}
 	?>
 	
-	<h3  id="resultatConv">Convertisseur</h3>
-	<p>Le convertisseur est là pour transformer le courant continue (ici <?= $U ?>V) des batteries en courant alternatif assimilable par les appareils standard du marché. Il vous faut un convertisseur capable de délivrer les <?= $_GET['Pmax'] ?>W de puissance électrique maximum dont vous avez besoin.</p>
+	<h3  id="resultatConv"><?= _('Converter') ?></h3>
 	<?php
+	printf('<p>'._('The converter goal is to transform batteries DC current (here %dV) in AC current usable for standard devices. You need a converter able to deliver the %dW max electric power you need').'.</p>', $U, $_GET['Pmax']);
 	debug('On recherche, parmis <a onclick="window.open(\''.$config_ini['formulaire']['UrlModeles'].'&data=convertisseur\',\'Les modèles de Convertisseur\',\'directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no\');">les modèles de convertisseurs</a> un convertisseur supportant une tension d\'entrée de '.$U.' et qui soit capable de délivrer une puissance maximum de '.$_GET['Pmax'].'W  : ','p');
 	$meilleurConvertisseur=chercherConvertisseur($U,$_GET['Pmax']);
 	if ($meilleurConvertisseur['nom'] == '') {
-		echo '<p>Désolé nous n\'avons pas réussi à trouver un convertisseur pour une telle puissance.</p> ';
+		echo '<p>'._('Sorry, could\'nt find a converter for such power').'.</p> ';
 	} else {
 		// Annoncer limite batterie
 		$CourantDechargeMaxParcBatterieHypothetique=$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle']*$_GET['IbatDecharge']/100;
 		$PuissanceMaxDechargeBatterie=$CourantDechargeMaxParcBatterieHypothetique*$U;
-		echo '<p>Une hypothèse serait d\'opter pour un <b>convertisseur type '.$meilleurConvertisseur['nom'].'</b> qui monte en puissance maximum de sortie à '.$meilleurConvertisseur['Pmax'].'W avec des pointes possibles à '.$meilleurConvertisseur['Ppointe'].'W.';
+		printf('<p>'._('An hypothesis would be to choose a <b>%s type converter</b> that goes up to %dW max power with possible peaks at %dW.'), $meilleurConvertisseur['nom'], $meilleurConvertisseur['Pmax'], $meilleurConvertisseur['Ppointe']);
 		if ($PuissanceMaxDechargeBatterie < $meilleurConvertisseur['Pmax']) {
-			echo 'Ceci dit, pour ne pas endommager vos batteries, vous ne pourrez aller au delà des '.$PuissanceMaxDechargeBatterie.'W <a rel="tooltip" class="bulles" title="('.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah de batterie * '.$_GET['IbatDecharge'].'/100 de courant max de décharge des batterie) * '.$U.'V">?</a>';
+			printf(_('However, in order to avoid battery damage, you won\'t be able to go above %dW').' <a rel="tooltip" class="bulles" title="('.$meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'].'Ah bat * '.$_GET['IbatDecharge'].'/100) * '.$U.'V">?</a>', $PuissanceMaxDechargeBatterie);
 		}
 		echo '</p>';
 	}
 	?>
 	
-	<h3 id="resultatBatControleur">Contrôleur de batterie</h3>
-	<p>Il vous est conseillé d'avoir un contrôleur de batterie afin de connaître l'état de charge de votre parc de batterie.
-	<?php if ($Cap > 100 || $meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'] > 100) {  
+	<h3 id="resultatBatControleur"><?= _('Battery controler') ?></h3>
+	<?php 
+	echo '<p>'._('It is recommended to have a bettery controleur in order to check battery plant charge state').'.';
+	if ($Cap > 100 || $meilleurParcBatterie['Ah']*$meilleurParcBatterie['nbBatterieParalle'] > 100) {  
 		// type BMV
 		$BudgetBatControleur = 150;
 	 } else {  
 		// type voltmètre
 		$BudgetBatControleur = 15; 
-		echo 'Ceci étant dit, au vu de votre petite installation, un voltmètre parait plus raisonnable / approprié. Grâce à un <a href="https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html">tableau de correspondance</a> vous pouvez, de façon grossière et incertaine, déterminer le pourcentage de charge .';
+		echo _('However, considering the small size of your system, a voltmeter would be more appropriate. With a <a href="https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html">correspondence table</a> you can approximately determine the charge percentage').' .';
 	} ?>
 	</p>
-	<h3 id="resultatCablage">Le câblage</h3>
-	<?php $BudgetCable=0; ?>
-	<p>Le choix (<a href="http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html" target="_blank">calcul</a>) des sections de câbles est important pour éviter les pertes :</p>
+	<h3 id="resultatCablage"><?= _('The wiring') ?></h3>
+	<?php
+	$BudgetCable=0; 
+	echo '<p>'._('Wire section choice ( <a href="http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html" target="_blank">calculate</a>) is important in order to avoid electricity lossess').' :</p>';
+	?>
 	<ul>
 		<?php
 			$PT=($nbPvSerie*$meilleurParcPv['Vdoc'])*$_GET['cablagePtPourcent']/100;
 			# formule de calcul avec la distance et la chute de tension
 			$cableDistancePvRegu_Calc=round($_GET['cablageRho']*($_GET['distancePvRegu']*2)*($nbPvParalele*$meilleurParcPv['Isc'])/$PT,2);
-			# règle des 5A par mm² 
+			# règle des 5A par mm&sup2; 
 			$cableDistancePvRegu_AparMm=round(($nbPvParalele*$meilleurParcPv['Isc'])/$_GET['cablageRegleAparMm'],2);
 			if ($cableDistancePvRegu_Calc < $cableDistancePvRegu_AparMm) {
 				$cableDistancePvRegu_Final=$cableDistancePvRegu_AparMm;
 			} else {
 				$cableDistancePvRegu_Final=$cableDistancePvRegu_Calc;
 			}
-		?>
-		<li>Entre les panneaux et le régulateur, pour une distance de <?= $_GET['distancePvRegu'] ?>m, il vous est conseillé un câble d'une section de <?= $cableDistancePvRegu_Final ?>mm² 
-		<a id="resultCalcCablePvReguShow">(voir, comprendre la démarche)</a></li>
-		<div id="resultCalcCablePvRegu" class="calcul">
-			<p><a class="more" id="resultCalcCablePvReguHide">Cacher la démarche</a></p>
-			<p>La formule pour calculer une seciton de câble pour éviter les pertes est :</p>
-			<p>S = Rho x L x I / PT</p>
-			<ul>
-				<li>S (mm²) : Section du conducteur</li>
-				<li>Rho (ohm) : <a href="https://fr.wikipedia.org/wiki/R%C3%A9sistivit%C3%A9" target="_blank">Résistivité</a> du conducteur (0,017ohm pour le cuivre)</li>
-				<li>L (m) : Longueur aller + retour du conducteur</li>
-				<li>I (A) : L’intensité (ici l'intensité des panneaux x le nombre de paralèle)</li>
-				<li>PT (V) : Perte de tension acceptée au niveau des câbles (<?= $_GET['cablagePtPourcent']?>% de la tension)</li>
-					<ul><li>(La tension des panneaux x le nombre de série) x <?= $_GET['cablagePtPourcent']?>/100</li></ul>
-			</ul>
-			<p>Dans votre cas ça nous fait : </p>
-			<p>S = <?php echo $_GET['cablageRho'].' x ('.$_GET['distancePvRegu'].'x2) x '.$nbPvParalele*$meilleurParcPv['Isc'].' / '.$PT.' = <b>'.$cableDistancePvRegu_Calc.'</b>'; ?>mm²</p>
-			<?php 
+		printf('<li>'._('Between panels and charge controller, for a distance of %sm, a %dmm&sup2; section cable is recommended'), $_GET['distancePvRegu'], $cableDistancePvRegu_Final);
+		printf(' ');
+		printf('<a id="resultCalcCablePvReguShow">('._('see, understand the procedure').')</a></li>');
+		printf('<div id="resultCalcCablePvRegu" class="calcul">');
+		printf('	<p><a class="more" id="resultCalcCablePvReguHide">'._('Hide process').'</a></p>');
+		printf('	<p>'._('The formula to calculate the wire section in order to avoid loss is :').'</p>');
+		printf('	<p>'._('S = Rho x L x I / VL').'</p>');
+		printf('	<ul>');
+		printf('		<li>'._('S (mm&sup2;) : Wire section').'</li>');
+		printf('		<li>'._('Rho (ohm) : Wire <a href="https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity" target="_blank">resistivity</a> (0,017ohm for copper)').'</li>');
+		printf('		<li>'._('L (m) : back and forth wire length').'</li>');
+		printf('		<li>'._('I (A) : L\’intensité (ici l\'intensité des panneaux x le nombre de parallèle(s))').'</li>');
+		printf('		<li>'._('VL (V) : admitted wire level voltage loss (%s%% of voltage)').'</li>', $_GET['cablagePtPourcent']);
+		printf('			<ul><li>'._('(panels voltage * number of series) * %d/100').'</li></ul>', $_GET['cablagePtPourcent']);
+		printf('	</ul>');
+		printf('	<p>'._('In our case it gives : ').'</p>');
+		printf('	<p>S = %s x (%dx2) x %s / %s = <b>%s</b>mm&sup2;</p>', $_GET['cablageRho'], $_GET['distancePvRegu'], $nbPvParalele*$meilleurParcPv['Isc'], $PT, $cableDistancePvRegu_Calc);
+		
 			if ($cableDistancePvRegu_Calc < $cableDistancePvRegu_AparMm) {
-				echo '<p>Mais cette section ne respecte pas la règle des '.$_GET['cablageRegleAparMm'].'A/mm² qui permet de se prémunir des échauffements. ';
-				echo 'Pour respecter cette règle, il faudrait s\'approcher d\'une section de <b>'.$cableDistancePvRegu_Final.'</b>mm² <a rel="tooltip" class="bulles" title="'.$nbPvParalele*$meilleurParcPv['Isc'].'A / '.$_GET['cablageRegleAparMm'].'A/mm² = '.$cableDistancePvRegu_Final.'mm²">?</a></p>';
+				printf('<p>'._('But that section doesn\'t respect the %dA/mm&sup2; rule which prevents heating.'), $_GET['cablageRegleAparMm']);
+				printf(_('To respect the rule, we need to get close to a <b>%s</b>mm&sup2; section').' <a rel="tooltip" class="bulles" title="'.$nbPvParalele*$meilleurParcPv['Isc'].'A / '.$_GET['cablageRegleAparMm'].'A/mm&sup2; = '.$cableDistancePvRegu_Final.'mm&sup2;">?</a></p>', $cableDistancePvRegu_Final);
 			}
-			?>
-		</div>
-		<ul>
-		<?php
+			
+		echo '</div>';
+		echo '<ul>';
+		
 		if ($cableDistancePvRegu_Calc < $cableDistancePvRegu_AparMm) {
 			$meilleurCable = chercherCable_SecionPlusProche($cableDistancePvRegu_Final); 
 		} else {
 			$meilleurCable = chercherCable_SecionAudessus($cableDistancePvRegu_Final); 
 		}
 		if (empty($meilleurCable)) {
-			echo '<li>Impossible de proposer une section de câble réaliste. Vous deviez peut être envisager de diminuer la distance entre les appareils.';
+			echo '<li>'._('There is no realistic wire section determinable. You should probably decrease distance between devices.').'</li>';
 		} else { 
 			$BudgetCable=$BudgetCable+$_GET['distancePvRegu']*$meilleurCable['prix'];
-			?>
-			<li>Section de câble la plus proche proposée : <b><?= $meilleurCable['nom'] ?></b>, pour un coût d'environ <?= $_GET['distancePvRegu']*$meilleurCable['prix'] ?>€</li>
-		<?php } ?>
-		</ul>
-		<?php
+			printf('<li>'._('Nearest wire section suggested : <b>%s</b>, approximate cost %d&euro;').'</li>',$meilleurCable['nom'],$_GET['distancePvRegu']*$meilleurCable['prix']);
+		 }
+		echo '</ul>';
 			$PT=$U*$_GET['cablagePtPourcent']/100;
 			# formule de calcul avec la distance et la chute de tension
 			$cableDistanceReguBat_Calc=round($_GET['cablageRho']*($_GET['distanceReguBat']*2)*($parcPvW/$U)/$PT,2);
-			# règle des 5A par mm² 
+			# règle des 5A par mm&sup2; 
 			$cableDistanceReguBat_AparMm=round(($parcPvW/$U)/$_GET['cablageRegleAparMm'],2);
 			if ($cableDistanceReguBat_Calc < $cableDistanceReguBat_AparMm) {
 				$cableDistanceReguBat_Final=$cableDistanceReguBat_AparMm;
 			} else {
 				$cableDistanceReguBat_Final=$cableDistanceReguBat_Calc;
 			}
-		?>
-		<li>Entre le régulateur et les batteries, pour une distance de <?= $_GET['distanceReguBat'] ?>m, il vous est conseillé un câble d'une section de <?= $cableDistanceReguBat_Final ?>mm²
-		<a id="resultCalcCableReguBatShow">(voir, comprendre la démarche)</a></li>
-		<div id="resultCalcCableReguBat" class="calcul">
-			<p><a class="more" id="resultCalcCableReguBatHide">Cacher la démarche</a></p>
-			<p>La formule pour calculer une seciton de câble pour éviter les pertes est :</p>
-			<p>S = Rho x L x I / PT</p>
-			<ul>
-				<li>S (mm²) : Section du conducteur</li>
-				<li>Rho (ohm) : <a href="https://fr.wikipedia.org/wiki/R%C3%A9sistivit%C3%A9" target="_blank">Résistivité</a> du conducteur (0,017ohm pour le cuivre)</li>
-				<li>L (m) : LocableDistanceReguBat_Calcngueur aller + retour du conducteur</li>
-				<li>I (A) : L’intensité (ici la puissance des panneaux / la tension des batteries)</li>
-				<li>PT (V) : Perte de tension acceptée au niveau des câbles (<?= $_GET['cablagePtPourcent']?>% de la tension)</li>
-					<ul><li>La tension des batteries (soit <?= $U ?>V) x <?= $_GET['cablagePtPourcent']?>/100</li></ul>
-			</ul>
-			<p>Dans votre cas ça nous fait : </p>
-			<p>S = <?php echo $_GET['cablageRho'].' x ('.$_GET['distanceReguBat'].'x2) x ('.$parcPvW.' / '.$U.') / '.$PT.' = <b>'.$cableDistanceReguBat_Calc.'</b>'; ?>mm²</p>
-			<?php 
+		printf('<li>'._('Between charge controller and batteries, for a %sm distance, a wire section of %smm&sup2; is recommended'), $_GET['distanceReguBat'], $cableDistanceReguBat_Final);
+		printf(' ');
+		printf('<a id="resultCalcCableReguBatShow">('._('see, understand the procedure').')</a></li>');
+		printf('<div id="resultCalcCableReguBat" class="calcul">');
+		printf('	<p><a class="more" id="resultCalcCableReguBatHide">'.('Hide process').'</a></p>');
+		printf('	<p>'._('The formula to calculate the wire section in order to avoid loss is :').'</p>');
+		printf('	<p>'._('S = Rho x L x I / VL').'</p>');
+		printf('	<ul>');
+		printf('		<li>'._('S (mm&sup2;) : Wire section').'</li>');
+		printf('		<li>'._('Rho (ohm) : Wire <a href="https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity" target="_blank">resistivity</a> (0,017ohm for copper)').'</li>');
+		printf('		<li>'._('L (m) : back and forth wire length').'</li>');
+		printf('		<li>'._('I (A): Intensity (here the power of the panels / the voltage of the battery bank)').'</li>');
+		printf('		<li>'._('VL (V) : admitted wire level voltage loss (%s%% of voltage)').'</li>', $_GET['cablagePtPourcent']);
+		printf('			<ul><li>'._('Batteries voltage, i. e. %dV * %d/100').'</li></ul>', $U, $_GET['cablagePtPourcent']);
+		printf('	</ul>');
+		printf('	<p>'._('In our case it gives : ').'</p>');
+		printf('	<p>S = %s x (%dx2) x (%s / %s) / %s = <b>%s</b>mm&sup2;</p>', $_GET['cablageRho'], $_GET['distanceReguBat'], $parcPvW, $U, $PT, $cableDistanceReguBat_Calc);
 			if ($cableDistanceReguBat_Calc < $cableDistanceReguBat_AparMm) {
-				echo '<p>Mais cette section ne respecte pas la règle des '.$_GET['cablageRegleAparMm'].'A/mm² qui permet de se prémunir des échauffements. ';
-				echo 'Pour respecter cette règle, il faudrait s\'approcher d\'une section de <b>'.$cableDistanceReguBat_Final.'</b>mm² <a rel="tooltip" class="bulles" title="'.$parcPvW.'W / '.$U.'V = '.$parcPvW/$U.'A<br />'.$parcPvW/$U.'A  / '.$_GET['cablageRegleAparMm'].'A/mm² = '.$cableDistanceReguBat_Final.'mm²">?</a></p>';
+				printf('<p>'._('But that section doesn\'t respect the %dA/mm&sup2; rule which prevents heating.'), $_GET['cablageRegleAparMm']);
+				printf(_('To respect the rule, we need to get close to a <b>%s</b>mm&sup2; section').' <a rel="tooltip" class="bulles" title="'.$parcPvW.'W / '.$U.'V = '.$parcPvW/$U.'A<br />'.$parcPvW/$U.'A  / '.$_GET['cablageRegleAparMm'].'A/mm&sup2; = '.$cableDistanceReguBat_Final.'mm&sup2;">?</a></p>', $cableDistanceReguBat_Final);
 			}
-			?>
-		</div>
-		<ul>
-		<?php
+		echo '</div>';
+		echo '<ul>';
 		if ($cableDistanceReguBat_Calc < $cableDistanceReguBat_AparMm) {
 			$meilleurCable = chercherCable_SecionPlusProche($cableDistanceReguBat_Final); 
 		} else {
 			$meilleurCable = chercherCable_SecionAudessus($cableDistanceReguBat_Final); 
 		}
 		if (empty($meilleurCable)) {
-			echo '<li>Impossible de proposer une section de câble réaliste. Vous deviez peut être envisager de diminuer la distance entre les appareils.';
+			echo '<li>'._('There is no realistic wire section determinable. You should probably decrease distance between devices.').'</li>';
 		} else { 
 			$BudgetCable=$BudgetCable+$_GET['distanceReguBat']*$meilleurCable['prix'];
-			?>
-			<li>Section de câble la plus proche proposée : <b><?= $meilleurCable['nom'] ?></b>, pour un coût d'environ <?= $_GET['distanceReguBat']*$meilleurCable['prix'] ?>€</li>
-		<?php } ?>
+			printf('<li>'._('Nearest wire section suggested : <b>%s</b>, approximate cost %d&euro;').'</li>',$meilleurCable['nom'],$_GET['distanceReguBat']*$meilleurCable['prix']);
+			} ?>
 		</ul>
 	</ul>
-	<p>Un autre calculateur (plus complet) de sections de câbles est disponible sur <a href="http://www.sigma-tec.fr/textes/texte_cables.html" target="_blank">sigma-tec</a>.</p>
-	<h3 id="resultatBudget">Budget</h3>
-	<p>Ceci est une estimation grossière pour du matériel neuf, elle ne fait en aucun cas office de devis ;
-	<ul>
-		<?php
-		$BudgetPvBas=$config_ini['prix']['pv_bas']*$meilleurParcPv['W']*$meilleurParcPv['nbPv'];
-		$BudgetPvHaut=$config_ini['prix']['pv_haut']*$meilleurParcPv['W']*$meilleurParcPv['nbPv'];
-		echo '<li>Panneau photovoltaïque : entre '.convertNumber($BudgetPvBas, 'print').'€ et '.convertNumber($BudgetPvHaut, 'print').'€ (<a rel="tooltip" class="bulles" title="Coût estimé de '.$config_ini['prix']['pv_bas'] .'€/Wc en fourchette basse & '.$config_ini['prix']['pv_haut'] .'€/Wc en haute">?</a>)</li>';
-		if ($meilleurParcBatterie['nbBatterieParalle'] != 99999) { 
-			$BudgetBarBas=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
-			$BudgetBarHaut=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
-		} else { 
-			$BudgetBarBas=$config_ini['prix']['bat_'.$BatType.'_bas']*$Cap*$U;
-			$BudgetBarHaut=$config_ini['prix']['bat_'.$BatType.'_haut']*$Cap*$U;
-		} 
-		echo '<li>Batterie : entre '.convertNumber($BudgetBarBas, 'print').'€ et '.convertNumber($BudgetBarHaut, 'print').'€ (<a rel="tooltip" class="bulles" title="Avec un coût estimé de '.$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['V'] .'€/Ah en fourchette basse & '.$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['V'] .'€/Ah en haute">?</a>)</li>';
-		if (!$meilleurRegulateur['nom']) {
-			$budgetRegulateur=0;
-			echo '<li>Régulateur : désolé nous n\'avons pas réussi à faire une hypothèse pour le régulateur.</li>';
-		} else {
-			$budgetRegulateur=$meilleurRegulateur['Prix']*$nbRegulateur;
-			echo '<li>Régulateur : environ '.convertNumber($budgetRegulateur, 'print') .'€</li>';
+	<p><?= _('Another and more complete wire section calculator is avalaible at <a href="http://www.sigma-tec.fr/textes/texte_cables.html" target="_blank">sigma-tec</a>.') ?></p>
+	<?php
+		// Information Off-Grid
+		if (empty($_GET['tracking']) && $_GET['periode'] == 'complete') {
+			$SHScalc=null;
+			foreach ($raddatabases as $RadDatabase) {
+				debug('Importation des données Off-Grid PVGIS, on test avec la raddatabase '.$RadDatabase, 'p');	
+				$FichierDataCsv = $config_ini['pvgis']['cachePath'].'/pvgis5_SHScalc_'.$_GET['lat'].'_'.$_GET['lon'].'_'.$RadDatabase.'_'.$_GET['inclinaison'].'_'.$_GET['orientation'].'_'.convertNumber($Pc, 'print').'_'.convertNumber($Cap, 'print')*$U.'_'.$config_ini['pvgis']['cutoff'].'_'.$_GET['Bj'].'.csv';
+				if (!pgvisGetSHScalc($FichierDataCsv, $RadDatabase)) {
+					break;
+				} else {
+					$SHScalcTest = pgvisParseDataSHScalc($FichierDataCsv);
+					$DataStateValueTotal=0;
+					foreach($SHScalcTest['DataState'] as $DataStateKey=>$DataStateValue) {
+						$DataStateValueTotal=$DataStateValue+$DataStateValueTotal;
+					}
+					if ($DataStateValueTotal != 0) {
+						$SHScalc=$SHScalcTest;
+						break;
+					} 
+				}
+			}
+			if ($SHScalc != null) {
+				
+				echo '<h3  id="resultatConv">'._('PVGIS Simulation, performance prediction').'<a target="_blank" href="'.$FichierDataCsv.'" rel="tooltip" class="bulles" title="Télécharger les données brutes" style="float: right"><img src="lib/dl.png" alt="DL" /></a></h3>';
+				echo '<p>'._('Data from photovoltaic geographical information system (<a href="http://re.jrc.ec.europa.eu/pvgis.html" target="_blank">PVGIS</a>) application ').'</p>';
+				echo '<ul>';
+				echo '<li><a id="TitreMyChartSHScalcMonthEnergy">'._('Power production estimate for off-grid PV system').'</a>';
+				echo '<div style="display: none" id="ContainerMonthEnergy" class="chart-container pvgisSHScalc myChartSHScalcMonth energy myChartSHScalcMonthEnergy"><canvas id="myChartSHScalcMonthEnergy"></canvas></div>';
+				echo '<script>
+				var ctx = document.getElementById("myChartSHScalcMonthEnergy").getContext(\'2d\');
+				var myChart = new Chart(ctx, {
+					type: \'bar\',
+					data: {
+						labels: [';
+				foreach ($mois as $key => $moi) {
+					echo '"'.$moi.'"';
+					if ($key != 12) {
+						echo ', ';
+					}
+				}
+				echo '],
+						datasets: [{
+							label: \''._('Average energy production per day').' ('._('Wh/d').')\',
+							data: [';
+				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
+					echo $SHScalc['DataMonth'][$MoisNum]['Ed'];
+					if ($MoisNum != 12) {
+						echo ', ';
+					}
+				}
+				echo '],
+							backgroundColor: \'rgba(0, 0, 255, 1)\',
+							borderColor: \'rgba(37, 37, 235, 0.2)\',
+							borderWidth: 1
+						},{
+							label: \''._('Average energy not captured per day').' ('._('Wh/d').')\',
+							data: [';
+				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
+					echo $SHScalc['DataMonth'][$MoisNum]['El'];
+					if ($MoisNum != 12) {
+						echo ', ';
+					}
+				}
+				echo '],
+							backgroundColor: \'rgba(37, 37, 235, 0.2)\',
+							borderColor: \'rgba(0, 0, 255, 1)\',
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});
+				</script>';
+				echo '</li>';
+				echo '<li><a id="TitreMyChartSHScalcMonthBattery">'._('Battery performance for off-grid PV system').'</a>';
+				echo '<div style="display: none" id="ContainerMonthBattery" class="chart-container pvgisSHScalc myChartSHScalcMonth battery"><canvas id="myChartSHScalcMonthBattery"></canvas></div>';
+				echo '<script>
+				var ctx = document.getElementById("myChartSHScalcMonthBattery").getContext(\'2d\');
+				var myChart = new Chart(ctx, {
+					type: \'bar\',
+					data: {
+						labels: [';
+				foreach ($mois as $key => $moi) {
+					echo '"'.$moi.'"';
+					if ($key != 12) {
+						echo ', ';
+					}
+				}
+				echo '],
+						datasets: [{
+							label: \''._('Percentage of days when battery became full').' (%)\',
+							data: [';
+				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
+					echo $SHScalc['DataMonth'][$MoisNum]['Ff'];
+					if ($MoisNum != 12) {
+						echo ', ';
+					}
+				}
+				echo '],
+							backgroundColor: \'rgba(0, 128, 0, 1)\',
+						},{
+							label: \''._('Percentage of days when battery became empty').' (%)\',
+							data: [';
+				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
+					echo $SHScalc['DataMonth'][$MoisNum]['Fe'];
+					if ($MoisNum != 12) {
+						echo ', ';
+					}
+				}
+				echo '],
+							backgroundColor: \'rgba(200, 0, 0, 0.5)\',
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});
+				</script>';
+				echo '</li>';
+				echo '<li><a id="TitreMyChartSHScalcState">'._('Probability of battery charge state at the end of the day').'</a>';
+				echo '<div style="display: none" id="ContainerState" class="chart-container pvgisSHScalc myChartSHScalcState"><canvas id="myChartSHScalcState"></canvas></div>';
+				echo '<script>
+				var ctx = document.getElementById("myChartSHScalcState").getContext(\'2d\');
+				var myChart = new Chart(ctx, {
+					type: \'bar\',
+					data: {
+						labels: [';
+				foreach($SHScalc['DataState'] as $DataStateKey=>$DataStateValue) {
+					echo '\''.$DataStateKey.'%\'';
+					echo ', ';
+				}
+				echo '],
+						datasets: [{
+							label: \''._('Percentage of days with this charge state').' (%)\',
+							data: [';
+							foreach($SHScalc['DataState'] as $DataStateKey=>$DataStateValue) {
+								echo $DataStateValue;
+								echo ', ';
+							}
+				echo '],
+							backgroundColor: \'rgba(128, 0, 128, 1)\',
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});
+				</script>';
+				echo '</ul>';
+				echo '<script>
+					$( "#TitreMyChartSHScalcMonthEnergy" ).click(function() {
+						$( "#ContainerMonthEnergy" ).show( "slow" );
+						$( "#ContainerMonthBattery" ).hide( "slow" );
+						$( "#ContainerState" ).hide( "slow" );
+					});
+					$( "#TitreMyChartSHScalcMonthBattery" ).click(function() {
+						$( "#ContainerMonthEnergy" ).hide( "slow" );
+						$( "#ContainerMonthBattery" ).show( "slow" );
+						$( "#ContainerState" ).hide( "slow" );
+					});
+					$( "#TitreMyChartSHScalcState" ).click(function() {
+						$( "#ContainerMonthEnergy" ).hide( "slow" );
+						$( "#ContainerMonthBattery" ).hide( "slow" );
+						$( "#ContainerState" ).show( "slow" );
+					});
+				</script>';
+				echo '</li>';
+			}
 		}
-		if ($meilleurConvertisseur['nom'] == '') {
-			$budgetConvertisseurBas=0;
-			$budgetConvertisseurHaut=0;
-			echo '<li>Convertisseur : désolé nous n\'avons pas réussi à faire une hypothèse pour un convertisseur.</li> ';
-		} else {
-			$budgetConvertisseurBas=$config_ini['prix']['conv_bas']*$meilleurConvertisseur['VA'];
-			$budgetConvertisseurHaut=$config_ini['prix']['conv_haut']*$meilleurConvertisseur['VA'];
-			echo '<li>Convertisseur : entre '.convertNumber($budgetConvertisseurBas, 'print').'€ et '.convertNumber($budgetConvertisseurHaut, 'print').'€ (<a rel="tooltip" class="bulles" title="Avec un coût estimé de '.$config_ini['prix']['conv_bas'].'€/VA en fourchette basse & '.$config_ini['prix']['conv_haut'].'€/VA en haute">?</a>)</li>';
-		}
-		echo '<li>Contrôleur de batterie : environ '.convertNumber($BudgetBatControleur, 'print') .'€</li>';
-		echo '<li>Câblage : environ '.convertNumber($BudgetCable, 'print') .'€</li>';
-		$budgetTotalBas=$BudgetPvBas+$BudgetBarBas+$budgetRegulateur+$budgetConvertisseurBas+$BudgetCable+$BudgetBatControleur;
-		$budgetTotalHaut=$BudgetPvHaut+$BudgetBarHaut+$budgetRegulateur+$budgetConvertisseurHaut+$BudgetCable+$BudgetBatControleur;
-		?>
-	</ul>
-	<p>Ce qui nous fait un budget total <b>entre <?= convertNumber($budgetTotalBas, 'print') ?> et <?= convertNumber($budgetTotalHaut, 'print') ?>€</b>. A ça il faut ajouter le prix des supports de panneau, du câblage/cosse ainsi des éléments de protections (fusible, coup batterie...).</p>
-	<h3 id="resultatDon">Soutenir, contribuer</h3>
-	<p>Si ce logiciel vous a été utile et/ou que vous voulez exprimer de la reconnaissance :  </p>
-	<ul>
-		<li><a href="http://david.mercereau.info/contact/"  target="_blank">Dites merci !</a> (ça fait toujours plaisir)</li>
-		<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"  target="_blank">Soutenez en faisant un don</a> (sécurisé)</li>
-		<li><a href="" target="_blank">Contribuer / améliorer le logiciel</a> si vous avez des compétences en programmation</li>
-	</ul>
+	?>
+
+		<h3 id="resultatBudget"><?= _('Budget') ?></h3>
+		<p><? _('This is an approximate estimation for new equipment, it can\'t be considered as a quote.') ?>
+		<ul>
+			<?php
+			$BudgetPvBas=$config_ini['prix']['pv_bas']*$meilleurParcPv['W']*$meilleurParcPv['nbPv'];
+			$BudgetPvHaut=$config_ini['prix']['pv_haut']*$meilleurParcPv['W']*$meilleurParcPv['nbPv'];
+			echo '<li>'._('Photovoltaic panel').' : '._('between').' '.convertNumber($BudgetPvBas, 'print').'&euro; '._('and').' '.convertNumber($BudgetPvHaut, 'print').'&euro; ';
+			printf('(<a rel="tooltip" class="bulles" title="'._('Estimated cost %s&euro;/W at low range cost and %s&euro;/W at high range cost').'\">?</a>)</li>', $config_ini['prix']['pv_bas'], $config_ini['prix']['pv_haut']);
+			if ($meilleurParcBatterie['nbBatterieParalle'] != 99999) { 
+				$BudgetBarBas=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
+				$BudgetBarHaut=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
+			} else { 
+				$BudgetBarBas=$config_ini['prix']['bat_'.$BatType.'_bas']*$Cap*$U;
+				$BudgetBarHaut=$config_ini['prix']['bat_'.$BatType.'_haut']*$Cap*$U;
+			} 
+			echo '<li>'._('Batterie').' : '._('between').' '.convertNumber($BudgetBarBas, 'print').'&euro; '._('and').' '.convertNumber($BudgetBarHaut, 'print').'&euro; ';
+			printf('(<a rel="tooltip" class="bulles" title="'.('Estimated cost %s&euro;/Ah at low range cost and %s&euro;/Ah at high range cost').'\">?</a>)</li>', $config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['V'], $config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['V']);
+			if (!$meilleurRegulateur['nom']) {
+				$budgetRegulateur=0;
+				echo '<li>'._('Charge controller').' : '._('sorry, no hypothesis for charge controller').'.</li>';
+			} else {
+				$budgetRegulateur=$meilleurRegulateur['Prix']*$nbRegulateur;
+				echo '<li>'._('Charge controller').' : '._('approximately').' '.convertNumber($budgetRegulateur, 'print') .'&euro;</li>';
+			}
+			if ($meilleurConvertisseur['nom'] == '') {
+				$budgetConvertisseurBas=0;
+				$budgetConvertisseurHaut=0;
+				echo '<li>'._('Converter').' : '.('désolé nous n\'avons pas réussi à faire une hypothèse pour un convertisseur').'.</li> ';
+			} else {
+				$budgetConvertisseurBas=$config_ini['prix']['conv_bas']*$meilleurConvertisseur['VA'];
+				$budgetConvertisseurHaut=$config_ini['prix']['conv_haut']*$meilleurConvertisseur['VA'];
+				echo '<li>'._('Converter').' : '._('between').' '.convertNumber($budgetConvertisseurBas, 'print').'&euro; '._('and').' '.convertNumber($budgetConvertisseurHaut, 'print').'&euro;';
+				printf('(<a rel="tooltip" class="bulles" title="'._('Estimated cost %s&euro;/VA at low range cost and %s&euro;/VA at high range cost').'">?</a>)</li>', $config_ini['prix']['conv_bas'], $config_ini['prix']['conv_haut']);
+			}
+			echo '<li>'._('Battery controler').' : '._('approximately').' '.convertNumber($BudgetBatControleur, 'print') .'&euro;</li>';
+			echo '<li>'._('Wiring').' : '._('approximately').' '.convertNumber($BudgetCable, 'print') .'&euro;</li>';
+			$budgetTotalBas=$BudgetPvBas+$BudgetBarBas+$budgetRegulateur+$budgetConvertisseurBas+$BudgetCable+$BudgetBatControleur;
+			$budgetTotalHaut=$BudgetPvHaut+$BudgetBarHaut+$budgetRegulateur+$budgetConvertisseurHaut+$BudgetCable+$BudgetBatControleur;	
+		printf('</ul>');
+		printf('<p>'._('Which brings to a total budget <b>between %s and %s&euro;</b>. Cost of panels support, wire, wire terminal and protection elements (fuse, battery cut-off, ...) is not included').'.</p>', convertNumber($budgetTotalBas, 'print'), convertNumber($budgetTotalHaut, 'print'));
+	
+	printf('<h3 id="resultatDon">'._('Support, contribute').'</h3>');
+	printf('<p>'._('If this software was helpfull and/or you want to thank').' :  </p>');
+	printf('<ul>');
+	printf('	<li>'._('<a href="http://david.mercereau.info/contact/"  target="_blank">Say thank you !</a> (it\'s always a pleasure)').'</li>');
+	printf('	<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%%2dDonationsBF%%3abtn_donate_SM%%2egif%%3aNonHosted"  target="_blank">'._('Support by making a secure donation').'</a></li>');
+	printf('	<li><a href="https://framagit.org/kepon/CalcPvAutonome/" target="_blank">'._('Contribute / improve / translate this software').'</a></li>');
+	printf('</ul>');
+	?>
+	<?php
+	printf('<h3 id="resultatResume">'._('Summary').' (<a id="hrefResumeBrute">HTML</a>/<a id="hrefResumeBBCode">BBCode</a>)</h3>');
+	printf('<div id="resumeBrute" style="display: none"><p>'._('<a href="%s">This simulation</a> estimates that with your consumption of %dWh/d you would need:').'</p>', 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'], $_GET['Bj']);
+	printf('<ul><li>'._('~%dW panel (%d"%dW for example)').'</li>', convertNumber($Pc, 'print'), $nbPv, $pv['W']);
+	printf('<li>'._('~%dAh battery in %dV (%d"%dAh in %dV for example)').'</li>', convertNumber($Cap, 'print'), $U, $meilleurParcBatterie['nbBatterieTotal'], $meilleurParcBatterie['Ah'], $meilleurParcBatterie['V']);
+	printf('</ul>');
+	printf('<p>'._('The budget estimated between %s and %s&euro;').'</p></div>', convertNumber($budgetTotalBas, 'print'), convertNumber($budgetTotalHaut, 'print'));
+	printf('<div id="resumeBBCode" style="display: none"><p>'._('[url=%s]This simulation[url] estimates that with your consumption of %dWh/d you would need:').'<br />', htmlspecialchars('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']), $_GET['Bj']);
+	printf('[list][*]'._('~%dW panel (%d"%dW for example)').'<br />', convertNumber($Pc, 'print'), $nbPv, $pv['W']);
+	printf('[*]'._('~%dAh battery in %dV (%d"%dAh in %dV for example)').'[/list]</br />', convertNumber($Cap, 'print'), $U, $meilleurParcBatterie['nbBatterieTotal'], $meilleurParcBatterie['Ah'], $meilleurParcBatterie['V']);
+	printf(_('The budget estimated between %s and %s&euro;').'</p></div>', convertNumber($budgetTotalBas, 'print'), convertNumber($budgetTotalHaut, 'print'));
+	?>
 	<!-- Afficher ou non les informations complémentaire du formulaire -->
 	<script type="text/javascript">
+		$( "#hrefResumeBBCode" ).click(function() {
+			$( "#resumeBBCode" ).show( "slow" );
+			$( "#resumeBrute" ).hide( "slow" );
+		});
+		$( "#hrefResumeBrute" ).click(function() {
+			$( "#resumeBBCode" ).hide( "slow" );
+			$( "#resumeBrute" ).show( "slow" );
+		});
 		$( "#aidePvgisShow" ).click(function() {
 			$( "#aidePvgis" ).show( "slow" );
 			$( "#aidePvgisShow" ).hide( "slow" );
@@ -942,29 +1120,31 @@ if (isset($_GET['submit'])) {
 	
 	<div class="blocs" id="BlocIntro">
 		<div class="form Ni">
-			<label>Votre degré de connaissance en photovoltaïque : </label>
+			<label><?= _('Your degree of knowledge in photovoltaics') ?> : </label>
 			<select id="Ni" name="Ni">
-				<option value="1"<?php echo valeurRecupSelect('Ni', 1); ?>>Débutant</option>
-				<option value="2"<?php echo valeurRecupSelect('Ni', 2); ?>>Eclairé</option>
-				<option value="3"<?php echo valeurRecupSelect('Ni', 3); ?>>Expert</option>
+				<option value="1"<?php echo valeurRecupSelect('Ni', 1); ?>><?= _('Beginner') ?></option>
+				<option value="2"<?php echo valeurRecupSelect('Ni', 2); ?>><?= _('Enlightened') ?></option>
+				<option value="3"<?php echo valeurRecupSelect('Ni', 3); ?>><?= _('Expert') ?></option>
 			</select>
 		</div>
-			
+		
 		<div class="conseil debutant">
+			<?php if (substr($locale, 0, 2) == 'fr') { ?>
 			<p><a href="http://david.mercereau.info/formation-pv/" target="_blank"><img style="float: right; padding: 10ppx" width="100	" src="./lib/FormationPv.png" alt="" /></a><b>Suggestion</b> : regarder la petite <a href="http://david.mercereau.info/formation-pv/" target="_blank">formation vidéo sur l'autonomie électrique photovoltaïque</a> pour un meilleur usage de ce calculateur.</p>
+			<?php } ?>
 		</div>
 
-		<h2 class="titre vous">Votre consommation :</h2>	
+		<h2 class="titre vous"><?= _('Your consumption') ?> :</h2>	
 				
-			<p>C'est l'étape la plus importante pour votre dimensionnement. Si vous ne connaissez pas cette valeur rendez-vous sur notre <b><a href="<?= $config_ini['formulaire']['UrlCalcConsommation'] ?>?from=CalcPvAutonome" id="DemandeCalcPvAutonome">interface de calcul de besoins journaliers</a></b></p>
+			<p><?= _('This is the most important step for sizing.') ?> <?php printf(_('If you don\'t know this value go to <b><a href="%s?from=CalcPvAutonome" id="DemandeCalcPvAutonome">daily needs calculator</a></b>'), $config_ini['formulaire']['UrlCalcConsommation']) ?></p>
 			
 			<div class="form Bj">
-				<label>Vos besoins électriques journaliers :</label>
-				<input id="Bj" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Bj'); ?>" name="Bj" />  Wh/j
+				<label><?= _('Your daily electrical needs') ?> :</label>
+				<input id="Bj" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Bj'); ?>" name="Bj" />  <?= _('Wh/d') ?>
 			</div>
 			
 			<div class="form Pmax">
-				<label>Votre besoin en puissance électrique maximum :</label>
+				<label><?= _('Your need in maximum electrical power') ?> :</label>
 				<input id="Pmax" type="number" min="1" max="99999" style="width: 100px;" value="<?php echo valeurRecup('Pmax'); ?>" name="Pmax" />  W <a rel="tooltip" class="bulles" title="Il s'agit de la somme des puissances des appareils branché au même moment. <br />Par exemple si vous aviez un réfrégirateur de (70W), une scie sauteuse (500W) et une ampoule (7W) qui sont suceptibles d'être allumés en même temps votre besoin en puissance max est de 577W (70+500+7)">?</a>
 			</div>
 			
@@ -980,16 +1160,16 @@ if (isset($_GET['submit'])) {
 	</div>
 	
 	<div id="BlocLocalisation" class="blocs part localisation">
-		<h2 class="titre localisation">Localisation géographique</h2>
+		<h2 class="titre localisation"><?= _('Geographical location') ?>	</h2>
 
 		<ul id="onglets">
-			<li<?php echo ongletActif('auto'); ?>>Carte</li>
-			<li<?php echo ongletActif('valeur'); ?> id="EjOnglet">Manuel</li>
+			<li<?php echo ongletActif('auto'); ?>><?= _('Map') ?></li>
+			<li<?php echo ongletActif('valeur'); ?> id="EjOnglet"><?= _('Manual') ?></li>
 		</ul>
 		<div id="contenu">
 			
 			<div class="modePvgis item">				
-				<p>Cliquer sur la carte afin de déterminer votre position géographique afin d'en déduire l'ensoleillement : </p>
+				<p><?= _('Click on the map to set your position and deduce solar ressource') ?> : </p>
 
 				<div id="mapid" style="width: 100%; height: 300px;"></div>
 				<script>
@@ -1030,7 +1210,7 @@ if (isset($_GET['submit'])) {
 					function onMapClick(e) {
 						popup
 							.setLatLng(e.latlng)
-							.setContent("Position sélectionné : " + e.latlng.toString())
+							.setContent("<?= _('Selected position') ?> : " + e.latlng.toString())
 							.openOn(mymap);
 					
 						var split1 = e.latlng.toString().split("(")
@@ -1051,19 +1231,19 @@ if (isset($_GET['submit'])) {
 					mymap.on('click', onMapClick);
 				</script>
 				<div style="text-align: center">
-					Latitude : 
+					<?= _('Latitude') ?> : 
 					<input type="number" min="-180" max="180" step="0.00001" style="width: 100px;"  name="lat" id="lat" value="<?= valeurRecupCookieSansConfig('lat'); ?>" />
-					Longitude : 
+					<?= _('Longitude') ?> : 
 					<input type="number" min="-180" max="180" step="0.00001" style="width: 100px;" name="lon" id="lon" value="<?= valeurRecupCookieSansConfig('lon'); ?>" />
 				</div>				
-				<p><small>Les données de rayonnement sont collectées sur <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>.</small></p>
+				<p><small><?= _('Solar irradiation data is collected on <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank"> PVGIS </a>') ?>.</small></p>
 			</div>
 			<div class="modeInput item">
 				<div class="form Ej">
-					<label>Donner la valeur du rayonnement moyen quotidien du mois le plus défavorable dans le plan (l'inclinaison) du panneau :</label>
-					<input maxlength="4" size="4" id="Ej" type="number" step="0.01" min="0" max="10" style="width: 100px;" value="<?php echo valeurRecup('Ej'); ?>" name="Ej" /> kWh/m²/j
+					<label><?= _('Enter the mid value of solar radiation for the worst month and panel plane (inclination)') ?> :</label>
+					<input maxlength="4" size="4" id="Ej" type="number" step="0.01" min="0" max="10" style="width: 100px;" value="<?php echo valeurRecup('Ej'); ?>" name="Ej" /> kWh/m&sup2;/j
 					<?php
-					if ($country == 'FR') {	
+					if ($locale == 'fr') {	
 						echo '<p>Pour obtenir cette valeur rendez vous sur le site de <a href="http://ines.solaire.free.fr/gisesol_1.php" target="_blank">INES</a>, choisir votre ville, l\'inclinaison & l\'orientation des panneaux puis valider. Il s\'agit ensuite de prendre la plus basse valeur de la ligne "Globale (IGP)" (dernière ligne du second tableau) Plus d\'informations en bas de cette page : <a href="http://www.photovoltaique.guidenr.fr/cours-photovoltaique-autonome/VI_calcul-puissance-crete.php">Comment obtenir la valeur de Ei, Min sur le site de l\'INES ?</a></p>';
 					}
 					?>
@@ -1076,7 +1256,7 @@ if (isset($_GET['submit'])) {
 	
 	
 	<div id="BlocPV" class="blocs part pv">
-		<h2 class="titre pv">Dimensionnement des panneaux photovoltaïques</h2>
+		<h2 class="titre pv"><?= _('Sizing of photovoltaic panels') ?></h2>
 		
 		<?php
 		if ($country == 'FR') {
@@ -1087,27 +1267,27 @@ if (isset($_GET['submit'])) {
 		?>
 		
 		<div class="form inclinaison">
-			<label>Inclinaison des panneaux :</label>
+			<label><?= _('Incline of the panel') ?> :</label>
 			<input name="inclinaison" id="inclinaison" type="number" min="-90" max="90" style="width: 100px;" value="<?= valeurRecup('inclinaison'); ?>" />
 			<?= $aideInclinaison ?>
 
 		</div>
 		<div class="form orientation">
-			<label>Orientation des panneaux :</label>
+			<label><?= _('Orientation of the panels') ?> :</label>
 			<input name="orientation" id="orientation" type="number" min="-180" max="180" style="width: 100px;" value="<?= valeurRecup('orientation'); ?>" />
 			<?= $aideOrientation ?>
 		</div>
 		
-		<p><input type="checkbox" id="tracking" name="tracking" <?php if (isset($_GET['tracking'])) echo 'checked="tracking"'; ?> /> J'utilise un traqueur solaire sur les 2 axes</p>
+		<p><input type="checkbox" id="tracking" name="tracking" <?php if (isset($_GET['tracking'])) echo 'checked="tracking"'; ?> /> <?= _('I use a solar tracker on the 2 axes') ?></p>
 		
 		<div class="form periode">
-			<label>Autonomie souhaitée :</label>
+			<label><?= _('Desired autonomous') ?> :</label>
 			<select name="periode" id="periode">
-				<option value="complete"<?php echo valeurRecupSelect('periode', 'complete'); ?>>Annuelle / complète</option>
-				<option value="partielle"<?php echo valeurRecupSelect('periode', 'partielle'); ?>>Saisonnière / partielle</option>
+				<option value="complete"<?php echo valeurRecupSelect('periode', 'complete'); ?>><?= _('Annual / complete') ?></option>
+				<option value="partielle"<?php echo valeurRecupSelect('periode', 'partielle'); ?>><?= _('Seasonal / partial') ?></option>
 			</select>
 			<div class="form periodeDebutFin">
-				<label>Sélectiononer la période :</label>
+				<label><?= _('Select period') ?> :</label>
 				<select name="periodeDebut">
 					<?php
 					foreach ($mois as $moisId=>$moisNom) { 
@@ -1132,22 +1312,22 @@ if (isset($_GET['submit'])) {
 		</div>
 
 		<div class="form ModPv">
-			<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=pv','Les modèles de panneaux','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');">Modèle de panneau</a> : </label>
+			<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=pv','<?= _('Panel template') ?>','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');"><?= _('Panel template') ?></a> : </label>
 			<select id="ModPv" name="ModPv">
-				<option value="auto">Automatique</option>
-				<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModPv', 'perso'); ?>>Personnaliser</option>
+				<option value="auto"><?= _('Automatic') ?></option>
+				<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModPv', 'perso'); ?>><?= _('Customize') ?></option>
 				<?php 
 				foreach ($config_ini['pv'] as $pvModele => $pvValeur) {
 					echo '<option value="'.$pvModele.'"';
 					echo valeurRecupSelect('ModPv', $pvModele);
-					echo '>'.ucfirst($pvValeur['type']).' '.$pvValeur['W'].'Wc en '.$pvValeur['V'].'V</option>';
+					echo '>'.ucfirst($pvValeur['type']).' '.$pvValeur['W'].'W</option>';
 					echo "\n";
 				}
 				?>
 			</select> 
 		</div>
 		<div class="form TypePv">
-			<label>Technologie préférée de panneau : </label>
+			<label><?= _('Preferred panel technology') ?> : </label>
 			<select id="TypePv" name="TypePv">
 				<option value="monocristalin"<?php echo valeurRecupSelect('TypePv', 'monocristalin'); ?>>Monocristalin</option>
 				<option value="polycristallin"<?php echo valeurRecupSelect('TypePv', 'polycristallin'); ?>>Polycristallin</option>
@@ -1155,33 +1335,29 @@ if (isset($_GET['submit'])) {
 		</div>
 		
 		<div class="form PersoPv">
-			<p>Vous pouvez détailler les caractéristiques techniques de votre panneau : </p>
+			<p><?= _('You can detail the technical specifications of your panel') ?> : </p>
 			<ul>
 				<li>
-					<label>Puissance maximum (Pmax)  : </label>
-					<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoPvW'); ?>"  name="PersoPvW" />Wc
+					<label><?= _('Max power (Pmax)') ?>  : </label>
+					<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoPvW'); ?>"  name="PersoPvW" />W
 				</li>
 				<li>
-					<label>Tension : </label>
-					<input type="number" min="1" max="999" style="width: 70px;" value="<?php echo valeurRecup('PersoPvV'); ?>" name="PersoPvV" />V
-				</li>
-				<li>
-					<label>Tension en circuit ouvert (Voc) </label>
+					<label><?= _('Open circuit voltage (Voc)') ?> </label>
 					<input type="number" step="0.01" min="1" max="99" style="width: 70px;" value="<?php echo valeurRecup('PersoPvVdoc'); ?>"  name="PersoPvVdoc" />V
 				</li>
 				<li>
-					<label>Courant de court circuit (Isc)</label>
+					<label><?= _('Short-circuit current (Isc)') ?></label>
 					<input type="number" step="0.01" min="0,01" max="99" style="width: 70px;" value="<?php echo valeurRecup('PersoPvIsc'); ?>"  name="PersoPvIsc" />A
 				</li>
 			</ul>
 		</div>
 			
 		<div class="form Rb">
-			<label>Rendement électrique des batteries : </label>
+			<label><?= _('Electrical yield of batteries') ?> : </label>
 			<input maxlength="4" size="4" id="Rb" type="number" step="0.01" min="0" max="1" style="width: 70px;" value="<?php echo valeurRecup('Rb'); ?>" name="Rb" />
 		</div>
 		<div class="form Ri">
-			<label>Rendement électrique du reste de l’installation (régulateur de charge…) : </label>
+			<label><?= _('Electrical yield for the remaining installation (charge controller,...)') ?> : </label>
 			<input maxlength="4" size="4" id="Ri" type="number" step="0.01" min="0" max="1" style="width: 70px;" value="<?php echo valeurRecup('Ri'); ?>" name="Ri" />
 		</div>
 	</div>
@@ -1189,30 +1365,30 @@ if (isset($_GET['submit'])) {
 	<div class="blocs" id="BlocBat">
 		
 		<div class="part bat">
-			<h2 class="titre bat">Dimensionnement du parc de batteries</h2>
-			<p>Cette application est pré-paramétrée pour des batteries plomb (AGM/Gel/OPvS/OPzV)</p>
+			<h2 class="titre bat"><?= _('Battery plant sizing') ?></h2>
+			<p><?= _('This software is preset for lead batteries') ?> (AGM/Gel/OPvS/OPzV)</p>
 			<div class="form Aut">
-				<label>Nombre de jours d'autonomie : </label>
+				<label><?= _('Autonomous days amount') ?> : </label>
 				<input maxlength="2" size="2" id="Aut" type="number" step="1" min="0" max="50" style="width: 50px" value="<?php echo valeurRecup('Aut'); ?>" name="Aut" />
 			</div>
 			<div class="form U">
-				<label>Tension finale du parc de batteries : </label>
+				<label><?= _('Final battery plant voltage') ?> : </label>
 				<select id="U" name="U">
 					<option value="0"<?php echo valeurRecupSelect('U', 0); ?>>Auto</option>
 					<option value="12"<?php echo valeurRecupSelect('U', 12); ?>>12</option>
 					<option value="24"<?php echo valeurRecupSelect('U', 24); ?>>24</option>
 					<option value="48"<?php echo valeurRecupSelect('U', 48); ?>>48</option>
-				</select> V <a rel="tooltip" class="bulles" title="En mode automatique la tension des batteries sera déduite du besoin en panneaux<br />De 0 à 500Wc : 12V<br />De 500 à 1500 Wc : 24V<br />Au dessus de 1500 Wc : 48V">(?)</a>
+				</select> V <a rel="tooltip" class="bulles" title="<?= _('In automatic mode the batteries voltage will be deducted from the panel need <br />From 0 to 500W : 12V<br />From 500 to 1500 W : 24V<br />Above 1500 W : 48V') ?>">(?)</a>
 			</div>
 			<div class="form DD">
-				<label>Degré de décharge limite : </label>
+				<label><?= _('Discharge level limit') ?> : </label>
 				<input maxlength="2" size="2" id="DD" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('DD'); ?>" name="DD" /> %
 			</div>
 			<div class="form ModBat">
-				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','Les modèles des batteries','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');">Modèle de batterie</a> (<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">donné en C10</a>) : </label>
+				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','<?= _('Battery model') ?>','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');"><?= _('Battery model') ?></a> <? _('(<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">expressed in C10</a>)') ?> : </label>
 				<select id="ModBat" name="ModBat">
-					<option value="auto">Automatique</option>
-					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModBat', 'perso'); ?>>Personnaliser</option>
+					<option value="auto"><?= _('Automatic') ?></option>
+					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModBat', 'perso'); ?>><?= _('Customize') ?></option>
 					<?php 
 					foreach ($config_ini['batterie'] as $batModele => $batValeur) {
 						echo '<option value="'.$batModele.'"';
@@ -1221,10 +1397,10 @@ if (isset($_GET['submit'])) {
 						echo "\n";
 					}
 					?>
-				</select> <a rel="tooltip" class="bulles" title="En mode automatique, au dessus de 500A, il sera utilisé des batteries GEL OPzV 2V">(?)</a>
+				</select> <a rel="tooltip" class="bulles" title="<?= _('In automatic mode, GEL OPzV 2V batteries will be used above 500A') ?>">(?)</a>
 			</div>
 			<div class="form TypeBat">
-				<label>Technologie de batteries préféré : </label>
+				<label><?= _('Preferred battery technology') ?> : </label>
 				<select id="TypeBat" name="TypeBat">
 					<option value="auto"<?php echo valeurRecupSelect('TypeBat', 'auto'); ?>>Auto.</option>
 					<option value="AGM"<?php echo valeurRecupSelect('TypeBat', 'AGM'); ?>>AGM</option>
@@ -1234,14 +1410,14 @@ if (isset($_GET['submit'])) {
 				</select> 
 			</div>
 			<div class="form PersoBat">
-				<p>Vous pouvez détailler les caractéristiques techniques de votre batterie : </p>
+				<p><?= _('You can detail the technical characteristics of your battery') ?> : </p>
 				<ul>
 					<li>
-						<label>Capacité (C10) : </label>
+						<label><?= _('Capacity (C10)') ?> : </label>
 						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoBatAh'); ?>"  name="PersoBatAh" />Ah
 					</li>
 					<li>
-						<label>Tension : </label>
+						<label><?= _('Voltage') ?> : </label>
 						<select id="PersoBatV" name="PersoBatV">
 							<option value="2"<?php echo valeurRecupSelect('PersoBatV', 2); ?>>2</option>
 							<option value="4"<?php echo valeurRecupSelect('PersoBatV', 4); ?>>4</option>
@@ -1252,22 +1428,22 @@ if (isset($_GET['submit'])) {
 				</ul>
 			</div>
 			<div class="form IbatCharge">
-				<label>Capacité de courant de charge max : </label>
+				<label><?= _('Charge current max capacity') ?> : </label>
 				<input maxlength="2" size="2" id="IbatCharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatCharge'); ?>" name="IbatCharge" /> %
 			</div>
 			<div class="form IbatDecharge">
-				<label>Capacité de courant de décharge max : </label>
+				<label><?= _('Discharge current max capacity') ?> : </label>
 				<input  maxlength="2" size="2" id="IbatDecharge" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('IbatDecharge'); ?>" name="IbatDecharge" /> %
 			</div>
 		</div>
 		
 		<div class="part regu">
-			<h2 class="titre regu">Regulateur de charge</h2>
+			<h2 class="titre regu"><?= _('Charge controller') ?></h2>
 			<div class="form ModRegu">
-				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=regulateur','Les modèles de régulateur','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=670,fullscreen=no');">Modèle de régulateur</a> : </label>
+				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=regulateur','<?= _('Charge controller model') ?>','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=670,fullscreen=no');"><?= _('Charge controller model') ?></a> : </label>
 				<select id="ModRegu" name="ModRegu">
-					<option value="auto">Automatique</option>
-					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModRegu', 'perso'); ?>>Personnaliser</option>
+					<option value="auto"><?= _('Automatic') ?></option>
+					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModRegu', 'perso'); ?>><?= _('Customize') ?></option>
 					<?php 
 					$ReguModeleDoublonCheck[]=null;
 					foreach ($config_ini['regulateur'] as $ReguModele => $ReguValeur) {
@@ -1283,62 +1459,64 @@ if (isset($_GET['submit'])) {
 				</select>
 			</div>
 			<div class="form PersoRegu">
-				<p>Vous pouvez détailler les caractéristiques techniques de votre régulateur solair : </p>
+				<p><?= _('You can detail the technical characteristics of your charge controller') ?> : </p>
 				<ul>
 					<li>
-						<label>Tension finale des batteries : <a rel="tooltip" class="bulles" title="Cette valeur se change dans 'Dimensionnement du parc batteries'"><span id="PersoReguVbat"></span>V</a></label>
+						<label><?= _('Batteries final voltage') ?> : <a rel="tooltip" class="bulles" title="<?= _('This value can be changed in \'battery plant sizing\'') ?>"><span id="PersoReguVbat"></span>V</a></label>
 					</li>
 					<li>
-						<label>Puissance maximale PV : </label>
+						<label><?= _('Maximum power panel') ?> : </label>
 						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguPmaxPv'); ?>"  name="PersoReguPmaxPv" />W
 					</li>
 					<li>
-						<label>Tension PV maximale de circuit ouvert : </label>
+						<label><?= _('Open circuit max PV voltage') ?> : </label>
 						<input type="number" min="1" max="9999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguVmaxPv'); ?>" name="PersoReguVmaxPv" />V
 					</li>
 					<li>
-						<label>Max. PV courant (Puissance / Tension) :</label>
+						<label><?= _('PV current max. (power / voltage)') ?> :</label>
 						<input type="number" step="0.01" min="0,01" max="999" style="width: 70px;" value="<?php echo valeurRecup('PersoReguImaxPv'); ?>"  name="PersoReguImaxPv" />A
 					</li>
 				</ul>
 			</div>
 			<div class="form reguMargeIcc">
-				<label>Marge de sécurité du courant de court-circuit Icc des panneaux : </label>
+				<label><?= _('Panels Icc short-circuit current security margin') ?> : </label>
 				<input maxlength="2" size="2" id="reguMargeIcc" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('reguMargeIcc'); ?>" name="reguMargeIcc" /> %
 			</div>
 		</div>
 		
 		<div class="part cable">
-			<h2 class="titre cable">Câblage</h2>
-			<p>On considère un câblage solaire souple en cuivre.</p>
+			<h2 class="titre cable"><?= _('Wiring') ?></h2>
+			<p><?= _('Considering solar flexible copper wiring') ?>.</p>
 			<div class="form cablePvRegu">
-				<label>Distance (aller simple) entre les panneaux et le régulateur : </label>
+				<label><?= _('One-way distance between panels and charge controller') ?> : </label>
 				<input maxlength="2" size="2" id="distancePvRegu" type="number" step="0.5" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('distancePvRegu'); ?>" name="distancePvRegu" /> m
 			</div>
 			<div class="form cableReguBat">
-				<label>Distance (aller simple) entre le régulateur et les batteries : </label>
+				<label><?= _('One-way distance between charge controller and batteries') ?> : </label>
 				<input maxlength="2" size="2" id="distanceReguBat" type="number" step="0.5" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('distanceReguBat'); ?>" name="distanceReguBat" /> m
 			</div>
 			<div class="form cablageRho">
-				<label>La résistivité du conducteur (rhô) mm²/m  : </label>
+				<label><?= _('Conductor resistivity (rho) mm&sup2;/m') ?>  : </label>
 				<input maxlength="4" size="4" id="cablageRho" type="number" step="0.001" min="0" max="10" style="width: 70px" value="<?php echo valeurRecup('cablageRho'); ?>" name="cablageRho" /> ohm
 			</div>
 			<div class="form cablagePtPourcent">
-				<label>Chute de tension tolérable : </label>
+				<label><?= _('Tolerable voltage drop') ?> : </label>
 				<input maxlength="2" size="2" id="cablagePtPourcent" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablagePtPourcent'); ?>" name="cablagePtPourcent" /> %
 			</div>
 			<div class="form cablageRegleAparMm">
-				<label>Ratio pour se pérmunir de l'échauffement du câble : </label>
-				<input maxlength="2" size="2" id="cablageRegleAparMm" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablageRegleAparMm'); ?>" name="cablageRegleAparMm" /> A/mm²
+				<label><?= _('Ratio in order to prevent wire heating') ?> : </label>
+				<input maxlength="2" size="2" id="cablageRegleAparMm" type="number" step="0.1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('cablageRegleAparMm'); ?>" name="cablageRegleAparMm" /> A/mm&sup2;
 			</div>
 		</div>
 	</div>
 	<div id="BlocSubmit"  class="form End">
-		<input id="Reset" type="button" value="Remise à 0" name="reset" />
-		<input id="Submit" type="submit" value="Lancer le calcul" name="submit" />
-		<img style="margin-left: 150px; vertical-align:bottom;" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_SM.gif" border="0" alt="Faire un don"  onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted';" />
+		<input id="Reset" type="button" value="<?= _('Reset') ?>" name="reset" />
+		<input id="donate" type="button" value="<?= _('Make a donation') ?>" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted';" />
+		<input id="Submit" type="submit" value="<?= _('Start the calculation') ?>" name="submit" />
 	</div>
+	<?php if (substr($locale, 0, 2) == 'fr') { ?>
 	<div class="form ModeDebug"><input type="checkbox" name="debug" <?php if (isset($_GET['debug'])) echo 'checked="checked"'; ?> />Activer le mode transparent/debug pour mieux comprendre le fonctionnement</div>
+	<?php } ?>
 </form>
 
 
@@ -1393,9 +1571,31 @@ function sumbitEnable() {
 }
 $( "#Bj" ).change(function() {
 	sumbitEnable();
+	<?php if ($country == 'FR') {  ?>
+	if ($( "#Bj" ).val() <= 1500) {
+		$("#Bj").css("color", "");
+	} else if ($( "#Bj" ).val() > 6000) {
+		$("#Bj").css("color", "#5F0000");
+	} else if ($( "#Bj" ).val() > 3000) {
+		$("#Bj").css("color", "#8E4100");
+	} else if ($( "#Bj" ).val() > 1500) {
+		$("#Bj").css("color", "#956204");
+	} 
+	<?php } ?>
 });
 $( "#Pmax" ).change(function() {
 	sumbitEnable();
+	<?php if ($country == 'FR') {  ?>
+	if ($( "#Pmax" ).val() <= 700) {
+		$("#Pmax").css("color", "");
+	} else if ($( "#Pmax" ).val() > 5000) {
+		$("#Pmax").css("color", "#5F0000");
+	} else if ($( "#Pmax" ).val() > 1800) {
+		$("#Pmax").css("color", "#8E4100");
+	} else if ($( "#Pmax" ).val() > 700) {
+		$("#Pmax").css("color", "#956204");
+	} 
+	<?php } ?>
 });
 $( "#lat" ).change(function() {
 	sumbitEnable();
