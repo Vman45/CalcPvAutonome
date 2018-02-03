@@ -47,26 +47,6 @@ Télécharger et décompresser le fichier zip du master : https://github.com/kep
 
 Le rendre accessible depuis votre serveur http et personnaliser les valeur du fichier config.ini
 
-### Todos
-
- - Bouton "autonomie partiel, estival' (exemple camion, caravane vacance) on prend l'IGP de mai...
- - Créer une tolérance négative. Exemple si on a besoin de 250W, on peut considérer qu'un panneaux de 240W peut faire l'affaire ? (% tolérence paramétrable)
- - Prévoir une requête vers INES si la BD est vide, incomplète ou non présente. (nessésaire ?)
- - Gérer le  litium (avec ces contraintes techniques)
- - Ecrire l'algo
- - Prix boîter de jonction
-	- https://www.avelheol.fr/29-boitier-de-jonction
-	- https://solaireshop.fr/materiel-electrique-et-accessoires/cables-et-connecteurs-solaire.html
-	- http://www.simple-et-solaire.com/connectique-cablage-8
- - Prendre en considération l'énergie hybride (éolienne, groupe, hydrolienne...)
- - Prendre en compte l'autodécharge
- - Responsive
- - Récup' valeur Ines directement (sans carte de zone)
- - Traduction anglais
- 
-CalcConsommation : 
- - Sauvegarder dans les cookies (il manque pas grand chose)
-
 ### Changelog
 
  - 4.0

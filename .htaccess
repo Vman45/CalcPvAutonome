@@ -1,0 +1,6 @@
+## Default .htaccess file
+
+RewriteEngine on
+
+RewriteRule ^Autonome.php$ index.php [L]
+RewriteRule ^StandAlone.php$ index.php [L]

@@ -72,13 +72,22 @@ $country = @geoip_country_code_by_name(get_ip());
 			include('./Modeles.php'); 
 			$footer=false;
 		} else {
-			
-			if ($localeshort == 'en' && !preg_match('#StandAlone.php$#',$_SERVER['REQUEST_URI'])) {
-				echo '<script type="text/javascript">document.location.href="./StandAlone.php";</script>';
+		/*	
+			if ($localeshort == 'en' && !preg_match('#StandAlone.php$#',$_SERVER['SCRIPT_URL'])) {
+				if (isset($_SERVER['QUERY_STRING'])) {
+					echo '<script type="text/javascript">document.location.href="./StandAlone.php?'.$_SERVER['QUERY_STRING'].'";</script>';
+				} else {
+					echo '<script type="text/javascript">document.location.href="./StandAlone.php";</script>';
+				}
 			}
-			if ($localeshort == 'fr' && !preg_match('#Autonome.php$#',$_SERVER['REQUEST_URI'])) {
-				echo '<script type="text/javascript">document.location.href="./Autonome.php";</script>';
+			if ($localeshort == 'fr' && !preg_match('#Autonome.php$#',$_SERVER['SCRIPT_URL'])) {
+				if (isset($_SERVER['QUERY_STRING'])) {
+					echo '<script type="text/javascript">document.location.href="./Autonome.php?'.$_SERVER['QUERY_STRING'].'";</script>';
+				} else {
+					echo '<script type="text/javascript">document.location.href="./Autonome.php";</script>';
+				}
 			}
+		 */
 			
 			echo '<h1>'._('Caculate/size photovoltaic stand-alone (autonomous) set').'</h1>';
 			@include_once('./header.php'); 

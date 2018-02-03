@@ -2,7 +2,6 @@ dev
 dev*
 log_*
 favicon.ico
-.htaccess
 stats
 footer.php
 header.php
