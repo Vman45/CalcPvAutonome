@@ -1,9 +1,0 @@
- 1154  xgettext *.php -o lang/messages.pot --from-code=ISO-8859-15
- 1155  iconv --from-code=UTF-8 --to-code=ISO-8859-15 < lang/messages.pot > lang/messages_iso.pot
-
-xgettext *.php -o lang/messages.pot --from-code="UTF-8"
-msgmerge --no-wrap -N lang/fr/LC_MESSAGES/messages.po messages.pot > lang/fr/LC_MESSAGES/messages-new.po
-vérifier la fin des fichiers mergé (le commenté), c'est ce qui n'est plus dans le .pot 
-	https://maxime.sh/2012/06/utilisation-pratique-de-gettext-avec-php/
-
-msgfmt lang/fr/LC_MESSAGES/messages.po -o lang/fr/LC_MESSAGES/messages.mo
