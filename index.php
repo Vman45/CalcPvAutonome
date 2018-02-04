@@ -72,7 +72,7 @@ $country = @geoip_country_code_by_name(get_ip());
 			include('./Modeles.php'); 
 			$footer=false;
 		} else {
-		/*	
+			/*
 			if ($localeshort == 'en' && !preg_match('#StandAlone.php$#',$_SERVER['SCRIPT_URL'])) {
 				if (isset($_SERVER['QUERY_STRING'])) {
 					echo '<script type="text/javascript">document.location.href="./StandAlone.php?'.$_SERVER['QUERY_STRING'].'";</script>';
@@ -87,8 +87,7 @@ $country = @geoip_country_code_by_name(get_ip());
 					echo '<script type="text/javascript">document.location.href="./Autonome.php";</script>';
 				}
 			}
-		 */
-			
+			*/
 			echo '<h1>'._('Caculate/size photovoltaic stand-alone (autonomous) set').'</h1>';
 			@include_once('./header.php'); 
 			include('./CalcPvAutonome.php'); 
