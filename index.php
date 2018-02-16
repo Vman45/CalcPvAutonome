@@ -4,10 +4,15 @@ include_once('./lib/Fonction.php');
 $config_ini = parse_ini_file('./config.ini', true); 
 
 // Langues disponibles : 
-$localeDispo=array('fr', 'en', 'nl', 'tr');
+$localeDispo=array('fr', 'en', 'nl', 'tr', 'aa');
 // Fonction de langue : 
 function langue2locale($langue) {
 	switch ($langue) {
+		// Pseudo langue pour la traduction in-context de crowdin
+		case 'aa':
+			return 'aa_ER.utf8';
+			break;
+		// Vrai langue
 		case 'fr':
 			return 'fr_FR.utf8';
 			break;
@@ -84,6 +89,13 @@ $country = @geoip_country_code_by_name(get_ip());
 	<link href="./lib/style.css" media="screen" rel="stylesheet" type="text/css" />	
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="-1">
+	<?php if ($localeshort == 'aa') { ?>
+		<script type="text/javascript">
+			var _jipt = [];
+			_jipt.push(['project', 'calcpvautonome']);
+		</script>
+		<script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js"></script>
+	<?php } ?>
 	<script> 
 	<!-- https://www.browser-update.org/ -->
 	var $buoop = {vs:{i:10,f:40,o:-8,s:8,c:50},api:4}; 
@@ -109,7 +121,7 @@ $country = @geoip_country_code_by_name(get_ip());
 				echo '<a href="'.replaceLang2url($langPossible).'"><img class="drapeau'.$flag.'" src="./lib/'.$langPossible.'.png" alt="'.$langPossible.'" /></a>';
 			}
 			?>
-			<a href="https://crwd.in/calcpvautonome"><img class="drapeau" src="./lib/trad.png" alt="Help to translate" /></a>
+			<!--<a href="https://crwd.in/calcpvautonome"><img class="drapeau" src="./lib/trad.png" alt="Help to translate" /></a>-->
 		</div>
 		<?php
 		$footer=true;

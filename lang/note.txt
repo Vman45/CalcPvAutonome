@@ -10,6 +10,7 @@ Mettre à jour les .mo à partir du .po
 	msgfmt lang/fr_FR/LC_MESSAGES/messages-fr.po -o lang/fr_FR/LC_MESSAGES/messages.mo
 	msgfmt lang/tr_TR/LC_MESSAGES/messages-tr.po -o lang/tr_TR/LC_MESSAGES/messages.mo
 	msgfmt lang/nl_NL/LC_MESSAGES/messages-nl.po -o lang/nl_NL/LC_MESSAGES/messages.mo
+	msgfmt lang/aa_ER/LC_MESSAGES/messages-aa.po -o lang/aa_ER/LC_MESSAGES/messages.mo
 
 Ajout d'une langue : 
 	vérifier sa présence sur le système : locale -a
