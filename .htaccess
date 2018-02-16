@@ -2,5 +2,14 @@
 
 RewriteEngine on
 
-RewriteRule ^Autonome.php$ index.php [L]
-RewriteRule ^StandAlone.php$ index.php [L]
+#RewriteBase /
+
+RewriteRule ^Autonome.php$ index.php?langue=fr&%{QUERY_STRING} [L]
+RewriteRule ^StandAlone.php$ index.php?langue=en&%{QUERY_STRING} [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{2})(.*) index.php?langue=$1&%{QUERY_STRING}
+
+
+

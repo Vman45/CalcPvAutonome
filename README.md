@@ -39,7 +39,7 @@ Pour les utilisateurs avancés :
 #### Requis pour le fonctionnement / l'installation du 
 
   * PHP (5.6 minimum) + lib gd + GeoIP + CURL + Gettext
-  * Apache/Nginx (ou autre serveur web, service d'hébergement mutualisé...)
+  * Apache/Nginx (ou autre serveur web, service d'hébergement mutualisé...) avec URL Rewriting
 
 #### Installation
 

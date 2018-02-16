@@ -855,7 +855,7 @@ if (isset($_GET['submit'])) {
 				echo '],
 							backgroundColor: \'rgba(37, 37, 235, 0.2)\',
 							borderColor: \'rgba(0, 0, 255, 1)\',
-							borderWidth: 1
+							borderWidth: 1,
 						}]
 					},
 					options: {
@@ -1511,7 +1511,7 @@ if (isset($_GET['submit'])) {
 	</div>
 	<div id="BlocSubmit"  class="form End">
 		<input id="Reset" type="button" value="<?= _('Reset') ?>" name="reset" />
-		<input id="donate" type="button" value="<?= _('Make a donation') ?>" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted';" />
+		<input id="donate" type="button" value="<?= _('Support, contribute') ?>" />
 		<input id="Submit" type="submit" value="<?= _('Start the calculation') ?>" name="submit" />
 	</div>
 	<?php if (substr($locale, 0, 2) == 'fr') { ?>
@@ -1519,7 +1519,71 @@ if (isset($_GET['submit'])) {
 	<?php } ?>
 </form>
 
-
+<!-- Donate campagne -->
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+	<span class="closeDonate close">&times;</span>
+	<img id="DonateImg" src="./lib/reconnaissance.jpg" />
+		<h1><?= _('Support CaclPvAutonome') ?></h1>
+		<p style="font-size: 140%"><?= _('This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>.') ?></p>
+		<p><?= _('To help us, you can also <a href="https://framagit.org/kepon/CalcPvAutonome" target="_blank">contribute to its improvement</a>, its <a href="https://crwd.in/calcpvautonome" target="_blank">translation</a>.') ?></p>
+		<p onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted';" class="DonateBouton" style="background-color: #4B82B8; color: #FFFFFF"><?= _('I want to make a secure one-time donation with Paypal') ?></p>
+		<p onclick="location.href='https://fr.liberapay.com/DavidMercereau/donate';" class="DonateBouton" style="background-color: #E6D815; color: #FFFFFF"><?= _('I want to make a recurring, free and secure donation with Liberapay') ?></p>
+		<p class="PasDonateButon closeDonate"><?= _('No thanks, I just want to <b>start the calculation</b>') ?></p>
+		<p class="PasDonateButon closeDonate" ><?= _('I already support CalcPvAutonomous') ?></p>
+	</div>
+</div>
+<script type="text/javascript">
+	/* Donate Campagne */
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires="+ d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+	$( "#Submit" ).click(function( event ) {
+		if (getCookie("donate") == "") {
+			event.preventDefault();
+			donatePopupOn();
+			$(".PasDonateButon").show();
+		} 
+	});
+	$( "#donate" ).click(function() {
+		$('.PasDonateButon').hide();
+		donatePopupOn();		
+	});
+	$( ".closeDonate" ).click(function() {
+		donatePopupOff();		
+	});
+	function donatePopupOn() {
+		$( "#myModal" ).show();
+	}
+	function donatePopupOff() {
+		$( "#myModal" ).hide();
+		setCookie('donate', 'off', 5)
+	}
+	/*window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}*/
+</script>		 
 
 <!-- Détection des changement dans le formulaire -->
 <input type="hidden" value="0" id="ModificationDuFormulaire" />
@@ -1763,7 +1827,7 @@ $(function() {
 
 // Reset form
 $( "#Reset" ).click(function() {
-	window.location = 'http://<?php echo $_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"] ?>';
+	window.location = '<?= $config_ini['formulaire']['UrlCalcPvAutonome'] ?>';
 });
 
 $(document).ready(function() {

@@ -1,0 +1,29 @@
+Modification source traduction 
+	xgettext *.php -o lang/messages.pot --from-code="UTF-8"
+	msgmerge --no-wrap -N lang/fr/LC_MESSAGES/messages.po messages.pot > lang/fr/LC_MESSAGES/messages-new.po
+	vérifier la fin des fichiers mergé (le commenté), c'est ce qui n'est plus dans le .pot 
+		https://maxime.sh/2012/06/utilisation-pratique-de-gettext-avec-php/
+
+Mettre à jour les .mo à partir du .po
+	msgfmt lang/fr/LC_MESSAGES/messages.po -o lang/fr/LC_MESSAGES/messages.mo
+
+
+Ajout d'une langue : 
+	vérifier sa présence sur le système : locale -a
+		Si elle n'y est pas on l'installe
+			dpkg-reconfigure locales
+	Vérifier en haut du fichier index.php qu'elle est présente
+		// Langues disponibles : 
+		$localeDispo=array('fr', 'en', 'nl');
+		// Fonction de langue : 
+		function langue2locale($langue) {
+			switch ($langue) {
+				case 'fr':
+					return 'fr_FR.utf8';
+					break;
+				case 'es':
+					return 'es_ES.utf8';
+		...
+	Faire un drapeau dans lib (qui doit être en PNG
+	Déposer les fichier dans lang 
+	Redémarrer apache ou php fpm après changement dans lang

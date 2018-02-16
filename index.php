@@ -1,23 +1,73 @@
 <?php
-$CalcPvAutonomeVersion='4.0';
+$CalcPvAutonomeVersion='4.0.1';
 include_once('./lib/Fonction.php');
 $config_ini = parse_ini_file('./config.ini', true); 
 
-// Modification / détection de la langue
-if (isset($_POST['langue'])) {
-	setcookie("langue",$_POST['langue'],strtotime( '+1 year' ));
-	$locale = langue2locale($_POST['langue']);
+// Langues disponibles : 
+$localeDispo=array('fr', 'en', 'nl', 'tr');
+// Fonction de langue : 
+function langue2locale($langue) {
+	switch ($langue) {
+		case 'fr':
+			return 'fr_FR.utf8';
+			break;
+		case 'es':
+			return 'es_ES.utf8';
+			break;
+		case 'pt':
+			return 'pt_PT.utf8';
+			break;
+		case 'eo':
+			return 'eo.utf8';
+			break;
+		case 'nl':
+			return 'nl_NL.utf8';
+			break;
+		case 'tr':
+			return 'tr_TR.utf8';
+			break;
+		default:
+		   return 'en_US.utf8';
+	}
+}
+
+// Détection et redirection (langue toujours)
+if (isset($_GET['langue']) && in_array(substr($_GET['langue'], 0, 2), $localeDispo)) {
+	$locale = langue2locale($_GET['langue']);
+	if ($_COOKIE['langue'] != $_GET['langue']) {
+		setcookie("langue",$_GET['langue'],strtotime( '+1 year' ));
+	}
+} elseif (isset($_GET['langue']) && !in_array(substr($_GET['langue'], 0, 2), $localeDispo)) {
+	$locale = langue2locale('en'); // Erreur ou hack : 
+	header('Location: '.replaceLang2url($locale));
 } elseif (isset($_COOKIE['langue'])) {
 	$locale = langue2locale($_COOKIE['langue']);
+	header('Location: '.addLang2url($locale));
 } else {
 	$locale = langue2locale(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+	header('Location: '.addLang2url($locale));
+	exit();
 }
+
 $localeshort=substr($locale, 0, 2);
+
 // Définition de la langue :
-putenv("LC_ALL=$locale");
-putenv("LC_LANG=$locale");
-putenv("LC_LANGUAGE=$locale");
-setlocale(LC_ALL, $locale);
+$results=putenv("LC_ALL=$locale");
+if (!$results) {
+    exit ('putenv failed');
+}
+$results=putenv("LC_LANG=$locale");
+if (!$results) {
+    exit ('putenv failed');
+}
+$results=putenv("LC_LANGUAGE=$locale");
+if (!$results) {
+    exit ('putenv failed');
+}
+$results=setlocale(LC_ALL, $locale);
+if (!$results) {
+    exit ('setlocale failed: locale function is not available on this platform, or the given local does not exist in this environment');
+}
 bindtextdomain("messages", "./lang");
 textdomain("messages");
 
@@ -50,12 +100,16 @@ $country = @geoip_country_code_by_name(get_ip());
 <body>
 	<div id="page-wrap">
 		<div id="langues">
-			<form name="ChoixDeLangue" class="formChoixDeLangue" method="post" action="#">
-				<input type="hidden" name="langue" value="">
-				<a href="javascript:choixLangue('fr');"><img class="drapeau<?php langActive($locale, 'fr') ?>" src="./lib/fr.png" alt="FR" /></a>
-				<a href="javascript:choixLangue('en');"><img class="drapeau<?php langActive($locale, 'en') ?>" src="./lib/en.png" alt="EN" /></a>
-				<a href="https://crwd.in/calcpvautonome"><img class="drapeau" src="./lib/trad.png" alt="Help to translate" /></a>
-			</form> 
+			<?php 
+			foreach($localeDispo as $langPossible) {
+				$flag='';
+				if (substr($locale, 0, 2) == $langPossible) {
+					$flag=' drapeauActif';
+				}
+				echo '<a href="'.replaceLang2url($langPossible).'"><img class="drapeau'.$flag.'" src="./lib/'.$langPossible.'.png" alt="'.$langPossible.'" /></a>';
+			}
+			?>
+			<a href="https://crwd.in/calcpvautonome"><img class="drapeau" src="./lib/trad.png" alt="Help to translate" /></a>
 		</div>
 		<?php
 		$footer=true;
@@ -66,30 +120,16 @@ $country = @geoip_country_code_by_name(get_ip());
 		 || $_SERVER['HTTP_HOST'] == 'calcconso.zici.fr') {
 			echo '<h1>'._('Caculate daily electric needs').'</h1>';
 			@include_once('./header.php');
+			echo _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>');
 			include('./CalcConsommation.php'); 
 			@include_once('./bottom.php'); 
 		} elseif (isset($_GET['p']) && $_GET['p'] == 'Modeles') {
 			include('./Modeles.php'); 
 			$footer=false;
 		} else {
-			/*
-			if ($localeshort == 'en' && !preg_match('#StandAlone.php$#',$_SERVER['SCRIPT_URL'])) {
-				if (isset($_SERVER['QUERY_STRING'])) {
-					echo '<script type="text/javascript">document.location.href="./StandAlone.php?'.$_SERVER['QUERY_STRING'].'";</script>';
-				} else {
-					echo '<script type="text/javascript">document.location.href="./StandAlone.php";</script>';
-				}
-			}
-			if ($localeshort == 'fr' && !preg_match('#Autonome.php$#',$_SERVER['SCRIPT_URL'])) {
-				if (isset($_SERVER['QUERY_STRING'])) {
-					echo '<script type="text/javascript">document.location.href="./Autonome.php?'.$_SERVER['QUERY_STRING'].'";</script>';
-				} else {
-					echo '<script type="text/javascript">document.location.href="./Autonome.php";</script>';
-				}
-			}
-			*/
 			echo '<h1>'._('Caculate/size photovoltaic stand-alone (autonomous) set').'</h1>';
 			@include_once('./header.php'); 
+			echo _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>');
 			include('./CalcPvAutonome.php'); 
 			@include_once('./bottom.php'); 
 		}
@@ -102,9 +142,16 @@ $country = @geoip_country_code_by_name(get_ip());
             if ($localeshort == 'en') { 
 				echo 'nednet, coucou39, guillerette, mirrim, ppmt';
 			}
+			if ($localeshort == 'nl') { 
+				echo 'StarlightF';
+			}
+			if ($localeshort == 'tr') { 
+				echo 'Harun Demirel';
+			}
             ?>
-            <?= _('for this English <a target="_blank" href="https://crwd.in/calcpvautonome">translation</a>') ?></p>
+            <?= _('for this <a target="_blank" href="https://crwd.in/calcpvautonome">translation</a>') ?></p>
             <?php } ?>
+            <?=  _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>'); ?>
             <p class="footer_right"><?= _('By') ?> <a href="http://david.mercereau.info/">David Mercereau</a> (<a href="https://framagit.org/kepon/CalcPvAutonome"><?= _('Git repository') ?></a>)</p>
             <p class="footer_left">CalcPvAutonome <?= _('version') ?> <?= $CalcPvAutonomeVersion ?> <?= _('is an open software licensed <a href="https://en.wikipedia.org/wiki/Beerware">Beerware</a>') ?></p>
         </div>
@@ -143,10 +190,6 @@ $(document).ready(function() {
 		$(this).children('div#tooltip').remove();
 	});
 }); 
-function choixLangue(value_langue) {
-	document.forms['ChoixDeLangue'].langue.value = value_langue;
-	document.forms['ChoixDeLangue'].submit();
-}
 </script>
 </body>
 </html>

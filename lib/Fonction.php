@@ -445,31 +445,25 @@ function pgvisParseData($FichierDataCsv) {
 	return $GlobalIradiation;
 }
 
-// Fonction de langue : 
-function langue2locale($langue) {
-	switch ($langue) {
-		case 'fr':
-			return 'fr_FR.utf8';
-			break;
-		/*
-		case 'es':
-			return 'es_ES.utf8';
-			break;
-		case 'pt':
-			return 'pt_PT.utf8';
-			break;
-		case 'eo':
-			return 'eo.utf8';
-			break;
-		*/
-		default:
-		   return 'en_US.utf8';
+
+// Ajoute la langue à une URL qui n'en a pas
+function addLang2url($locale) {
+	global $_SERVER;
+	$URIexplode=explode('?', $_SERVER['REQUEST_URI']);
+	if ($URIexplode[1] != '') {
+		return $URIexplode[0].substr($locale, 0, 2).'?'.$URIexplode[1];
+	} else {
+		return $URIexplode[0].substr($locale, 0, 2);
 	}
 }
-// Juste pour afficher la langue active 
-function langActive($locale, $drapeau) {
-	if (substr($locale, 0, 2) == $drapeau) {
-		echo ' drapeauActif';
+function replaceLang2url($locale) {
+	global $_SERVER;
+	$URIexplode=explode('?', $_SERVER['REQUEST_URI']);
+	$debutUrl=substr($URIexplode[0], 0, -2);
+	if ($URIexplode[1] != '') {
+		return $debutUrl.substr($locale, 0, 2).'?'.$URIexplode[1];
+	} else {
+		return $debutUrl.substr($locale, 0, 2);
 	}
 }
 ?>
