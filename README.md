@@ -49,6 +49,15 @@ Le rendre accessible depuis votre serveur http et personnaliser les valeur du fi
 
 ### Changelog
 
+ - 4.1.2
+     - #4 Prise en compte des boîtiers de jonctions
+     - Correcion bug 
+       - #20 "lancer le calcul" ne se déverrouille pas en mode manuel
+       - le graphique "La production estimé de votre système" ne s'affichait pas
+ - 4.0.1
+	 - Ajout début traduction NL & TR
+     - #21 Campagne de don
+     - URL rewriting pour lang
  - 4.0
 	- Internationalisation : https://crwd.in/calcpvautonome
 		- Traduction FR, EN

@@ -624,10 +624,6 @@ if (isset($_GET['submit'])) {
 		echo '	<p> </p>';
 		echo '</div>';
 		echo '<p><a id="resultCalcReguShow">'._('See, understand the process').'</a></p>';
-
-		if ($nbPvParalele > 2) {
-			echo _('When having more than 2 parallels, it is recommended to have a junction box with fuses on each branch in order to protect panels against reverse current.');
-		}
 	}
 	?>
 	<h3 id="resultatSchema"><?= _('Cable diagram') ?></h3>
@@ -653,6 +649,13 @@ if (isset($_GET['submit'])) {
 		}
 		echo '<p>'._('A wiring diagram was established according to panel/charge controller/battery hypothesis :').'</p>';
 		echo '<p><a target="_blank" href="'.$SchemaUrl.'"><img width="'.$widthImage.'%"  src="'.$SchemaUrl.'" /></a></p>';
+	}
+	?>
+	
+	<?php
+	if ($nbPvParalele > 2) {
+		echo '<h3  id="resultatJonction">'._('Panel string boxe').'</h3>';
+		echo '<p>'._('Beyond 2 string, it is strongly recommended to install a panel string boxe. Panel string boxe is collect DC power from panel strings with blocking diodes on each string for protecting panels from reverse current flow. The collected power is then transferred to charge controller.').'</p>';
 	}
 	?>
 	
@@ -831,7 +834,7 @@ if (isset($_GET['submit'])) {
 				}
 				echo '],
 						datasets: [{
-							label: \''._('Average energy production per day').' ('._('Wh/d').')\',
+							label: \''.addslashes(_('Average energy production per day')).' ('._('Wh/d').')\',
 							data: [';
 				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
 					echo $SHScalc['DataMonth'][$MoisNum]['Ed'];
@@ -844,7 +847,7 @@ if (isset($_GET['submit'])) {
 							borderColor: \'rgba(37, 37, 235, 0.2)\',
 							borderWidth: 1
 						},{
-							label: \''._('Average energy not captured per day').' ('._('Wh/d').')\',
+							label: \''.addslashes(_('Average energy not captured per day')).' ('._('Wh/d').')\',
 							data: [';
 				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
 					echo $SHScalc['DataMonth'][$MoisNum]['El'];
@@ -886,7 +889,7 @@ if (isset($_GET['submit'])) {
 				}
 				echo '],
 						datasets: [{
-							label: \''._('Percentage of days when battery became full').' (%)\',
+							label: \''.addslashes(_('Percentage of days when battery became full')).' (%)\',
 							data: [';
 				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
 					echo $SHScalc['DataMonth'][$MoisNum]['Ff'];
@@ -897,7 +900,7 @@ if (isset($_GET['submit'])) {
 				echo '],
 							backgroundColor: \'rgba(0, 128, 0, 1)\',
 						},{
-							label: \''._('Percentage of days when battery became empty').' (%)\',
+							label: \''.addslashes(_('Percentage of days when battery became empty')).' (%)\',
 							data: [';
 				for ($MoisNum = 1; $MoisNum <= 12; $MoisNum++) {
 					echo $SHScalc['DataMonth'][$MoisNum]['Fe'];
@@ -935,7 +938,7 @@ if (isset($_GET['submit'])) {
 				}
 				echo '],
 						datasets: [{
-							label: \''._('Percentage of days with this charge state').' (%)\',
+							label: \''.addslashes(_('Percentage of days with this charge state')).' (%)\',
 							data: [';
 							foreach($SHScalc['DataState'] as $DataStateKey=>$DataStateValue) {
 								echo $DataStateValue;
@@ -1003,6 +1006,16 @@ if (isset($_GET['submit'])) {
 				$budgetRegulateur=$meilleurRegulateur['Prix']*$nbRegulateur;
 				echo '<li>'._('Charge controller').' : '._('approximately').' '.convertNumber($budgetRegulateur, 'print') .'&euro;</li>';
 			}
+			if ($nbPvParalele > 2) {
+				$budgetJonctionHaut=$config_ini['prix']['jonction_haut']*$nbPvParalele;
+				$budgetJonctionBas=$config_ini['prix']['jonction_bas']*$nbPvParalele;
+				printf('<li>'._('Panel string boxe').' : '._('between').' '.convertNumber($budgetJonctionBas, 'print').'&euro;  '._('and').' '.convertNumber($budgetJonctionHaut, 'print').'&euro; ');
+				printf(' (<a rel="tooltip" class="bulles" title="'._('Estimated cost %s&euro;/string at low range cost and %s&euro;/string at high range cost').'\">?</a>)</li>', $config_ini['prix']['jonction_bas'], $config_ini['prix']['jonction_haut']);
+				printf('</li>');
+			} else {
+				$budgetJonctionHaut=0;
+				$budgetJonctionBas=0;
+			}
 			if ($meilleurConvertisseur['nom'] == '') {
 				$budgetConvertisseurBas=0;
 				$budgetConvertisseurHaut=0;
@@ -1011,12 +1024,12 @@ if (isset($_GET['submit'])) {
 				$budgetConvertisseurBas=$config_ini['prix']['conv_bas']*$meilleurConvertisseur['VA'];
 				$budgetConvertisseurHaut=$config_ini['prix']['conv_haut']*$meilleurConvertisseur['VA'];
 				echo '<li>'._('Converter').' : '._('between').' '.convertNumber($budgetConvertisseurBas, 'print').'&euro; '._('and').' '.convertNumber($budgetConvertisseurHaut, 'print').'&euro;';
-				printf('(<a rel="tooltip" class="bulles" title="'._('Estimated cost %s&euro;/VA at low range cost and %s&euro;/VA at high range cost').'">?</a>)</li>', $config_ini['prix']['conv_bas'], $config_ini['prix']['conv_haut']);
+				printf(' (<a rel="tooltip" class="bulles" title="'._('Estimated cost %s&euro;/VA at low range cost and %s&euro;/VA at high range cost').'">?</a>)</li>', $config_ini['prix']['conv_bas'], $config_ini['prix']['conv_haut']);
 			}
 			echo '<li>'._('Battery controler').' : '._('approximately').' '.convertNumber($BudgetBatControleur, 'print') .'&euro;</li>';
 			echo '<li>'._('Wiring').' : '._('approximately').' '.convertNumber($BudgetCable, 'print') .'&euro;</li>';
-			$budgetTotalBas=$BudgetPvBas+$BudgetBarBas+$budgetRegulateur+$budgetConvertisseurBas+$BudgetCable+$BudgetBatControleur;
-			$budgetTotalHaut=$BudgetPvHaut+$BudgetBarHaut+$budgetRegulateur+$budgetConvertisseurHaut+$BudgetCable+$BudgetBatControleur;	
+			$budgetTotalBas=$BudgetPvBas+$BudgetBarBas+$budgetRegulateur+$budgetJonctionBas+$budgetConvertisseurBas+$BudgetCable+$BudgetBatControleur;
+			$budgetTotalHaut=$BudgetPvHaut+$BudgetBarHaut+$budgetRegulateur+$budgetJonctionHaut+$budgetConvertisseurHaut+$BudgetCable+$BudgetBatControleur;	
 		printf('</ul>');
 		printf('<p>'._('Which brings to a total budget <b>between %s and %s&euro;</b>. Cost of panels support, wire, wire terminal and protection elements (fuse, battery cut-off, ...) is not included').'.</p>', convertNumber($budgetTotalBas, 'print'), convertNumber($budgetTotalHaut, 'print'));
 	
@@ -1241,7 +1254,7 @@ if (isset($_GET['submit'])) {
 			<div class="modeInput item">
 				<div class="form Ej">
 					<label><?= _('Enter the mid value of solar radiation for the worst month and panel plane (inclination)') ?> :</label>
-					<input maxlength="4" size="4" id="Ej" type="number" step="0.01" min="0" max="10" style="width: 100px;" value="<?php echo valeurRecup('Ej'); ?>" name="Ej" /> kWh/m&sup2;/j
+					<input maxlength="4" size="4" id="Ej" type="number" step="0.01" min="0" max="50" style="width: 100px;" value="<?php echo valeurRecup('Ej'); ?>" name="Ej" /> kWh/m&sup2;/j
 					<?php
 					if ($locale == 'fr') {	
 						echo '<p>Pour obtenir cette valeur rendez vous sur le site de <a href="http://ines.solaire.free.fr/gisesol_1.php" target="_blank">INES</a>, choisir votre ville, l\'inclinaison & l\'orientation des panneaux puis valider. Il s\'agit ensuite de prendre la plus basse valeur de la ligne "Globale (IGP)" (dernière ligne du second tableau) Plus d\'informations en bas de cette page : <a href="http://www.photovoltaique.guidenr.fr/cours-photovoltaique-autonome/VI_calcul-puissance-crete.php">Comment obtenir la valeur de Ei, Min sur le site de l\'INES ?</a></p>';
@@ -1627,7 +1640,9 @@ $( "#U" ).change(function () {
 
 // Bouton Submit activation / désactivation
 function sumbitEnable() {
-	if ($( "#lat" ).val() != '' && $( "#lon" ).val() != '' && $( "#Bj" ).val() > 0 && $( "#Pmax" ).val() > 0) {
+	console.log($( "#Ej" ).val());
+	if (($( "#lat" ).val() != '' && $( "#lon" ).val() != '' && $( "#Bj" ).val() > 0 && $( "#Pmax" ).val() > 0)
+	|| ($( "#Ej" ).val() != '' 	&& $( "#Bj" ).val() > 0 && $( "#Pmax" ).val() > 0)) {
 		$( "#Submit" ).prop('disabled', false);
 	} else {
 		$( "#Submit" ).prop('disabled', true);
@@ -1665,6 +1680,9 @@ $( "#lat" ).change(function() {
 	sumbitEnable();
 });
 $( "#lon" ).change(function() {
+	sumbitEnable();
+});
+$( "#Ej" ).change(function() {
 	sumbitEnable();
 });
 

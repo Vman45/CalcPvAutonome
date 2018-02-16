@@ -225,6 +225,7 @@ a.bulles {
 	-webkit-box-shadow: 0 0 10px black; 
 	box-shadow: 0 0 10px black; 
 	opacity: 0.70;
+	z-index: 999; /* Sit on top */
 }
 img.drapeau {
 	margin-right: 6px;
@@ -247,7 +248,7 @@ img.drapeauActif {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 999999; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
