@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-16 11:45+0100\n"
+"POT-Creation-Date: 2018-02-16 14:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1423,44 +1423,44 @@ msgstr ""
 msgid "I already support CalcPvAutonomous"
 msgstr ""
 
-#: index.php:82 index.php:130
-msgid "Caculate/size photovoltaic stand-alone (autonomous) set"
+#: index.php:87 index.php:142
+msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
 msgstr ""
 
-#: index.php:121
-msgid "Caculate daily electric needs"
+#: index.php:133
+msgid "Calculate daily electric needs"
 msgstr ""
 
-#: index.php:123 index.php:132 index.php:154
+#: index.php:135 index.php:144 index.php:166
 msgid ""
 "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank"
 "\">colaborative translation platform</a> to help us translate this free "
 "software.</p>"
 msgstr ""
 
-#: index.php:140
+#: index.php:152
 msgid "Thanks to"
 msgstr ""
 
-#: index.php:152
+#: index.php:164
 msgid ""
 "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome"
 "\">translation</a>"
 msgstr ""
 
-#: index.php:155
+#: index.php:167
 msgid "By"
 msgstr ""
 
-#: index.php:155
+#: index.php:167
 msgid "Git repository"
 msgstr ""
 
-#: index.php:156
+#: index.php:168
 msgid "version"
 msgstr ""
 
-#: index.php:156
+#: index.php:168
 msgid ""
 "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware"
 "\">Beerware</a>"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-16 11:45+0100\n"
-"PO-Revision-Date: 2018-02-16 06:20-0500\n"
+"POT-Creation-Date: 2018-02-16 14:36+0100\n"
+"PO-Revision-Date: 2018-02-16 08:47-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Afar\n"
 "Language: aa_ER\n"
@@ -1254,39 +1254,39 @@ msgstr "crwdns896:0crwdne896:0"
 msgid "I already support CalcPvAutonomous"
 msgstr "crwdns897:0crwdne897:0"
 
-#: index.php:82 index.php:130
-msgid "Caculate/size photovoltaic stand-alone (autonomous) set"
-msgstr "crwdns566:0crwdne566:0"
+#: index.php:87 index.php:142
+msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
+msgstr "crwdns905:0crwdne905:0"
 
-#: index.php:121
-msgid "Caculate daily electric needs"
-msgstr "crwdns567:0crwdne567:0"
+#: index.php:133
+msgid "Calculate daily electric needs"
+msgstr "crwdns906:0crwdne906:0"
 
-#: index.php:123 index.php:132 index.php:154
+#: index.php:135 index.php:144 index.php:166
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
 msgstr "crwdns898:0crwdne898:0"
 
-#: index.php:140
+#: index.php:152
 msgid "Thanks to"
 msgstr "crwdns568:0crwdne568:0"
 
-#: index.php:152
+#: index.php:164
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
 msgstr "crwdns899:0crwdne899:0"
 
-#: index.php:155
+#: index.php:167
 msgid "By"
 msgstr "crwdns570:0crwdne570:0"
 
-#: index.php:155
+#: index.php:167
 msgid "Git repository"
 msgstr "crwdns571:0crwdne571:0"
 
-#: index.php:156
+#: index.php:168
 msgid "version"
 msgstr "crwdns572:0crwdne572:0"
 
-#: index.php:156
+#: index.php:168
 msgid "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a>"
 msgstr "crwdns573:0crwdne573:0"
 

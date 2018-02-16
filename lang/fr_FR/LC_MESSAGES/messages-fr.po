@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-16 11:45+0100\n"
-"PO-Revision-Date: 2018-02-16 05:58-0500\n"
+"POT-Creation-Date: 2018-02-16 14:36+0100\n"
+"PO-Revision-Date: 2018-02-16 08:47-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1254,39 +1254,39 @@ msgstr "Non merci, je souhaite seulement lancer le calcul"
 msgid "I already support CalcPvAutonomous"
 msgstr "Je soutiens déjà CalcPvAutonome"
 
-#: index.php:82 index.php:130
-msgid "Caculate/size photovoltaic stand-alone (autonomous) set"
+#: index.php:87 index.php:142
+msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
 msgstr "Calculer/dimensionner son installation photovoltaïque isolée (autonome)"
 
-#: index.php:121
-msgid "Caculate daily electric needs"
+#: index.php:133
+msgid "Calculate daily electric needs"
 msgstr "Calculer ces besoins électriques journaliers"
 
-#: index.php:123 index.php:132 index.php:154
+#: index.php:135 index.php:144 index.php:166
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
 msgstr "<p>Rendez-vous sur la <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">plateforme collaborative de traduction</a> pour nous aider à traduire ce logiciel.</p>"
 
-#: index.php:140
+#: index.php:152
 msgid "Thanks to"
 msgstr "Merci à"
 
-#: index.php:152
+#: index.php:164
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
 msgstr "pour cette <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
 
-#: index.php:155
+#: index.php:167
 msgid "By"
 msgstr "Par"
 
-#: index.php:155
+#: index.php:167
 msgid "Git repository"
 msgstr "Dépôt Git"
 
-#: index.php:156
+#: index.php:168
 msgid "version"
 msgstr "version"
 
-#: index.php:156
+#: index.php:168
 msgid "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a>"
 msgstr "est un logiciel libre sous licence <a href=\"https://fr.wikipedia.org/wiki/Beerware\">Beerware</a>"
 

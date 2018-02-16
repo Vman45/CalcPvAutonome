@@ -84,7 +84,7 @@ $country = @geoip_country_code_by_name(get_ip());
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
-	<title>[CalcPvAutonome] <?= _('Caculate/size photovoltaic stand-alone (autonomous) set') ?></title>
+	<title>[CalcPvAutonome] <?= _('Calculate/size photovoltaic stand-alone (autonomous) set') ?></title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<link href="./lib/style.css" media="screen" rel="stylesheet" type="text/css" />	
 	<meta http-equiv="Pragma" content="no-cache">
@@ -130,7 +130,7 @@ $country = @geoip_country_code_by_name(get_ip());
 		 || $_SERVER['HTTP_HOST'] == 'conso.calcpv.net'
 		 || $_SERVER['HTTP_HOST'] == 'calconso.zici.fr'
 		 || $_SERVER['HTTP_HOST'] == 'calcconso.zici.fr') {
-			echo '<h1>'._('Caculate daily electric needs').'</h1>';
+			echo '<h1>'._('Calculate daily electric needs').'</h1>';
 			@include_once('./header.php');
 			echo _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>');
 			include('./CalcConsommation.php'); 
@@ -139,7 +139,7 @@ $country = @geoip_country_code_by_name(get_ip());
 			include('./Modeles.php'); 
 			$footer=false;
 		} else {
-			echo '<h1>'._('Caculate/size photovoltaic stand-alone (autonomous) set').'</h1>';
+			echo '<h1>'._('Calculate/size photovoltaic stand-alone (autonomous) set').'</h1>';
 			@include_once('./header.php'); 
 			echo _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>');
 			include('./CalcPvAutonome.php'); 

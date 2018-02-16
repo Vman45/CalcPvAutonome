@@ -6,11 +6,27 @@ Modification source traduction
 		vérifier la fin des fichiers mergé (le commenté), c'est ce qui n'est plus dans le .pot 
 			https://maxime.sh/2012/06/utilisation-pratique-de-gettext-avec-php/
 
+Intégrer une traduction 
+	// build and download depuis crowdin
+	mkdir /tmp/crowndin
+	mv calcpvautonome.zip /tmp/crowndin/
+	unzip calcpvautonome.zip 
+	cp fr/v4.0/messages-fr.po ~/root@michel.zici.fr/var/www/clients/client3/web46/web/dev/lang/fr_FR/LC_MESSAGES/
+	cp tr/v4.0/messages-tr.po ~/root@michel.zici.fr/var/www/clients/client3/web46/web/dev/lang/tr_TR/LC_MESSAGES/
+	cp nl/v4.0/messages-nl.po ~/root@michel.zici.fr/var/www/clients/client3/web46/web/dev/lang/nl_NL/LC_MESSAGES/
+	cp aa/v4.0/messages-aa.po ~/root@michel.zici.fr/var/www/clients/client3/web46/web/dev/lang/aa_ER/LC_MESSAGES/
+
+
+
 Mettre à jour les .mo à partir du .po
+	// Depuis le serveur : 
+	cd /var/www/calcpv.net/web/dev
 	msgfmt lang/fr_FR/LC_MESSAGES/messages-fr.po -o lang/fr_FR/LC_MESSAGES/messages.mo
 	msgfmt lang/tr_TR/LC_MESSAGES/messages-tr.po -o lang/tr_TR/LC_MESSAGES/messages.mo
 	msgfmt lang/nl_NL/LC_MESSAGES/messages-nl.po -o lang/nl_NL/LC_MESSAGES/messages.mo
 	msgfmt lang/aa_ER/LC_MESSAGES/messages-aa.po -o lang/aa_ER/LC_MESSAGES/messages.mo
+	/etc/init.d/php7.0-fpm restart
+	
 
 Ajout d'une langue : 
 	vérifier sa présence sur le système : locale -a
