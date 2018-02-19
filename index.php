@@ -2,9 +2,27 @@
 $CalcPvAutonomeVersion='4.1.2';
 include_once('./lib/Fonction.php');
 $config_ini = parse_ini_file('./config.ini', true); 
+$lang_ini = parse_ini_file('./lang/lang.ini',true);
 
 // Langues disponibles : 
-$localeDispo=array('fr', 'en', 'nl', 'tr', 'aa');
+foreach($lang_ini as $lang) {
+	$localeDispo[]=$lang['code'];
+}
+/*$
+$localeDispo=array(	'<b>Contribute to translation</b> (in-context)' 		=> 'aa',
+					'Afrikaans (?%)' 										=> 'af', 
+					'Español (?%)' 											=> 'es',
+					'English (100%)' 										=> 'en', 
+					'Français (100%)' 										=> 'fr',
+					'Indonesia (?%)' 										=> 'id',
+					'Italiano'		 										=> 'it',
+					'Nederlands <b>'._('partial translation').' (10%)</b>' 	=> 'nl',
+					'Polski <b>'._('partial translation').' (10%)</b>' 		=> 'pl',
+					'Pусский (10%)' 										=> 'ru',
+					'Türk (73%)' 											=> 'tr',
+					'український <b>'._('partial translation').' (8%)</b>' 	=> 'uk',
+					);
+*/
 // Fonction de langue : 
 function langue2locale($langue) {
 	switch ($langue) {
@@ -19,6 +37,9 @@ function langue2locale($langue) {
 		case 'es':
 			return 'es_ES.utf8';
 			break;
+		case 'es-ES':
+			return 'es_ES.utf8';
+			break;
 		case 'pt':
 			return 'pt_PT.utf8';
 			break;
@@ -30,6 +51,21 @@ function langue2locale($langue) {
 			break;
 		case 'tr':
 			return 'tr_TR.utf8';
+			break;
+		case 'uk':
+			return 'uk_UA.utf8';
+			break;
+		case 'id':
+			return 'id_ID.utf8';
+			break;
+		case 'af':
+			return 'af_ZA.utf8';
+			break;
+		case 'ru':
+			return 'ru_RU.utf8';
+			break;
+		case 'it':
+			return 'it_IT.utf8';
 			break;
 		default:
 		   return 'en_US.utf8';
@@ -54,6 +90,7 @@ if (isset($_GET['langue']) && in_array(substr($_GET['langue'], 0, 2), $localeDis
 	exit();
 }
 
+//$locale = langue2locale('es');
 $localeshort=substr($locale, 0, 2);
 
 // Définition de la langue :
@@ -110,19 +147,36 @@ $country = @geoip_country_code_by_name(get_ip());
 	<script src="./lib/jquery-3.1.1.slim.min.js"></script> 
 </head>
 <body>
-	<div id="page-wrap">
 		<div id="langues">
 			<?php 
-			foreach($localeDispo as $langPossible) {
+			ksort($lang_ini);
+			foreach($lang_ini as $lang) {
 				$flag='';
-				if (substr($locale, 0, 2) == $langPossible) {
+				if (substr($locale, 0, 2) == $lang['code']) {
 					$flag=' drapeauActif';
 				}
-				echo '<a href="'.replaceLang2url($langPossible).'"><img class="drapeau'.$flag.'" src="./lib/'.$langPossible.'.png" alt="'.$langPossible.'" /></a>';
+				echo '<a id="href'.$lang['code'].'" href="'.replaceLang2url($lang['code']).'"><img class="drapeau'.$flag.'" src="./lib/'.$lang['code'].'.png" alt="'.$lang['code'].'" width="23" height="15" /></a>';
+				echo '<script type="text/javascript">
+					$( "#href'.$lang['code'].'" ) .mouseover(function() {
+						$("#languesLegende").show();';
+						if ($lang['code'] == 'aa') {
+							echo '$("#languesLegende").html("<b>Contribute to translation</b> (in-context)");';
+						} else if ($lang['translated_progress'] < 60) {
+							echo '$("#languesLegende").html("<b>'.strtoupper($lang['code']).'</b> '._('partial translation').' ('.$lang['translated_progress'].'%)");';
+						} else {
+							echo '$("#languesLegende").html("<b>'.strtoupper($lang['code']).'</b> ('.$lang['translated_progress'].'%)");';
+						}
+				echo '})
+					.mouseout(function() {
+						$("#languesLegende").hide();
+					});
+					</script>';
 			}
 			?>
 			<!--<a href="https://crwd.in/calcpvautonome"><img class="drapeau" src="./lib/trad.png" alt="Help to translate" /></a>-->
 		</div>
+		<div id="languesLegende" style="display: none"></div>
+	<div id="page-wrap">
 		<?php
 		$footer=true;
 		if (isset($_GET['p']) && $_GET['p'] == 'CalcConsommation'
@@ -150,16 +204,17 @@ $country = @geoip_country_code_by_name(get_ip());
 		<div id="footer">
 			<?php if ($localeshort != 'fr') { ?>
             <p class="footer_translator"><?= _('Thanks to') ?> : 
-            <?php 
-            if ($localeshort == 'en') { 
-				echo 'nednet, coucou39, guillerette, mirrim, ppmt';
-			}
-			if ($localeshort == 'nl') { 
-				echo 'StarlightF';
-			}
-			if ($localeshort == 'tr') { 
-				echo 'Harun Demirel';
-			}
+            <?php
+				$nb_translator=0;
+				foreach($lang_ini[$localeshort] as $key => $value) {
+					if (substr($key, 0, 10) == 'translator') {
+						$nb_translator++;
+						if ($nb_translator != 1) {
+							echo ', ';
+						}
+						echo $value['name'];
+					}
+				}
             ?>
             <?= _('for this <a target="_blank" href="https://crwd.in/calcpvautonome">translation</a>') ?></p>
             <?php } ?>

@@ -415,15 +415,15 @@ if (isset($_GET['submit'])) {
 	$meilleurParcBatterie['V'] = 0;
 	$meilleurParcBatterie['Ah'] = 0;
 	// Choix de la technologie en fonction de la capacitée (pour le mode automatique)
-	if ($Cap < 50) {
+	if ($Cap < 150) {
 		$BatType = 'AGM';
 	} elseif ($Cap < 500) {
 		$BatType = 'GEL';
 	} else {
-		$BatType = 'OPzV';
+		$BatType = 'OPzS';
 	}
 	if ($_GET['TypeBat'] == 'auto') {
-		debug('En mode automatique, la technologie choisie est AGM si Cap < à 50Ah, GEL si < à 500Ah & OPzv si > à 500Ah, ici on a donc choisi '.$BatType,'p');
+		debug('En mode automatique, la technologie choisie est AGM si Cap < à 50Ah, GEL si < à 500Ah & OPzS si > à 500Ah, ici on a donc choisi '.$BatType,'p');
 	} else {
 		debug('Vous avez choisie de privilégier la technologie '.$_GET['TypeBat']);
 	}
@@ -1182,7 +1182,7 @@ if (isset($_GET['submit'])) {
 		<div id="contenu">
 			
 			<div class="modePvgis item">				
-				<p><?= _('Click on the map to set your position and deduce solar ressource') ?> : </p>
+				<p><?= _('Click on the map to set your position and deduce solar resource') ?> : </p>
 
 				<div id="mapid" style="width: 100%; height: 300px;"></div>
 				<script>
@@ -1410,7 +1410,7 @@ if (isset($_GET['submit'])) {
 						echo "\n";
 					}
 					?>
-				</select> <a rel="tooltip" class="bulles" title="<?= _('In automatic mode, GEL OPzV 2V batteries will be used above 500A') ?>">(?)</a>
+				</select> <a rel="tooltip" class="bulles" title="<?= _('In automatic mode, GEL & OPzS batteries will be used above 500A') ?>">(?)</a>
 			</div>
 			<div class="form TypeBat">
 				<label><?= _('Preferred battery technology') ?> : </label>

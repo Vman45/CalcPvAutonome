@@ -227,6 +227,21 @@ a.bulles {
 	opacity: 0.70;
 	z-index: 999; /* Sit on top */
 }
+#languesLegende {
+    position: fixed;
+    top: 50px;
+    right: 25px;
+    padding: 8px;
+    border: 1px solid #6F6C2F;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	background: #E2DC8C; 
+	-moz-box-shadow: 0 0 10px black; 
+	-webkit-box-shadow: 0 0 10px black; 
+	box-shadow: 0 0 10px black; 
+	opacity: 0.70;
+	z-index: 999; /* Sit on top */
+}
 img.drapeau {
 	margin-right: 6px;
 	margin-left: 6px;
