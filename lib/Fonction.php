@@ -449,21 +449,40 @@ function pgvisParseData($FichierDataCsv) {
 // Ajoute la langue à une URL qui n'en a pas
 function addLang2url($locale) {
 	global $_SERVER;
+	$localeExplode=explode('_', $locale);
+	$localeshort=$localeExplode[0];
 	$URIexplode=explode('?', $_SERVER['REQUEST_URI']);
 	if ($URIexplode[1] != '') {
-		return $URIexplode[0].substr($locale, 0, 2).'?'.$URIexplode[1];
+		return $URIexplode[0].$localeshort.'?'.$URIexplode[1];
 	} else {
-		return $URIexplode[0].substr($locale, 0, 2);
+		return $URIexplode[0].$localeshort;
 	}
 }
 function replaceLang2url($locale) {
 	global $_SERVER;
+	$localeExplode=explode('_', $locale);
+	$localeshort=$localeExplode[0];
 	$URIexplode=explode('?', $_SERVER['REQUEST_URI']);
-	$debutUrl=substr($URIexplode[0], 0, -2);
+	$debutUrl=substr($URIexplode[0], 0, -langCountChar($URIexplode[0]));
 	if ($URIexplode[1] != '') {
-		return $debutUrl.substr($locale, 0, 2).'?'.$URIexplode[1];
+		return $debutUrl.$localeshort.'?'.$URIexplode[1];
 	} else {
-		return $debutUrl.substr($locale, 0, 2);
+		return $debutUrl.$localeshort;
 	}
 }
+function langCountChar($url) {
+	// $url reçu c'est l'URL avant la query : ?machin=1
+	if (preg_match('#/sr-Cyrl-ME$#',$url)) {
+		return 10;
+	} elseif (preg_match('#/[a-z]{2}-[A-Z]{2}$#',$url)) {
+		return 5;
+	} elseif (preg_match('#/[a-z]{3}-[A-Z]{2}$#',$url)) {
+		return 6;
+	} elseif (preg_match('#/[a-z]{3}$#',$url)) {
+		return 3;
+	} elseif (preg_match('#/[a-z]{2}$#',$url)) {
+		return 2;
+	}
+}
+
 ?>

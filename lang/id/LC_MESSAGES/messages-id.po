@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-18 16:47-0500\n"
+"PO-Revision-Date: 2018-02-20 17:10-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Indonesian\n"
 "Language: id_ID\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: calcpvautonome\n"
 "X-Crowdin-Language: id\n"
-"X-Crowdin-File: /v4.0/messages.pot\n"
+"X-Crowdin-File: messages.pot\n"
 
 #: CalcConsommation.php:2
 msgid "In order to know the electric consumption (in Watts) of your devices you may"
@@ -406,7 +406,7 @@ msgstr "U (V)"
 
 #: CalcPvAutonome.php:369 CalcPvAutonome.php:1394
 msgid "In automatic mode the batteries voltage will be deducted from the panel need <br />From 0 to 500W : 12V<br />From 500 to 1500 W : 24V<br />Above 1500 W : 48V"
-msgstr ""
+msgstr "Dalam mode otomatis tegangan baterai akan dikurangi dari kebutuhan panel <br/> Dari 0 500W: 12V <br/> Dari 500-1500 W: 24V <br/> Di atas 1500 W: 48V"
 
 #: CalcPvAutonome.php:369 CalcPvAutonome.php:1388
 msgid "Final battery plant voltage"
@@ -419,7 +419,7 @@ msgstr "Topi"
 #: CalcPvAutonome.php:377
 #, php-format
 msgid "Batteries are used to store electric energy produced by the panels. You will need a battery plant of <b>%d Ah at %d V</b>."
-msgstr ""
+msgstr "Baterai digunakan untuk menyimpan energi listrik yang dihasilkan oleh panel. Anda akan memerlukan pabrik baterai <b> %d Ah di %d V </b>."
 
 #: CalcPvAutonome.php:378
 msgid "See, understand the procedure, the calculation"
@@ -513,7 +513,7 @@ msgstr "untuk kapasitas"
 
 #: CalcPvAutonome.php:504
 msgid "(<a rel=\"tooltip\" class=\"bulles\" target=\"_blank\" title=\"To understand the battery connection click here\" href=\"http://www.solarmad-nrj.com/cablagebatterie.html\">?</a>)"
-msgstr ""
+msgstr "(<a rel=\"tooltip\" class=\"bulles\" target=\"_blank\" title=\"To understand the battery connection click here\" href=\"http://www.solarmad-nrj.com/cablagebatterie.html\">?</a>)"
 
 #: CalcPvAutonome.php:506
 msgid "Sorry we failed to make a wiring hypothesis for the batteries"
@@ -543,7 +543,7 @@ msgstr "Kami sarankan untuk beralih charge controller dan/atau panel dengan mode
 #: CalcPvAutonome.php:578
 #, php-format
 msgid "Warning : for this hypothesis we switched to %d panels"
-msgstr ""
+msgstr "Peringatan: untuk hipotesis ini kita beralih ke panel %d"
 
 #: CalcPvAutonome.php:581
 msgid "With your custom charge controller, a"
@@ -552,16 +552,16 @@ msgstr "Dengan kustom anda charge controller,"
 #: CalcPvAutonome.php:583
 #, php-format
 msgid "You force the %s charge controller selection, a"
-msgstr ""
+msgstr "Anda memaksa pilihan pengontrol biaya %s, a"
 
 #: CalcPvAutonome.php:585
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: CalcPvAutonome.php:588
 #, php-format
 msgid "hypothesis would be to have <b>%d %s type charge controller</b>"
-msgstr ""
+msgstr "hipotesis adalah memiliki <b>%d %s tipe charge controller</b>"
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597
 msgid "With similar characteristics"
@@ -582,17 +582,17 @@ msgstr "Arus sirkuit pendek"
 #: CalcPvAutonome.php:590
 #, php-format
 msgid "and on each connect serialized <b>%d panel(s) "
-msgstr ""
+msgstr "dan pada masing-masing terhubung serial <b> %d panel (s) "
 
 #: CalcPvAutonome.php:592 CalcPvAutonome.php:604
 #, php-format
 msgid " on %d parallel(s)"
-msgstr ""
+msgstr " pada %d paralel(s)"
 
 #: CalcPvAutonome.php:596
 #, php-format
 msgid "wiring hypothesis would be to have a <b>%s type charge controller</b>"
-msgstr ""
+msgstr "pengkabelan kabel akan memiliki pengontrol muatan tipe <b> %s </b>"
 
 #: CalcPvAutonome.php:598
 msgid "on which would be connected "
@@ -600,7 +600,7 @@ msgstr "yang akan dihubungkan "
 
 #: CalcPvAutonome.php:600
 msgid "panel"
-msgstr ""
+msgstr "panel"
 
 #: CalcPvAutonome.php:602 CalcPvAutonome.php:617
 #, php-format
@@ -610,42 +610,42 @@ msgstr "serial panel"
 #: CalcPvAutonome.php:612
 #, php-format
 msgid "A type %s charge controller, with a <b>%dV</b> battery plant, allows : "
-msgstr ""
+msgstr "Pengontrol biaya tipe %s , dengan baterai <b> %d V </b> , memungkinkan: "
 
 #: CalcPvAutonome.php:614
 #, php-format
 msgid "<b>%dW</b> max panel power : "
-msgstr ""
+msgstr "<b> %d W </b> panel maks: "
 
 #: CalcPvAutonome.php:615
 #, php-format
 msgid "With a total of %d %dW panel(s), we reach <b>%dW</b>"
-msgstr ""
+msgstr "Dengan total panel %d %dW(s), kita mencapai <b>%dW</b>"
 
 #: CalcPvAutonome.php:615
 #, php-format
 msgid "panel(s)"
-msgstr ""
+msgstr "panel (s)"
 
 #: CalcPvAutonome.php:616
 #, php-format
 msgid "<b>%dV</b> max PV voltage of open circuit : "
-msgstr ""
+msgstr "<b> %d V </b> maks tegangan PV rangkaian terbuka: "
 
 #: CalcPvAutonome.php:617
 #, php-format
 msgid "With %d serialized panel(s) of %dV of (Vdoc) voltage, we reach <b>%dV</b>"
-msgstr ""
+msgstr "Dengan %d panel(s) serial dari voltase %dV (Vdoc), kita mencapai <b>%dV</b>"
 
 #: CalcPvAutonome.php:618
 #, php-format
 msgid "<b>%dA</b> max PV short-circuit current :"
-msgstr ""
+msgstr "<b> %d A </b> arus pendek arus pendek PV:"
 
 #: CalcPvAutonome.php:619
 #, php-format
 msgid "With %d parallel panel(s) having %dA intensity (Isc) and a %d%% security margin, we reach <b>%dA</b>"
-msgstr ""
+msgstr "Dengan panel(s) paralel %d yang memiliki %dA intensity (Isc) dan margin keamanan %d%%, kita mencapai <b>%dA</b>"
 
 #: CalcPvAutonome.php:619
 #, php-format
@@ -706,7 +706,7 @@ msgstr "Maaf, tidak bisa menemukan converter untuk power"
 #: CalcPvAutonome.php:673
 #, php-format
 msgid "An hypothesis would be to choose a <b>%s type converter</b> that goes up to %dW max power with possible peaks at %dW."
-msgstr ""
+msgstr "Hipotesis adalah memilih konverter tipe <b>%s </b> yang naik sampai %dW max power dengan kemungkinan puncak pada %dW."
 
 #: CalcPvAutonome.php:675
 #, php-format
@@ -723,7 +723,7 @@ msgstr "Dianjurkan untuk memiliki kontroleur yang lebih baik untuk memeriksa kea
 
 #: CalcPvAutonome.php:690
 msgid "However, considering the small size of your system, a voltmeter would be more appropriate. With a <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\">correspondence table</a> you can approximately determine the charge percentage"
-msgstr ""
+msgstr "Namun, mengingat ukuran sistem Anda yang kecil, voltmeter akan lebih tepat. Dengan <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\"> tabel korespondensi </a> Anda dapat kira-kira menentukan persentase tagihan"
 
 #: CalcPvAutonome.php:693
 msgid "The wiring"
@@ -731,12 +731,12 @@ msgstr "Kabelnya"
 
 #: CalcPvAutonome.php:696
 msgid "Wire section choice ( <a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\">calculate</a>) is important in order to avoid electricity lossess"
-msgstr ""
+msgstr "Pilihan bagian kawat (<a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\">hitung</a>) adalah penting untuk menghindari kehilangan listrik"
 
 #: CalcPvAutonome.php:710
 #, php-format
 msgid "Between panels and charge controller, for a distance of %sm, a %dmm&sup2; section cable is recommended"
-msgstr ""
+msgstr "Antara panel dan charge controller, untuk jarak %sm, a %dmm &sup2; bagian kabel dianjurkan"
 
 #: CalcPvAutonome.php:712 CalcPvAutonome.php:760
 #, php-format
@@ -751,37 +751,37 @@ msgstr "Rumus untuk menghitung bagian kawat agar tidak hilang adalah:"
 #: CalcPvAutonome.php:716 CalcPvAutonome.php:764
 #, php-format
 msgid "S = Rho x L x I / VL"
-msgstr ""
+msgstr "S = Rho x L x I / VL"
 
 #: CalcPvAutonome.php:718 CalcPvAutonome.php:766
 #, php-format
 msgid "S (mm&sup2;) : Wire section"
-msgstr ""
+msgstr "S (mm&sup2; ): Bagian kawat"
 
 #: CalcPvAutonome.php:719 CalcPvAutonome.php:767
 #, php-format
 msgid "Rho (ohm) : Wire <a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\">resistivity</a> (0,017ohm for copper)"
-msgstr ""
+msgstr "Rho (ohm): Kawat <a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\">resistivitas</a> (0,017ohm untuk tembaga)"
 
 #: CalcPvAutonome.php:720 CalcPvAutonome.php:768
 #, php-format
 msgid "L (m) : back and forth wire length"
-msgstr ""
+msgstr "L (m): bolak-balik panjang kawat"
 
 #: CalcPvAutonome.php:721
 #, php-format
 msgid "I (A) : L\\’intensité (ici l'intensité des panneaux x le nombre de parallèle(s))"
-msgstr ""
+msgstr "I (A): Intensitas (di sini intensitas panel x jumlah paralel (s))"
 
 #: CalcPvAutonome.php:722 CalcPvAutonome.php:770
 #, php-format
 msgid "VL (V) : admitted wire level voltage loss (%s%% of voltage)"
-msgstr ""
+msgstr "VL (V): mengakui tingkat kehilangan tegangan kawat (%s%% tegangan)"
 
 #: CalcPvAutonome.php:723
 #, php-format
 msgid "(panels voltage * number of series) * %d/100"
-msgstr ""
+msgstr "(panel tegangan * jumlah seri) * %d / 100"
 
 #: CalcPvAutonome.php:725 CalcPvAutonome.php:773
 #, php-format
@@ -791,12 +791,12 @@ msgstr "Dalam kasus kami, hal itu memberi: "
 #: CalcPvAutonome.php:729 CalcPvAutonome.php:776
 #, php-format
 msgid "But that section doesn't respect the %dA/mm&sup2; rule which prevents heating."
-msgstr ""
+msgstr "Tapi bagian itu tidak menghormati %dA/mm&sup2; aturan yang mencegah pemanasan."
 
 #: CalcPvAutonome.php:730 CalcPvAutonome.php:777
 #, php-format
 msgid "To respect the rule, we need to get close to a <b>%s</b>mm&sup2; section"
-msgstr ""
+msgstr "Untuk menghormati peraturan tersebut, kita harus mendekati <b>%s</b>mm&sup2; bagian"
 
 #: CalcPvAutonome.php:742 CalcPvAutonome.php:787
 msgid "There is no realistic wire section determinable. You should probably decrease distance between devices."
@@ -805,12 +805,12 @@ msgstr "Tidak ada bagian kawat realistis yang dapat ditentukan. Anda mungkin har
 #: CalcPvAutonome.php:745 CalcPvAutonome.php:790
 #, php-format
 msgid "Nearest wire section suggested : <b>%s</b>, approximate cost %d&euro;"
-msgstr ""
+msgstr "Bagian kawat terdekat menyarankan: <b>%s</b>, perkiraan biaya %d&euro;"
 
 #: CalcPvAutonome.php:758
 #, php-format
 msgid "Between charge controller and batteries, for a %sm distance, a wire section of %smm&sup2; is recommended"
-msgstr ""
+msgstr "Antara pengendali biaya dan baterai, untuk jarak %s m, bagian kawat %s mm &sup2; direkomendasikan"
 
 #: CalcPvAutonome.php:769
 #, php-format
@@ -820,11 +820,11 @@ msgstr "I (A): Intensitas (disini kekuatan panel / voltase dari baterai bank)"
 #: CalcPvAutonome.php:771
 #, php-format
 msgid "Batteries voltage, i. e. %dV * %d/100"
-msgstr ""
+msgstr "Tegangan baterai, yaitu %d V * %d / 100"
 
 #: CalcPvAutonome.php:794
 msgid "Another and more complete wire section calculator is avalaible at <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a>."
-msgstr ""
+msgstr "Kalkulator bagian kawat yang lain dan lebih lengkap tersedia di <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\"> sigma-tec</a>."
 
 #: CalcPvAutonome.php:818
 msgid "PVGIS Simulation, performance prediction"
@@ -832,7 +832,7 @@ msgstr "Simulasi PVGIS, prediksi kinerja"
 
 #: CalcPvAutonome.php:819
 msgid "Data from photovoltaic geographical information system (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a>) application "
-msgstr ""
+msgstr "Data dari sistem informasi geografis fotovoltaik (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS \\</a>) aplikasi "
 
 #: CalcPvAutonome.php:821
 msgid "Power production estimate for off-grid PV system"
@@ -844,7 +844,7 @@ msgstr "Energi rata-rata produksi per hari"
 
 #: CalcPvAutonome.php:837 CalcPvAutonome.php:850 CalcPvAutonome.php:1156
 msgid "Wh/d"
-msgstr ""
+msgstr "Wh / d"
 
 #: CalcPvAutonome.php:850
 msgid "Average energy not captured per day"
@@ -882,18 +882,18 @@ msgstr "Ini adalah perkiraan estimasi untuk peralatan baru, itu tidak dapat dian
 #: CalcPvAutonome.php:1026
 #, php-format
 msgid "between"
-msgstr ""
+msgstr "antara"
 
 #: CalcPvAutonome.php:991 CalcPvAutonome.php:1000 CalcPvAutonome.php:1012
 #: CalcPvAutonome.php:1026
 #, php-format
 msgid "and"
-msgstr ""
+msgstr "dan"
 
 #: CalcPvAutonome.php:992
 #, php-format
 msgid "Estimated cost %s&euro;/W at low range cost and %s&euro;/W at high range cost"
-msgstr ""
+msgstr "Perkiraan biaya %s&euro;/W pada biaya rendah dan %s&euro;/W dengan biaya kisaran tinggi"
 
 #: CalcPvAutonome.php:1004
 msgid "sorry, no hypothesis for charge controller"
@@ -901,26 +901,26 @@ msgstr "maaf, tidak ada hipotesis untuk charge controllermaaf, tidak ada hipotes
 
 #: CalcPvAutonome.php:1007 CalcPvAutonome.php:1029 CalcPvAutonome.php:1030
 msgid "approximately"
-msgstr ""
+msgstr "sekitar"
 
 #: CalcPvAutonome.php:1013
 #, php-format
 msgid "Estimated cost %s&euro;/string at low range cost and %s&euro;/string at high range cost"
-msgstr ""
+msgstr "Perkiraan biaya %s&euro;/string pada biaya rendah dan %s&euro;/string dengan biaya tinggi"
 
 #: CalcPvAutonome.php:1027
 #, php-format
 msgid "Estimated cost %s&euro;/VA at low range cost and %s&euro;/VA at high range cost"
-msgstr ""
+msgstr "Perkiraan biaya %s&euro;/VA pada biaya rendah dan %s&euro;/VA dengan biaya tinggi"
 
 #: CalcPvAutonome.php:1030 CalcPvAutonome.php:1501
 msgid "Wiring"
-msgstr ""
+msgstr "Kabel"
 
 #: CalcPvAutonome.php:1034
 #, php-format
 msgid "Which brings to a total budget <b>between %s and %s&euro;</b>. Cost of panels support, wire, wire terminal and protection elements (fuse, battery cut-off, ...) is not included"
-msgstr ""
+msgstr "Yang membawa ke total anggaran <b>antara %s dan %s&euro;</b>. Biaya dukungan panel, kawat, terminal kawat dan elemen pelindung (sekering, cut-off baterai, ...) tidak termasuk"
 
 #: CalcPvAutonome.php:1036 CalcPvAutonome.php:1527
 #, php-format
@@ -935,7 +935,7 @@ msgstr "Jika perangkat lunak ini sangat membantu dan/atau anda ingin berterima k
 #: CalcPvAutonome.php:1039
 #, php-format
 msgid "<a href=\"http://david.mercereau.info/contact/\"  target=\"_blank\">Say thank you !</a> (it's always a pleasure)"
-msgstr ""
+msgstr "<a href=\"http://david.mercereau.info/contact/\" target=\"_blank\"> Ucapkan terima kasih !</a> (ini selalu menyenangkan)"
 
 #: CalcPvAutonome.php:1040
 #, php-format
@@ -950,32 +950,32 @@ msgstr "Kontribusi / meningkatkan / translate software ini"
 #: CalcPvAutonome.php:1045
 #, php-format
 msgid "Summary"
-msgstr ""
+msgstr "Ringkasan"
 
 #: CalcPvAutonome.php:1046
 #, php-format
 msgid "<a href=\"%s\">This simulation</a> estimates that with your consumption of %dWh/d you would need:"
-msgstr ""
+msgstr "<a href=\"%s\">Simulasi ini</a> memperkirakan bahwa dengan konsumsi %dWh/d yang Anda perlukan:"
 
 #: CalcPvAutonome.php:1047 CalcPvAutonome.php:1052
 #, php-format
 msgid "~%dW panel (%d\"%dW for example)"
-msgstr ""
+msgstr "~ %d panel W ( %d\"%d W misalnya)"
 
 #: CalcPvAutonome.php:1048 CalcPvAutonome.php:1053
 #, php-format
 msgid "~%dAh battery in %dV (%d\"%dAh in %dV for example)"
-msgstr ""
+msgstr "~%dAh baterai dalam %dV (%d\"%dAh dalam %dV misalnya)"
 
 #: CalcPvAutonome.php:1050 CalcPvAutonome.php:1054
 #, php-format
 msgid "The budget estimated between %s and %s&euro;"
-msgstr ""
+msgstr "Anggaran diperkirakan antara %s dan %s&euro;"
 
 #: CalcPvAutonome.php:1051
 #, php-format
 msgid "[url=%s]This simulation[url] estimates that with your consumption of %dWh/d you would need:"
-msgstr ""
+msgstr "[url =%s] Simulasi ini[url] memperkirakan bahwa dengan konsumsi %dWh/d yang Anda perlukan:"
 
 #: CalcPvAutonome.php:1136
 msgid "Your degree of knowledge in photovoltaics"
@@ -1004,7 +1004,7 @@ msgstr "Ini adalah langkah yang paling penting untuk sizing."
 #: CalcPvAutonome.php:1152
 #, php-format
 msgid "If you don't know this value go to <b><a href=\"%s?from=CalcPvAutonome\" id=\"DemandeCalcPvAutonome\">daily needs calculator</a></b>"
-msgstr ""
+msgstr "Jika Anda tidak mengetahui nilai ini, buka <b><a href=\" %s? From=CalcPvAutonome\" id=\"DemandeCalcPvAutonome\">kalkulator kebutuhan sehari-hari</a></b>"
 
 #: CalcPvAutonome.php:1176
 msgid "Geographical location"
@@ -1036,7 +1036,7 @@ msgstr "Garis bujur"
 
 #: CalcPvAutonome.php:1252
 msgid "Solar irradiation data is collected on <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>"
-msgstr ""
+msgstr "Data iradiasi matahari dikumpulkan di <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>"
 
 #: CalcPvAutonome.php:1256
 msgid "Enter the mid value of solar radiation for the worst month and panel plane (inclination)"
@@ -1096,7 +1096,7 @@ msgstr "Anda dapat merinci spesifikasi teknis panel Anda"
 
 #: CalcPvAutonome.php:1354 Modeles.php:9
 msgid "Max power (Pmax)"
-msgstr ""
+msgstr "Max power (Pmax)"
 
 #: CalcPvAutonome.php:1358 Modeles.php:10
 msgid "Open circuit voltage (Voc)"
@@ -1104,7 +1104,7 @@ msgstr "Tegangan rangkaian terbuka (Voc)"
 
 #: CalcPvAutonome.php:1362 Modeles.php:11
 msgid "Short-circuit current (Isc)"
-msgstr ""
+msgstr "Arus hubung singkat (Isc)"
 
 #: CalcPvAutonome.php:1369
 msgid "Electrical yield of batteries"
@@ -1112,7 +1112,7 @@ msgstr "Hasil listrik dari baterai"
 
 #: CalcPvAutonome.php:1373
 msgid "Electrical yield for the remaining installation (charge controller,...)"
-msgstr ""
+msgstr "Hasil listrik untuk instalasi yang tersisa (charge controller,...)"
 
 #: CalcPvAutonome.php:1381
 msgid "Battery plant sizing"
@@ -1128,23 +1128,23 @@ msgstr "Jumlah hari otonom"
 
 #: CalcPvAutonome.php:1397
 msgid "Discharge level limit"
-msgstr ""
+msgstr "Batas tingkat debit"
 
 #: CalcPvAutonome.php:1401
 msgid "Battery model"
-msgstr ""
+msgstr "Model baterai"
 
 #: CalcPvAutonome.php:1401
 msgid "(<a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">expressed in C10</a>)"
-msgstr ""
+msgstr "(<a href=\"http://www.solar-battery.com/electricity-battery.htm\" target=\"_blank\">dinyatakan dalam C10</a>)"
 
 #: CalcPvAutonome.php:1413
 msgid "In automatic mode, GEL OPzV 2V batteries will be used above 500A"
-msgstr ""
+msgstr "Dalam mode otomatis, baterai GEL OPzV 2V akan digunakan di atas 500A"
 
 #: CalcPvAutonome.php:1416
 msgid "Preferred battery technology"
-msgstr ""
+msgstr "Teknologi baterai pilihan"
 
 #: CalcPvAutonome.php:1426
 msgid "You can detail the technical characteristics of your battery"
@@ -1208,7 +1208,7 @@ msgstr "Jarak satu arah antara pengendali biaya dan baterai"
 
 #: CalcPvAutonome.php:1512
 msgid "Conductor resistivity (rho) mm&sup2;/m"
-msgstr ""
+msgstr "Konduktor resistivitas (rho) mm &sup2; / m"
 
 #: CalcPvAutonome.php:1516
 msgid "Tolerable voltage drop"
@@ -1224,113 +1224,113 @@ msgstr "Setel ulang"
 
 #: CalcPvAutonome.php:1528
 msgid "Start the calculation"
-msgstr ""
+msgstr "Mulai perhitungannya"
 
 #: CalcPvAutonome.php:1541
 msgid "Support CaclPvAutonome"
-msgstr ""
+msgstr "Dukungan CaclPvAutonome"
 
 #: CalcPvAutonome.php:1542
 msgid "This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>."
-msgstr ""
+msgstr "Perangkat lunak ini <b>buka</b>, <b>gratis</b>, kolaboratif dan <b> mandiri</b> secara finansial. <b>Agar dia bisa tinggal, kami membutuhkan dukungan Anda</b>."
 
 #: CalcPvAutonome.php:1543
 msgid "To help us, you can also <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribute to its improvement</a>, its <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">translation</a>."
-msgstr ""
+msgstr "Untuk membantu kami, anda juga dapat <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">berkontribusi pada peningkatannya</a>, punya <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">terjemahan</a>."
 
 #: CalcPvAutonome.php:1544
 msgid "I want to make a secure one-time donation with Paypal"
-msgstr ""
+msgstr "Saya ingin melakukan donasi satu kali dengan Paypal"
 
 #: CalcPvAutonome.php:1545
 msgid "I want to make a recurring, free and secure donation with Liberapay"
-msgstr ""
+msgstr "Saya ingin membuat sumbangan yang berulang, gratis dan aman dengan Liberapay"
 
 #: CalcPvAutonome.php:1546
 msgid "No thanks, I just want to <b>start the calculation</b>"
-msgstr ""
+msgstr "Tidak, terima kasih, saya hanya ingin <b>memulai perhitungan</b>"
 
 #: CalcPvAutonome.php:1547
 msgid "I already support CalcPvAutonomous"
-msgstr ""
+msgstr "Saya sudah mendukung CalcPvAutonomous"
 
 #: index.php:87 index.php:142
 msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
-msgstr ""
+msgstr "Hitung/ukuran fotovoltaik stand-alone (otonom) set"
 
 #: index.php:133
 msgid "Calculate daily electric needs"
-msgstr ""
+msgstr "Hitung kebutuhan listrik setiap hari"
 
 #: index.php:135 index.php:144 index.php:166
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
-msgstr ""
+msgstr "<p>Buka <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">platform terjemahan kolaboratif</a> untuk membantu kami menerjemahkan perangkat lunak gratis ini.</p>"
 
 #: index.php:152
 msgid "Thanks to"
-msgstr ""
+msgstr "Terimakasih untuk"
 
 #: index.php:164
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
-msgstr ""
+msgstr "untuk terjemahan <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">terjemahan</a>"
 
 #: index.php:167
 msgid "By"
-msgstr ""
+msgstr "Oleh"
 
 #: index.php:167
 msgid "Git repository"
-msgstr ""
+msgstr "Git repositori"
 
 #: index.php:168
 msgid "version"
-msgstr ""
+msgstr "versi"
 
 #: index.php:168
 msgid "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a>"
-msgstr ""
+msgstr "adalah perangkat lunak terbuka yang berlisensi <a href=\"https://en.wikipedia.org/wiki/Beerware\"> Beerware </a>"
 
 #: Modeles.php:8 Modeles.php:28
 msgid "Type"
-msgstr ""
+msgstr "Mengetik"
 
 #: Modeles.php:12 Modeles.php:31 Modeles.php:51 Modeles.php:70 Modeles.php:86
 msgid "Estimate price"
-msgstr ""
+msgstr "Perkiraan harga"
 
 #: Modeles.php:27 Modeles.php:46 Modeles.php:66
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 #: Modeles.php:47
 msgid "Battery plant voltage"
-msgstr ""
+msgstr "Tegangan baterai pabrik"
 
 #: Modeles.php:48
 msgid "Max panel power"
-msgstr ""
+msgstr "Kekuatan panel maks"
 
 #: Modeles.php:49
 msgid "Max panel voltage"
-msgstr ""
+msgstr "Tegangan panel maks"
 
 #: Modeles.php:50
 msgid "Max panel current"
-msgstr ""
+msgstr "Max panel saat ini"
 
 #: Modeles.php:67
 msgid "Battery park voltage"
-msgstr ""
+msgstr "Voltase batere"
 
 #: Modeles.php:68
 msgid "Max power (at 25 °C)"
-msgstr ""
+msgstr "Daya maksimal (pada suhu 25 ° C)"
 
 #: Modeles.php:69
 msgid "Peak power"
-msgstr ""
+msgstr "Kekuatan puncak"
 
 #: Modeles.php:85
 msgid "Section"
-msgstr ""
+msgstr "Bagian"
 

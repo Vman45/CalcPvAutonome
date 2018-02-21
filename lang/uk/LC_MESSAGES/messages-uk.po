@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-18 16:47-0500\n"
+"PO-Revision-Date: 2018-02-20 17:10-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: calcpvautonome\n"
 "X-Crowdin-Language: uk\n"
-"X-Crowdin-File: /v4.0/messages.pot\n"
+"X-Crowdin-File: messages.pot\n"
 
 #: CalcConsommation.php:2
 msgid "In order to know the electric consumption (in Watts) of your devices you may"
@@ -1110,7 +1110,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:1294
 msgid "I use a solar tracker on the 2 axes"
-msgstr ""
+msgstr "Я використовую двовісний сонячний трекер"
 
 #: CalcPvAutonome.php:1297
 msgid "Desired autonomous"
@@ -1170,15 +1170,15 @@ msgstr ""
 
 #: CalcPvAutonome.php:1381
 msgid "Battery plant sizing"
-msgstr ""
+msgstr "Розміри акумуляторної батареї"
 
 #: CalcPvAutonome.php:1382
 msgid "This software is preset for lead batteries"
-msgstr ""
+msgstr "Це програмне забезпечення базується на свинцевих батареях"
 
 #: CalcPvAutonome.php:1384
 msgid "Autonomous days amount"
-msgstr ""
+msgstr "Загалом автономних днів"
 
 #: CalcPvAutonome.php:1397
 msgid "Discharge level limit"
@@ -1198,7 +1198,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:1416
 msgid "Preferred battery technology"
-msgstr ""
+msgstr "Бажана технологія акумулятора"
 
 #: CalcPvAutonome.php:1426
 msgid "You can detail the technical characteristics of your battery"

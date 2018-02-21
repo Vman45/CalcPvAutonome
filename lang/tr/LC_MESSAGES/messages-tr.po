@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-18 16:47-0500\n"
+"PO-Revision-Date: 2018-02-19 10:21-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -14,79 +14,80 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: calcpvautonome\n"
 "X-Crowdin-Language: tr\n"
-"X-Crowdin-File: /v4.0/messages.pot\n"
+"X-Crowdin-File: messages.pot\n"
 
 #: CalcConsommation.php:2
 msgid "In order to know the electric consumption (in Watts) of your devices you may"
-msgstr "Cihazlarınızın elektrik tüketimini (Watt bazında) öğrenmek için"
+msgstr "Cihazlarınızın elektrik tüketimini (Watt cinsinden) öğrenmek için,"
 
 #: CalcConsommation.php:4
 msgid "Check on the device's specification sheet or label"
-msgstr "Cihazın kullanım klavuzunu veya etiketini kontrol ediniz"
+msgstr "Cihazın kullanım klavuzunu ve/veya etiketini kontrol edin"
 
 #: CalcConsommation.php:5
 msgid "You may get a Wattmeter (~10&euro;) that will show you the exact consumption if plugged between power socket and the applience"
-msgstr "Prize takılı haldeyken soket ve aygıt arasındaki gücün kesin tüketimini gösterecek bir Watt ölçer (~10&euro;) alabilirsiniz"
+msgstr "Prize takılı haldeyken soket ve aygıt arasındaki gücün kesin tüketimini gösterecek bir Watt ölçeri (~10&euro;) alabilirsiniz"
 
 #: CalcConsommation.php:7
 msgid "To calculate the dimensions of an autonomous solar installation, consider that it is wintertime (longer lighting time needed, but the fridge might be unplugged due to low temperature outside...)"
-msgstr "Otonom bir güneş tesisatının boyutlarını hesaplamak için, kış ayı olduğunu düşünün (daha uzun süre aydınlatma gerekebilir, ancak dışarda düşük sıcaklık nedeniyle buzdolabı fişten çıkarılabilir...)"
+msgstr "Otonom bir güneş tesisatının boyutlarını hesaplamak için, kış ayı olduğunu düşünün (daha uzun süre aydınlatma gerekebilir, ancak dışarıda düşük sıcaklık nedeniyle buzdolabı fişten çıkarılabilir...)"
 
 #: CalcConsommation.php:9
 msgid "First sober example"
-msgstr "İlk makul örnek"
+msgstr "İlk yeterli örnek"
 
 #: CalcConsommation.php:10
 msgid "Second example"
-msgstr "İkinci örnek"
+msgstr "İkinci Örnek"
 
 #: CalcConsommation.php:15
 msgid "Equipment"
-msgstr "Ekipman"
+msgstr "Ekipman / Teçhizat"
 
 #: CalcConsommation.php:16
 msgid "Power (Watt)"
-msgstr "Güç (Watt)"
+msgstr "Güç ( Watt )"
 
 #: CalcConsommation.php:17
 msgid "Turn on<br />simultaneously"
-msgstr "Açık konuma getirin<br />aynı anda"
+msgstr "Aynı anda <br />açık konuma getirin."
 
 #: CalcConsommation.php:18
 msgid "Number"
-msgstr "Sayısı"
+msgstr "Sayı"
 
 #: CalcConsommation.php:19
 msgid "Daily use time"
-msgstr "Günlük Kullanım süresi"
+msgstr "Bir Günlük Kullanım Süresi"
 
 #: CalcConsommation.php:20
 msgid "Automatic consumption<br />calculation"
-msgstr "Otomatik harcama<br />hesaplama"
+msgstr "Otomatik harcama <br />hesaplama"
 
 #: CalcConsommation.php:21
 msgid "Daily<br />consumption"
-msgstr "Günlük<br />tüketim"
+msgstr "Günlük Wh/j <br />tüketim"
 
 #: CalcConsommation.php:27 CalcPvAutonome.php:1155
 msgid "Your daily electrical needs"
-msgstr "Günlük elektrik ihtiyaçlarınız"
+msgstr "Sizin günlük elektrik ihtiyaçlarınız"
 
 #: CalcConsommation.php:28 CalcPvAutonome.php:1160
 msgid "Your need in maximum electrical power"
-msgstr "Maksimum elektirik gücünde ki ihtiyaçlarınız"
+msgstr "Maksimum gücünde ki elektrik ihtiyaçlarınız"
 
 #: CalcConsommation.php:28
 msgid "Total addition of power required by devices that are likely to be plugged and on at the same time OR consumption of the most power demanding appliance in case it is not plugged simultaneously with the rest"
-msgstr ""
+msgstr "Aynı anda takılıp takılması muhtemel cihazlar için gereken toplam güç ilavesi Gerisi ile aynı anda takılmaması durumunda en güç gerektiren cihazın tüketimi"
 
 #: CalcConsommation.php:29
 msgid "Click here to introduce those values to calculate <br/> the dimension of your autonomous solar installation"
-msgstr "Otonom güneş tesisinizin boyutunu hesaplamak <br/> için değerleri tanıtmak için buraya tıklayın"
+msgstr "Otonom güneş tesisinizin boyutunu hesaplamak <br/> için değerleri tanıtmak için buraya tıklayın\n\n"
+"Otonom güneş tesisatınızın boyutunu hesaplamak ve bu değerleri tanıtmak için <br/> buraya tıklayın."
 
 #: CalcConsommation.php:31
 msgid "Add an empty line"
-msgstr "Boş bir satır ekleyin"
+msgstr "Yeni boş bir satır ekleyin"
 
 #: CalcConsommation.php:33
 msgid "Add a line according to a template..."
@@ -98,7 +99,7 @@ msgstr "Örneklerin değerleri yaklaşık tahminlerdir, eğer daha kesin ölçü
 
 #: CalcConsommation.php:45
 msgid "Share / Save this table"
-msgstr "Bu tabloyu Paylaş / Kaydet"
+msgstr "Tabloyu Paylaş / Kaydet"
 
 #: CalcConsommation.php:64
 msgid "Tick all the devices that are likely to be switched on at the same time (for example: Pc, fridge, lightbulb in the livingroom). At the other hand, you might rather want to unplug your Pc when you are using a drill"
@@ -198,59 +199,60 @@ msgstr "Özel şarj kontrol cihazı voltajı hatalı çünkü < 0"
 
 #: CalcPvAutonome.php:60
 msgid "Custom charge controller power is not correct because < 0"
-msgstr "Özel şarj kontrol cihazı gücü doğru değil çünkü < 0"
+msgstr "Özel şarj kontrol cihazı gücü doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:61
 msgid "Custom charge controller short-circuit current is incorrect because < 0"
-msgstr "Özel şarj kontrol cihazı kısa devre akımı hatalı çünkü < 0"
+msgstr "Özel şarj kontrol cihazı kısa devre akımı hatalı çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:63
 msgid "The autonomous days amount is not correct because < 0"
-msgstr "Otonom gün miktarı doğru değil çünkü < 0"
+msgstr "Otonom gün miktarı doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:64
 msgid "Electrical yield of batteries is not correct because < 0"
-msgstr "Pillerin elektrik randımanı doğru değil çünkü < 0"
+msgstr "Pillerin elektrik randımanı doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:65
 msgid "Installation electrical efficiency is not correct because < 0"
-msgstr "Donanım elektrik yeterliği doğru değil çünkü < 0"
+msgstr "Donanım elektrik yeterliği doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:66
 msgid "Discharge level is not correct because < 0"
-msgstr "Boşaltım seviyesi doğru değil çünkü < 0"
+msgstr "Boşaltım seviyesi doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:67
 msgid "The safety margin Icc of the charge controller is not correct because < 0"
-msgstr "Şarj regülatörü Icc güvenlik marjı doğru değil çünkü < 0"
+msgstr "Şarj regülatörü Icc güvenlik marjı doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:68
 msgid "Panels and charge controller in-between distance is not correct because < 0"
-msgstr "Paneller ve şarj kontrol cihazı ortasındaki mesafe doğru değil çünkü < 0"
+msgstr "Paneller ve şarj kontrol cihazı ortasındaki mesafe doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:69
 msgid "Batteries and charge controller in-between distance is not correct because < 0"
-msgstr "Piller ve şarj kontrol cihazı ortasındaki mesafe doğru değil çünkü < 0"
+msgstr "Piller ve şarj kontrol cihazı ortasındaki mesafe doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:70
 msgid "Conductor resistivity is not correct because < 0"
-msgstr "İletken madde özdirenci doğru değil çünkü < 0"
+msgstr "İletken madde özdirenci doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:71
 msgid "Tolerable voltage drop is not correct because < 0"
-msgstr "Geçerli voltaj düşüşü doğru değil çünkü < 0"
+msgstr "Geçerli voltaj düşüşü doğru değil çünkü (Sıfırdan Küçük) < 0"
 
 #: CalcPvAutonome.php:80
 msgid "Panels orientation is not correct. "
-msgstr "Panellerin yönelimi doğru değil. "
+msgstr "Panel yönlendirmesi doğru değil."
 
 #: CalcPvAutonome.php:83
 msgid "Panels inclination is not correct, it must be between 0 (horizontal) and 90 (vertical)"
-msgstr "Panellerin eğimi doğru değil. 0 (yatay) ile 90 (dikey) arasında olmalıdır"
+msgstr "Panellerin eğimi doğru değil; \n"
+"0 (yatay) ile 90 (dikey) arasında olmalıdır"
 
 #: CalcPvAutonome.php:86
 msgid "You must enter latitude and longitude to deduce solar irradiation with a click on the map of the world."
-msgstr "Dünya haritasına bir tıklama ile güneş ışınımını çıkarmak için enlem ve boylam girmek zorundasınız."
+msgstr "Güneş ışınımını çıkarmak için, dünya haritasına tıklayarak enlem ve boylam bilgilerini girmek zorundasınız."
 
 #: CalcPvAutonome.php:100
 msgid "Unable to download solar irradiation data from <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>, switch to mode manual or use <a href=\"http://calcpvautonome.zici.fr/v2.2/\"> the previous version </a> of CalcPvAutonome."
@@ -335,7 +337,7 @@ msgstr "Pp"
 
 #: CalcPvAutonome.php:239
 msgid "Photovoltaic panels produce electricity from sunlight (solar radiation)."
-msgstr "Güneş pili panelleri elektriği güneş ışığından ( güneş radyasyonu) üretir."
+msgstr "Güneş pili panelleri, elektriği güneş ışığından ( güneş radyasyonu) üretir."
 
 #: CalcPvAutonome.php:240
 #, php-format
@@ -458,7 +460,7 @@ msgstr "Yineden %dW panelle şarj akımı"
 #: CalcPvAutonome.php:399
 #, php-format
 msgid "If your charge controller allows it you can limit it or increase your battery plant to"
-msgstr ""
+msgstr "Şarj kontrol cihazınız buna izin veriyorsa, şarj cihazınızı sınırlayabilir veya pil tesisinizi artırabilirsiniz"
 
 #: CalcPvAutonome.php:401
 msgid "We will state to increase the battery plant"
@@ -530,7 +532,7 @@ msgstr "Şarj kontrol cihazı"
 
 #: CalcPvAutonome.php:517
 msgid "The charge controller stands between batteries and panels, its role is to handle batteries charge depending on what the panels can provide"
-msgstr "Şarj kontrol cihazı piller ile paneller arasında durur, görevi panellerin tedarik edebildiği kadarına bağlı olarak pil şarjlarını yönetmektir"
+msgstr "Şarj denetleyicisi, piller ve paneller arasında durmakta. Rolü, pillerin şarjını, panellerin neye sahip olabileceğine bağlı olarak ele almasıdır."
 
 #: CalcPvAutonome.php:571
 msgid "Sorry, unable to establish a panel/charge controller wiring hypothesis"
@@ -552,7 +554,7 @@ msgstr "Sizin özel şarj kontrol cihazınız ile, bir"
 #: CalcPvAutonome.php:583
 #, php-format
 msgid "You force the %s charge controller selection, a"
-msgstr ""
+msgstr "%s şarj kontrol cihazı seçimini zorla, a"
 
 #: CalcPvAutonome.php:585
 msgid "A"
@@ -610,7 +612,7 @@ msgstr "seri üretimi yapılmış paneller"
 #: CalcPvAutonome.php:612
 #, php-format
 msgid "A type %s charge controller, with a <b>%dV</b> battery plant, allows : "
-msgstr ""
+msgstr "<b>%dV</b> batarya tesisi olan tip %s şarj denetleyicisi aşağıdakilere izin verir: "
 
 #: CalcPvAutonome.php:614
 #, php-format
@@ -688,7 +690,7 @@ msgstr "Panel dizgi kutusu"
 
 #: CalcPvAutonome.php:658
 msgid "Beyond 2 string, it is strongly recommended to install a panel string boxe. Panel string boxe is collect DC power from panel strings with blocking diodes on each string for protecting panels from reverse current flow. The collected power is then transferred to charge controller."
-msgstr ""
+msgstr "2 telin ötesinde, bir panel dize kutusu takma önerilir. Panel dize kutusu, panelleri ters akım akışı korumak için her dize üzerinde engelleme diyotları ile panel dizelerinden DC gücü toplar. Toplanan güç daha sonra şarj kontrol cihazına aktarılır."
 
 #: CalcPvAutonome.php:662 CalcPvAutonome.php:1022 CalcPvAutonome.php:1026
 msgid "Converter"
@@ -706,7 +708,7 @@ msgstr "Üzgünüz, bu tür bir güç için uygun bir dönüştürücü bulunama
 #: CalcPvAutonome.php:673
 #, php-format
 msgid "An hypothesis would be to choose a <b>%s type converter</b> that goes up to %dW max power with possible peaks at %dW."
-msgstr ""
+msgstr "Bir hipotez %dW 'da olası doruğa sahip %dW max gücüne yükselen bir <b>%s türü dönüştürücü </b> seçmek olacaktır."
 
 #: CalcPvAutonome.php:675
 #, php-format
@@ -751,52 +753,52 @@ msgstr "Kayıptan kaçınmak için kablo bölümü hesaplama formülü :"
 #: CalcPvAutonome.php:716 CalcPvAutonome.php:764
 #, php-format
 msgid "S = Rho x L x I / VL"
-msgstr ""
+msgstr "S = Rho x L x I / VL"
 
 #: CalcPvAutonome.php:718 CalcPvAutonome.php:766
 #, php-format
 msgid "S (mm&sup2;) : Wire section"
-msgstr ""
+msgstr "S (mm&sup2;) : Kablo kesiti"
 
 #: CalcPvAutonome.php:719 CalcPvAutonome.php:767
 #, php-format
 msgid "Rho (ohm) : Wire <a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\">resistivity</a> (0,017ohm for copper)"
-msgstr ""
+msgstr "Rho (ohm) : Tel - Kablo <a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\">özdirenç</a> (0,017ohm bakır için)"
 
 #: CalcPvAutonome.php:720 CalcPvAutonome.php:768
 #, php-format
 msgid "L (m) : back and forth wire length"
-msgstr ""
+msgstr "L (m) : ileri ve geri tel uzunluğu"
 
 #: CalcPvAutonome.php:721
 #, php-format
 msgid "I (A) : L\\’intensité (ici l'intensité des panneaux x le nombre de parallèle(s))"
-msgstr ""
+msgstr "I (A) : L\\’intensité (Burada panellerin yoğunluğu x paralel (s))"
 
 #: CalcPvAutonome.php:722 CalcPvAutonome.php:770
 #, php-format
 msgid "VL (V) : admitted wire level voltage loss (%s%% of voltage)"
-msgstr ""
+msgstr "VL (V) : kabul edilen kablo seviyesi voltaj kaybı (%s%% voltaj)"
 
 #: CalcPvAutonome.php:723
 #, php-format
 msgid "(panels voltage * number of series) * %d/100"
-msgstr ""
+msgstr "(paneller voltaj * seri sayısı) * %d/100"
 
 #: CalcPvAutonome.php:725 CalcPvAutonome.php:773
 #, php-format
 msgid "In our case it gives : "
-msgstr ""
+msgstr "Bizim durumumuzda vereceği sonuç : "
 
 #: CalcPvAutonome.php:729 CalcPvAutonome.php:776
 #, php-format
 msgid "But that section doesn't respect the %dA/mm&sup2; rule which prevents heating."
-msgstr ""
+msgstr "Fakat bu bölüm %dA/mm&sup2; ısıtmayı önleyen kural."
 
 #: CalcPvAutonome.php:730 CalcPvAutonome.php:777
 #, php-format
 msgid "To respect the rule, we need to get close to a <b>%s</b>mm&sup2; section"
-msgstr ""
+msgstr "Kurala uymak için, bir <b>%s</b>mm&sup2; bölüm"
 
 #: CalcPvAutonome.php:742 CalcPvAutonome.php:787
 msgid "There is no realistic wire section determinable. You should probably decrease distance between devices."
@@ -810,29 +812,29 @@ msgstr "Önerilen en yakın kablo bölümü : <b>%s</b>, oratalama maliyeti %d&e
 #: CalcPvAutonome.php:758
 #, php-format
 msgid "Between charge controller and batteries, for a %sm distance, a wire section of %smm&sup2; is recommended"
-msgstr ""
+msgstr "Şarj denetleyicisi ve piller arasında %sm mesafesi için %smm&sup2; tavsiye edilir"
 
 #: CalcPvAutonome.php:769
 #, php-format
 msgid "I (A): Intensity (here the power of the panels / the voltage of the battery bank)"
-msgstr ""
+msgstr "I (A): Yoğunluk (burada panellerin gücü / pil bankasının gerilimi)"
 
 #: CalcPvAutonome.php:771
 #, php-format
 msgid "Batteries voltage, i. e. %dV * %d/100"
-msgstr ""
+msgstr "Akü bataryaları, i. e. %dV * %d/100"
 
 #: CalcPvAutonome.php:794
 msgid "Another and more complete wire section calculator is avalaible at <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a>."
-msgstr ""
+msgstr "Başka ve daha eksiksiz tel kesit hesaplayıcısı şu adresten temin edilebilir: <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a>."
 
 #: CalcPvAutonome.php:818
 msgid "PVGIS Simulation, performance prediction"
-msgstr ""
+msgstr "PVGIS Simülasyon, performans tahmini"
 
 #: CalcPvAutonome.php:819
 msgid "Data from photovoltaic geographical information system (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a>) application "
-msgstr ""
+msgstr "Fotovoltaik coğrafi bilgi sisteminden elde edilen veriler (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a>) uygulama "
 
 #: CalcPvAutonome.php:821
 msgid "Power production estimate for off-grid PV system"
@@ -920,7 +922,7 @@ msgstr "Elektrik bağlantısı"
 #: CalcPvAutonome.php:1034
 #, php-format
 msgid "Which brings to a total budget <b>between %s and %s&euro;</b>. Cost of panels support, wire, wire terminal and protection elements (fuse, battery cut-off, ...) is not included"
-msgstr ""
+msgstr "<b> toplam bütçeye %s ile %s&euro;</b> arasında getirir. Panellerin maliyeti, kablo, kablo terminali ve koruma elemanları (sigorta, pil kesme, ...) dahil değildir ."
 
 #: CalcPvAutonome.php:1036 CalcPvAutonome.php:1527
 #, php-format
@@ -960,12 +962,12 @@ msgstr "<a href=\"%s\">Bu similasyon</a> %dWh/d ile olan tüketiminizle ihtiyaç
 #: CalcPvAutonome.php:1047 CalcPvAutonome.php:1052
 #, php-format
 msgid "~%dW panel (%d\"%dW for example)"
-msgstr ""
+msgstr "~%dW panel (%d\"%dW Örneğin)"
 
 #: CalcPvAutonome.php:1048 CalcPvAutonome.php:1053
 #, php-format
 msgid "~%dAh battery in %dV (%d\"%dAh in %dV for example)"
-msgstr ""
+msgstr "%dAh pil %dV (%d\"%dAh in %dV örneğin)"
 
 #: CalcPvAutonome.php:1050 CalcPvAutonome.php:1054
 #, php-format
@@ -1060,11 +1062,11 @@ msgstr "2 eksenli bir güneş takipçisi kullanıyorum"
 
 #: CalcPvAutonome.php:1297
 msgid "Desired autonomous"
-msgstr "İstenen otonom"
+msgstr "İstenen otonomlar"
 
 #: CalcPvAutonome.php:1299
 msgid "Annual / complete"
-msgstr "Senelik / tüm"
+msgstr "Yıllık / Tamamı"
 
 #: CalcPvAutonome.php:1300
 msgid "Seasonal / partial"
@@ -1176,7 +1178,7 @@ msgstr "Şarj kontrol cihazınızın teknik özelliklerini detaylandırabilirsin
 
 #: CalcPvAutonome.php:1478
 msgid "Batteries final voltage"
-msgstr "Pillerin son voltajı"
+msgstr "Pillerin son voltaj göstergesi"
 
 #: CalcPvAutonome.php:1478
 msgid "This value can be changed in 'battery plant sizing'"
@@ -1192,11 +1194,11 @@ msgstr "Maksimum PV akımı (güç / Voltaj)"
 
 #: CalcPvAutonome.php:1495
 msgid "Panels Icc short-circuit current security margin"
-msgstr "Icc panelleri kısa devre akımı güvenlik mesafesi"
+msgstr "Kısa devre akımı güvenlik mesafesi Icc paneller için"
 
 #: CalcPvAutonome.php:1502
 msgid "Considering solar flexible copper wiring"
-msgstr ""
+msgstr "Güneş enerjili bakır kablolama göz önüne alındığında"
 
 #: CalcPvAutonome.php:1504
 msgid "One-way distance between panels and charge controller"
@@ -1208,7 +1210,7 @@ msgstr "Şarj kontrol cihazı ve piller arasındaki tek yön mesafe"
 
 #: CalcPvAutonome.php:1512
 msgid "Conductor resistivity (rho) mm&sup2;/m"
-msgstr ""
+msgstr "İletken direnci (rho) mm&sup2;/m"
 
 #: CalcPvAutonome.php:1516
 msgid "Tolerable voltage drop"
@@ -1228,11 +1230,11 @@ msgstr "Hesaplamayı başlatın"
 
 #: CalcPvAutonome.php:1541
 msgid "Support CaclPvAutonome"
-msgstr "CaclPvAutonome'u destekle"
+msgstr "CaclPvAutonome Yardım"
 
 #: CalcPvAutonome.php:1542
 msgid "This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>."
-msgstr ""
+msgstr "Bu yazılım mali açıdan <b> ücretsiz </b>, <b> açık kaynak kodlu </b>, işbirlikçi ve <b> bağımsızdır </b>. <b> Devamlılık için desteğinize ihtiyacımız var </b>."
 
 #: CalcPvAutonome.php:1543
 msgid "To help us, you can also <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribute to its improvement</a>, its <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">translation</a>."
@@ -1240,31 +1242,31 @@ msgstr "Bize yardım etmek için, aynı zamanda programın <a href=\"https://fra
 
 #: CalcPvAutonome.php:1544
 msgid "I want to make a secure one-time donation with Paypal"
-msgstr "PayPal ile güvenli bir şekilde tek seferlik bağış yapmak istiyorum"
+msgstr "Tek seferlik paypal ile güvenli bağış yapmak istiyorum"
 
 #: CalcPvAutonome.php:1545
 msgid "I want to make a recurring, free and secure donation with Liberapay"
-msgstr "Liberapay ile düzenli olarak, ücretsiz ve güvenli bağış yapmak istiyorum"
+msgstr "Liberapay ile sürekli olarak, güvenli ve ücretsiz bağış yapmak istiyorum"
 
 #: CalcPvAutonome.php:1546
 msgid "No thanks, I just want to <b>start the calculation</b>"
-msgstr "Hayır teşekkürler, ben sadece <b>hesaplamaya başlamak</b> istiyorum"
+msgstr "Hayır teşekkürler, ben yalnızca <b> hesaplamayı başlatmak istiyorum. </b>"
 
 #: CalcPvAutonome.php:1547
 msgid "I already support CalcPvAutonomous"
-msgstr "Ben daha önce CalcPvAutonomous'u destekledim"
+msgstr "Ben zaten daha önce CalcPvAutonomous'u destek verdim"
 
 #: index.php:87 index.php:142
 msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
-msgstr ""
+msgstr "Fotovoltaik tek başına (özerk) seti hesapla / boyutlandır"
 
 #: index.php:133
 msgid "Calculate daily electric needs"
-msgstr "Günlük elektrik ihtiyaçlarını hesapla"
+msgstr "Günlük elektrik ihtiyacını hesapla"
 
 #: index.php:135 index.php:144 index.php:166
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
-msgstr ""
+msgstr "<p> Bu ücretsiz yazılımı tercüme etmemize yardımcı olması için <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\"> toplu çeviri platformuna </a> gidin. </p>"
 
 #: index.php:152
 msgid "Thanks to"
@@ -1272,7 +1274,7 @@ msgstr "Teşekkürler"
 
 #: index.php:164
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
-msgstr ""
+msgstr "<a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">Tercüme için</a>"
 
 #: index.php:167
 msgid "By"
@@ -1300,7 +1302,7 @@ msgstr "Tahmini fiyat"
 
 #: Modeles.php:27 Modeles.php:46 Modeles.php:66
 msgid "Name"
-msgstr "İsim"
+msgstr "Ad"
 
 #: Modeles.php:47
 msgid "Battery plant voltage"

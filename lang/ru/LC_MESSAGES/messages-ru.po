@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-18 16:47-0500\n"
+"PO-Revision-Date: 2018-02-20 18:03-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -14,27 +14,27 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: calcpvautonome\n"
 "X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /v4.0/messages.pot\n"
+"X-Crowdin-File: messages.pot\n"
 
 #: CalcConsommation.php:2
 msgid "In order to know the electric consumption (in Watts) of your devices you may"
-msgstr "Знать электрическое потребление (в Ваттах) ваших приборов вы можете"
+msgstr "Чтобы узнать потребление электроенергии вашими приборами (в Ваттах), вы можете"
 
 #: CalcConsommation.php:4
 msgid "Check on the device's specification sheet or label"
-msgstr "Проверьте спецификацию устройства на листе или этикетке"
+msgstr "Проверить спецификацию устройства в инструкции или на этикетке"
 
 #: CalcConsommation.php:5
 msgid "You may get a Wattmeter (~10&euro;) that will show you the exact consumption if plugged between power socket and the applience"
-msgstr "Вы можете купить измеритель мощности (~10&euro;), который будет показывать вам точное потребление, если подключить его между розеткой и прибором"
+msgstr "Вы можете купить Ваттметр (~10&euro;), который будет показывать вам точное потребление, если подключить его между розеткой и прибором"
 
 #: CalcConsommation.php:7
 msgid "To calculate the dimensions of an autonomous solar installation, consider that it is wintertime (longer lighting time needed, but the fridge might be unplugged due to low temperature outside...)"
-msgstr "Чтобы рассчитать размеры автономной солнечной установки, учитывайте, что это зимнее время (требуется больше времени освещения, но холодильник может быть отключен из-за низкой температуры снаружи...)"
+msgstr "Чтобы рассчитать размеры автономной солнечной установки, учитывайте, что это зимнее время (требуется больше времени для освещения, но холодильник может быть отключен из-за низкой температуры снаружи...)"
 
 #: CalcConsommation.php:9
 msgid "First sober example"
-msgstr "Первый трезвый пример"
+msgstr "Первый здравый пример"
 
 #: CalcConsommation.php:10
 msgid "Second example"
@@ -50,19 +50,19 @@ msgstr "Мощность (Вт)"
 
 #: CalcConsommation.php:17
 msgid "Turn on<br />simultaneously"
-msgstr ""
+msgstr "Включить<br />одновременно"
 
 #: CalcConsommation.php:18
 msgid "Number"
-msgstr "Число"
+msgstr "Количество"
 
 #: CalcConsommation.php:19
 msgid "Daily use time"
-msgstr "Ежедневное время использования"
+msgstr "Суточное использование"
 
 #: CalcConsommation.php:20
 msgid "Automatic consumption<br />calculation"
-msgstr "Автоматическое потребление<br />расчет"
+msgstr "Автоматический расчет<br />потребления"
 
 #: CalcConsommation.php:21
 msgid "Daily<br />consumption"
@@ -70,7 +70,7 @@ msgstr "Суточное<br />потребление"
 
 #: CalcConsommation.php:27 CalcPvAutonome.php:1155
 msgid "Your daily electrical needs"
-msgstr "Ваши ежедневные электрические потребности"
+msgstr "Ваша суточная потребность в электроенергии"
 
 #: CalcConsommation.php:28 CalcPvAutonome.php:1160
 msgid "Your need in maximum electrical power"
@@ -78,11 +78,11 @@ msgstr "Ваша потребность в максимальной электр
 
 #: CalcConsommation.php:28
 msgid "Total addition of power required by devices that are likely to be plugged and on at the same time OR consumption of the most power demanding appliance in case it is not plugged simultaneously with the rest"
-msgstr "Полное добавление силы необходимо приборами которые правоподобны быть заткнутым и дальше в тоже время или потреблением самого прибора силы требовательного в случае если он не заткнут одновременно с остальными"
+msgstr "Общая сумма мощности, потребляемой устройствами, которые могут быть включены одновременно ИЛИ потребление устройства, которое требует больше всего мощности, в случае, если оно включено не одновременно с остальными"
 
 #: CalcConsommation.php:29
 msgid "Click here to introduce those values to calculate <br/> the dimension of your autonomous solar installation"
-msgstr "Нажмите здесь, чтобы ввести эти значения для расчета <br/> Размер вашей автономной солнечной установки"
+msgstr "Нажмите здесь, чтобы ввести эти значения для расчета <br/> размера вашей автономной солнечной установки"
 
 #: CalcConsommation.php:31
 msgid "Add an empty line"
@@ -90,7 +90,7 @@ msgstr "Добавить пустую строку"
 
 #: CalcConsommation.php:33
 msgid "Add a line according to a template..."
-msgstr "Добавьте строку в соответствии с шаблоном..."
+msgstr "Добавить строку в соответствии с шаблоном..."
 
 #: CalcConsommation.php:39
 msgid "The models' values are approximate estimations, if you need more precise measurement consider using Wattmeter to determine the exact consumption of each of yours devices"
@@ -106,15 +106,15 @@ msgstr "Отметьте все устройства, которые могут 
 
 #: CalcConsommation.php:97
 msgid "Ticked: your daily consumption will be estimated automatically<br/>Unticked: you shall specifiy your daily consumption (useful in case your fridge is plugged 24/7 yet it goes on only if room temperature rises"
-msgstr "Галочка: ваше ежедневное потребление будет оценено автоматически<br/>Unticked: вы должны указать Ваше ежедневное потребление (полезно в случае, если ваш холодильник подключен 24/7, но он продолжается только при повышении комнатной температуры"
+msgstr "Отмечено: ваше ежедневное потребление будет оценено автоматически<br/>Не отмечено: вы должны указать Ваше ежедневное потребление (полезно в случае, если ваш холодильник подключен 24/7, но он включается только при повышении комнатной температуры)"
 
 #: CalcConsommation.php:103
 msgid "The calculation is: Power (W) * Time (in hours) * Number = Wh/j (Watt Hour Day)"
-msgstr "Расчет: Мощность (Вт) * время (в часах) * Количество = Вг/Дж (Ватт час дня)"
+msgstr "Расчет такой: Мощность (Вт) * Время (в часах) * Количество = Втч/Д (Ватт часов в день)"
 
 #: CalcConsommation.php:237
 msgid "Copy the internet address below keep it there or share it here..."
-msgstr "Скопируйте Интернет-адрес ниже держите его там или поделитесь им здесь..."
+msgstr "Скопируйте Интернет-адрес ниже, сохраните его или поделитесь им здесь..."
 
 #: CalcPvAutonome.php:8
 msgid "January"
@@ -166,15 +166,15 @@ msgstr "Декабрь"
 
 #: CalcPvAutonome.php:42
 msgid "Daily need is not correct because < 0"
-msgstr "Ежедневная потребность не корректна, потому что < 0"
+msgstr "Суточная потребность задана не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:43
 msgid "Maximum power requirement is not correct because < 0"
-msgstr "Максимальное требование к электической мощности не правильно потому что < 0"
+msgstr "Максимальное требование к мощности задано не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:45
 msgid "Panel's custom power is not correct because < 0"
-msgstr "Пользовательские панели не правильно, потому что < 0"
+msgstr "Пользовательская мощность панели задана не верно, потому что < 0"
 
 #: CalcPvAutonome.php:46
 msgid "Panel's custom open circuit voltage (Vdoc) is not correct because < 0"
@@ -186,39 +186,39 @@ msgstr "Пользовательский ток короткого замыка�
 
 #: CalcPvAutonome.php:50
 msgid "Custom battery voltage is not correct because < 0"
-msgstr "Пользовательское напряжение батареи не является правильным, потому что < 0"
+msgstr "Пользовательское напряжение батареи задано не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:51
 msgid "Custom battery capacity is not correct because < 0"
-msgstr "Нестандартная Емкость батареи не является правильным, потому что < 0"
+msgstr "Пользовательская емкость аккумулятора неверна, потому что < 0"
 
 #: CalcPvAutonome.php:59
 msgid "Custom charge controller voltage is incorrect because < 0"
-msgstr "Пользовательское напряжение контроллера заряда неверно, потому что < 0"
+msgstr "Пользовательское напряжение контроллера заряда не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:60
 msgid "Custom charge controller power is not correct because < 0"
-msgstr "Пользовательский контроллер заряда питание не является правильным, потому что < 0"
+msgstr "Пользовательская мощность контроллера заряда не корректна, потому что < 0"
 
 #: CalcPvAutonome.php:61
 msgid "Custom charge controller short-circuit current is incorrect because < 0"
-msgstr "Пользовательский контроллер заряда ток короткого замыкания является неправильным, потому что < 0"
+msgstr "Пользовательский ток короткого замыкания контроллера заряда задан не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:63
 msgid "The autonomous days amount is not correct because < 0"
-msgstr "Количество автономных дней не является правильным, потому что < 0"
+msgstr "Количество дней автономности не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:64
 msgid "Electrical yield of batteries is not correct because < 0"
-msgstr "Электрический выход батарей не правильно потому что < 0"
+msgstr "Выработка электроенергии батареями задана не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:65
 msgid "Installation electrical efficiency is not correct because < 0"
-msgstr "Эффективность установки электрическая не правильна потому что < 0"
+msgstr "Электрическая производительность установки не корректна, потому что < 0"
 
 #: CalcPvAutonome.php:66
 msgid "Discharge level is not correct because < 0"
-msgstr "Уровень разрядки не правильно потому что < 0"
+msgstr "Уровень разрядки задан не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:67
 msgid "The safety margin Icc of the charge controller is not correct because < 0"
@@ -226,27 +226,27 @@ msgstr "Запас прочности Icc контроллера заряда н
 
 #: CalcPvAutonome.php:68
 msgid "Panels and charge controller in-between distance is not correct because < 0"
-msgstr "Панели и контроллер заряда между расстоянием не является правильным, потому что < 0"
+msgstr "Расстояние между панелями и контроллером заряда задано не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:69
 msgid "Batteries and charge controller in-between distance is not correct because < 0"
-msgstr ""
+msgstr "Расстояние между батареями и контроллером заряда задано не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:70
 msgid "Conductor resistivity is not correct because < 0"
-msgstr ""
+msgstr "Сопротивление проводника задано не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:71
 msgid "Tolerable voltage drop is not correct because < 0"
-msgstr ""
+msgstr "Допустимое падение напряжения задано не корректно, потому что <0"
 
 #: CalcPvAutonome.php:80
 msgid "Panels orientation is not correct. "
-msgstr ""
+msgstr "Ориентация панелей задана не корректно. "
 
 #: CalcPvAutonome.php:83
 msgid "Panels inclination is not correct, it must be between 0 (horizontal) and 90 (vertical)"
-msgstr ""
+msgstr "Наклон панели задан не корректно, он должен быть от 0 (горизонтально) до 90 (вертикально)"
 
 #: CalcPvAutonome.php:86
 msgid "You must enter latitude and longitude to deduce solar irradiation with a click on the map of the world."
@@ -254,7 +254,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:100
 msgid "Unable to download solar irradiation data from <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>, switch to mode manual or use <a href=\"http://calcpvautonome.zici.fr/v2.2/\"> the previous version </a> of CalcPvAutonome."
-msgstr ""
+msgstr "Не удается загрузить данные о солнечном облучении с <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>, переключитесь в ручной режим или используйте <a href=\"http://calcpvautonome.zici.fr/v2.2/\"> предыдущую версию </a> CalcPvAutonome."
 
 #: CalcPvAutonome.php:111
 msgid "Incorrect solar irradiation data. The position shown on the map may not be covered by <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>."
@@ -262,7 +262,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:117
 msgid "Average daily radiation is not correct because < 0"
-msgstr ""
+msgstr "Среднесуточное облучение задано не корректно, потому что < 0"
 
 #: CalcPvAutonome.php:121
 msgid "Errors in the form prevent you from continuing, please correct :"
@@ -270,23 +270,23 @@ msgstr ""
 
 #: CalcPvAutonome.php:128
 msgid "Result of the dimension calculation"
-msgstr ""
+msgstr "Результат вычисления размера"
 
 #: CalcPvAutonome.php:129
 msgid "<b>Warning</b>: Results are approximate, it is recommended to doublecheck with sales representative and validate your installation before buying materials."
-msgstr ""
+msgstr "<b>Предупреждение</b>: Результаты являются приблизительными, рекомендуется дважды перепроверить вместе с торговым представителем и подтвердить ваши установки перед покупкой материалов."
 
 #: CalcPvAutonome.php:133 CalcPvAutonome.php:991
 msgid "Photovoltaic panel"
-msgstr ""
+msgstr "Фотоэлектрическая панель"
 
 #: CalcPvAutonome.php:153
 msgid "Average sunlight"
-msgstr ""
+msgstr "Средний солнечный свет"
 
 #: CalcPvAutonome.php:153
 msgid "kWh/m&sup2;/d"
-msgstr ""
+msgstr "кВтч/м&sup2;/д"
 
 #: CalcPvAutonome.php:180
 msgid "Here we are looking for the power (peak, expressed in W) from solar panels to be mounted to fulfill your needs according to your geographical location. The formula is as follow : "
@@ -323,7 +323,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:231 CalcPvAutonome.php:371
 msgid "In your case, result is"
-msgstr "В вашем случае, результат"
+msgstr "В вашем случае, результат получается"
 
 #: CalcPvAutonome.php:235 CalcPvAutonome.php:374
 msgid "Hide the process"
@@ -345,7 +345,7 @@ msgstr ""
 #: CalcPvAutonome.php:332
 #, php-format
 msgid "One possibility could be to have <b>%d panel(s)</b> %s of <b>%dW</b> each"
-msgstr ""
+msgstr "Одна из возможностей может заключаться в том, чтобы иметь <b>%d панели (-ей)</b> %s по <b>%dВт</b> каждая"
 
 #: CalcPvAutonome.php:332 CalcPvAutonome.php:336
 #, php-format
@@ -369,11 +369,11 @@ msgstr ""
 
 #: CalcPvAutonome.php:342 CalcPvAutonome.php:1000
 msgid "Batterie"
-msgstr ""
+msgstr "Батарея"
 
 #: CalcPvAutonome.php:344
 msgid "We are looking here for the nominal capacity expressed in ampere per hour (Ah, given in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>)"
-msgstr ""
+msgstr "Здесь мы ищем номинальную емкость, выраженную в ампер/часах (Aч, предоставлено на <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\"> C10</a>)"
 
 #: CalcPvAutonome.php:363
 msgid "Cap = (Dn x Aut) / (DD x U)"
@@ -381,11 +381,11 @@ msgstr ""
 
 #: CalcPvAutonome.php:365
 msgid "Cap (Ah) : Nominal capacity of batteries (in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>))"
-msgstr ""
+msgstr "Емк (Aч) : Номинальная емкость батарей (в <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>))"
 
 #: CalcPvAutonome.php:367
 msgid "Aut: Autonomous days amount (no sun)"
-msgstr ""
+msgstr "Авт: Количество дней автономности (без солнца)"
 
 #: CalcPvAutonome.php:368
 msgid "DD (%)"
@@ -394,11 +394,11 @@ msgstr ""
 #: CalcPvAutonome.php:368
 #, php-format
 msgid "With lead batteries, the critical threshold of 50% of discharge mustn't be reached, 20% being ideal"
-msgstr "С батареями руководства, критический порог 50% из разрядки необходимо достигнуть, 20% был идеально"
+msgstr "Для свинцовых батарей критический порог разрядки в 50% не должен быть достигнут, 20% было бы идеально"
 
 #: CalcPvAutonome.php:368
 msgid "Maximum discharge rate"
-msgstr "Максимальная скорость разряда"
+msgstr "Максимальный уровень разрядки"
 
 #: CalcPvAutonome.php:369
 msgid "U (V)"
@@ -410,7 +410,7 @@ msgstr "В автоматическом режиме, напряжение ба�
 
 #: CalcPvAutonome.php:369 CalcPvAutonome.php:1388
 msgid "Final battery plant voltage"
-msgstr ""
+msgstr "Итоговое напряжение батарейной установки"
 
 #: CalcPvAutonome.php:375
 msgid "Cap"
@@ -419,7 +419,7 @@ msgstr ""
 #: CalcPvAutonome.php:377
 #, php-format
 msgid "Batteries are used to store electric energy produced by the panels. You will need a battery plant of <b>%d Ah at %d V</b>."
-msgstr ""
+msgstr "Батареи используются для хранения электроенергии, произведенной панелями. Вам понадобится аккумуляторная установка на <b>%d Ah при %d V</b>."
 
 #: CalcPvAutonome.php:378
 msgid "See, understand the procedure, the calculation"
@@ -428,7 +428,7 @@ msgstr "Видеть, понимать процедуры, расчет"
 #: CalcPvAutonome.php:385
 #, php-format
 msgid "The discharge current of the battery plant must not exceed %d"
-msgstr ""
+msgstr "Ток разряда аккумуляторной установки не должен превышать %d"
 
 #: CalcPvAutonome.php:385 CalcPvAutonome.php:397
 #, php-format
@@ -458,11 +458,11 @@ msgstr ""
 #: CalcPvAutonome.php:399
 #, php-format
 msgid "If your charge controller allows it you can limit it or increase your battery plant to"
-msgstr "Если ваш регулятор обязанности позволяет ему, то вы можете ограничивать его или увеличивать ваш завод батареи к"
+msgstr "Если ваш регулятор напряжения позволяет это, вы можете ограничить или увеличить свою батарею до"
 
 #: CalcPvAutonome.php:401
 msgid "We will state to increase the battery plant"
-msgstr "Мы заявим увеличить завод батареи"
+msgstr "Мы укажем на увеличение батареи"
 
 #: CalcPvAutonome.php:494
 #, php-format
@@ -505,7 +505,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:502
 msgid "Battery capacity"
-msgstr ""
+msgstr "Емкость батареи"
 
 #: CalcPvAutonome.php:502
 msgid "for a capacity of"
@@ -538,7 +538,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:573
 msgid "We recommend to switch charge controller and/or panels to automatic mode"
-msgstr ""
+msgstr "Мы советуем переключить контроллер заряда и/или панели в автоматический режим"
 
 #: CalcPvAutonome.php:578
 #, php-format
@@ -565,7 +565,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597
 msgid "With similar characteristics"
-msgstr ""
+msgstr "С аналогичными характеристиками"
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597 CalcPvAutonome.php:1481
 msgid "Maximum power panel"
@@ -600,7 +600,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:600
 msgid "panel"
-msgstr ""
+msgstr "панель"
 
 #: CalcPvAutonome.php:602 CalcPvAutonome.php:617
 #, php-format
@@ -625,7 +625,7 @@ msgstr ""
 #: CalcPvAutonome.php:615
 #, php-format
 msgid "panel(s)"
-msgstr ""
+msgstr "панель(ли)"
 
 #: CalcPvAutonome.php:616
 #, php-format
@@ -667,7 +667,7 @@ msgstr "Скрыть процесс"
 
 #: CalcPvAutonome.php:626
 msgid "See, understand the process"
-msgstr "Смотрите, разберитесь в процессе"
+msgstr "Видеть и понимать процесс"
 
 #: CalcPvAutonome.php:629
 msgid "Cable diagram"
@@ -719,15 +719,15 @@ msgstr "Контроллер батареи"
 
 #: CalcPvAutonome.php:683
 msgid "It is recommended to have a bettery controleur in order to check battery plant charge state"
-msgstr "Порекомендованы, что имеет controleur батареи для того чтобы проверить положение обязанности завода батареи"
+msgstr "Рекомендуется ставить контроллер батареи, чтобы следить за уровнем заряда батарейной установки"
 
 #: CalcPvAutonome.php:690
 msgid "However, considering the small size of your system, a voltmeter would be more appropriate. With a <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\">correspondence table</a> you can approximately determine the charge percentage"
-msgstr ""
+msgstr "Однако учитывая небольшой размер вашей системы, вольтметр бы более подходящим. С помощью <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\">таблицы соответствия</a> можно приблизительно определить процент заряда"
 
 #: CalcPvAutonome.php:693
 msgid "The wiring"
-msgstr ""
+msgstr "Электропроводка"
 
 #: CalcPvAutonome.php:696
 msgid "Wire section choice ( <a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\">calculate</a>) is important in order to avoid electricity lossess"
@@ -746,7 +746,7 @@ msgstr "смотрите, понять процедуру"
 #: CalcPvAutonome.php:715 CalcPvAutonome.php:763
 #, php-format
 msgid "The formula to calculate the wire section in order to avoid loss is :"
-msgstr "Формула для того чтобы высчитать раздел провода во избежание потеря :"
+msgstr "Формула для расчета правильного сечения провода во избежание потерь :"
 
 #: CalcPvAutonome.php:716 CalcPvAutonome.php:764
 #, php-format
@@ -756,7 +756,7 @@ msgstr ""
 #: CalcPvAutonome.php:718 CalcPvAutonome.php:766
 #, php-format
 msgid "S (mm&sup2;) : Wire section"
-msgstr ""
+msgstr "S (мм&sup2;) : сечение провода"
 
 #: CalcPvAutonome.php:719 CalcPvAutonome.php:767
 #, php-format
@@ -766,7 +766,7 @@ msgstr ""
 #: CalcPvAutonome.php:720 CalcPvAutonome.php:768
 #, php-format
 msgid "L (m) : back and forth wire length"
-msgstr ""
+msgstr "L (м) : длинна провода туда и обратно"
 
 #: CalcPvAutonome.php:721
 #, php-format
@@ -800,7 +800,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:742 CalcPvAutonome.php:787
 msgid "There is no realistic wire section determinable. You should probably decrease distance between devices."
-msgstr "Никакой реалистический раздел провода determinable. Вероятно, следует уменьшить расстояние между устройствами."
+msgstr "Подходящее сечение провода не определяется. Вероятно, следует уменьшить расстояние между устройствами."
 
 #: CalcPvAutonome.php:745 CalcPvAutonome.php:790
 #, php-format
@@ -872,7 +872,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:985
 msgid "Budget"
-msgstr ""
+msgstr "Бюджет"
 
 #: CalcPvAutonome.php:986
 msgid "This is an approximate estimation for new equipment, it can't be considered as a quote."
@@ -882,13 +882,13 @@ msgstr ""
 #: CalcPvAutonome.php:1026
 #, php-format
 msgid "between"
-msgstr ""
+msgstr "между"
 
 #: CalcPvAutonome.php:991 CalcPvAutonome.php:1000 CalcPvAutonome.php:1012
 #: CalcPvAutonome.php:1026
 #, php-format
 msgid "and"
-msgstr ""
+msgstr "и"
 
 #: CalcPvAutonome.php:992
 #, php-format
@@ -901,7 +901,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:1007 CalcPvAutonome.php:1029 CalcPvAutonome.php:1030
 msgid "approximately"
-msgstr ""
+msgstr "примерно"
 
 #: CalcPvAutonome.php:1013
 #, php-format
@@ -935,7 +935,7 @@ msgstr "Если это программное обеспечение было �
 #: CalcPvAutonome.php:1039
 #, php-format
 msgid "<a href=\"http://david.mercereau.info/contact/\"  target=\"_blank\">Say thank you !</a> (it's always a pleasure)"
-msgstr ""
+msgstr "<a href=\"http://david.mercereau.info/contact/\" target=\"_blank\"> Сказать спасибо !</a> (это всегда приятно)"
 
 #: CalcPvAutonome.php:1040
 #, php-format
@@ -1080,11 +1080,11 @@ msgstr "Шаблон панели"
 
 #: CalcPvAutonome.php:1330 CalcPvAutonome.php:1403 CalcPvAutonome.php:1458
 msgid "Automatic"
-msgstr "Автомат"
+msgstr "Автоматически"
 
 #: CalcPvAutonome.php:1331 CalcPvAutonome.php:1404 CalcPvAutonome.php:1459
 msgid "Customize"
-msgstr "Настраивать"
+msgstr "Настроить"
 
 #: CalcPvAutonome.php:1343
 msgid "Preferred panel technology"
@@ -1092,7 +1092,7 @@ msgstr "Предпочитаемая технология панели"
 
 #: CalcPvAutonome.php:1351
 msgid "You can detail the technical specifications of your panel"
-msgstr "Вы можете подробно технические характеристики панели"
+msgstr "Вы можете уточнить технические характеристики вашей панели"
 
 #: CalcPvAutonome.php:1354 Modeles.php:9
 msgid "Max power (Pmax)"
@@ -1120,11 +1120,11 @@ msgstr "Калибровка батареи"
 
 #: CalcPvAutonome.php:1382
 msgid "This software is preset for lead batteries"
-msgstr "Это программное обеспечение запрограммировано для свинцовых аккумуляторов"
+msgstr "Это программное обеспечение рассчитано для свинцовых аккумуляторов"
 
 #: CalcPvAutonome.php:1384
 msgid "Autonomous days amount"
-msgstr "Количество автономных дней"
+msgstr "Количество дней автономности"
 
 #: CalcPvAutonome.php:1397
 msgid "Discharge level limit"
@@ -1168,7 +1168,7 @@ msgstr "Максимальний ток разряда"
 
 #: CalcPvAutonome.php:1456
 msgid "Charge controller model"
-msgstr "Модель регулятора обязанности"
+msgstr "Модель контроллера заряда"
 
 #: CalcPvAutonome.php:1475
 msgid "You can detail the technical characteristics of your charge controller"
@@ -1184,7 +1184,7 @@ msgstr "Это значение может быть изменено в \"зав
 
 #: CalcPvAutonome.php:1485
 msgid "Open circuit max PV voltage"
-msgstr "Обрыв цепи максимальное напряжение"
+msgstr "Макс PV напряжение тока открытой цепи"
 
 #: CalcPvAutonome.php:1489
 msgid "PV current max. (power / voltage)"
@@ -1192,7 +1192,7 @@ msgstr "ПВ ток Макс. (питающее напряжение)"
 
 #: CalcPvAutonome.php:1495
 msgid "Panels Icc short-circuit current security margin"
-msgstr "Панели короткого замыкания Мтп текущая маржа безопасности"
+msgstr "Предел безопасности тока короткого замыкания Icc панелей"
 
 #: CalcPvAutonome.php:1502
 msgid "Considering solar flexible copper wiring"
@@ -1212,11 +1212,11 @@ msgstr ""
 
 #: CalcPvAutonome.php:1516
 msgid "Tolerable voltage drop"
-msgstr "Допустимого падения напряжения"
+msgstr "Допустимое падение напряжения"
 
 #: CalcPvAutonome.php:1520
 msgid "Ratio in order to prevent wire heating"
-msgstr "Коэффициент предотвратить топление провода"
+msgstr "Коэффициент для предотвращения нагрева провода"
 
 #: CalcPvAutonome.php:1526
 msgid "Reset"
@@ -1232,15 +1232,15 @@ msgstr "Поддержка CaclPvAutonome"
 
 #: CalcPvAutonome.php:1542
 msgid "This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>."
-msgstr ""
+msgstr "Это программное обеспечение является <b>открытым</b>, <b>бесплатным</b>, совместным и <b>независимым</b> финансово. <b>Чтобы оно оставалось таким, нам нужна ваша поддержка</b>."
 
 #: CalcPvAutonome.php:1543
 msgid "To help us, you can also <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribute to its improvement</a>, its <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">translation</a>."
-msgstr ""
+msgstr "Чтобы помочь нам, вы можете также <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">способствовать ее улучшению</a>, ее <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">переводу</a>."
 
 #: CalcPvAutonome.php:1544
 msgid "I want to make a secure one-time donation with Paypal"
-msgstr "Я хочу сделать безопасное одноразовое пожертвование с помощью Paypal"
+msgstr "Я хочу сделать безопасное единоразовое пожертвование с помощью PayPal"
 
 #: CalcPvAutonome.php:1545
 msgid "I want to make a recurring, free and secure donation with Liberapay"
@@ -1256,7 +1256,7 @@ msgstr "Я уже поддерживаю CalcPvAutonomous"
 
 #: index.php:87 index.php:142
 msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
-msgstr "Расчет / Размер фотоэлектрического автономного (автономного) набора"
+msgstr "Расчет размера фотоэлектрического автономного набора"
 
 #: index.php:133
 msgid "Calculate daily electric needs"
@@ -1276,11 +1276,11 @@ msgstr "за этот <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome
 
 #: index.php:167
 msgid "By"
-msgstr "По"
+msgstr "Автор"
 
 #: index.php:167
 msgid "Git repository"
-msgstr "Репозиторий git"
+msgstr "Git pепозиторий"
 
 #: index.php:168
 msgid "version"
@@ -1308,19 +1308,19 @@ msgstr "Напряжение тока завода батареи"
 
 #: Modeles.php:48
 msgid "Max panel power"
-msgstr "Максимальная сила панели"
+msgstr "Максимальная мощность панели"
 
 #: Modeles.php:49
 msgid "Max panel voltage"
-msgstr "Максимальное напряжение тока панели"
+msgstr "Максимальное напряжение панели"
 
 #: Modeles.php:50
 msgid "Max panel current"
-msgstr "Максимальное течение панели"
+msgstr "Максимальный ток панели"
 
 #: Modeles.php:67
 msgid "Battery park voltage"
-msgstr "Напряжение тока парка батареи"
+msgstr "Напряжение аккумуляторного парка"
 
 #: Modeles.php:68
 msgid "Max power (at 25 °C)"

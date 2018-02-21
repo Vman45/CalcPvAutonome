@@ -49,6 +49,9 @@ Le rendre accessible depuis votre serveur http et personnaliser les valeur du fi
 
 ### Changelog
 
+ - 4.2
+     - Modification de la détection de langue pour plus compatibilité avec tout les codes langues
+     - Intégration d'un script de téléchargement/compilation automatique des traductions depuis Crowdin
  - 4.1.2
      - #4 Prise en compte des boîtiers de jonctions
      - Correcion bug 

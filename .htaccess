@@ -7,9 +7,26 @@ RewriteEngine on
 RewriteRule ^Autonome.php$ index.php?langue=fr&%{QUERY_STRING} [L]
 RewriteRule ^StandAlone.php$ index.php?langue=en&%{QUERY_STRING} [L]
 
+# Support de tout les codes langues :
+# https://support.crowdin.com/api/language-codes/
+# Spécial Montenegrin : sr-Cyrl-ME
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^sr-Cyrl-ME(.*) index.php?langue=sr-Cyrl-ME&%{QUERY_STRING}
+# xx-YY
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{2}-[A-Z]{2})(.*) index.php?langue=$1&%{QUERY_STRING}
+# xxx-YY
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{3}-[A-Z]{2})(.*) index.php?langue=$1&%{QUERY_STRING}
+# xxx
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{3})(.*) index.php?langue=$1&%{QUERY_STRING}
+# xx
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-z]{2})(.*) index.php?langue=$1&%{QUERY_STRING}
-
-
 

@@ -1,112 +1,47 @@
 <?php
-$CalcPvAutonomeVersion='4.1.2';
+$CalcPvAutonomeVersion='4.2';
 include_once('./lib/Fonction.php');
 $config_ini = parse_ini_file('./config.ini', true); 
 $lang_ini = parse_ini_file('./lang/lang.ini',true);
 
-// Langues disponibles : 
-foreach($lang_ini as $lang) {
-	$localeDispo[]=$lang['code'];
-}
-/*$
-$localeDispo=array(	'<b>Contribute to translation</b> (in-context)' 		=> 'aa',
-					'Afrikaans (?%)' 										=> 'af', 
-					'Español (?%)' 											=> 'es',
-					'English (100%)' 										=> 'en', 
-					'Français (100%)' 										=> 'fr',
-					'Indonesia (?%)' 										=> 'id',
-					'Italiano'		 										=> 'it',
-					'Nederlands <b>'._('partial translation').' (10%)</b>' 	=> 'nl',
-					'Polski <b>'._('partial translation').' (10%)</b>' 		=> 'pl',
-					'Pусский (10%)' 										=> 'ru',
-					'Türk (73%)' 											=> 'tr',
-					'український <b>'._('partial translation').' (8%)</b>' 	=> 'uk',
-					);
-*/
+// Dans les URL on utilisera les codes langues https://support.crowdin.com/api/language-codes/
+// On a une fonction pour retrouve le local à partir (et vis et versa)
+
 // Fonction de langue : 
-function langue2locale($langue) {
-	switch ($langue) {
-		// Pseudo langue pour la traduction in-context de crowdin
-		case 'aa':
-			return 'aa_ER.utf8';
-			break;
-		// Vrai langue
-		case 'fr':
-			return 'fr_FR.utf8';
-			break;
-		case 'es':
-			return 'es_ES.utf8';
-			break;
-		case 'es-ES':
-			return 'es_ES.utf8';
-			break;
-		case 'pt':
-			return 'pt_PT.utf8';
-			break;
-		case 'eo':
-			return 'eo.utf8';
-			break;
-		case 'nl':
-			return 'nl_NL.utf8';
-			break;
-		case 'tr':
-			return 'tr_TR.utf8';
-			break;
-		case 'uk':
-			return 'uk_UA.utf8';
-			break;
-		case 'id':
-			return 'id_ID.utf8';
-			break;
-		case 'af':
-			return 'af_ZA.utf8';
-			break;
-		case 'ru':
-			return 'ru_RU.utf8';
-			break;
-		case 'it':
-			return 'it_IT.utf8';
-			break;
-		default:
-		   return 'en_US.utf8';
-	}
-}
+include('./lang/lang-dispo.php');
 
 // Détection et redirection (langue toujours)
-if (isset($_GET['langue']) && in_array(substr($_GET['langue'], 0, 2), $localeDispo)) {
-	$locale = langue2locale($_GET['langue']);
-	if ($_COOKIE['langue'] != $_GET['langue']) {
-		setcookie("langue",$_GET['langue'],strtotime( '+1 year' ));
+if (isset($_GET['langue'])) {
+	$locale = lang2locale($_GET['langue']);
+	$localeshort=locale2lang($locale);
+	if ($_COOKIE['langue'] != $localeshort) {
+		setcookie("langue",$localeshort,strtotime( '+1 year' ));
 	}
-} elseif (isset($_GET['langue']) && !in_array(substr($_GET['langue'], 0, 2), $localeDispo)) {
-	$locale = langue2locale('en'); // Erreur ou hack : 
-	header('Location: '.replaceLang2url($locale));
 } elseif (isset($_COOKIE['langue'])) {
-	$locale = langue2locale($_COOKIE['langue']);
+	$locale = lang2locale($_COOKIE['langue']);
+	$localeshort=locale2lang($_COOKIE['langue']);
 	header('Location: '.addLang2url($locale));
 } else {
-	$locale = langue2locale(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+	$locale = lang2locale($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	$localeshort=locale2lang($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 	header('Location: '.addLang2url($locale));
 	exit();
 }
 
-//$locale = langue2locale('es');
-$localeshort=substr($locale, 0, 2);
-
 // Définition de la langue :
-$results=putenv("LC_ALL=$locale");
+$results=putenv("LC_ALL=$locale.utf8");
 if (!$results) {
     exit ('putenv failed');
 }
-$results=putenv("LC_LANG=$locale");
+$results=putenv("LC_LANG=$locale.utf8");
 if (!$results) {
     exit ('putenv failed');
 }
-$results=putenv("LC_LANGUAGE=$locale");
+$results=putenv("LC_LANGUAGE=$locale.utf8");
 if (!$results) {
     exit ('putenv failed');
 }
-$results=setlocale(LC_ALL, $locale);
+$results=setlocale(LC_ALL, "$locale.utf8");
 if (!$results) {
     exit ('setlocale failed: locale function is not available on this platform, or the given local does not exist in this environment');
 }
@@ -152,7 +87,7 @@ $country = @geoip_country_code_by_name(get_ip());
 			ksort($lang_ini);
 			foreach($lang_ini as $lang) {
 				$flag='';
-				if (substr($locale, 0, 2) == $lang['code']) {
+				if ($localeshort == $lang['code']) {
 					$flag=' drapeauActif';
 				}
 				echo '<a id="href'.$lang['code'].'" href="'.replaceLang2url($lang['code']).'"><img class="drapeau'.$flag.'" src="./lib/'.$lang['code'].'.png" alt="'.$lang['code'].'" width="23" height="15" /></a>';
@@ -161,10 +96,10 @@ $country = @geoip_country_code_by_name(get_ip());
 						$("#languesLegende").show();';
 						if ($lang['code'] == 'aa') {
 							echo '$("#languesLegende").html("<b>Contribute to translation</b> (in-context)");';
-						} else if ($lang['translated_progress'] < 60) {
-							echo '$("#languesLegende").html("<b>'.strtoupper($lang['code']).'</b> '._('partial translation').' ('.$lang['translated_progress'].'%)");';
+						} else if ($lang['translated_progress'] < 90) {
+							echo '$("#languesLegende").html("<b>'.$lang['code'].'</b> '._('partial translation').' ('.$lang['translated_progress'].'%)");';
 						} else {
-							echo '$("#languesLegende").html("<b>'.strtoupper($lang['code']).'</b> ('.$lang['translated_progress'].'%)");';
+							echo '$("#languesLegende").html("<b>'.$lang['code'].'</b> ('.$lang['translated_progress'].'%)");';
 						}
 				echo '})
 					.mouseout(function() {
