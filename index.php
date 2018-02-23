@@ -19,12 +19,12 @@ if (isset($_GET['langue'])) {
 	}
 } elseif (isset($_COOKIE['langue'])) {
 	$locale = lang2locale($_COOKIE['langue']);
-	$localeshort=locale2lang($_COOKIE['langue']);
-	header('Location: '.addLang2url($locale));
+	$lang=locale2lang($locale);
+	header('Location: '.addLang2url($lang));
 } else {
 	$locale = lang2locale($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	$localeshort=locale2lang($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	header('Location: '.addLang2url($locale));
+	$lang=locale2lang($locale);
+	header('Location: '.addLang2url($lang));
 	exit();
 }
 

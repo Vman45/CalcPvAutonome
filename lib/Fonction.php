@@ -447,27 +447,23 @@ function pgvisParseData($FichierDataCsv) {
 
 
 // Ajoute la langue à une URL qui n'en a pas
-function addLang2url($locale) {
+function addLang2url($lang) {
 	global $_SERVER;
-	$localeExplode=explode('_', $locale);
-	$localeshort=$localeExplode[0];
 	$URIexplode=explode('?', $_SERVER['REQUEST_URI']);
 	if ($URIexplode[1] != '') {
-		return $URIexplode[0].$localeshort.'?'.$URIexplode[1];
+		return $URIexplode[0].$lang.'?'.$URIexplode[1];
 	} else {
-		return $URIexplode[0].$localeshort;
+		return $URIexplode[0].$lang;
 	}
 }
-function replaceLang2url($locale) {
+function replaceLang2url($lang) {
 	global $_SERVER;
-	$localeExplode=explode('_', $locale);
-	$localeshort=$localeExplode[0];
 	$URIexplode=explode('?', $_SERVER['REQUEST_URI']);
 	$debutUrl=substr($URIexplode[0], 0, -langCountChar($URIexplode[0]));
 	if ($URIexplode[1] != '') {
-		return $debutUrl.$localeshort.'?'.$URIexplode[1];
+		return $debutUrl.$lang.'?'.$URIexplode[1];
 	} else {
-		return $debutUrl.$localeshort;
+		return $debutUrl.$lang;
 	}
 }
 function langCountChar($url) {

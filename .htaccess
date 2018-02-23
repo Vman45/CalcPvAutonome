@@ -6,6 +6,7 @@ RewriteEngine on
 
 RewriteRule ^Autonome.php$ index.php?langue=fr&%{QUERY_STRING} [L]
 RewriteRule ^StandAlone.php$ index.php?langue=en&%{QUERY_STRING} [L]
+RewriteRule ^Translate-in-context.php$ index.php?langue=aa&%{QUERY_STRING} [L]
 
 # Support de tout les codes langues :
 # https://support.crowdin.com/api/language-codes/

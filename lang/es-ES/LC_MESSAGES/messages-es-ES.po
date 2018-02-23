@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-19 10:21-0500\n"
+"PO-Revision-Date: 2018-02-21 18:27-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -915,7 +915,7 @@ msgstr "Costo estimado %s&euro;/VA a rango de costo bajo y %s&euro;/VA a rango d
 
 #: CalcPvAutonome.php:1030 CalcPvAutonome.php:1501
 msgid "Wiring"
-msgstr "Alambrado"
+msgstr "Cableado"
 
 #: CalcPvAutonome.php:1034
 #, php-format
