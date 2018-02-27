@@ -11,6 +11,7 @@ $lang_ini = parse_ini_file('./lang/lang.ini',true);
 include('./lang/lang-dispo.php');
 
 // Détection et redirection (langue toujours)
+
 if (isset($_GET['langue'])) {
 	$locale = lang2locale($_GET['langue']);
 	$localeshort=locale2lang($locale);
@@ -22,7 +23,8 @@ if (isset($_GET['langue'])) {
 	$lang=locale2lang($locale);
 	header('Location: '.addLang2url($lang));
 } else {
-	$locale = lang2locale($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	$locale = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	$locale = lang2locale($locale[0]);
 	$lang=locale2lang($locale);
 	header('Location: '.addLang2url($lang));
 	exit();
