@@ -718,7 +718,7 @@ if (isset($_GET['submit'])) {
 		printf('		<li>'._('S (mm&sup2;) : Wire section').'</li>');
 		printf('		<li>'._('Rho (ohm) : Wire <a href="https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity" target="_blank">resistivity</a> (0,017ohm for copper)').'</li>');
 		printf('		<li>'._('L (m) : back and forth wire length').'</li>');
-		printf('		<li>'._('I (A) : L\’intensité (ici l\'intensité des panneaux x le nombre de parallèle(s))').'</li>');
+		printf('		<li>'._('I (A): Intensity (here panel intensity multiplied by the number of parallel)').'</li>');
 		printf('		<li>'._('VL (V) : admitted wire level voltage loss (%s%% of voltage)').'</li>', $_GET['cablagePtPourcent']);
 		printf('			<ul><li>'._('(panels voltage * number of series) * %d/100').'</li></ul>', $_GET['cablagePtPourcent']);
 		printf('	</ul>');

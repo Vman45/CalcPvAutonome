@@ -49,6 +49,8 @@ Le rendre accessible depuis votre serveur http et personnaliser les valeur du fi
 
 ### Changelog
 
+ - 4.2.1
+	 - Bug détection langue navigateur
  - 4.2
      - Modification de la détection de langue pour plus compatibilité avec tout les codes langues
      - Intégration d'un script de téléchargement/compilation automatique des traductions depuis Crowdin

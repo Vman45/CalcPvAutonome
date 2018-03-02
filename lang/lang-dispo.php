@@ -16,6 +16,8 @@ $langueEtLocalDispo=array(	'aa' 		=> 'aa_ER',
 							'ja'		=> 'ja_JP', 
 							'en'		=> 'en_US', 
 							'pl'		=> 'pl_PL', 
+							'zh-CN'		=> 'zh_CN', 
+							'ar'		=> 'ar_SA', 
 							);
 
 function lang2locale($langue) {
