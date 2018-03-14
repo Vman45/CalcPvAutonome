@@ -100,7 +100,7 @@ function ajoutUneLigne() {
 				'<p>',
 					'<input onChange="calcTableau();"  class="EquiTotal" step="0.01" type="number"  style="width: 80px;" value="0" min="0,01" max="99999" name="EquiTotalInput' + $('#equiIncrement').val() + '" id="EquiTotalInput' + $('#equiIncrement').val() + '" />',
 					'<span id="EquiTotal' + $('#equiIncrement').val() + '">0</span>', 
-					' Wh/j <a rel="tooltip" class="bulles" title="<?= _('The calculation is: Power (W) * Time (in hours) * Number = Wh/j (Watt Hour Day)') ?>">?</a>',
+					' <?= _('Wh/d') ?> <a rel="tooltip" class="bulles" title="<?= _('The calculation is: Power (W) * Time (in hours) * Number = Wh/d (Watt Hour Day)') ?>">?</a>',
 				'</p>', 
 			'</td>', 
 			'<td>', 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-21 18:27-0500\n"
+"PO-Revision-Date: 2018-03-09 03:09-0500\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1264,7 +1264,7 @@ msgstr "Calcular necesidades eléctricas diarias"
 
 #: index.php:135 index.php:144 index.php:166
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
-msgstr "<p>Vaya a la<a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">plataforma colaborativa de traducción</a>para ayudarnos a traducir este software libre.</p>"
+msgstr "<p>Vaya a la <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">plataforma colaborativa de traducción</a>para ayudarnos a traducir este software libre.</p>"
 
 #: index.php:152
 msgid "Thanks to"
