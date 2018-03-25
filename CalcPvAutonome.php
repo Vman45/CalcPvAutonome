@@ -1526,6 +1526,7 @@ if (isset($_GET['submit'])) {
 		<input id="Reset" type="button" value="<?= _('Reset') ?>" name="reset" />
 		<input id="donate" type="button" value="<?= _('Support, contribute') ?>" />
 		<input id="Submit" type="submit" value="<?= _('Start the calculation') ?>" name="submit" />
+		<a rel="tooltip" class="bulles"  title="<?= _('At a minimum you must : <br />* Indicate your daily electrical needs<br />* Indicate your need in maximum electrical power  <br />* Your position (click on the map)') ?>" id="SubmitBulles"><?= _('Why it\'s not possible to click on') ?> <?= _('Start the calculation') ?> ?</a>
 	</div>
 	<?php if (substr($locale, 0, 2) == 'fr') { ?>
 	<div class="form ModeDebug"><input type="checkbox" name="debug" <?php if (isset($_GET['debug'])) echo 'checked="checked"'; ?> />Activer le mode transparent/debug pour mieux comprendre le fonctionnement</div>
@@ -1640,12 +1641,13 @@ $( "#U" ).change(function () {
 
 // Bouton Submit activation / désactivation
 function sumbitEnable() {
-	console.log($( "#Ej" ).val());
 	if (($( "#lat" ).val() != '' && $( "#lon" ).val() != '' && $( "#Bj" ).val() > 0 && $( "#Pmax" ).val() > 0)
 	|| ($( "#Ej" ).val() != '' 	&& $( "#Bj" ).val() > 0 && $( "#Pmax" ).val() > 0)) {
 		$( "#Submit" ).prop('disabled', false);
+		$( "#SubmitBulles" ).hide();
 	} else {
 		$( "#Submit" ).prop('disabled', true);
+		$( "#SubmitBulles" ).show();
 	}
 }
 $( "#Bj" ).change(function() {
