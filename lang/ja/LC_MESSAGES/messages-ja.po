@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-02-20 17:10-0500\n"
+"PO-Revision-Date: 2018-10-25 09:39\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -38,7 +38,7 @@ msgstr "最初の冷静な例"
 
 #: CalcConsommation.php:10
 msgid "Second example"
-msgstr "二つ目の例"
+msgstr "例2"
 
 #: CalcConsommation.php:15
 msgid "Equipment"
@@ -58,7 +58,7 @@ msgstr "数"
 
 #: CalcConsommation.php:19
 msgid "Daily use time"
-msgstr "毎日の利用時間"
+msgstr "日々利用時間"
 
 #: CalcConsommation.php:20
 msgid "Automatic consumption<br />calculation"
@@ -118,51 +118,51 @@ msgstr ""
 
 #: CalcPvAutonome.php:8
 msgid "January"
-msgstr "一月"
+msgstr "1月"
 
 #: CalcPvAutonome.php:9
 msgid "February"
-msgstr "二月"
+msgstr "2月"
 
 #: CalcPvAutonome.php:10
 msgid "March"
-msgstr "三月"
+msgstr "3月"
 
 #: CalcPvAutonome.php:11
 msgid "April"
-msgstr "四月"
+msgstr "4月"
 
 #: CalcPvAutonome.php:12
 msgid "May"
-msgstr ""
+msgstr "5月"
 
 #: CalcPvAutonome.php:13
 msgid "June"
-msgstr ""
+msgstr "6月"
 
 #: CalcPvAutonome.php:14
 msgid "July"
-msgstr ""
+msgstr "7月"
 
 #: CalcPvAutonome.php:15
 msgid "August"
-msgstr "八月"
+msgstr "8月"
 
 #: CalcPvAutonome.php:16
 msgid "September"
-msgstr "九月"
+msgstr "9月"
 
 #: CalcPvAutonome.php:17
 msgid "October"
-msgstr ""
+msgstr "10月"
 
 #: CalcPvAutonome.php:18
 msgid "November"
-msgstr ""
+msgstr "11月"
 
 #: CalcPvAutonome.php:19
 msgid "December"
-msgstr "十二月"
+msgstr "12月"
 
 #: CalcPvAutonome.php:42
 msgid "Daily need is not correct because < 0"
@@ -369,7 +369,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:342 CalcPvAutonome.php:1000
 msgid "Batterie"
-msgstr ""
+msgstr "電池"
 
 #: CalcPvAutonome.php:344
 msgid "We are looking here for the nominal capacity expressed in ampere per hour (Ah, given in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>)"
@@ -600,7 +600,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:600
 msgid "panel"
-msgstr ""
+msgstr "パネル"
 
 #: CalcPvAutonome.php:602 CalcPvAutonome.php:617
 #, php-format
@@ -625,7 +625,7 @@ msgstr ""
 #: CalcPvAutonome.php:615
 #, php-format
 msgid "panel(s)"
-msgstr ""
+msgstr "パネル"
 
 #: CalcPvAutonome.php:616
 #, php-format
@@ -872,7 +872,7 @@ msgstr "この充電状態の日数の割合"
 
 #: CalcPvAutonome.php:985
 msgid "Budget"
-msgstr ""
+msgstr "予算"
 
 #: CalcPvAutonome.php:986
 msgid "This is an approximate estimation for new equipment, it can't be considered as a quote."
@@ -901,7 +901,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:1007 CalcPvAutonome.php:1029 CalcPvAutonome.php:1030
 msgid "approximately"
-msgstr ""
+msgstr "約"
 
 #: CalcPvAutonome.php:1013
 #, php-format
@@ -983,7 +983,7 @@ msgstr "太陽光発電の知識のあなたの学位"
 
 #: CalcPvAutonome.php:1138
 msgid "Beginner"
-msgstr ""
+msgstr "初心者"
 
 #: CalcPvAutonome.php:1139
 msgid "Enlightened"
@@ -991,7 +991,7 @@ msgstr ""
 
 #: CalcPvAutonome.php:1140
 msgid "Expert"
-msgstr ""
+msgstr "専門家"
 
 #: CalcPvAutonome.php:1150
 msgid "Your consumption"
@@ -1012,11 +1012,11 @@ msgstr ""
 
 #: CalcPvAutonome.php:1179
 msgid "Map"
-msgstr ""
+msgstr "地図"
 
 #: CalcPvAutonome.php:1180
 msgid "Manual"
-msgstr ""
+msgstr "手動"
 
 #: CalcPvAutonome.php:1185
 msgid "Click on the map to set your position and deduce solar ressource"
@@ -1028,11 +1028,11 @@ msgstr ""
 
 #: CalcPvAutonome.php:1247
 msgid "Latitude"
-msgstr ""
+msgstr "緯度"
 
 #: CalcPvAutonome.php:1249
 msgid "Longitude"
-msgstr ""
+msgstr "経度"
 
 #: CalcPvAutonome.php:1252
 msgid "Solar irradiation data is collected on <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>"
@@ -1080,11 +1080,11 @@ msgstr ""
 
 #: CalcPvAutonome.php:1330 CalcPvAutonome.php:1403 CalcPvAutonome.php:1458
 msgid "Automatic"
-msgstr ""
+msgstr "自動"
 
 #: CalcPvAutonome.php:1331 CalcPvAutonome.php:1404 CalcPvAutonome.php:1459
 msgid "Customize"
-msgstr ""
+msgstr "カスタマイズ"
 
 #: CalcPvAutonome.php:1343
 msgid "Preferred panel technology"

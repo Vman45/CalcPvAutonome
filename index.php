@@ -59,14 +59,17 @@ if (!$results) {
 }
 bindtextdomain("messages", "./lang");
 textdomain("messages");
-
 // Définition du pays (selon l'IP
 $country = @geoip_country_code_by_name(get_ip());
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php if ($localeshort == 'fa') { ?>
+	<html xmlns="http://www.w3.org/1999/xhtml"  dir="rtl"  xml:lang="<?= $localeshort ?>" lang="<?= $localeshort ?>
+<?php } else { ?>
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?= $localeshort ?>" lang="<?= $localeshort ?>
+<?php } ?>
 <head>
 	<title>[CalcPvAutonome] <?= _('Calculate/size photovoltaic stand-alone (autonomous) set') ?></title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -168,7 +171,15 @@ $country = @geoip_country_code_by_name(get_ip());
             <?=  _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>'); ?>
             <p class="footer_right"><?= _('By') ?> <a href="http://david.mercereau.info/">David Mercereau</a> (<a href="https://framagit.org/kepon/CalcPvAutonome"><?= _('Git repository') ?></a>)</p>
             <p class="footer_left">CalcPvAutonome <?= _('version') ?> <?= $CalcPvAutonomeVersion ?> <?= _('is an open software licensed <a href="https://en.wikipedia.org/wiki/Beerware">Beerware</a>') ?></p>
+
+
+
+	
+
         </div>
+
+
+
         <?php 
 		}
 		?>

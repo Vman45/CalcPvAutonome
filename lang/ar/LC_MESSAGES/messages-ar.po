@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-03-02 05:52-0500\n"
+"PO-Revision-Date: 2018-10-25 09:39\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Arabic\n"
 "Language: ar_SA\n"
@@ -26,11 +26,11 @@ msgstr "التحقق من ورقه مواصفات الجهاز أو تسميته
 
 #: CalcConsommation.php:5
 msgid "You may get a Wattmeter (~10&euro;) that will show you the exact consumption if plugged between power socket and the applience"
-msgstr ""
+msgstr "يمكنك الحصول على جهاز قيس الطاقة (‘واتميتر‘ ب10 &euro; تقريبا) و الذي يعطيك الاستهلاك الحقيقي عندما يتم وصله ما بين مقبس الكهرباء والجهاز"
 
 #: CalcConsommation.php:7
 msgid "To calculate the dimensions of an autonomous solar installation, consider that it is wintertime (longer lighting time needed, but the fridge might be unplugged due to low temperature outside...)"
-msgstr "لحساب ابعاد التركيب الشمسي المستقل ، اعتبر ان وقت الشتاء (وقت الاضاءه الأطول لازم ، ولكن الثلاجة قد تكون موصوله بسبب انخفاض درجه الحرارة خارج...)"
+msgstr "لحساب ابعاد التركيب الشمسي المستقل ، اعتبر ان الفصل شتاء (يلزم وقت اضاءه أطول ، ولكن الثلاجة قد تكون غير موصوله بسبب انخفاض درجه الحرارة بالخارج...)"
 
 #: CalcConsommation.php:9
 msgid "First sober example"
@@ -42,11 +42,11 @@ msgstr "المثال الثاني"
 
 #: CalcConsommation.php:15
 msgid "Equipment"
-msgstr ""
+msgstr "الجهاز"
 
 #: CalcConsommation.php:16
 msgid "Power (Watt)"
-msgstr ""
+msgstr "القوة (وات)"
 
 #: CalcConsommation.php:17
 msgid "Turn on<br />simultaneously"
@@ -54,11 +54,11 @@ msgstr ""
 
 #: CalcConsommation.php:18
 msgid "Number"
-msgstr ""
+msgstr "العدد"
 
 #: CalcConsommation.php:19
 msgid "Daily use time"
-msgstr ""
+msgstr "ساعات الاستخدام اليومي"
 
 #: CalcConsommation.php:20
 msgid "Automatic consumption<br />calculation"
@@ -1196,7 +1196,7 @@ msgstr "لوحات إيسك ماس كهربائى هامش الأمن الحال
 
 #: CalcPvAutonome.php:1502
 msgid "Considering solar flexible copper wiring"
-msgstr "النظر في الطاقة الشمسية مرنة الأسلاك النحاسية"
+msgstr "باعتبار الاسلاك النحاسية المرنة الخاصة بالطاقة الشمسية"
 
 #: CalcPvAutonome.php:1504
 msgid "One-way distance between panels and charge controller"
@@ -1204,7 +1204,7 @@ msgstr "في اتجاه واحد المسافة بين لوحات وحدة تح�
 
 #: CalcPvAutonome.php:1508
 msgid "One-way distance between charge controller and batteries"
-msgstr ""
+msgstr "المسافة الفاصلة (في اتجاه واحد) ما بين البطاريات و منظم الشحن"
 
 #: CalcPvAutonome.php:1512
 msgid "Conductor resistivity (rho) mm&sup2;/m"
