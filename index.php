@@ -59,6 +59,7 @@ if (!$results) {
 }
 bindtextdomain("messages", "./lang");
 textdomain("messages");
+
 // Définition du pays (selon l'IP
 $country = @geoip_country_code_by_name(get_ip());
 
@@ -171,15 +172,7 @@ $country = @geoip_country_code_by_name(get_ip());
             <?=  _('<p>Go to the <a href="https://crwd.in/calcpvautonome" target="_blank">colaborative translation platform</a> to help us translate this free software.</p>'); ?>
             <p class="footer_right"><?= _('By') ?> <a href="http://david.mercereau.info/">David Mercereau</a> (<a href="https://framagit.org/kepon/CalcPvAutonome"><?= _('Git repository') ?></a>)</p>
             <p class="footer_left">CalcPvAutonome <?= _('version') ?> <?= $CalcPvAutonomeVersion ?> <?= _('is an open software licensed <a href="https://en.wikipedia.org/wiki/Beerware">Beerware</a>') ?></p>
-
-
-
-	
-
         </div>
-
-
-
         <?php 
 		}
 		?>

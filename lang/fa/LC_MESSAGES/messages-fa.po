@@ -3,1347 +3,1347 @@ msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-28 21:53+0100\n"
-"PO-Revision-Date: 2018-10-28 21:05\n"
+"PO-Revision-Date: 2018-10-30 23:01\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
-"Language-Team: Japanese\n"
-"Language: ja_JP\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: calcpvautonome\n"
-"X-Crowdin-Language: ja\n"
+"X-Crowdin-Language: fa\n"
 "X-Crowdin-File: messages.pot\n"
 
 #: CalcConsommation.php:2
 msgid "In order to know the electric consumption (in Watts) of your devices you may"
-msgstr "あなた可能性がありますお使いのデバイスの (ワット) の電力消費量を知るために"
+msgstr "برای دانستن مصرف برق (در وات) دستگاه های شما ممکن است"
 
 #: CalcConsommation.php:4
 msgid "Check on the device's specification sheet or label"
-msgstr "チェックの仕様書やラベルのデバイス"
+msgstr "مشخصات دستگاه را از راهنما و یا برچسب آن بررسی کنید"
 
 #: CalcConsommation.php:5
 msgid "You may get a Wattmeter (~10&euro;) that will show you the exact consumption if plugged between power socket and the applience"
-msgstr ""
+msgstr "شما ممکن است یک وات متر (~ ده &euro;) دریافت کنید که مصرف دقیق آن را در صورت اتصال بین سوکت برق و لوازم خانگی نشان می دهد"
 
 #: CalcConsommation.php:7
 msgid "To calculate the dimensions of an autonomous solar installation, consider that it is wintertime (longer lighting time needed, but the fridge might be unplugged due to low temperature outside...)"
-msgstr "自律的な太陽のインストールの寸法を計算するには、それが冬であることを考慮して (長い照明時間が必要ですが、冷蔵庫は外の低温のために抜かれる可能性があります...)"
+msgstr "برای محاسبه مستقل ابعاد یک سیستم خورشیدی ، ‌نصب و راه اندازی آن به زمان زمستان توجه کنید ( زمان روشنایی بیشتری مورد نیاز است، ممکن است یخچال به علت دمای پایین در خارج از محل خاموش شود به دلیل دمای پایین …)"
 
 #: CalcConsommation.php:9
 msgid "First sober example"
-msgstr "最初の冷静な例"
+msgstr "مثال یک"
 
 #: CalcConsommation.php:10
 msgid "Second example"
-msgstr "例2"
+msgstr "مثال دوم"
 
 #: CalcConsommation.php:15
 msgid "Equipment"
-msgstr ""
+msgstr "تجهیزات"
 
 #: CalcConsommation.php:16
 msgid "Power (Watt)"
-msgstr ""
+msgstr "توان(وات)"
 
 #: CalcConsommation.php:17
 msgid "Turn on<br />simultaneously"
-msgstr ""
+msgstr "به طور همزمان <br />روشن کنید"
 
 #: CalcConsommation.php:18
 msgid "Number"
-msgstr "数"
+msgstr "عدد"
 
 #: CalcConsommation.php:19
 msgid "Daily use time"
-msgstr "日々利用時間"
+msgstr "زمان استفاده روزانه"
 
 #: CalcConsommation.php:20
 msgid "Automatic consumption<br />calculation"
-msgstr ""
+msgstr "محاسبه خودکار مصرف<br />"
 
 #: CalcConsommation.php:21
 msgid "Daily<br />consumption"
-msgstr ""
+msgstr "مصرف روزانه<br />"
 
 #: CalcConsommation.php:27 CalcPvAutonome.php:1155
 msgid "Your daily electrical needs"
-msgstr "毎日の電気的ニーズ"
+msgstr "برق مورد نیاز روزانه شما"
 
 #: CalcConsommation.php:28 CalcPvAutonome.php:1160
 msgid "Your need in maximum electrical power"
-msgstr "としてお客さまが求める最大電力"
+msgstr "حداکثر مقدار برق مورد نیاز شما"
 
 #: CalcConsommation.php:28
 msgid "Total addition of power required by devices that are likely to be plugged and on at the same time OR consumption of the most power demanding appliance in case it is not plugged simultaneously with the rest"
-msgstr "それが残りと同時に差し込まれていない場合には、同時に、またはほとんどの電力を要求されるアプライアンスの消費に接続されている可能性が高いデバイスに必要な電力の合計の追加"
+msgstr "مجموع نیروی مورد نیاز توسط دستگاه هایی که احتمالًا به آنها متصل می شود و در همان زمان مصرف یا از بیشترین قدرت مورد نیاز دستگاه در صورتی که به طور همزمان با بقیه متصل نباشد"
 
 #: CalcConsommation.php:29
 msgid "Click here to introduce those values to calculate <br/> the dimension of your autonomous solar installation"
-msgstr "計算する値を紹介するには、ここをクリックします <br/> あなたの自律太陽のインストールの次元"
+msgstr "اینجا کلیک کنید تا این مقادیر را برای محاسبه <br/> ابعاد نصب سلول های خورشیدی خود تنظیم کنید"
 
 #: CalcConsommation.php:31
 msgid "Add an empty line"
-msgstr "空の行を追加する"
+msgstr "اضافه کردن یک خط خالی"
 
 #: CalcConsommation.php:33
 msgid "Add a line according to a template..."
-msgstr "テンプレートに従って行を追加する..."
+msgstr "یک خط بر اساس یک الگو اضافه کنید…"
 
 #: CalcConsommation.php:39
 msgid "The models' values are approximate estimations, if you need more precise measurement consider using Wattmeter to determine the exact consumption of each of yours devices"
-msgstr "モデルの値はおおよその推定である, あなたはより正確な測定を必要とする場合、電力を使用して、各デバイスの正確消費を決定することを検討"
+msgstr "مقادیر مدل ها برآورد های تقریبی هستند، اگر شما نیاز به اندازه گیری دقیق تردارید استفاده از وات متر را برای تعیین مصرف دقیق هر یک از دستگاه های خود در نظر بگیرید"
 
 #: CalcConsommation.php:45
 msgid "Share / Save this table"
-msgstr ""
+msgstr "اشتراک گذاری /ذخیره این جدول"
 
 #: CalcConsommation.php:64
 msgid "Tick all the devices that are likely to be switched on at the same time (for example: Pc, fridge, lightbulb in the livingroom). At the other hand, you might rather want to unplug your Pc when you are using a drill"
-msgstr "同時にオンになる可能性のあるすべてのデバイスをチェックします (たとえば、Pc、冷蔵庫、リビングの電球など)。一方で、ドリルを使用しているときは、pc のプラグを抜きたいと思うかもしれません"
+msgstr "تیک همه دستگاه هایی که احتمالاً در همان زمان روشن می شوند (برای مثال: کامپیوتر، یخچال، چراغ در اتاق نشیمن). از سوی دیگر، شما احتمالاً می خواهید کامپیوتر خود را هنگامی که ازیک دلیل استفاده می کنیدجداکنید"
 
 #: CalcConsommation.php:97
 msgid "Ticked: your daily consumption will be estimated automatically<br/>Unticked: you shall specifiy your daily consumption (useful in case your fridge is plugged 24/7 yet it goes on only if room temperature rises"
-msgstr ""
+msgstr "علامت گذاری شده: مصرف روزانه شما را به طور خودکار برآورد خواهد کرد<br/>علامت گذاری نشده: شما باید مصرف روزانه خود را مشخص کنید( در صورتی مفید است که یخچال شما ۲۴/۷ وصل باشد در حالیکه اگر دمای اتاق افزایش یابد"
 
 #: CalcConsommation.php:103 CalcPvAutonome.php:837 CalcPvAutonome.php:850
 #: CalcPvAutonome.php:1156
 msgid "Wh/d"
-msgstr ""
+msgstr "Wh/d"
 
 #: CalcConsommation.php:103
 msgid "The calculation is: Power (W) * Time (in hours) * Number = Wh/d (Watt Hour Day)"
-msgstr ""
+msgstr "روش محاسبه: توان (W) * زمان (ساعت) * تعداد = Wh/j (وات ساعت روز)"
 
 #: CalcConsommation.php:237
 msgid "Copy the internet address below keep it there or share it here..."
-msgstr ""
+msgstr "اشتراک گذاری یا کپی آدرس اینترنتی در اینجا..."
 
 #: CalcPvAutonome.php:8
 msgid "January"
-msgstr "1月"
+msgstr "ژانویه"
 
 #: CalcPvAutonome.php:9
 msgid "February"
-msgstr "2月"
+msgstr "فوریه"
 
 #: CalcPvAutonome.php:10
 msgid "March"
-msgstr "3月"
+msgstr "مارس"
 
 #: CalcPvAutonome.php:11
 msgid "April"
-msgstr "4月"
+msgstr "آوریل"
 
 #: CalcPvAutonome.php:12
 msgid "May"
-msgstr "5月"
+msgstr "مه"
 
 #: CalcPvAutonome.php:13
 msgid "June"
-msgstr "6月"
+msgstr "ژوئن"
 
 #: CalcPvAutonome.php:14
 msgid "July"
-msgstr "7月"
+msgstr "ژوئیه"
 
 #: CalcPvAutonome.php:15
 msgid "August"
-msgstr "8月"
+msgstr "اوت"
 
 #: CalcPvAutonome.php:16
 msgid "September"
-msgstr "9月"
+msgstr "سپتامبر"
 
 #: CalcPvAutonome.php:17
 msgid "October"
-msgstr "10月"
+msgstr "اکتبر"
 
 #: CalcPvAutonome.php:18
 msgid "November"
-msgstr "11月"
+msgstr "نوامبر"
 
 #: CalcPvAutonome.php:19
 msgid "December"
-msgstr "12月"
+msgstr "دسامبر"
 
 #: CalcPvAutonome.php:42
 msgid "Daily need is not correct because < 0"
-msgstr ""
+msgstr "نیاز روزانه صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:43
 msgid "Maximum power requirement is not correct because < 0"
-msgstr "最大電力要件が正しくないため < 0"
+msgstr "حداکثر توان مورد نیاز صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:45
 msgid "Panel's custom power is not correct because < 0"
-msgstr "パネルのカスタム電源が正しくないため < 0"
+msgstr "توان پنل دستی صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:46
 msgid "Panel's custom open circuit voltage (Vdoc) is not correct because < 0"
-msgstr "パネルのカスタムオープン回路電圧 (Vdoc) が正しくないため < 0"
+msgstr "ولتاژ مدار باز پنل سفارشی(Vdoc) درست نیست زیرا <۰"
 
 #: CalcPvAutonome.php:47
 msgid "Panel's custom short circuit current (Isc) is not correct because < 0"
-msgstr "パネルのカスタム短絡電流 (Isc) が正しくないため < 0"
+msgstr "جریان اتصال کوتاه سفارشی (Isc) درست نیست زیرا <۰"
 
 #: CalcPvAutonome.php:50
 msgid "Custom battery voltage is not correct because < 0"
-msgstr "カスタムバッテリ電圧が正しくないため < 0"
+msgstr "ولتاژ باتری سفارشی صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:51
 msgid "Custom battery capacity is not correct because < 0"
-msgstr "カスタムバッテリ容量が正しくないため < 0"
+msgstr "ظرفیت باتری سفارشی درست نیست چون <۰"
 
 #: CalcPvAutonome.php:59
 msgid "Custom charge controller voltage is incorrect because < 0"
-msgstr "カスタムチャージコントローラの電圧が正しくないため < 0"
+msgstr "ولتاژ کنترل کننده شارژ صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:60
 msgid "Custom charge controller power is not correct because < 0"
-msgstr "カスタムチャージコントローラの電源が正しくないため < 0"
+msgstr "توان کنترل کننده سفارشی شارژ صحیح نیست چون<۰"
 
 #: CalcPvAutonome.php:61
 msgid "Custom charge controller short-circuit current is incorrect because < 0"
-msgstr "カスタムチャージコントローラ短絡電流が正しくないため < 0"
+msgstr "جریان اتصال کوتاه کنترل کننده شارژ صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:63
 msgid "The autonomous days amount is not correct because < 0"
-msgstr "自律日数の量が正しくないため < 0"
+msgstr "روزهای مستقل صحیح نیست چون<۰"
 
 #: CalcPvAutonome.php:64
 msgid "Electrical yield of batteries is not correct because < 0"
-msgstr "電池の電気収率が正しくないため < 0"
+msgstr "عملکرد برق صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:65
 msgid "Installation electrical efficiency is not correct because < 0"
-msgstr "インストールの電気的効率が正しくないため < 0"
+msgstr "راه اندازی بهره وری برق صحیح نیست چون<۰"
 
 #: CalcPvAutonome.php:66
 msgid "Discharge level is not correct because < 0"
-msgstr "放電レベルが正しくないため < 0"
+msgstr "سطح تخلیه درست نیست چون <۰"
 
 #: CalcPvAutonome.php:67
 msgid "The safety margin Icc of the charge controller is not correct because < 0"
-msgstr "チャージコントローラの安全マージン Icc が正しくないため < 0"
+msgstr "حاشیه ایمنی Icc از کنترل کننده شارژ صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:68
 msgid "Panels and charge controller in-between distance is not correct because < 0"
-msgstr "パネルと充電コントローラの間の距離が正しくないため < 0"
+msgstr "پنل ها و کنترل کننده شارژ در فاصله باهم صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:69
 msgid "Batteries and charge controller in-between distance is not correct because < 0"
-msgstr "バッテリと充電コントローラの間の距離が正しくないため < 0"
+msgstr "باتری و کنترل کننده شارژ در فاصله باهم صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:70
 msgid "Conductor resistivity is not correct because < 0"
-msgstr "導体抵抗率が正しくないため < 0"
+msgstr "مقاومت هادی صحیح نیست چون<۰"
 
 #: CalcPvAutonome.php:71
 msgid "Tolerable voltage drop is not correct because < 0"
-msgstr "許容電圧降下が正しくないため < 0"
+msgstr "افت ولتاژ قابل تحمل صحیح نیست چون<۰"
 
 #: CalcPvAutonome.php:80
 msgid "Panels orientation is not correct. "
-msgstr "パネルの向きが正しくない. "
+msgstr "جهت گیری پنل ها درست نیست. "
 
 #: CalcPvAutonome.php:83
 msgid "Panels inclination is not correct, it must be between 0 (horizontal) and 90 (vertical)"
-msgstr ""
+msgstr "شیب پنل درست نیست، باید بین 0 (افقی) و 90 (عمودی) باشد"
 
 #: CalcPvAutonome.php:86
 msgid "You must enter latitude and longitude to deduce solar irradiation with a click on the map of the world."
-msgstr "緯度と経度を入力して世界地図上のクリックで太陽光照射を推測する必要があります."
+msgstr "شما باید عرض جغرافیایی و طول جغرافیایی خود را برای پیداکردن جهت تابش خورشید با کلیک بر روی نقشه جهان وارد کنید."
 
 #: CalcPvAutonome.php:100
 msgid "Unable to download solar irradiation data from <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>, switch to mode manual or use <a href=\"http://calcpvautonome.zici.fr/v2.2/\"> the previous version </a> of CalcPvAutonome."
-msgstr ""
+msgstr "شما قادر به دانلود داده های تابش خورشید از <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS نیستید</a>به حالت دستی سوئیس کنید و یا از نسخه قبلی</a>CalcPvAutonome استفاده کنید."
 
 #: CalcPvAutonome.php:111
 msgid "Incorrect solar irradiation data. The position shown on the map may not be covered by <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>."
-msgstr ""
+msgstr "داده های تابش خورشید نادرست می باشد.موقعیت نمایش داده شده بر روی نقشه تحت پوشش نیست توسط <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"><a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>."
 
 #: CalcPvAutonome.php:117
 msgid "Average daily radiation is not correct because < 0"
-msgstr "毎日の平均放射が正しくないため < 0"
+msgstr "متوسط ​​شعاع روزانه صحیح نیست چون <۰"
 
 #: CalcPvAutonome.php:121
 msgid "Errors in the form prevent you from continuing, please correct :"
-msgstr "フォーム内のエラーが続行しないように、修正してください :"
+msgstr "خطاهایی در فرم شما رخ داده که باعث جلوگیری از ادامه،فرآیند است، لطفاً تصحیح کنید :"
 
 #: CalcPvAutonome.php:128
 msgid "Result of the dimension calculation"
-msgstr "分析コードの計算結果"
+msgstr "نتیجه محاسبه ابعاد"
 
 #: CalcPvAutonome.php:129
 msgid "<b>Warning</b>: Results are approximate, it is recommended to doublecheck with sales representative and validate your installation before buying materials."
-msgstr "<b>警告</b>: 結果はおおよそのものです, それは販売担当者とダブルチェックし材料を購入する前にインストールを検証することをお勧めします."
+msgstr "<b>هشدار</b>:نتایج تقریبی هستند،توصیه می شود به بررسی دوباره با نماینده فروش و اعتبار سنجی نصب قبل از خرید مصالح."
 
 #: CalcPvAutonome.php:133 CalcPvAutonome.php:991
 msgid "Photovoltaic panel"
-msgstr "太陽光発電パネル"
+msgstr "پنل فتوولتائیک"
 
 #: CalcPvAutonome.php:153
 msgid "Average sunlight"
-msgstr "平均日光"
+msgstr "میانگین تابش خورشید"
 
 #: CalcPvAutonome.php:153
 msgid "kWh/m&sup2;/d"
-msgstr ""
+msgstr "kWh/m&sup2;/d"
 
 #: CalcPvAutonome.php:180
 msgid "Here we are looking for the power (peak, expressed in W) from solar panels to be mounted to fulfill your needs according to your geographical location. The formula is as follow : "
-msgstr "ここでは、電源を探しています (ピーク, W で表現) 太陽電池パネルからあなたの地理的な場所に応じてお客様のニーズを満たすためにマウントする. 式は以下の通りです : "
+msgstr "در اینجا ما به دنبال قدرت (پیک، بیان شده در W) از پانل های خورشیدی می باشیم تا بتوانیم نیازهای شما را براساس موقعیت جغرافیایی خود برآورده کنیم. فرمول به شرح زیر است : "
 
 #: CalcPvAutonome.php:181
 msgid "Pp = Dn / (Yb X Yi X Rd)"
-msgstr ""
+msgstr "Pp = Dn / (Yb X Yi X Rd)"
 
 #: CalcPvAutonome.php:183
 msgid "Pp (Wp) : Peak power (goal)"
-msgstr ""
+msgstr "Pp (Wp) : اوج قدرت (هدف)"
 
 #: CalcPvAutonome.php:184 CalcPvAutonome.php:366
 msgid "Dn (Wh/d) : Daily needs"
-msgstr ""
+msgstr "Dn (Wh/d) : مصرف روزانه"
 
 #: CalcPvAutonome.php:185
 msgid "Yb : electrical yield of batteries"
-msgstr "Yb : 電池の電気収穫"
+msgstr "Yb : عملکرد الکتریکی باتری"
 
 #: CalcPvAutonome.php:186
 msgid "Yi : electrical yield for the remaining installation (charge controller, ...)"
-msgstr ""
+msgstr "Yi: عملکرد الکتریکی برای نصب باقی مانده (کنترل شارژ، ...)"
 
 #: CalcPvAutonome.php:187
 msgid "Rd : average daily radiation of the worst month in the plane of the panel (kWh/m&sup2;/d)"
-msgstr "Rd : パネルの平面の最も悪い月の平均毎日の放射 (kWh/m&sup2;/d)"
+msgstr "Rd: متوسط ​​تابش روزانه بدترین ماه در هواپیما پانل (kWh / m &sup2; / d)"
 
 #: CalcPvAutonome.php:224
 #, php-format
 msgid "According to data from <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS</a>, the value for the selected location is %s kWh/m&sup2;/d"
-msgstr ""
+msgstr "باتوجه به داده ها از <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS</a>مقدار برای موقعیت انتخابی برابر با %s kWh/m&sup2;/d می باشد"
 
 #: CalcPvAutonome.php:231 CalcPvAutonome.php:371
 msgid "In your case, result is"
-msgstr "あなたの場合、結果は"
+msgstr "در مورد شما، نتیجه این است"
 
 #: CalcPvAutonome.php:235 CalcPvAutonome.php:374
 msgid "Hide the process"
-msgstr "プロセスを非表示にする"
+msgstr "پنهان کردن فرآیند"
 
 #: CalcPvAutonome.php:236
 msgid "Pp"
-msgstr ""
+msgstr "Pp"
 
 #: CalcPvAutonome.php:239
 msgid "Photovoltaic panels produce electricity from sunlight (solar radiation)."
-msgstr ""
+msgstr "پنل های فتوولتائیک تولید برق از نور خورشید (تابش خورشیدی)."
 
 #: CalcPvAutonome.php:240
 #, php-format
 msgid "According entered data, <b>%sW</b> of solar panel are required to fulfill your daily needs of %sWh/d."
-msgstr ""
+msgstr "براساس اطلاعت وارد شده <b>%sW</b>از پنل خورشیدی برای نیاز روزانه %sWh/d."
 
 #: CalcPvAutonome.php:332
 #, php-format
 msgid "One possibility could be to have <b>%d panel(s)</b> %s of <b>%dW</b> each"
-msgstr ""
+msgstr "یک فرضیه دارای <b>%dپنل (ها)</b>%sاز<b>%dW</b> برای هرکدام باشد"
 
 #: CalcPvAutonome.php:332 CalcPvAutonome.php:336
 #, php-format
 msgid "Specificity of the panel"
-msgstr ""
+msgstr "ویژگی پنل"
 
 #: CalcPvAutonome.php:332 CalcPvAutonome.php:336
 #, php-format
 msgid "Which extend the unit capacity to %dW"
-msgstr ""
+msgstr "که ظرفیت واحد را گسترش می دهد به %dW"
 
 #: CalcPvAutonome.php:334
 #, php-format
 msgid "With your personnalized solar panel the hypothesis would be to have <b>%d panel(s)</b> of <b>%dW</b> each, which could raise the plant up to %dW"
-msgstr ""
+msgstr "با شخصی سازی پنل های خورشیدی خود فرضیه دارای <b>%dپنل ها </b>از<b>%dW</b>هر کدام که پلنت باتری را به %dW افزایش می دهد"
 
 #: CalcPvAutonome.php:336
 #, php-format
 msgid "With %s selected panel of <b>%dW</b>, one hypothesis would be to have <b>%d of panel(s)</b>"
-msgstr ""
+msgstr "با%s پنل های انتخابی از<b>%dW</b> یک فرضیه دارای<b>%dاز پنل ها باشد</b>"
 
 #: CalcPvAutonome.php:342 CalcPvAutonome.php:1000
 msgid "Batterie"
-msgstr "電池"
+msgstr "باتری"
 
 #: CalcPvAutonome.php:344
 msgid "We are looking here for the nominal capacity expressed in ampere per hour (Ah, given in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>)"
-msgstr ""
+msgstr "ما در اینجا برای ظرفیت اسمی بیان شده در آمپر در ساعت (Ah، در <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\"> C10 </a>)"
 
 #: CalcPvAutonome.php:363
 msgid "Cap = (Dn x Aut) / (DD x U)"
-msgstr ""
+msgstr "Cap = (Dn x Aut) / (DD x U)"
 
 #: CalcPvAutonome.php:365
 msgid "Cap (Ah) : Nominal capacity of batteries (in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>))"
-msgstr ""
+msgstr "Cap (Ah) : ظرفیت اسمی باتری (در <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>))"
 
 #: CalcPvAutonome.php:367
 msgid "Aut: Autonomous days amount (no sun)"
-msgstr ""
+msgstr "Aut: مقدار روزهای مستقل (بدون خورشید)"
 
 #: CalcPvAutonome.php:368
 msgid "DD (%)"
-msgstr ""
+msgstr "DD(%)"
 
 #: CalcPvAutonome.php:368
 #, php-format
 msgid "With lead batteries, the critical threshold of 50% of discharge mustn't be reached, 20% being ideal"
-msgstr "鉛電池では、放電の 50% の臨界しきい値に到達してはならない、20% が理想的である"
+msgstr "با باتری های سربی، آستانه انتقالی 50٪ تخلیه نشود، 20٪ ایده آل است"
 
 #: CalcPvAutonome.php:368
 msgid "Maximum discharge rate"
-msgstr "最大吐出率"
+msgstr "میزان حداکثر تخلیه شارژ"
 
 #: CalcPvAutonome.php:369
 msgid "U (V)"
-msgstr ""
+msgstr "U (V)"
 
 #: CalcPvAutonome.php:369 CalcPvAutonome.php:1394
 msgid "In automatic mode the batteries voltage will be deducted from the panel need <br />From 0 to 500W : 12V<br />From 500 to 1500 W : 24V<br />Above 1500 W : 48V"
-msgstr ""
+msgstr "در حالت خودکار ولتاژ باتری از پنل کم می شود <br />از۰تا۵۰۰W:۱۲V<br />از ۵۰۰به۱۵۰۰ W: ۲۴V<br />بالاتر از ۱۵۰۰W: 48V"
 
 #: CalcPvAutonome.php:369 CalcPvAutonome.php:1388
 msgid "Final battery plant voltage"
-msgstr "最終電池工場の電圧"
+msgstr "یافتن ولتاژ پلنت باتری"
 
 #: CalcPvAutonome.php:375
 msgid "Cap"
-msgstr ""
+msgstr "سر باتری"
 
 #: CalcPvAutonome.php:377
 #, php-format
 msgid "Batteries are used to store electric energy produced by the panels. You will need a battery plant of <b>%d Ah at %d V</b>."
-msgstr ""
+msgstr "باتری ها برای ذخیره برق تولید شده توسط پنل استفاده می شوند. شما نیاز به یک پلنت باتری <b>%dAh در%d V </b>دارید."
 
 #: CalcPvAutonome.php:378
 msgid "See, understand the procedure, the calculation"
-msgstr ""
+msgstr "مشاهده ودرک روش، محاسبه"
 
 #: CalcPvAutonome.php:385
 #, php-format
 msgid "The discharge current of the battery plant must not exceed %d"
-msgstr "電池工場の放電電流を超えてはならない %d"
+msgstr "جریان تخلیه پلنت باتری بیشتر %d است"
 
 #: CalcPvAutonome.php:385 CalcPvAutonome.php:397
 #, php-format
 msgid "In our case it gives"
-msgstr "私たちの場合にはそれを与える"
+msgstr "در مورد آن می شود"
 
 #: CalcPvAutonome.php:386
 #, php-format
 msgid "Yet with a max power need of %dW, the discharge current is"
-msgstr ""
+msgstr "هنوز با حداکثر توان مورد نیاز از %dW تخلیه فعلی"
 
 #: CalcPvAutonome.php:387
 #, php-format
 msgid "In order to respond to a %dW max power need, you need to increase the battery plant by "
-msgstr "に対応するためには %dW 最大電力が必要な場合は、電池工場を増やす必要があります "
+msgstr "به منظور پاسخ به%dW حداکثر توان مورد نیاز شما باید پلنت باتری را افزایش دهید توسط "
 
 #: CalcPvAutonome.php:397
 #, php-format
 msgid "The battery plant charging current musn't exceed %d"
-msgstr ""
+msgstr "ظرفیت شارژ کردن پلنت باتری نباید بیشتر باشد%d"
 
 #: CalcPvAutonome.php:398
 #, php-format
 msgid "Yet with %dW panels the charge current is"
-msgstr "まだと %dW 充電電流のパネル"
+msgstr "هنوز با %dW شارژ پنل های فعلی"
 
 #: CalcPvAutonome.php:399
 #, php-format
 msgid "If your charge controller allows it you can limit it or increase your battery plant to"
-msgstr "チャージコントローラがそれを許可する場合はそれを制限したりバッテリー工場を増やすことができます"
+msgstr "اگر کنترل کننده شارژ شما به آن اجازه می دهد که بتواند باتری را افزایش و یا محدود شود"
 
 #: CalcPvAutonome.php:401
 msgid "We will state to increase the battery plant"
-msgstr "我々は電池工場を増加させる状態になります"
+msgstr "ما افزایش ظرفیت پلنت باتری را اعلام می کنیم"
 
 #: CalcPvAutonome.php:494
 #, php-format
 msgid "A wiring hypothesis would be to have <b>%d></b> <b>%s</b> type batteries, which increases the plant capacity up to %dAh"
-msgstr ""
+msgstr "فرضیه سیم کشی باید <b>%d<</b><b>%s</b>نوع ظرفیت باتری ها را بیش از %dAh افزایش دهد"
 
 #: CalcPvAutonome.php:496
 #, php-format
 msgid "You chose to use custom %dAh at %dV battery. Here is a wiring hypothesis with <b>%d</b> of these batteries which raise the plant capacity to %dAh"
-msgstr ""
+msgstr "شما انتخاب سفارشی %dAh در %dV باتری را انتخاب کردید اینجا فرضیه سیم کشی این است که با افزایش ظرفیت پلنت <b>%d</b> باتری ها به %dAh همراه باشد"
 
 #: CalcPvAutonome.php:498
 #, php-format
 msgid "You chose to use <b>%s</b> type batteries. Here is a wiring hypothesis with <b>%d</b> of these batteries which raise the plant capacity to %dAh"
-msgstr ""
+msgstr "شما استفاده از <b>%s</b> نوع باتری را انتخاب کردید. اینجا فرضیه این است که سیم کشی با<b>%d</b> افزایش ظرفیت پلنت باتری به %dAh یابد"
 
 #: CalcPvAutonome.php:500
 msgid "serialized batteries"
-msgstr "シリアル化電池"
+msgstr "پنل های سریال"
 
 #: CalcPvAutonome.php:500 CalcPvAutonome.php:589 CalcPvAutonome.php:597
 msgid "Battery voltage"
-msgstr "バッテリ電圧"
+msgstr "ولتاژ باتری"
 
 #: CalcPvAutonome.php:500
 msgid "serie(s)"
-msgstr ""
+msgstr "سری(ها)"
 
 #: CalcPvAutonome.php:500
 msgid "for a voltage of"
-msgstr ""
+msgstr "برای ولتاژ"
 
 #: CalcPvAutonome.php:502
 msgid "on"
-msgstr ""
+msgstr "روشن"
 
 #: CalcPvAutonome.php:502
 msgid "parallel(s)"
-msgstr ""
+msgstr "موازی(ها)"
 
 #: CalcPvAutonome.php:502
 msgid "Battery capacity"
-msgstr ""
+msgstr "ظرفیت باتری"
 
 #: CalcPvAutonome.php:502
 msgid "for a capacity of"
-msgstr ""
+msgstr "برای ظرفیت"
 
 #: CalcPvAutonome.php:504
 msgid "(<a rel=\"tooltip\" class=\"bulles\" target=\"_blank\" title=\"To understand the battery connection click here\" href=\"http://www.solarmad-nrj.com/cablagebatterie.html\">?</a>)"
-msgstr ""
+msgstr "(<a rel=\"tooltip\" class=\"bulles\" target=\"_blank\" title=\"To understand the battery connection click here\" href=\"http://www.solarmad-nrj.com/cablagebatterie.html\">؟</a>)"
 
 #: CalcPvAutonome.php:506
 msgid "Sorry we failed to make a wiring hypothesis for the batteries"
-msgstr "申し訳ありませんが電池のための配線仮説を立てることができませんでした"
+msgstr "متاسفانه فرضیه سیم کشی برای باتری ها ناموفق بود"
 
 #: CalcPvAutonome.php:508
 msgid "We advice you to switch back to automatic mode, a wiring isn't wise with this model"
-msgstr "私たちはあなたの自動モードに切り替えるにはアドバイス, 配線はこのモデルでは賢明ではない"
+msgstr "ما به شما توصیه می کنیم که به حالت اتوماتیک بازگردید، سیم کشی با این مدل صحیح نیست"
 
 #: CalcPvAutonome.php:516 CalcPvAutonome.php:1004 CalcPvAutonome.php:1007
 #: CalcPvAutonome.php:1454
 msgid "Charge controller"
-msgstr ""
+msgstr "کنترل کننده شارژ"
 
 #: CalcPvAutonome.php:517
 msgid "The charge controller stands between batteries and panels, its role is to handle batteries charge depending on what the panels can provide"
-msgstr "充電コントローラは電池とパネルの間に立って、その役割は、パネルが提供できるものに応じて電池の充電を処理することです"
+msgstr "کنترل کننده شارژ میان باتری ها و پنل هاقراردارد و نقش آن این است که با توجه به آنچه پنل ها می توانند ارائه دهند، باتری را شارژ کند"
 
 #: CalcPvAutonome.php:571
 msgid "Sorry, unable to establish a panel/charge controller wiring hypothesis"
-msgstr ""
+msgstr "با عرض پوزش، قادر به ایجاد یک فرضیه سیم کشی کنترل پنل / شارژ نیست"
 
 #: CalcPvAutonome.php:573
 msgid "We recommend to switch charge controller and/or panels to automatic mode"
-msgstr "チャージコントローラやパネルを自動モードに切り替えることをお勧めします"
+msgstr "ما توصیه می کنیم کنترل کننده شارژ و / یا پانل را به حالت اتوماتیک تغییر دهید"
 
 #: CalcPvAutonome.php:578
 #, php-format
 msgid "Warning : for this hypothesis we switched to %d panels"
-msgstr "警告 : この仮説のために我々はに切り替え %d パネル"
+msgstr "هشدار: برای این فرضیه ما %d پنل ها را تغییر دادیم"
 
 #: CalcPvAutonome.php:581
 msgid "With your custom charge controller, a"
-msgstr ""
+msgstr "با کنترل کننده سفارشی خود، یک"
 
 #: CalcPvAutonome.php:583
 #, php-format
 msgid "You force the %s charge controller selection, a"
-msgstr ""
+msgstr "شما مجبور به انتخاب یک %s کنترل کننده شارژ هستید"
 
 #: CalcPvAutonome.php:585
 msgid "A"
-msgstr ""
+msgstr "الف"
 
 #: CalcPvAutonome.php:588
 #, php-format
 msgid "hypothesis would be to have <b>%d %s type charge controller</b>"
-msgstr ""
+msgstr "فرضیه می تواند دارای <b>%d %s نوع کنترل کننده شارژ باشد</b>"
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597
 msgid "With similar characteristics"
-msgstr "同様の特性を持つ"
+msgstr "با ویژگی های مشابه"
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597 CalcPvAutonome.php:1481
 msgid "Maximum power panel"
-msgstr "最大パワーパネル"
+msgstr "حداکثر نیرو پنل"
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597
 msgid "Open circuit voltage panel"
-msgstr "オープン回路電圧パネル"
+msgstr "پنل ولتاژ مدار باز"
 
 #: CalcPvAutonome.php:589 CalcPvAutonome.php:597
 msgid "Current short circuit"
-msgstr "電流短絡"
+msgstr "اتصال کوتاه فعلی"
 
 #: CalcPvAutonome.php:590
 #, php-format
 msgid "and on each connect serialized <b>%d panel(s) "
-msgstr ""
+msgstr "ودر یک <b>%d پنل (ها) سریال متصل شده "
 
 #: CalcPvAutonome.php:592 CalcPvAutonome.php:604
 #, php-format
 msgid " on %d parallel(s)"
-msgstr ""
+msgstr " در %d موازی (ها)"
 
 #: CalcPvAutonome.php:596
 #, php-format
 msgid "wiring hypothesis would be to have a <b>%s type charge controller</b>"
-msgstr ""
+msgstr "فرضیه سیم کشی می تواند <b>%sنوع کنترل کننده شارژ باشد</b>"
 
 #: CalcPvAutonome.php:598
 msgid "on which would be connected "
-msgstr ""
+msgstr "که در آن متصل می شود "
 
 #: CalcPvAutonome.php:600
 msgid "panel"
-msgstr "パネル"
+msgstr "پنل"
 
 #: CalcPvAutonome.php:602 CalcPvAutonome.php:617
 #, php-format
 msgid "serialized panels"
-msgstr ""
+msgstr "پنل های سریال"
 
 #: CalcPvAutonome.php:612
 #, php-format
 msgid "A type %s charge controller, with a <b>%dV</b> battery plant, allows : "
-msgstr ""
+msgstr "یک نوع %s کنترل کننده شارژ با یک <b>%dV</b>پلنت باتری: "
 
 #: CalcPvAutonome.php:614
 #, php-format
 msgid "<b>%dW</b> max panel power : "
-msgstr ""
+msgstr "حداکثرتوان پنل <b>%dW</b>: "
 
 #: CalcPvAutonome.php:615
 #, php-format
 msgid "With a total of %d %dW panel(s), we reach <b>%dW</b>"
-msgstr ""
+msgstr "با مجموع از %d%dW پنل(ها) ما به <b>%dW</b>می رسد"
 
 #: CalcPvAutonome.php:615
 #, php-format
 msgid "panel(s)"
-msgstr "パネル"
+msgstr "پنل(ها)"
 
 #: CalcPvAutonome.php:616
 #, php-format
 msgid "<b>%dV</b> max PV voltage of open circuit : "
-msgstr ""
+msgstr "<b>%dV</b>حداکثر PV ولتاژ از مدار باز : "
 
 #: CalcPvAutonome.php:617
 #, php-format
 msgid "With %d serialized panel(s) of %dV of (Vdoc) voltage, we reach <b>%dV</b>"
-msgstr ""
+msgstr "با%dپنل های سریالی از %dV از (Vdoc) ولتاژ ما به <b>%dV</b>می رسیم"
 
 #: CalcPvAutonome.php:618
 #, php-format
 msgid "<b>%dA</b> max PV short-circuit current :"
-msgstr ""
+msgstr "<b>%dA</b>حداکثر PV اتصال کوتاه فعلی :"
 
 #: CalcPvAutonome.php:619
 #, php-format
 msgid "With %d parallel panel(s) having %dA intensity (Isc) and a %d%% security margin, we reach <b>%dA</b>"
-msgstr ""
+msgstr "با داشتن %d پنل های موازی %d A شدت (Isc) و یک %d%% حاشیه امنیتی ما به <b>%dA</b>میرسیم"
 
 #: CalcPvAutonome.php:619
 #, php-format
 msgid "parallel panel(s)"
-msgstr ""
+msgstr "پنل(ها) موازی"
 
 #: CalcPvAutonome.php:621
 msgid "Note: serialization multiplies voltage (V) and paralleling multiplies the intensity (I)"
-msgstr ""
+msgstr "توجه: ترتیب تکثیر ولتاژ (V) و موازی با تکثیر شدت (I)"
 
 #: CalcPvAutonome.php:622
 msgid "All these characteristics are available in the product's technical sheet. You can customize your charge controller characteristics in <i>Export</i> mode."
-msgstr "これらの特性はすべて製品のテクニカルシートでご利用いただけます. では充電コントローラの特性をカスタマイズできます <i>エクスポート</i> モード."
+msgstr "همه این خصوصیات در ورقه فنی محصول موجود است. شما می توانید ویژگی های کنترل کننده شارژ خود را در حالت <i> خروجی </i> سفارشی کنید."
 
 #: CalcPvAutonome.php:623 CalcPvAutonome.php:714
 #, php-format
 msgid "Hide process"
-msgstr "プロセスの非表示"
+msgstr "پنهان کردن فرآیند"
 
 #: CalcPvAutonome.php:626
 msgid "See, understand the process"
-msgstr ""
+msgstr "مشاهده و درک فرآیند"
 
 #: CalcPvAutonome.php:629
 msgid "Cable diagram"
-msgstr ""
+msgstr "نمودار کابل"
 
 #: CalcPvAutonome.php:633
 msgid "Some wiring hypothesis did not succeed, it is not possible to submit a wiring diagram"
-msgstr "いくつかの配線仮説が成功しなかった、それは配線図を提出することはできません"
+msgstr "برخی از فرضیه های سیم کشی موفق نشدند، امکان ارسال یک نمودار سیم کشی وجود ندارد"
 
 #: CalcPvAutonome.php:650
 msgid "A wiring diagram was established according to panel/charge controller/battery hypothesis :"
-msgstr ""
+msgstr "یک مدار سیم کشی با توجه به فرضیه پنل / کنترل کننده باتری / باتری ایجاد شد:"
 
 #: CalcPvAutonome.php:657 CalcPvAutonome.php:1012
 #, php-format
 msgid "Panel string boxe"
-msgstr "パネルストリングボク"
+msgstr "جعبه پنل رشته ای"
 
 #: CalcPvAutonome.php:658
 msgid "Beyond 2 string, it is strongly recommended to install a panel string boxe. Panel string boxe is collect DC power from panel strings with blocking diodes on each string for protecting panels from reverse current flow. The collected power is then transferred to charge controller."
-msgstr "2文字列を超えてパネル文字列ボクをインストールすることを強くお勧めします. パネルストリングボクは、パネルストリングからの DC 電力を収集し各ストリングのブロッキングダイオードを使用してパネルを逆電流フローから保護します. 収集された電力をチャージコントローラに転送します."
+msgstr "فراتر از دو رشته، به شدت توصیه می شود که یک جعبه رشته ای پنل را نصب کنید. جعبه رشته‌ای پنل قدرت DC را از رشته های پنل با دیودهای مسدود کننده بر روی هر رشته برای محافظت از پنل ها از جریان معکوس جمع آوری می کند. سپس قدرت جمع آوری شده به کنترل کننده بار منتقل می شود."
 
 #: CalcPvAutonome.php:662 CalcPvAutonome.php:1022 CalcPvAutonome.php:1026
 msgid "Converter"
-msgstr ""
+msgstr "مبدل"
 
 #: CalcPvAutonome.php:664
 #, php-format
 msgid "The converter goal is to transform batteries DC current (here %dV) in AC current usable for standard devices. You need a converter able to deliver the %dW max electric power you need"
-msgstr ""
+msgstr "هدف مبدل این است که باتری جریان DC (در اینجا%dV) در جریان AC قابل استفاده برای دستگاه های استاندارد تبدیل کند. شما نیاز به یک مبدل قادر به ارائه حداکثر %dW برق را دارید"
 
 #: CalcPvAutonome.php:668
 msgid "Sorry, could'nt find a converter for such power"
-msgstr ""
+msgstr "با عرض پوزش، نمی توان مبدلی برای چنین قدرت پیدا کرد"
 
 #: CalcPvAutonome.php:673
 #, php-format
 msgid "An hypothesis would be to choose a <b>%s type converter</b> that goes up to %dW max power with possible peaks at %dW."
-msgstr ""
+msgstr "یک فرضیه این است که یک ترانزیستور <b>%s</b> را انتخاب کنید که تا حداکثر %dW با حداکثر %dW توان ممکن است."
 
 #: CalcPvAutonome.php:675
 #, php-format
 msgid "However, in order to avoid battery damage, you won't be able to go above %dW"
-msgstr "しかし、バッテリーの損傷を避けるために、あなたは上に行くことができなくなります %dW"
+msgstr "با این حال، به منظور جلوگیری از آسیب باتری، شما قادر نخواهید بود از%dW بالاتر بروید"
 
 #: CalcPvAutonome.php:681 CalcPvAutonome.php:1029
 msgid "Battery controler"
-msgstr "バッテリ制御"
+msgstr "کنترل کننده باتری"
 
 #: CalcPvAutonome.php:683
 msgid "It is recommended to have a bettery controleur in order to check battery plant charge state"
-msgstr ""
+msgstr "توصیه می شود برای بررسی وضعیت شارژ باتری در نظر گرفته شود"
 
 #: CalcPvAutonome.php:690
 msgid "However, considering the small size of your system, a voltmeter would be more appropriate. With a <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\">correspondence table</a> you can approximately determine the charge percentage"
-msgstr ""
+msgstr "با این حال، با توجه به اندازه کوچک سیستم شما، یک ولت متر مناسب تر خواهد بود با <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\"> توجه به جدول مکاتبات </a> شما میتوانید تقریبا درصد شارژ را تعیین کنید"
 
 #: CalcPvAutonome.php:693
 msgid "The wiring"
-msgstr ""
+msgstr "سیم کشی"
 
 #: CalcPvAutonome.php:696
 msgid "Wire section choice ( <a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\">calculate</a>) is important in order to avoid electricity lossess"
-msgstr ""
+msgstr "انتخاب بخش سیم (<a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\"> محاسبه </a>) مهم است که از اجتناب از برق جلوگیری شود"
 
 #: CalcPvAutonome.php:710
 #, php-format
 msgid "Between panels and charge controller, for a distance of %sm, a %dmm&sup2; section cable is recommended"
-msgstr ""
+msgstr "بین پنل ها و کنترل کننده شارژ، برای فاصله از %sm، یک%dmm و&sup2; متصل به بخش کابل توصیه می شود"
 
 #: CalcPvAutonome.php:712 CalcPvAutonome.php:760
 #, php-format
 msgid "see, understand the procedure"
-msgstr ""
+msgstr "مشاهده و درک فرآیند"
 
 #: CalcPvAutonome.php:715 CalcPvAutonome.php:763
 #, php-format
 msgid "The formula to calculate the wire section in order to avoid loss is :"
-msgstr "損失を避けるためにワイヤセクションを計算する数式は :"
+msgstr "فرمول برای محاسبه بخش سیم به منظور جلوگیری از از دست دادن است:"
 
 #: CalcPvAutonome.php:716 CalcPvAutonome.php:764
 #, php-format
 msgid "S = Rho x L x I / VL"
-msgstr ""
+msgstr "S = Rho x L x I / VL"
 
 #: CalcPvAutonome.php:718 CalcPvAutonome.php:766
 #, php-format
 msgid "S (mm&sup2;) : Wire section"
-msgstr ""
+msgstr "S (mm&sup2;) : بخش سیم"
 
 #: CalcPvAutonome.php:719 CalcPvAutonome.php:767
 #, php-format
 msgid "Rho (ohm) : Wire <a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\">resistivity</a> (0,017ohm for copper)"
-msgstr ""
+msgstr "اُهم : مقاومت سیم (۰٫۰۱۷ اهم برای مس)<a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\"></a>"
 
 #: CalcPvAutonome.php:720 CalcPvAutonome.php:768
 #, php-format
 msgid "L (m) : back and forth wire length"
-msgstr ""
+msgstr "L (m): طول جلو و عقب"
 
 #: CalcPvAutonome.php:721
 #, php-format
 msgid "I (A): Intensity (here panel intensity multiplied by the number of parallel)"
-msgstr ""
+msgstr "I (A): شدت (شدت جریان پنل ها در تعداد پنل های موازی)"
 
 #: CalcPvAutonome.php:722 CalcPvAutonome.php:770
 #, php-format
 msgid "VL (V) : admitted wire level voltage loss (%s%% of voltage)"
-msgstr "VL (V) : 認められたワイヤーレベルの電圧損失 (%s%% 電圧の)"
+msgstr "VL (V): افت ولتاژ سیم (%s%% از ولتاژ)"
 
 #: CalcPvAutonome.php:723
 #, php-format
 msgid "(panels voltage * number of series) * %d/100"
-msgstr ""
+msgstr "(ولتاژ پنل ها * شماره سری) * %d/100"
 
 #: CalcPvAutonome.php:725 CalcPvAutonome.php:773
 #, php-format
 msgid "In our case it gives : "
-msgstr ""
+msgstr "در مورد آن می شود: "
 
 #: CalcPvAutonome.php:729 CalcPvAutonome.php:776
 #, php-format
 msgid "But that section doesn't respect the %dA/mm&sup2; rule which prevents heating."
-msgstr "しかしそのセクションを尊重していません %dA/mm&sup2; 暖房を妨げる規則."
+msgstr "اما این بخش به A / mm %dو &sup2; بر اساس قانون نیست. قوانینی که مانع گرم شدن می شوند."
 
 #: CalcPvAutonome.php:730 CalcPvAutonome.php:777
 #, php-format
 msgid "To respect the rule, we need to get close to a <b>%s</b>mm&sup2; section"
-msgstr ""
+msgstr "بر اساس قانون، ما نیاز به نزدیک به <b>%s</b>mm&sup2; بخش داریم"
 
 #: CalcPvAutonome.php:742 CalcPvAutonome.php:787
 msgid "There is no realistic wire section determinable. You should probably decrease distance between devices."
-msgstr "現実的なワイヤーセクション確定はありません. おそらくデバイス間の距離を減らす必要があります."
+msgstr "هیچ قطعه سیم واقع بینانه قابل معیین نیست. احتمالا فاصله بین دستگاه ها را کاهش می دهید."
 
 #: CalcPvAutonome.php:745 CalcPvAutonome.php:790
 #, php-format
 msgid "Nearest wire section suggested : <b>%s</b>, approximate cost %d&euro;"
-msgstr ""
+msgstr "نزدیک ترین بخش سیم پیشنهادی: <b>%s</b>, تقریبی هزینه %d&euro;"
 
 #: CalcPvAutonome.php:758
 #, php-format
 msgid "Between charge controller and batteries, for a %sm distance, a wire section of %smm&sup2; is recommended"
-msgstr ""
+msgstr "بین کنترل کننده شارژ و باتری برای %sمتر فاصله بخش سیم از %smm&sup2; توصیه می شود"
 
 #: CalcPvAutonome.php:769
 #, php-format
 msgid "I (A): Intensity (here the power of the panels / the voltage of the battery bank)"
-msgstr ""
+msgstr "I (A): شدت (در اینجا قدرت پنل ها / ولتاژ بانک باتری)"
 
 #: CalcPvAutonome.php:771
 #, php-format
 msgid "Batteries voltage, i. e. %dV * %d/100"
-msgstr ""
+msgstr "ولتاژ باتری، %dV * %d/۱۰۰"
 
 #: CalcPvAutonome.php:794
 msgid "Another and more complete wire section calculator is avalaible at <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a>."
-msgstr ""
+msgstr "بخش دیگر و کامل تر ماشین حساب avalaible در <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a> است."
 
 #: CalcPvAutonome.php:818
 msgid "PVGIS Simulation, performance prediction"
-msgstr "PVGIS シミュレーション、パフォーマンス予測"
+msgstr "PVGIS شبیه سازی عملکرد پیش بینی"
 
 #: CalcPvAutonome.php:819
 msgid "Data from photovoltaic geographical information system (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a>) application "
-msgstr ""
+msgstr "داده ها و نرم افزار های سیستم (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a>) و اطلاعات جغرافیایی فتوولتائیک از PVGIS "
 
 #: CalcPvAutonome.php:821
 msgid "Power production estimate for off-grid PV system"
-msgstr ""
+msgstr "تخمین تولید قدرت برای شبکه خارج از سیستم PV"
 
 #: CalcPvAutonome.php:837
 msgid "Average energy production per day"
-msgstr ""
+msgstr "انرژی متوسط تولید در هر روز"
 
 #: CalcPvAutonome.php:850
 msgid "Average energy not captured per day"
-msgstr ""
+msgstr "متوسط ​​انرژی که در روز گرفته نشده است"
 
 #: CalcPvAutonome.php:876
 msgid "Battery performance for off-grid PV system"
-msgstr ""
+msgstr "عملکرد باتری برای سیستم خارج از شبکه PV"
 
 #: CalcPvAutonome.php:892
 msgid "Percentage of days when battery became full"
-msgstr "バッテリが満杯になった日の割合"
+msgstr "درصد روزهایی که باتری پر شده است"
 
 #: CalcPvAutonome.php:903
 msgid "Percentage of days when battery became empty"
-msgstr "バッテリが空になった日の割合"
+msgstr "درصد روزهایی که باتری خالی شد"
 
 #: CalcPvAutonome.php:927
 msgid "Probability of battery charge state at the end of the day"
-msgstr "一日の終わりにバッテリー充電状態の確率"
+msgstr "احتمال شارژ باتری در پایان روز"
 
 #: CalcPvAutonome.php:941
 msgid "Percentage of days with this charge state"
-msgstr "この充電状態の日数の割合"
+msgstr "درصد روزها با این حالت شارژ"
 
 #: CalcPvAutonome.php:985
 msgid "Budget"
-msgstr "予算"
+msgstr "بودجه"
 
 #: CalcPvAutonome.php:986
 msgid "This is an approximate estimation for new equipment, it can't be considered as a quote."
-msgstr "これは新しい機器のおおよその推定である、それは引用符として考慮することはできません."
+msgstr "این یک تخمین تقریبی برای تجهیزات جدید است، نمیتواند به عنوان یک نقل قول در نظر گرفته شود."
 
 #: CalcPvAutonome.php:991 CalcPvAutonome.php:1000 CalcPvAutonome.php:1012
 #: CalcPvAutonome.php:1026
 #, php-format
 msgid "between"
-msgstr ""
+msgstr "بین"
 
 #: CalcPvAutonome.php:991 CalcPvAutonome.php:1000 CalcPvAutonome.php:1012
 #: CalcPvAutonome.php:1026
 #, php-format
 msgid "and"
-msgstr ""
+msgstr "و"
 
 #: CalcPvAutonome.php:992
 #, php-format
 msgid "Estimated cost %s&euro;/W at low range cost and %s&euro;/W at high range cost"
-msgstr ""
+msgstr "برآورد هزینه%s&euro;/W در محدوده کم هزینه و %s&euro;/W در محدوده با هزینه بالا"
 
 #: CalcPvAutonome.php:1004
 msgid "sorry, no hypothesis for charge controller"
-msgstr ""
+msgstr "با عرض پوزش، هیچ فرضیه برای کنترل کننده شارژ وجود ندار"
 
 #: CalcPvAutonome.php:1007 CalcPvAutonome.php:1029 CalcPvAutonome.php:1030
 msgid "approximately"
-msgstr "約"
+msgstr "تقریباً"
 
 #: CalcPvAutonome.php:1013
 #, php-format
 msgid "Estimated cost %s&euro;/string at low range cost and %s&euro;/string at high range cost"
-msgstr ""
+msgstr "برآورد هزینه %s&euro;/string / رشته در محدوده های کم هزینه و %s&euro;/string هزینه بالا"
 
 #: CalcPvAutonome.php:1027
 #, php-format
 msgid "Estimated cost %s&euro;/VA at low range cost and %s&euro;/VA at high range cost"
-msgstr ""
+msgstr "برآورد هزینه %s&euro;/VA در محدوده های کم هزینه و %s&euro; هزینه /VA در محدوده بالا"
 
 #: CalcPvAutonome.php:1030 CalcPvAutonome.php:1501
 msgid "Wiring"
-msgstr ""
+msgstr "سیم کشی"
 
 #: CalcPvAutonome.php:1034
 #, php-format
 msgid "Which brings to a total budget <b>between %s and %s&euro;</b>. Cost of panels support, wire, wire terminal and protection elements (fuse, battery cut-off, ...) is not included"
-msgstr ""
+msgstr "بودجه کلی که <b>بین %s و %s&euro;</b>به ارمغان می آورد. هزینه پشتیبانی پنل ها ، سیم کشی و ترمینال سیم ها و محافظت از عناصر (فیوز، قطع کننده باتری،…) را گنجانده نشده است"
 
 #: CalcPvAutonome.php:1036 CalcPvAutonome.php:1527
 #, php-format
 msgid "Support, contribute"
-msgstr ""
+msgstr "پشتیبانی، مشارکت"
 
 #: CalcPvAutonome.php:1037
 #, php-format
 msgid "If this software was helpfull and/or you want to thank"
-msgstr ""
+msgstr "اگر این نرم افزار مفید است و/یا شما میخواهید تشکر کنید"
 
 #: CalcPvAutonome.php:1039
 #, php-format
 msgid "<a href=\"http://david.mercereau.info/contact/\"  target=\"_blank\">Say thank you !</a> (it's always a pleasure)"
-msgstr ""
+msgstr "<a href=\"http://david.mercereau.info/contact/\" target=\"_blank\"> با تشکر از شما! </a> (همیشه لذت بخش است)"
 
 #: CalcPvAutonome.php:1040
 #, php-format
 msgid "Support by making a secure donation"
-msgstr "安全な寄付を行うことによる支援"
+msgstr "پشتیبانی با کمک مالی امن"
 
 #: CalcPvAutonome.php:1041
 #, php-format
 msgid "Contribute / improve / translate this software"
-msgstr ""
+msgstr "مشارکت / بهبود / ترجمه این نرم افزار"
 
 #: CalcPvAutonome.php:1045
 #, php-format
 msgid "Summary"
-msgstr ""
+msgstr "خلاصه"
 
 #: CalcPvAutonome.php:1046
 #, php-format
 msgid "<a href=\"%s\">This simulation</a> estimates that with your consumption of %dWh/d you would need:"
-msgstr ""
+msgstr "<a href=\"%s\">این شبیه سازی</a> که خود مصرف %dWh/d مورد نیاز شما را تخمین می زند:"
 
 #: CalcPvAutonome.php:1047 CalcPvAutonome.php:1052
 #, php-format
 msgid "~%dW panel (%d\"%dW for example)"
-msgstr ""
+msgstr "~‌%dW پنل (%d”%dW برای مثال)"
 
 #: CalcPvAutonome.php:1048 CalcPvAutonome.php:1053
 #, php-format
 msgid "~%dAh battery in %dV (%d\"%dAh in %dV for example)"
-msgstr ""
+msgstr "~%dAhباتری در %dV ( برای مثال %d”%dAh در %dV)"
 
 #: CalcPvAutonome.php:1050 CalcPvAutonome.php:1054
 #, php-format
 msgid "The budget estimated between %s and %s&euro;"
-msgstr ""
+msgstr "برآورد بودجه بین %s و %s&euro;"
 
 #: CalcPvAutonome.php:1051
 #, php-format
 msgid "[url=%s]This simulation[url] estimates that with your consumption of %dWh/d you would need:"
-msgstr ""
+msgstr "[url =%s] این شبیه سازی[url] که خود مصرف %dWh/d مورد نیاز شما را تخمین می زند:"
 
 #: CalcPvAutonome.php:1136
 msgid "Your degree of knowledge in photovoltaics"
-msgstr "太陽光発電の知識のあなたの学位"
+msgstr "میزان دانش شما از فتوولتائیک"
 
 #: CalcPvAutonome.php:1138
 msgid "Beginner"
-msgstr "初心者"
+msgstr "مبتدی"
 
 #: CalcPvAutonome.php:1139
 msgid "Enlightened"
-msgstr ""
+msgstr "مربی"
 
 #: CalcPvAutonome.php:1140
 msgid "Expert"
-msgstr "専門家"
+msgstr "ماهر"
 
 #: CalcPvAutonome.php:1150
 msgid "Your consumption"
-msgstr ""
+msgstr "مصرف شما"
 
 #: CalcPvAutonome.php:1152
 msgid "This is the most important step for sizing."
-msgstr "これはサイジングのための最も重要なステップです."
+msgstr "این مهم ترین گام برای اندازه گیری است"
 
 #: CalcPvAutonome.php:1152
 #, php-format
 msgid "If you don't know this value go to <b><a href=\"%s?from=CalcPvAutonome\" id=\"DemandeCalcPvAutonome\">daily needs calculator</a></b>"
-msgstr ""
+msgstr "اگر یکاها را نمیدانید از<a href=\"%s?from=CalcPvAutonome\" id=\"DemandeCalcPvAutonome\">ماشین حساب مورد نیاز روز استفاده کنید</a></b>"
 
 #: CalcPvAutonome.php:1176
 msgid "Geographical location"
-msgstr ""
+msgstr "مکان جغرافیایی"
 
 #: CalcPvAutonome.php:1179
 msgid "Map"
-msgstr "地図"
+msgstr "نقشه"
 
 #: CalcPvAutonome.php:1180
 msgid "Manual"
-msgstr "手動"
+msgstr "دستی"
 
 #: CalcPvAutonome.php:1185
 msgid "Click on the map to set your position and deduce solar resource"
-msgstr ""
+msgstr "بر روی نقشه کلیک کنید تا موقعیت خود را تعیین کرده و منبع انرژی خورشیدی را پیدا کنید"
 
 #: CalcPvAutonome.php:1226
 msgid "Selected position"
-msgstr ""
+msgstr "انتخاب موقعیت"
 
 #: CalcPvAutonome.php:1247
 msgid "Latitude"
-msgstr "緯度"
+msgstr "عرض جغرافیایی"
 
 #: CalcPvAutonome.php:1249
 msgid "Longitude"
-msgstr "経度"
+msgstr "طول جغرافیایی"
 
 #: CalcPvAutonome.php:1252
 msgid "Solar irradiation data is collected on <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>"
-msgstr ""
+msgstr "<a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS</a>داده ها جمع آوری شده در"
 
 #: CalcPvAutonome.php:1256
 msgid "Enter the mid value of solar radiation for the worst month and panel plane (inclination)"
-msgstr "最も悪い月およびパネルの平面のための太陽放射の中間値を入力しなさい (傾斜)"
+msgstr "مقدار متوسط ​​تابش خورشیدی را برای ماه های نامناسب و پانل (شیب) وارد کنید"
 
 #: CalcPvAutonome.php:1272
 msgid "Sizing of photovoltaic panels"
-msgstr "陽光発電パネルのサイジング"
+msgstr "اندازه پنل های فتوولتاییک"
 
 #: CalcPvAutonome.php:1283
 msgid "Incline of the panel"
-msgstr "パネルの傾斜"
+msgstr "شیب پنل"
 
 #: CalcPvAutonome.php:1289
 msgid "Orientation of the panels"
-msgstr "パネルの向き"
+msgstr "جهت پنل ها"
 
 #: CalcPvAutonome.php:1294
 msgid "I use a solar tracker on the 2 axes"
-msgstr ""
+msgstr "من از ردیاب خورشید در دو محور استفاده می کنم"
 
 #: CalcPvAutonome.php:1297
 msgid "Desired autonomous"
-msgstr ""
+msgstr "درخواست مورد نظر"
 
 #: CalcPvAutonome.php:1299
 msgid "Annual / complete"
-msgstr ""
+msgstr "سالانه / کامل"
 
 #: CalcPvAutonome.php:1300
 msgid "Seasonal / partial"
-msgstr ""
+msgstr "فصلی / بامشتقات جزئی"
 
 #: CalcPvAutonome.php:1303
 msgid "Select period"
-msgstr ""
+msgstr "انتخاب دوره"
 
 #: CalcPvAutonome.php:1328
 msgid "Panel template"
-msgstr ""
+msgstr "قالب پنل"
 
 #: CalcPvAutonome.php:1330 CalcPvAutonome.php:1403 CalcPvAutonome.php:1458
 msgid "Automatic"
-msgstr "自動"
+msgstr "خودکار"
 
 #: CalcPvAutonome.php:1331 CalcPvAutonome.php:1404 CalcPvAutonome.php:1459
 msgid "Customize"
-msgstr "カスタマイズ"
+msgstr "سفارشی"
 
 #: CalcPvAutonome.php:1343
 msgid "Preferred panel technology"
-msgstr ""
+msgstr "فن آوری پنل مورد نظر"
 
 #: CalcPvAutonome.php:1351
 msgid "You can detail the technical specifications of your panel"
-msgstr "あなたのパネルの技術仕様を詳細にすることができます"
+msgstr "شما می توانید مشخصات فنی پانل خود را کامل کنید"
 
 #: CalcPvAutonome.php:1354 Modeles.php:9
 msgid "Max power (Pmax)"
-msgstr ""
+msgstr "حداکثر قدرت (Pmax)"
 
 #: CalcPvAutonome.php:1358 Modeles.php:10
 msgid "Open circuit voltage (Voc)"
-msgstr ""
+msgstr "ولتاژ مدار باز (Voc)"
 
 #: CalcPvAutonome.php:1362 Modeles.php:11
 msgid "Short-circuit current (Isc)"
-msgstr ""
+msgstr "مدار اتصال کوتاه فعلی (Isc)"
 
 #: CalcPvAutonome.php:1369
 msgid "Electrical yield of batteries"
-msgstr "電池の電気収穫"
+msgstr "عملکرد الکتریکی باتری ها"
 
 #: CalcPvAutonome.php:1373
 msgid "Electrical yield for the remaining installation (charge controller,...)"
-msgstr ""
+msgstr "عملکرد برق برای نصب باقی مانده (کنترل شارژ،...)"
 
 #: CalcPvAutonome.php:1381
 msgid "Battery plant sizing"
-msgstr "バッテリープラントサイジング"
+msgstr "اندازه پلنت باتری"
 
 #: CalcPvAutonome.php:1382
 msgid "This software is preset for lead batteries"
-msgstr "このソフトウェアは鉛電池用にプリセットされて"
+msgstr "این نرم افزار برای باتری های سربی از پیش تعیین شده است"
 
 #: CalcPvAutonome.php:1384
 msgid "Autonomous days amount"
-msgstr "自律的日量"
+msgstr "مقدار روز های مستقل"
 
 #: CalcPvAutonome.php:1397
 msgid "Discharge level limit"
-msgstr "吐出レベル制限"
+msgstr "محدودیت سطح تخلیه"
 
 #: CalcPvAutonome.php:1401
 msgid "Battery model"
-msgstr "バッテリーモデル"
+msgstr "مدل باتری"
 
 #: CalcPvAutonome.php:1401
 msgid "(<a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">expressed in C10</a>)"
-msgstr ""
+msgstr "(<a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">بیان شده درC10</a>)"
 
 #: CalcPvAutonome.php:1413
 msgid "In automatic mode, GEL & OPzS batteries will be used above 500A"
-msgstr ""
+msgstr "در حالت خودکار از باتری های ژل و OPzS بالا تر از 500A استفاده خواهد شد"
 
 #: CalcPvAutonome.php:1416
 msgid "Preferred battery technology"
-msgstr "優先バッテリー技術"
+msgstr "فن آوری باتری مورد نظر"
 
 #: CalcPvAutonome.php:1426
 msgid "You can detail the technical characteristics of your battery"
-msgstr "あなたのバッテリーの技術的特性を詳細にすることができます"
+msgstr "شما می توانید ویژگی های فنی باتری خود را شرح دهید"
 
 #: CalcPvAutonome.php:1429 Modeles.php:29
 msgid "Capacity (C10)"
-msgstr ""
+msgstr "ظرفیت (C10)"
 
 #: CalcPvAutonome.php:1433 Modeles.php:30
 msgid "Voltage"
-msgstr ""
+msgstr "ولتاژ"
 
 #: CalcPvAutonome.php:1444
 msgid "Charge current max capacity"
-msgstr "充電電流最大容量"
+msgstr "شارژ حداکثر ظرفیت فعلی"
 
 #: CalcPvAutonome.php:1448
 msgid "Discharge current max capacity"
-msgstr "放電電流最大容量"
+msgstr "حداکثر ظرفیت تخلیه فعلی"
 
 #: CalcPvAutonome.php:1456
 msgid "Charge controller model"
-msgstr "チャージコントローラモデル"
+msgstr "مدل کنترل کننده شارژ"
 
 #: CalcPvAutonome.php:1475
 msgid "You can detail the technical characteristics of your charge controller"
-msgstr "チャージコントローラの技術的特性を詳細に知ることができます"
+msgstr "شما می توانید ویژگی های فنی کنترل کننده خود را شرح دهید"
 
 #: CalcPvAutonome.php:1478
 msgid "Batteries final voltage"
-msgstr "電池最終電圧"
+msgstr "ولتاژ نهایی باتری"
 
 #: CalcPvAutonome.php:1478
 msgid "This value can be changed in 'battery plant sizing'"
-msgstr ""
+msgstr "این مقدار می تواند در 'اندازه پلنت باتری' متغیر باشد"
 
 #: CalcPvAutonome.php:1485
 msgid "Open circuit max PV voltage"
-msgstr ""
+msgstr "حداکثر ولتاژ Pv مدار باز"
 
 #: CalcPvAutonome.php:1489
 msgid "PV current max. (power / voltage)"
-msgstr ""
+msgstr "Pvحداکثر فعلی. (توان / ولتاژ)"
 
 #: CalcPvAutonome.php:1495
 msgid "Panels Icc short-circuit current security margin"
-msgstr "パネル Icc 短絡電流セキュリティマージン"
+msgstr "پنل ها Icc حاشیه امنیتی اتصال کوتاه فعلی"
 
 #: CalcPvAutonome.php:1502
 msgid "Considering solar flexible copper wiring"
-msgstr "太陽フレキシブル銅配線の検討"
+msgstr "با توجه به خورشیدسیم کشی انعطاف پذیر مس"
 
 #: CalcPvAutonome.php:1504
 msgid "One-way distance between panels and charge controller"
-msgstr "パネルとチャージコントローラ間の一方向距離"
+msgstr "فاصله یک طرفه پنل کنترل کننده شارژ"
 
 #: CalcPvAutonome.php:1508
 msgid "One-way distance between charge controller and batteries"
-msgstr "充電コントローラとバッテリ間の一方向距離"
+msgstr "فاصله یک طرفه بین کنترل کننده شارژ و باتری"
 
 #: CalcPvAutonome.php:1512
 msgid "Conductor resistivity (rho) mm&sup2;/m"
-msgstr ""
+msgstr "هادی مقاومت (رو) /m&sup2; mm"
 
 #: CalcPvAutonome.php:1516
 msgid "Tolerable voltage drop"
-msgstr ""
+msgstr "افت ولتاژ قابل تحمل"
 
 #: CalcPvAutonome.php:1520
 msgid "Ratio in order to prevent wire heating"
-msgstr "電線加熱防止のための比率"
+msgstr "نسبت جلوگیری از گرمایش سیم"
 
 #: CalcPvAutonome.php:1526
 msgid "Reset"
-msgstr ""
+msgstr "تنظیم مجدد"
 
 #: CalcPvAutonome.php:1528 CalcPvAutonome.php:1529
 msgid "Start the calculation"
-msgstr ""
+msgstr "شروع محاسبه"
 
 #: CalcPvAutonome.php:1529
 msgid "At a minimum you must : <br />* Indicate your daily electrical needs<br />* Indicate your need in maximum electrical power  <br />* Your position (click on the map)"
-msgstr ""
+msgstr "حداقل شما باید : <br />* برق مورد نیاز روزانه<br />* حداکثر توان الکتریکی مورد نیاز شما<br />* موقعیت شما (با کلیک بر روی نقشه)"
 
 #: CalcPvAutonome.php:1529
 msgid "Why it's not possible to click on"
-msgstr ""
+msgstr "چرا امکان کلیک کردن وجود ندارد"
 
 #: CalcPvAutonome.php:1542
 msgid "Support CaclPvAutonome"
-msgstr ""
+msgstr "پشتیبانی CaclPvAutonome"
 
 #: CalcPvAutonome.php:1543
 msgid "This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>."
-msgstr ""
+msgstr "این نرم افزار <b>متن باز</b>،<b>رایگان</b>مشارکتی و<b>مستقل</b>مالی است.<b>پس برای ادامه آن ،ما به حمایت شما احتیاطا داریم</b>."
 
 #: CalcPvAutonome.php:1544
 msgid "To help us, you can also <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribute to its improvement</a>, its <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">translation</a>."
-msgstr ""
+msgstr "همچنین برای کمک کردن به ما می توانید<a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">در بهبود برنامه </a>آن را <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">ترجمه کنید</a>."
 
 #: CalcPvAutonome.php:1545
 msgid "I want to make a secure one-time donation with Paypal"
-msgstr ""
+msgstr "من می خواهم کمک مالی را با Paypal انجام دهم"
 
 #: CalcPvAutonome.php:1546
 msgid "I want to make a recurring, free and secure donation with Liberapay"
-msgstr ""
+msgstr "من می خواهم کمک مالی ، آزاد و امن را با Liberapay انجام دهم"
 
 #: CalcPvAutonome.php:1547
 msgid "No thanks, I just want to <b>start the calculation</b>"
-msgstr ""
+msgstr "نه متشکرم، من فقط می خواهم <b>محاسبه را شروع کنم</b>"
 
 #: CalcPvAutonome.php:1548
 msgid "I already support CalcPvAutonomous"
-msgstr "私はすでにサポート CalcPvAutonomous"
+msgstr "من در حال حاضر از CalcPvAutonomous پشتیبانی می کنم"
 
 #: index.php:74 index.php:146
 msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
-msgstr ""
+msgstr "محاسبه/اندازه فتوولتائیک مجموعه مستقل"
 
 #: index.php:115
 msgid "partial translation"
-msgstr ""
+msgstr "ترجمه جزئی"
 
 #: index.php:137
 msgid "Calculate daily electric needs"
-msgstr "毎日の電気の必要性を計算しなさい"
+msgstr "محاسبه نیاز برق روزانه"
 
 #: index.php:139 index.php:148 index.php:171
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
-msgstr ""
+msgstr "<p>.برای مشارکت در ترجمه این برنامه رایگان به <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">پلتفرم ترجمه بروید</p>"
 
 #: index.php:156
 msgid "Thanks to"
-msgstr ""
+msgstr "با سپاس از"
 
 #: index.php:169
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
-msgstr ""
+msgstr "برای این <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">ترجمه</a>"
 
 #: index.php:172
 msgid "By"
-msgstr ""
+msgstr "توسط"
 
 #: index.php:172
 msgid "Git repository"
-msgstr ""
+msgstr "منبع"
 
 #: index.php:173
 msgid "version"
-msgstr ""
+msgstr "نسخه"
 
 #: index.php:173
 msgid "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a>"
-msgstr ""
+msgstr "نرم افزارمتن باز <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a> محفوظ است"
 
 #: Modeles.php:8 Modeles.php:28
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: Modeles.php:12 Modeles.php:31 Modeles.php:51 Modeles.php:70 Modeles.php:86
 msgid "Estimate price"
-msgstr ""
+msgstr "برآورد قیمت"
 
 #: Modeles.php:27 Modeles.php:46 Modeles.php:66
 msgid "Name"
-msgstr ""
+msgstr "نام"
 
 #: Modeles.php:47
 msgid "Battery plant voltage"
-msgstr ""
+msgstr "ولتاژ باتری"
 
 #: Modeles.php:48
 msgid "Max panel power"
-msgstr "最大パネル電源"
+msgstr "حداکثر قدرت پنل"
 
 #: Modeles.php:49
 msgid "Max panel voltage"
-msgstr "最大パネル電圧"
+msgstr "حداکثر ولتاژ پنل"
 
 #: Modeles.php:50
 msgid "Max panel current"
-msgstr "最大パネル電流"
+msgstr "حداکثر پنل فعلی"
 
 #: Modeles.php:67
 msgid "Battery park voltage"
-msgstr "バッテリーパーク電圧"
+msgstr "ولتاژ پک باتری"
 
 #: Modeles.php:68
 msgid "Max power (at 25 °C)"
-msgstr ""
+msgstr "حداکثر قدرت (در 25 درجه سانتی گراد)"
 
 #: Modeles.php:69
 msgid "Peak power"
-msgstr ""
+msgstr "اوج قدرت"
 
 #: Modeles.php:85
 msgid "Section"
-msgstr ""
+msgstr "بخش"
 

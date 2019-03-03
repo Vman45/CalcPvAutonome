@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-16 14:36+0100\n"
-"PO-Revision-Date: 2018-10-25 09:39\n"
+"POT-Creation-Date: 2018-10-28 21:53+0100\n"
+"PO-Revision-Date: 2018-10-28 21:05\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -108,9 +108,14 @@ msgstr "Zaznacz wszystkie urządzenia, które prawdopodobnie będą włączone w
 msgid "Ticked: your daily consumption will be estimated automatically<br/>Unticked: you shall specifiy your daily consumption (useful in case your fridge is plugged 24/7 yet it goes on only if room temperature rises"
 msgstr "Zaznaczone: twoje dzienne zużycie będzie szacowane automatycznie<br/>Niezaznaczone: powinieneś określić swoje dzienne zużycie (przydatne w przypadku, kiedy twoja lodówka jest włączona cały czas, ale dzieje się tak tylko gdy temperatura w pomieszczeniu wzrasta"
 
+#: CalcConsommation.php:103 CalcPvAutonome.php:837 CalcPvAutonome.php:850
+#: CalcPvAutonome.php:1156
+msgid "Wh/d"
+msgstr ""
+
 #: CalcConsommation.php:103
-msgid "The calculation is: Power (W) * Time (in hours) * Number = Wh/j (Watt Hour Day)"
-msgstr "Obliczenia są następujące: Moc (W) * Czas (w godzinach) * Liczba = Wh/j (Wat Godzina Dzień)"
+msgid "The calculation is: Power (W) * Time (in hours) * Number = Wh/d (Watt Hour Day)"
+msgstr ""
 
 #: CalcConsommation.php:237
 msgid "Copy the internet address below keep it there or share it here..."
@@ -770,7 +775,7 @@ msgstr "L (m): Długość przewodu w tę i z powrotem"
 
 #: CalcPvAutonome.php:721
 #, php-format
-msgid "I (A) : L\\’intensité (ici l'intensité des panneaux x le nombre de parallèle(s))"
+msgid "I (A): Intensity (here panel intensity multiplied by the number of parallel)"
 msgstr ""
 
 #: CalcPvAutonome.php:722 CalcPvAutonome.php:770
@@ -841,10 +846,6 @@ msgstr ""
 #: CalcPvAutonome.php:837
 msgid "Average energy production per day"
 msgstr "Przeciętna produkcja energii na dzień"
-
-#: CalcPvAutonome.php:837 CalcPvAutonome.php:850 CalcPvAutonome.php:1156
-msgid "Wh/d"
-msgstr ""
 
 #: CalcPvAutonome.php:850
 msgid "Average energy not captured per day"
@@ -1019,7 +1020,7 @@ msgid "Manual"
 msgstr ""
 
 #: CalcPvAutonome.php:1185
-msgid "Click on the map to set your position and deduce solar ressource"
+msgid "Click on the map to set your position and deduce solar resource"
 msgstr ""
 
 #: CalcPvAutonome.php:1226
@@ -1139,7 +1140,7 @@ msgid "(<a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.
 msgstr ""
 
 #: CalcPvAutonome.php:1413
-msgid "In automatic mode, GEL OPzV 2V batteries will be used above 500A"
+msgid "In automatic mode, GEL & OPzS batteries will be used above 500A"
 msgstr ""
 
 #: CalcPvAutonome.php:1416
@@ -1222,71 +1223,83 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: CalcPvAutonome.php:1528
+#: CalcPvAutonome.php:1528 CalcPvAutonome.php:1529
 msgid "Start the calculation"
 msgstr "Rozpocznij Obliczanie"
 
-#: CalcPvAutonome.php:1541
+#: CalcPvAutonome.php:1529
+msgid "At a minimum you must : <br />* Indicate your daily electrical needs<br />* Indicate your need in maximum electrical power  <br />* Your position (click on the map)"
+msgstr ""
+
+#: CalcPvAutonome.php:1529
+msgid "Why it's not possible to click on"
+msgstr ""
+
+#: CalcPvAutonome.php:1542
 msgid "Support CaclPvAutonome"
 msgstr "Wsparcie CaclPvAutonome"
 
-#: CalcPvAutonome.php:1542
+#: CalcPvAutonome.php:1543
 msgid "This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>."
 msgstr ""
 
-#: CalcPvAutonome.php:1543
+#: CalcPvAutonome.php:1544
 msgid "To help us, you can also <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribute to its improvement</a>, its <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">translation</a>."
 msgstr ""
 
-#: CalcPvAutonome.php:1544
+#: CalcPvAutonome.php:1545
 msgid "I want to make a secure one-time donation with Paypal"
 msgstr ""
 
-#: CalcPvAutonome.php:1545
+#: CalcPvAutonome.php:1546
 msgid "I want to make a recurring, free and secure donation with Liberapay"
 msgstr "Chcę, aby cykliczne, wolne i bezpieczne darowizny z Liberapay"
 
-#: CalcPvAutonome.php:1546
+#: CalcPvAutonome.php:1547
 msgid "No thanks, I just want to <b>start the calculation</b>"
 msgstr ""
 
-#: CalcPvAutonome.php:1547
+#: CalcPvAutonome.php:1548
 msgid "I already support CalcPvAutonomous"
 msgstr "Już wspieram CalcPvAutonomous"
 
-#: index.php:87 index.php:142
+#: index.php:74 index.php:146
 msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
 msgstr ""
 
-#: index.php:133
+#: index.php:115
+msgid "partial translation"
+msgstr ""
+
+#: index.php:137
 msgid "Calculate daily electric needs"
 msgstr "Obliczanie dziennych potrzeb elektrycznych"
 
-#: index.php:135 index.php:144 index.php:166
+#: index.php:139 index.php:148 index.php:171
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
 msgstr ""
 
-#: index.php:152
+#: index.php:156
 msgid "Thanks to"
 msgstr ""
 
-#: index.php:164
+#: index.php:169
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
 msgstr ""
 
-#: index.php:167
+#: index.php:172
 msgid "By"
 msgstr ""
 
-#: index.php:167
+#: index.php:172
 msgid "Git repository"
 msgstr ""
 
-#: index.php:168
+#: index.php:173
 msgid "version"
 msgstr ""
 
-#: index.php:168
+#: index.php:173
 msgid "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a>"
 msgstr ""
 

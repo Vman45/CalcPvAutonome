@@ -2,6 +2,7 @@
 //							CODE			LOCALE (locale -a)
 $langueEtLocalDispo=array(	'aa' 		=> 'aa_ER',
 							'fr'		=> 'fr_FR', 
+							'fa'		=> 'fa_IR', 
 							'es-ES' 	=> 'es_ES', 
 							'pt' 		=> 'pt_PT', 
 							'pt-BR' 	=> 'pt_BR', 
