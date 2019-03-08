@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calcpvautonome\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-28 21:53+0100\n"
-"PO-Revision-Date: 2018-10-28 21:05\n"
+"POT-Creation-Date: 2019-03-08 10:11+0100\n"
+"PO-Revision-Date: 2019-03-08 09:23\n"
 "Last-Translator: kepon85 <david@mercereau.info>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -16,110 +16,224 @@ msgstr ""
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: messages.pot\n"
 
-#: CalcConsommation.php:2
+#: CalcConsommation.php:48
+msgid "The consumption table has been deleted."
+msgstr "Le tableau de consommation à bien été supprimé."
+
+#: CalcConsommation.php:74 CalcConsommation.php:180
+msgid "Hello"
+msgstr "Bonjoour"
+
+#: CalcConsommation.php:76
+msgid "Here are the consumption tables that you have saved :"
+msgstr "Voici les tableau de consommation que vous avez enregistrées:"
+
+#: CalcConsommation.php:81 CalcConsommation.php:184 CalcConsommation.php:293
+msgid "Public link (read only, to share)"
+msgstr "Lien public (lecture seul, pour le partage)"
+
+#: CalcConsommation.php:82 CalcConsommation.php:185
+msgid "Admin link"
+msgstr "Lien d'administration"
+
+#: CalcConsommation.php:83 CalcConsommation.php:186
+msgid "Delete link"
+msgstr "Lien de suppression"
+
+#: CalcConsommation.php:87 CalcConsommation.php:188
+msgid "Beautiful day"
+msgstr "Belle journée"
+
+#: CalcConsommation.php:88
+msgid "Your consumption tables"
+msgstr "Vos tableau de consommations"
+
+#: CalcConsommation.php:89
+msgid "An email has just been sent to you with the list of consumption tables that you have saved. Remember to check in your spam folder if you can not find it."
+msgstr "Un email vient de vous être envoyé avec la liste des tables de consommation que vous avez sauvegardées. N'oubliez pas de vérifier dans votre dossier spam si vous ne le trouvez pas."
+
+#: CalcConsommation.php:91
+msgid "No table is stored for this email address. Or these have expired."
+msgstr "Aucun tableau enregistré à cet adresse email. Ils sont peut être expirés."
+
+#: CalcConsommation.php:182
+msgid "Your consumption chart has been saved. Follow these links to open it :"
+msgstr "Votre tableau de consommation a été enregistré. Suivez ces liens pour l'ouvrir:"
+
+#: CalcConsommation.php:189
+msgid "Your consumption table"
+msgstr "Votre tableau de consommation"
+
+#: CalcConsommation.php:193
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: CalcConsommation.php:194
+msgid "Your data has been saved. You will be redirected to the saved table"
+msgstr "Vos données ont été enregistrées. Vous serez redirigé vers le tableau enregistré"
+
+#: CalcConsommation.php:195
+#, php-format
+msgid "Click <a href=\"%s\">here</a> if the redirect does not work."
+msgstr "Cliquez sur <a href=\"%s\"> ici </a> si la redirection ne fonctionne pas."
+
+#: CalcConsommation.php:215
 msgid "In order to know the electric consumption (in Watts) of your devices you may"
 msgstr "Pour connaître la consommation (en Watt) de vos appareils électriques vous pouvez"
 
-#: CalcConsommation.php:4
+#: CalcConsommation.php:217
 msgid "Check on the device's specification sheet or label"
 msgstr "Regarder sur la notice ou sur l'appareil lui même parfois"
 
-#: CalcConsommation.php:5
+#: CalcConsommation.php:218
 msgid "You may get a Wattmeter (~10&euro;) that will show you the exact consumption if plugged between power socket and the applience"
 msgstr "Vous procurer un Wattmètre (~10&euro;) il se branche entre la prise et votre appareil et vous indique précisément la consommation"
 
-#: CalcConsommation.php:7
+#: CalcConsommation.php:220
 msgid "To calculate the dimensions of an autonomous solar installation, consider that it is wintertime (longer lighting time needed, but the fridge might be unplugged due to low temperature outside...)"
 msgstr "Pour dimensionner une installation photovoltaïque autonome, réfléchissez comme si c'était l'hiver (le temps d'éclairage est plus long par exemple, le réfrigérateur est peut-être débranché du fait qu'il fait déjà froid dehors...)"
 
-#: CalcConsommation.php:9
+#: CalcConsommation.php:222
 msgid "First sober example"
 msgstr "Premier exemple sobre"
 
-#: CalcConsommation.php:10
+#: CalcConsommation.php:223
 msgid "Second example"
 msgstr "Deuxième exemple"
 
-#: CalcConsommation.php:15
+#: CalcConsommation.php:240 CalcConsommation.php:254
+msgid "Error: This table does not exist or has expired"
+msgstr "Erreur : le tableau n'existe pas ou a expiré"
+
+#: CalcConsommation.php:263
+msgid "New"
+msgstr "Nouveau"
+
+#: CalcConsommation.php:264 CalcConsommation.php:358
+msgid "Open"
+msgstr "Ouvrir"
+
+#: CalcConsommation.php:268 CalcConsommation.php:342 CalcConsommation.php:346
+msgid "Save"
+msgstr "Enregistrer"
+
+#: CalcConsommation.php:270
+msgid "Save as..."
+msgstr "Enregistrer sous..."
+
+#: CalcConsommation.php:272
+msgid "Delete"
+msgstr "Supprimer"
+
+#: CalcConsommation.php:293 CalcConsommation.php:294
+msgid "Copy"
+msgstr "Copier"
+
+#: CalcConsommation.php:294
+msgid "Admin link (this interface)"
+msgstr "Lien d'administration (cette interface)"
+
+#: CalcConsommation.php:302
 msgid "Equipment"
 msgstr "Equipement"
 
-#: CalcConsommation.php:16
+#: CalcConsommation.php:303
 msgid "Power (Watt)"
 msgstr "Puissance (Watt)"
 
-#: CalcConsommation.php:17
+#: CalcConsommation.php:304
 msgid "Turn on<br />simultaneously"
 msgstr "Allumer<br />simultanément"
 
-#: CalcConsommation.php:18
+#: CalcConsommation.php:305
 msgid "Number"
 msgstr "Nombre"
 
-#: CalcConsommation.php:19
+#: CalcConsommation.php:306
 msgid "Daily use time"
 msgstr "Temps d'utilisation<br /> quotidien"
 
-#: CalcConsommation.php:20
+#: CalcConsommation.php:307
 msgid "Automatic consumption<br />calculation"
 msgstr "Calcul consommation<br /> automatique"
 
-#: CalcConsommation.php:21
+#: CalcConsommation.php:308
 msgid "Daily<br />consumption"
 msgstr "Consommation <br />quotidienne"
 
-#: CalcConsommation.php:27 CalcPvAutonome.php:1155
+#: CalcConsommation.php:313 CalcPvAutonome.php:1161
 msgid "Your daily electrical needs"
 msgstr "Vos besoins électriques journaliers"
 
-#: CalcConsommation.php:28 CalcPvAutonome.php:1160
+#: CalcConsommation.php:314 CalcPvAutonome.php:1166
 msgid "Your need in maximum electrical power"
 msgstr "Votre besoin en puissance électrique maximum"
 
-#: CalcConsommation.php:28
+#: CalcConsommation.php:314
 msgid "Total addition of power required by devices that are likely to be plugged and on at the same time OR consumption of the most power demanding appliance in case it is not plugged simultaneously with the rest"
 msgstr "Somme de la puissance des appareils suceptibles d'être allumés en même temps OU valeur de l'appareil le plus puissant si celui-ci n'est pas branché en même temps que le reste"
 
-#: CalcConsommation.php:29
+#: CalcConsommation.php:315
 msgid "Click here to introduce those values to calculate <br/> the dimension of your autonomous solar installation"
 msgstr "Cliquer ici pour indiquer ces valeurs pour le calcul <br /> de votre installation photovoltaïque autonome"
 
-#: CalcConsommation.php:31
+#: CalcConsommation.php:318
 msgid "Add an empty line"
 msgstr "Ajouter une ligne vide"
 
-#: CalcConsommation.php:33
+#: CalcConsommation.php:320
 msgid "Add a line according to a template..."
 msgstr "Ajouter une ligne selon un modèle..."
 
-#: CalcConsommation.php:39
+#: CalcConsommation.php:326
 msgid "The models' values are approximate estimations, if you need more precise measurement consider using Wattmeter to determine the exact consumption of each of yours devices"
 msgstr "Les valeurs des modèles sont des estimations indicatives, afin d'être précis nous vous encourageons à vous procurer un Wattmètre pour mesurer la consommation de chacun de vos appareils"
 
-#: CalcConsommation.php:45
+#: CalcConsommation.php:334
 msgid "Share / Save this table"
 msgstr "Partager/Mémoriser ce tableau"
 
-#: CalcConsommation.php:64
+#: CalcConsommation.php:343
+#, php-format
+msgid "This data will be deleted after %d days without consultation"
+msgstr "Ces données seront supprimées après %d jours sans consultation"
+
+#: CalcConsommation.php:344
+msgid "Name for this table"
+msgstr "Nom de ce tableau"
+
+#: CalcConsommation.php:345 CalcConsommation.php:360
+msgid "Your email"
+msgstr "Votre email"
+
+#: CalcConsommation.php:346 CalcConsommation.php:361
+msgid "Cancel"
+msgstr "Annuler"
+
+#: CalcConsommation.php:359
+msgid "You will receive an email with links to the tables you have saved"
+msgstr "Vous allez recevoir un email avec des liens vers les tableaux que vous avez enregistrés"
+
+#: CalcConsommation.php:361
+msgid "Send me"
+msgstr "Envoi moi"
+
+#: CalcConsommation.php:397
 msgid "Tick all the devices that are likely to be switched on at the same time (for example: Pc, fridge, lightbulb in the livingroom). At the other hand, you might rather want to unplug your Pc when you are using a drill"
 msgstr "Cocher tous les appareils suceptibles d`être allumés en même temps (exemple : un ordinateur, le réfrigérateur, l\\'ampoule du salon. Par contre la perceuse non, préférez débrancher votre ordinateur si vous avez à l\\'allumer"
 
-#: CalcConsommation.php:97
+#: CalcConsommation.php:430
 msgid "Ticked: your daily consumption will be estimated automatically<br/>Unticked: you shall specifiy your daily consumption (useful in case your fridge is plugged 24/7 yet it goes on only if room temperature rises"
 msgstr "Coché : le calcul de consommation quotidienne se fera automatiquement<br />Décoché : la consommation quotidienne est à indiquer (pratique pour un réfrigérateur qui est branché 24/24 mais qui ne consomme pas sa puissance 24/24, il s\\'alume uniquement si la température monte à l\\'intérieur"
 
-#: CalcConsommation.php:103 CalcPvAutonome.php:837 CalcPvAutonome.php:850
-#: CalcPvAutonome.php:1156
+#: CalcConsommation.php:436 CalcPvAutonome.php:838 CalcPvAutonome.php:851
+#: CalcPvAutonome.php:1162
 msgid "Wh/d"
 msgstr "Wh/j"
 
-#: CalcConsommation.php:103
+#: CalcConsommation.php:436
 msgid "The calculation is: Power (W) * Time (in hours) * Number = Wh/d (Watt Hour Day)"
-msgstr "Le calcul est : Puissance (W) * Temps (en heure) * Nombre = Whj (Watt Heure Jour)"
-
-#: CalcConsommation.php:237
-msgid "Copy the internet address below keep it there or share it here..."
-msgstr "Copier l\\'adresse internet ci-après, gardez-là précieusement ou partager là..."
+msgstr "Le calcul est : Puissance (W) * Temps (en heure) * Nombre = Wh/j (Watt heure par jour)"
 
 #: CalcPvAutonome.php:8
 msgid "January"
@@ -277,1029 +391,1033 @@ msgstr "Il y a des erreurs dans le formulaire qui empêchent de continuer, merci
 msgid "Result of the dimension calculation"
 msgstr "Résultat du dimensionnement"
 
-#: CalcPvAutonome.php:129
+#: CalcPvAutonome.php:130
 msgid "<b>Warning</b>: Results are approximate, it is recommended to doublecheck with sales representative and validate your installation before buying materials."
 msgstr "<b>Avertissement</b>: Les résultats sont donnés à titre indicatif, nous vous conseillons de vous rapprocher d'un professionnel pour l'achat du matériel, celui-ci pourra valider votre installation."
 
-#: CalcPvAutonome.php:133 CalcPvAutonome.php:991
+#: CalcPvAutonome.php:134 CalcPvAutonome.php:992
 msgid "Photovoltaic panel"
 msgstr "Panneau photovoltaïque"
 
-#: CalcPvAutonome.php:153
+#: CalcPvAutonome.php:154
 msgid "Average sunlight"
 msgstr "Rayonnement moyen"
 
-#: CalcPvAutonome.php:153
+#: CalcPvAutonome.php:154
 msgid "kWh/m&sup2;/d"
 msgstr "kWh/m&sup2;/j"
 
-#: CalcPvAutonome.php:180
+#: CalcPvAutonome.php:181
 msgid "Here we are looking for the power (peak, expressed in W) from solar panels to be mounted to fulfill your needs according to your geographical location. The formula is as follow : "
 msgstr "On cherche ici la puissance (crête, exprimée en W) des panneaux photovoltaïques à installer pour satisfaire vos besoins en fonction de votre situation géographique. La formule est la suivante : "
 
-#: CalcPvAutonome.php:181
+#: CalcPvAutonome.php:182
 msgid "Pp = Dn / (Yb X Yi X Rd)"
 msgstr "Pc = Bj / (Rb X Ri X Ej)"
 
-#: CalcPvAutonome.php:183
+#: CalcPvAutonome.php:184
 msgid "Pp (Wp) : Peak power (goal)"
 msgstr "Pc (W) : Puissance crête (recherchée)"
 
-#: CalcPvAutonome.php:184 CalcPvAutonome.php:366
+#: CalcPvAutonome.php:185 CalcPvAutonome.php:367
 msgid "Dn (Wh/d) : Daily needs"
 msgstr "Bj (Wh/j) : Besoins journaliers"
 
-#: CalcPvAutonome.php:185
+#: CalcPvAutonome.php:186
 msgid "Yb : electrical yield of batteries"
 msgstr "Rb : rendement électrique des batteries"
 
-#: CalcPvAutonome.php:186
+#: CalcPvAutonome.php:187
 msgid "Yi : electrical yield for the remaining installation (charge controller, ...)"
 msgstr "Ri : rendement électrique du reste de l’installation (régulateur de charge…)"
 
-#: CalcPvAutonome.php:187
+#: CalcPvAutonome.php:188
 msgid "Rd : average daily radiation of the worst month in the plane of the panel (kWh/m&sup2;/d)"
 msgstr "Ej : rayonnement moyen quotidien du mois le plus défavorable dans le plan du panneau (kWh/m&sup2;/j)"
 
-#: CalcPvAutonome.php:224
+#: CalcPvAutonome.php:225
 #, php-format
 msgid "According to data from <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS</a>, the value for the selected location is %s kWh/m&sup2;/d"
 msgstr "Selon les données <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS</a>, la valeur pour la localisation choisie est de %s kWh/m&sup2;/j"
 
-#: CalcPvAutonome.php:231 CalcPvAutonome.php:371
+#: CalcPvAutonome.php:232 CalcPvAutonome.php:372
 msgid "In your case, result is"
 msgstr "Dans votre cas ça nous fait"
 
-#: CalcPvAutonome.php:235 CalcPvAutonome.php:374
+#: CalcPvAutonome.php:236 CalcPvAutonome.php:375
 msgid "Hide the process"
 msgstr "Cacher le calcul"
 
-#: CalcPvAutonome.php:236
+#: CalcPvAutonome.php:237
 msgid "Pp"
 msgstr "Pc"
 
-#: CalcPvAutonome.php:239
+#: CalcPvAutonome.php:240
 msgid "Photovoltaic panels produce electricity from sunlight (solar radiation)."
 msgstr "Les panneaux photovoltaïques produisent de l'électricité à partir des rayonnements du soleil."
 
-#: CalcPvAutonome.php:240
+#: CalcPvAutonome.php:241
 #, php-format
 msgid "According entered data, <b>%sW</b> of solar panel are required to fulfill your daily needs of %sWh/d."
 msgstr "Dans ces conditions, vous auriez besoin d'une puissance de panneau photovoltaïques équivalente à <b>%sW</b> afin de satisfaire vos besoins journaliers de %sWh/j."
 
-#: CalcPvAutonome.php:332
+#: CalcPvAutonome.php:333
 #, php-format
 msgid "One possibility could be to have <b>%d panel(s)</b> %s of <b>%dW</b> each"
 msgstr "Une hypothèse serait d'avoir <b>%d panneau(x)</b> %s de <b>%dW</b> chacun"
 
-#: CalcPvAutonome.php:332 CalcPvAutonome.php:336
+#: CalcPvAutonome.php:333 CalcPvAutonome.php:337
 #, php-format
 msgid "Specificity of the panel"
 msgstr "Caractéristique du panneau"
 
-#: CalcPvAutonome.php:332 CalcPvAutonome.php:336
+#: CalcPvAutonome.php:333 CalcPvAutonome.php:337
 #, php-format
 msgid "Which extend the unit capacity to %dW"
 msgstr "Ce qui pousse la capacité du parc à %dW"
 
-#: CalcPvAutonome.php:334
+#: CalcPvAutonome.php:335
 #, php-format
 msgid "With your personnalized solar panel the hypothesis would be to have <b>%d panel(s)</b> of <b>%dW</b> each, which could raise the plant up to %dW"
 msgstr "Avec votre panneau personnalisé l'hypothèse serait d'avoir <b>%d panneau(x)</b> de <b>%dW</b> chacun, ce qui pousse la capacité du parc à %dW"
 
-#: CalcPvAutonome.php:336
+#: CalcPvAutonome.php:337
 #, php-format
 msgid "With %s selected panel of <b>%dW</b>, one hypothesis would be to have <b>%d of panel(s)</b>"
 msgstr "Avec le panneau %s sélectionné de <b>%dW</b>, une hypothèse serait d'avoir <b>%d de ces panneau(x)</b>"
 
-#: CalcPvAutonome.php:342 CalcPvAutonome.php:1000
+#: CalcPvAutonome.php:343 CalcPvAutonome.php:1002
 msgid "Batterie"
 msgstr "Batterie"
 
-#: CalcPvAutonome.php:344
+#: CalcPvAutonome.php:345
 msgid "We are looking here for the nominal capacity expressed in ampere per hour (Ah, given in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>)"
 msgstr "On cherche ici la capacité nominale des batteries exprimée en ampères heure (Ah, donné en <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>)"
 
-#: CalcPvAutonome.php:363
+#: CalcPvAutonome.php:364
 msgid "Cap = (Dn x Aut) / (DD x U)"
 msgstr "Cap = (Bj x Aut) / (DD x U)"
 
-#: CalcPvAutonome.php:365
+#: CalcPvAutonome.php:366
 msgid "Cap (Ah) : Nominal capacity of batteries (in <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>))"
 msgstr "Cap (Ah) : Capacité nominale des batteries (en <a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">C10</a>))"
 
-#: CalcPvAutonome.php:367
+#: CalcPvAutonome.php:368
 msgid "Aut: Autonomous days amount (no sun)"
 msgstr "Aut : Nombre de jour d'autonomie (sans soleil)"
 
-#: CalcPvAutonome.php:368
+#: CalcPvAutonome.php:369
 msgid "DD (%)"
 msgstr "DD (%)"
 
-#: CalcPvAutonome.php:368
+#: CalcPvAutonome.php:369
 #, php-format
 msgid "With lead batteries, the critical threshold of 50% of discharge mustn't be reached, 20% being ideal"
 msgstr "Avec des batteries au plomb il ne faut pas passer sous le seuil critique des 50% de degré de décharge, 20% est idéal"
 
-#: CalcPvAutonome.php:368
+#: CalcPvAutonome.php:369
 msgid "Maximum discharge rate"
 msgstr "Degré de décharge maximum"
 
-#: CalcPvAutonome.php:369
+#: CalcPvAutonome.php:370
 msgid "U (V)"
 msgstr "U (V)"
 
-#: CalcPvAutonome.php:369 CalcPvAutonome.php:1394
+#: CalcPvAutonome.php:370 CalcPvAutonome.php:1400
 msgid "In automatic mode the batteries voltage will be deducted from the panel need <br />From 0 to 500W : 12V<br />From 500 to 1500 W : 24V<br />Above 1500 W : 48V"
 msgstr "En mode automatique la tension des batteries sera déduite du besoin en panneaux<br />De 0 à 500W : 12V<br />De 500 à 1500 W : 24V<br />Au dessus de 1500 W : 48V"
 
-#: CalcPvAutonome.php:369 CalcPvAutonome.php:1388
+#: CalcPvAutonome.php:370 CalcPvAutonome.php:1394
 msgid "Final battery plant voltage"
 msgstr "Tension finale du parc de batterie"
 
-#: CalcPvAutonome.php:375
+#: CalcPvAutonome.php:376
 msgid "Cap"
 msgstr "Cap"
 
-#: CalcPvAutonome.php:377
+#: CalcPvAutonome.php:378
 #, php-format
 msgid "Batteries are used to store electric energy produced by the panels. You will need a battery plant of <b>%d Ah at %d V</b>."
 msgstr "Les batteries servent à stocker l'énergie électrique produite par les panneaux. Vous auriez besoin d'un parc de batteries de <b>%d Ah en %d V</b>."
 
-#: CalcPvAutonome.php:378
+#: CalcPvAutonome.php:379
 msgid "See, understand the procedure, the calculation"
 msgstr "Voir, comprendre la démarche, le calcul"
 
-#: CalcPvAutonome.php:385
+#: CalcPvAutonome.php:386
 #, php-format
 msgid "The discharge current of the battery plant must not exceed %d"
 msgstr "Le courant de décharge du parc de batteries ne doit pas dépasser %d"
 
-#: CalcPvAutonome.php:385 CalcPvAutonome.php:397
+#: CalcPvAutonome.php:386 CalcPvAutonome.php:398
 #, php-format
 msgid "In our case it gives"
 msgstr "Dans notre cas ça fait"
 
-#: CalcPvAutonome.php:386
+#: CalcPvAutonome.php:387
 #, php-format
 msgid "Yet with a max power need of %dW, the discharge current is"
 msgstr "Or avec un besoin en puissance max de %dW, le courant de décharge est de"
 
-#: CalcPvAutonome.php:387
+#: CalcPvAutonome.php:388
 #, php-format
 msgid "In order to respond to a %dW max power need, you need to increase the battery plant by "
 msgstr "Pour répondre au besoin de puissance maximum de %dW, il vous faut augmenter le parc de batteries à "
 
-#: CalcPvAutonome.php:397
+#: CalcPvAutonome.php:398
 #, php-format
 msgid "The battery plant charging current musn't exceed %d"
 msgstr "Le courant de charge du parc de batteries ne doit pas dépasser %d"
 
-#: CalcPvAutonome.php:398
+#: CalcPvAutonome.php:399
 #, php-format
 msgid "Yet with %dW panels the charge current is"
 msgstr "Or avec %dW de panneau le courant de charge est de"
 
-#: CalcPvAutonome.php:399
+#: CalcPvAutonome.php:400
 #, php-format
 msgid "If your charge controller allows it you can limit it or increase your battery plant to"
 msgstr "Si votre régulateur le permet vous pouvez le brider ou augmenter votre parc de batteries à"
 
-#: CalcPvAutonome.php:401
+#: CalcPvAutonome.php:402
 msgid "We will state to increase the battery plant"
 msgstr "Nous allons partir sur l'augmentation du parc de batteries"
 
-#: CalcPvAutonome.php:494
+#: CalcPvAutonome.php:495
 #, php-format
 msgid "A wiring hypothesis would be to have <b>%d></b> <b>%s</b> type batteries, which increases the plant capacity up to %dAh"
 msgstr "Une hypothèse de câblage serait d'avoir <b>%d batterie(s)</b> de type <b>%s</b> ce qui pousse la capacité du parc à %dAh"
 
-#: CalcPvAutonome.php:496
+#: CalcPvAutonome.php:497
 #, php-format
 msgid "You chose to use custom %dAh at %dV battery. Here is a wiring hypothesis with <b>%d</b> of these batteries which raise the plant capacity to %dAh"
 msgstr "Vous avez choisi de travailler avec la batterie personnalisée à %dAh en %dV. Voici une hypothèse de câblage avec <b>%d</b> de ces batteries ce qui pousse la capacité du parc à %dAh"
 
-#: CalcPvAutonome.php:498
+#: CalcPvAutonome.php:499
 #, php-format
 msgid "You chose to use <b>%s</b> type batteries. Here is a wiring hypothesis with <b>%d</b> of these batteries which raise the plant capacity to %dAh"
 msgstr "Vous avez choisi de travailler avec des batterie(s) de type <b>%s</b>. Voici une hypothèse de câblage avec <b>%d</b> de ces batteries ce qui pousse la capacité du parc à %dAh"
 
-#: CalcPvAutonome.php:500
+#: CalcPvAutonome.php:501
 msgid "serialized batteries"
 msgstr "batterie(s) en série(s)"
 
-#: CalcPvAutonome.php:500 CalcPvAutonome.php:589 CalcPvAutonome.php:597
+#: CalcPvAutonome.php:501 CalcPvAutonome.php:590 CalcPvAutonome.php:598
 msgid "Battery voltage"
 msgstr "Tension de la batterie"
 
-#: CalcPvAutonome.php:500
+#: CalcPvAutonome.php:501
 msgid "serie(s)"
 msgstr "série(s)"
 
-#: CalcPvAutonome.php:500
+#: CalcPvAutonome.php:501
 msgid "for a voltage of"
 msgstr "pour une tension de"
 
-#: CalcPvAutonome.php:502
+#: CalcPvAutonome.php:503
 msgid "on"
 msgstr "sur"
 
-#: CalcPvAutonome.php:502
+#: CalcPvAutonome.php:503
 msgid "parallel(s)"
 msgstr "parallèle(s)"
 
-#: CalcPvAutonome.php:502
+#: CalcPvAutonome.php:503
 msgid "Battery capacity"
 msgstr "Capacité de la batterie"
 
-#: CalcPvAutonome.php:502
+#: CalcPvAutonome.php:503
 msgid "for a capacity of"
 msgstr "pour une capacité de"
 
-#: CalcPvAutonome.php:504
+#: CalcPvAutonome.php:505
 msgid "(<a rel=\"tooltip\" class=\"bulles\" target=\"_blank\" title=\"To understand the battery connection click here\" href=\"http://www.solarmad-nrj.com/cablagebatterie.html\">?</a>)"
 msgstr "<a rel=\"tooltip\" class=\"bulles\" target=\"_blank\" title=\"Pour comprendre le câblage des batteries cliquer ici\" href=\"http://www.solarmad-nrj.com/cablagebatterie.html\">?</a>)"
 
-#: CalcPvAutonome.php:506
+#: CalcPvAutonome.php:507
 msgid "Sorry we failed to make a wiring hypothesis for the batteries"
 msgstr "Désolé nous n'avons pas réussi à faire une hypothèse de câblage pour les batteries"
 
-#: CalcPvAutonome.php:508
+#: CalcPvAutonome.php:509
 msgid "We advice you to switch back to automatic mode, a wiring isn't wise with this model"
 msgstr "Nous vous conseillons de repasser en mode automatique, un câblage n'est peut être pas préférable avec ce modèle"
 
-#: CalcPvAutonome.php:516 CalcPvAutonome.php:1004 CalcPvAutonome.php:1007
-#: CalcPvAutonome.php:1454
+#: CalcPvAutonome.php:517 CalcPvAutonome.php:1009 CalcPvAutonome.php:1012
+#: CalcPvAutonome.php:1486
 msgid "Charge controller"
 msgstr "Regulateur de charge"
 
-#: CalcPvAutonome.php:517
+#: CalcPvAutonome.php:518
 msgid "The charge controller stands between batteries and panels, its role is to handle batteries charge depending on what the panels can provide"
 msgstr "Le régulateur de charge est entre les batteries et les panneaux, c'est lui qui gère la charge des batteries en fonction de ce que peuvent fournir les panneaux"
 
-#: CalcPvAutonome.php:571
+#: CalcPvAutonome.php:572
 msgid "Sorry, unable to establish a panel/charge controller wiring hypothesis"
 msgstr "Désolé nous n'avons pas réussi à faire une hypothèse de câblage panneaux/régulateur"
 
-#: CalcPvAutonome.php:573
+#: CalcPvAutonome.php:574
 msgid "We recommend to switch charge controller and/or panels to automatic mode"
 msgstr "Nous vous encourageons à passer le modèle du régulateur et/ou les panneaux en automatique"
 
-#: CalcPvAutonome.php:578
+#: CalcPvAutonome.php:579
 #, php-format
 msgid "Warning : for this hypothesis we switched to %d panels"
 msgstr "Attention : pour cette hypothèse nous sommes passés à %d panneaux"
 
-#: CalcPvAutonome.php:581
+#: CalcPvAutonome.php:582
 msgid "With your custom charge controller, a"
 msgstr "Avec votre régulateur personnalisé, une"
 
-#: CalcPvAutonome.php:583
+#: CalcPvAutonome.php:584
 #, php-format
 msgid "You force the %s charge controller selection, a"
 msgstr "Vous forcez la sélection du régulateur %s, une"
 
-#: CalcPvAutonome.php:585
+#: CalcPvAutonome.php:586
 msgid "A"
 msgstr "Une"
 
-#: CalcPvAutonome.php:588
+#: CalcPvAutonome.php:589
 #, php-format
 msgid "hypothesis would be to have <b>%d %s type charge controller</b>"
 msgstr "hypothèse de câblage serait d'avoir <b>%d régulateur(s) type %s</b>"
 
-#: CalcPvAutonome.php:589 CalcPvAutonome.php:597
+#: CalcPvAutonome.php:590 CalcPvAutonome.php:598
 msgid "With similar characteristics"
 msgstr "Avec caractéristiques similaires"
 
-#: CalcPvAutonome.php:589 CalcPvAutonome.php:597 CalcPvAutonome.php:1481
+#: CalcPvAutonome.php:590 CalcPvAutonome.php:598 CalcPvAutonome.php:1513
 msgid "Maximum power panel"
 msgstr "Puissance maximale PV"
 
-#: CalcPvAutonome.php:589 CalcPvAutonome.php:597
+#: CalcPvAutonome.php:590 CalcPvAutonome.php:598
 msgid "Open circuit voltage panel"
 msgstr "Tension PV circuit ouvert"
 
-#: CalcPvAutonome.php:589 CalcPvAutonome.php:597
+#: CalcPvAutonome.php:590 CalcPvAutonome.php:598
 msgid "Current short circuit"
 msgstr "Courant PV court circuit"
 
-#: CalcPvAutonome.php:590
+#: CalcPvAutonome.php:591
 #, php-format
 msgid "and on each connect serialized <b>%d panel(s) "
 msgstr "et sur chacun d'entre eux connecter <b>%d panneau(x) en série"
 
-#: CalcPvAutonome.php:592 CalcPvAutonome.php:604
+#: CalcPvAutonome.php:593 CalcPvAutonome.php:605
 #, php-format
 msgid " on %d parallel(s)"
 msgstr " sur %d parallèle(s)"
 
-#: CalcPvAutonome.php:596
+#: CalcPvAutonome.php:597
 #, php-format
 msgid "wiring hypothesis would be to have a <b>%s type charge controller</b>"
 msgstr "hypothèse de câblage serait d'avoir un <b>régulateur type %s</b>"
 
-#: CalcPvAutonome.php:598
+#: CalcPvAutonome.php:599
 msgid "on which would be connected "
 msgstr "sur lequel serait connecté "
 
-#: CalcPvAutonome.php:600
+#: CalcPvAutonome.php:601
 msgid "panel"
 msgstr "panneau"
 
-#: CalcPvAutonome.php:602 CalcPvAutonome.php:617
+#: CalcPvAutonome.php:603 CalcPvAutonome.php:618
 #, php-format
 msgid "serialized panels"
 msgstr "panneaux en série"
 
-#: CalcPvAutonome.php:612
+#: CalcPvAutonome.php:613
 #, php-format
 msgid "A type %s charge controller, with a <b>%dV</b> battery plant, allows : "
 msgstr "Un régulateur type %s, avec un parc de batterie(s) en <b>%dV</b>, accepte  : "
 
-#: CalcPvAutonome.php:614
+#: CalcPvAutonome.php:615
 #, php-format
 msgid "<b>%dW</b> max panel power : "
 msgstr "<b>%dW</b> de puissance maximum de panneaux : "
 
-#: CalcPvAutonome.php:615
+#: CalcPvAutonome.php:616
 #, php-format
 msgid "With a total of %d %dW panel(s), we reach <b>%dW</b>"
 msgstr "Avec un total de %d panneau(x) en %dW, on monte à <b>%dW</b>"
 
-#: CalcPvAutonome.php:615
+#: CalcPvAutonome.php:616
 #, php-format
 msgid "panel(s)"
 msgstr "panneau(x)"
 
-#: CalcPvAutonome.php:616
+#: CalcPvAutonome.php:617
 #, php-format
 msgid "<b>%dV</b> max PV voltage of open circuit : "
 msgstr "<b>%dV</b> de tension PV maximale de circuit ouvert : "
 
-#: CalcPvAutonome.php:617
+#: CalcPvAutonome.php:618
 #, php-format
 msgid "With %d serialized panel(s) of %dV of (Vdoc) voltage, we reach <b>%dV</b>"
 msgstr "Avec %d panneau(x) en série ayant une tension (Vdoc) de %dV, on monte à <b>%dV</b>"
 
-#: CalcPvAutonome.php:618
+#: CalcPvAutonome.php:619
 #, php-format
 msgid "<b>%dA</b> max PV short-circuit current :"
 msgstr "<b>%dA</b> de courant de court-circuit PV maximal :"
 
-#: CalcPvAutonome.php:619
+#: CalcPvAutonome.php:620
 #, php-format
 msgid "With %d parallel panel(s) having %dA intensity (Isc) and a %d%% security margin, we reach <b>%dA</b>"
 msgstr "Avec %d panneau(x) en parallèle(s) ayant une intensité (Isc) de %dA et une marge de sécurité de %d%%, on monte à <b>%dA</b>"
 
-#: CalcPvAutonome.php:619
+#: CalcPvAutonome.php:620
 #, php-format
 msgid "parallel panel(s)"
 msgstr "panneau(x) en parallèle(s)"
 
-#: CalcPvAutonome.php:621
+#: CalcPvAutonome.php:622
 msgid "Note: serialization multiplies voltage (V) and paralleling multiplies the intensity (I)"
 msgstr "Note : La mise en série multiple la tension (V) et la mise en parallèle multiplie l'intensité (I)"
 
-#: CalcPvAutonome.php:622
+#: CalcPvAutonome.php:623
 msgid "All these characteristics are available in the product's technical sheet. You can customize your charge controller characteristics in <i>Export</i> mode."
 msgstr "Toutes ces caractéristiques sont disponibles dans la fiche technique du produit. Vous pouvez personnaliser les caractéristiques de votre régulateur en mode <i>Expert</i>."
 
-#: CalcPvAutonome.php:623 CalcPvAutonome.php:714
+#: CalcPvAutonome.php:624 CalcPvAutonome.php:715
 #, php-format
 msgid "Hide process"
 msgstr "Cacher la démarche"
 
-#: CalcPvAutonome.php:626
+#: CalcPvAutonome.php:627
 msgid "See, understand the process"
 msgstr "Voir, comprendre la démarche"
 
-#: CalcPvAutonome.php:629
+#: CalcPvAutonome.php:630
 msgid "Cable diagram"
 msgstr "Schéma de câblage"
 
-#: CalcPvAutonome.php:633
+#: CalcPvAutonome.php:634
 msgid "Some wiring hypothesis did not succeed, it is not possible to submit a wiring diagram"
 msgstr "Les hypothèses de câblage n'ont pas toutes abouties, il n'est donc pas possible de présenter un schéma de câblage"
 
-#: CalcPvAutonome.php:650
+#: CalcPvAutonome.php:651
 msgid "A wiring diagram was established according to panel/charge controller/battery hypothesis :"
 msgstr "Un schéma de câblage a été établi en fonction des hypothèses panneau/régulateur/batterie émises précédemment :"
 
-#: CalcPvAutonome.php:657 CalcPvAutonome.php:1012
+#: CalcPvAutonome.php:658 CalcPvAutonome.php:1017
 #, php-format
 msgid "Panel string boxe"
 msgstr "Boîtier de jonction"
 
-#: CalcPvAutonome.php:658
+#: CalcPvAutonome.php:659
 msgid "Beyond 2 string, it is strongly recommended to install a panel string boxe. Panel string boxe is collect DC power from panel strings with blocking diodes on each string for protecting panels from reverse current flow. The collected power is then transferred to charge controller."
 msgstr "Si votre parc de panneaux contient plus de 2 parallèles, il est recommandé d'installer un boîtier de jonction. Il collecte courant (DC) des panneaux mis en parallèle les protèges du courant inverse grâce à des diode. Le courant est ensuite acheminé au régulateur de charge."
 
-#: CalcPvAutonome.php:662 CalcPvAutonome.php:1022 CalcPvAutonome.php:1026
+#: CalcPvAutonome.php:663 CalcPvAutonome.php:1027 CalcPvAutonome.php:1031
 msgid "Converter"
 msgstr "Convertisseur"
 
-#: CalcPvAutonome.php:664
+#: CalcPvAutonome.php:665
 #, php-format
 msgid "The converter goal is to transform batteries DC current (here %dV) in AC current usable for standard devices. You need a converter able to deliver the %dW max electric power you need"
 msgstr "Le convertisseur est là pour transformer le courant continu (ici %dV) des batteries en courant alternatif assimilable par les appareils standards du marché. Il vous faut un convertisseur capable de délivrer les %dW de puissance électrique maximum dont vous avez besoin"
 
-#: CalcPvAutonome.php:668
+#: CalcPvAutonome.php:669
 msgid "Sorry, could'nt find a converter for such power"
 msgstr "Désolé, impossible de trouver un convertisseur pour une telle puissance"
 
-#: CalcPvAutonome.php:673
+#: CalcPvAutonome.php:674
 #, php-format
 msgid "An hypothesis would be to choose a <b>%s type converter</b> that goes up to %dW max power with possible peaks at %dW."
 msgstr "Une hypothèse serait d'opter pour un <b>convertisseur type %s</b> qui monte en puissance maximum de sortie à %dW avec des pointes possibles à %dW."
 
-#: CalcPvAutonome.php:675
+#: CalcPvAutonome.php:676
 #, php-format
 msgid "However, in order to avoid battery damage, you won't be able to go above %dW"
 msgstr "Ceci dit, pour ne pas endommager vos batteries, vous ne pourrez aller au delà des %dW"
 
-#: CalcPvAutonome.php:681 CalcPvAutonome.php:1029
+#: CalcPvAutonome.php:682 CalcPvAutonome.php:1034
 msgid "Battery controler"
 msgstr "Contrôleur de batterie"
 
-#: CalcPvAutonome.php:683
+#: CalcPvAutonome.php:684
 msgid "It is recommended to have a bettery controleur in order to check battery plant charge state"
 msgstr "Il est conseillé d'avoir un contrôleur de batterie afin de connaître l'état de charge de votre parc de batteries"
 
-#: CalcPvAutonome.php:690
+#: CalcPvAutonome.php:691
 msgid "However, considering the small size of your system, a voltmeter would be more appropriate. With a <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\">correspondence table</a> you can approximately determine the charge percentage"
 msgstr "Ceci étant dit, au vu de votre petite installation, un voltmètre parait plus raisonnable / approprié. Grâce à un <a href=\"https://www.solariflex.com/smartblog/19/comment-interpreter-voltage-batteries.html\">tableau de correspondance</a> vous pouvez, de façon grossière et incertaine, déterminer le pourcentage de charge"
 
-#: CalcPvAutonome.php:693
+#: CalcPvAutonome.php:694
 msgid "The wiring"
 msgstr "Le câblage"
 
-#: CalcPvAutonome.php:696
+#: CalcPvAutonome.php:697
 msgid "Wire section choice ( <a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\">calculate</a>) is important in order to avoid electricity lossess"
 msgstr "Le choix (<a href=\"http://solarsud.blogspot.fr/2014/11/calcul-de-la-section-du-cable.html\" target=\"_blank\">calcul</a>) des sections de câbles est important pour éviter les pertes"
 
-#: CalcPvAutonome.php:710
+#: CalcPvAutonome.php:711
 #, php-format
 msgid "Between panels and charge controller, for a distance of %sm, a %dmm&sup2; section cable is recommended"
 msgstr "Entre les panneaux et le régulateur, pour une distance de %sm, il vous est conseillé un câble d'une section de %dmm&sup2;"
 
-#: CalcPvAutonome.php:712 CalcPvAutonome.php:760
+#: CalcPvAutonome.php:713 CalcPvAutonome.php:761
 #, php-format
 msgid "see, understand the procedure"
 msgstr "voir, comprendre la démarche"
 
-#: CalcPvAutonome.php:715 CalcPvAutonome.php:763
+#: CalcPvAutonome.php:716 CalcPvAutonome.php:764
 #, php-format
 msgid "The formula to calculate the wire section in order to avoid loss is :"
 msgstr "La formule pour calculer une section de câble pour éviter les pertes est :"
 
-#: CalcPvAutonome.php:716 CalcPvAutonome.php:764
+#: CalcPvAutonome.php:717 CalcPvAutonome.php:765
 #, php-format
 msgid "S = Rho x L x I / VL"
 msgstr "S = Rho x L x I / PT"
 
-#: CalcPvAutonome.php:718 CalcPvAutonome.php:766
+#: CalcPvAutonome.php:719 CalcPvAutonome.php:767
 #, php-format
 msgid "S (mm&sup2;) : Wire section"
 msgstr "S (mm&sup2;) : Section du conducteur"
 
-#: CalcPvAutonome.php:719 CalcPvAutonome.php:767
+#: CalcPvAutonome.php:720 CalcPvAutonome.php:768
 #, php-format
 msgid "Rho (ohm) : Wire <a href=\"https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity\" target=\"_blank\">resistivity</a> (0,017ohm for copper)"
 msgstr "Rho (ohm) : <a href=\"https://fr.wikipedia.org/wiki/R%%C3%%A9sistivit%%C3%%A9\" target=\"_blank\">Résistivité</a> du conducteur (0,017ohm pour le cuivre)"
 
-#: CalcPvAutonome.php:720 CalcPvAutonome.php:768
+#: CalcPvAutonome.php:721 CalcPvAutonome.php:769
 #, php-format
 msgid "L (m) : back and forth wire length"
 msgstr "L (m) : Longueur aller + retour du conducteur"
 
-#: CalcPvAutonome.php:721
+#: CalcPvAutonome.php:722
 #, php-format
 msgid "I (A): Intensity (here panel intensity multiplied by the number of parallel)"
-msgstr "I (A): Intensité (ici l'intensité des panneaux multiplié par le nombre de parallèle)"
+msgstr "I (A) : intensité (ici l'intensité des panneaux multiplier par le nombre de parallèle)"
 
-#: CalcPvAutonome.php:722 CalcPvAutonome.php:770
+#: CalcPvAutonome.php:723 CalcPvAutonome.php:771
 #, php-format
 msgid "VL (V) : admitted wire level voltage loss (%s%% of voltage)"
 msgstr "PT (V) : Perte de tension acceptée au niveau des câbles (%s%% de la tension)"
 
-#: CalcPvAutonome.php:723
+#: CalcPvAutonome.php:724
 #, php-format
 msgid "(panels voltage * number of series) * %d/100"
 msgstr "(La tension des panneaux * le nombre de série(s)) x %d/100"
 
-#: CalcPvAutonome.php:725 CalcPvAutonome.php:773
+#: CalcPvAutonome.php:726 CalcPvAutonome.php:774
 #, php-format
 msgid "In our case it gives : "
 msgstr "Dans votre cas ça nous fait : "
 
-#: CalcPvAutonome.php:729 CalcPvAutonome.php:776
+#: CalcPvAutonome.php:730 CalcPvAutonome.php:777
 #, php-format
 msgid "But that section doesn't respect the %dA/mm&sup2; rule which prevents heating."
 msgstr "Mais cette section ne respecte pas la règle des %dA/mm&sup2; qui permet de se prémunir des échauffements."
 
-#: CalcPvAutonome.php:730 CalcPvAutonome.php:777
+#: CalcPvAutonome.php:731 CalcPvAutonome.php:778
 #, php-format
 msgid "To respect the rule, we need to get close to a <b>%s</b>mm&sup2; section"
 msgstr "Pour respecter cette règle, il faudrait s'approcher d'une section de <b>%s</b>mm&sup2;"
 
-#: CalcPvAutonome.php:742 CalcPvAutonome.php:787
+#: CalcPvAutonome.php:743 CalcPvAutonome.php:788
 msgid "There is no realistic wire section determinable. You should probably decrease distance between devices."
 msgstr "Impossible de proposer une section de câble réaliste. Vous devriez peut-être envisager de diminuer la distance entre les appareils."
 
-#: CalcPvAutonome.php:745 CalcPvAutonome.php:790
+#: CalcPvAutonome.php:746 CalcPvAutonome.php:791
 #, php-format
 msgid "Nearest wire section suggested : <b>%s</b>, approximate cost %d&euro;"
 msgstr "Section de câble la plus proche proposée : <b>%s</b>, pour un coût d'environ %d&euro;"
 
-#: CalcPvAutonome.php:758
+#: CalcPvAutonome.php:759
 #, php-format
 msgid "Between charge controller and batteries, for a %sm distance, a wire section of %smm&sup2; is recommended"
 msgstr "Entre le régulateur et les batteries, pour une distance de %sm, il vous est conseillé un câble d'une section de %smm&sup2;"
 
-#: CalcPvAutonome.php:769
+#: CalcPvAutonome.php:770
 #, php-format
 msgid "I (A): Intensity (here the power of the panels / the voltage of the battery bank)"
 msgstr "I (A) : L’intensité (ici la puissance des panneaux / la tension des batteries)"
 
-#: CalcPvAutonome.php:771
+#: CalcPvAutonome.php:772
 #, php-format
 msgid "Batteries voltage, i. e. %dV * %d/100"
 msgstr "La tension des batteries soit %dV x %d/100"
 
-#: CalcPvAutonome.php:794
+#: CalcPvAutonome.php:795
 msgid "Another and more complete wire section calculator is avalaible at <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a>."
 msgstr "Un autre calculateur (plus complet) de sections de câbles est disponible sur <a href=\"http://www.sigma-tec.fr/textes/texte_cables.html\" target=\"_blank\">sigma-tec</a>."
 
-#: CalcPvAutonome.php:818
+#: CalcPvAutonome.php:819
 msgid "PVGIS Simulation, performance prediction"
 msgstr "PVGIS Simulation, performance, prédiction"
 
-#: CalcPvAutonome.php:819
+#: CalcPvAutonome.php:820
 msgid "Data from photovoltaic geographical information system (<a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a>) application "
 msgstr "Avec les données de l'application <a href=\"http://re.jrc.ec.europa.eu/pvgis.html\" target=\"_blank\">PVGIS</a> "
 
-#: CalcPvAutonome.php:821
+#: CalcPvAutonome.php:822
 msgid "Power production estimate for off-grid PV system"
 msgstr "La production estimé de votre système"
 
-#: CalcPvAutonome.php:837
+#: CalcPvAutonome.php:838
 msgid "Average energy production per day"
 msgstr "Moyenne de la production d'énergie par jour"
 
-#: CalcPvAutonome.php:850
+#: CalcPvAutonome.php:851
 msgid "Average energy not captured per day"
 msgstr "Moyenne de l'énergie non capturé par jour"
 
-#: CalcPvAutonome.php:876
+#: CalcPvAutonome.php:877
 msgid "Battery performance for off-grid PV system"
 msgstr "État du parc de batterie"
 
-#: CalcPvAutonome.php:892
+#: CalcPvAutonome.php:893
 msgid "Percentage of days when battery became full"
 msgstr "Pourcentage de jour ou le parc de batterie est plein"
 
-#: CalcPvAutonome.php:903
+#: CalcPvAutonome.php:904
 msgid "Percentage of days when battery became empty"
 msgstr "Pourcentage de jour ou le parc de batterie est vide"
 
-#: CalcPvAutonome.php:927
+#: CalcPvAutonome.php:928
 msgid "Probability of battery charge state at the end of the day"
 msgstr "Estimation de l’état de charge de batterie à la fin de la journée"
 
-#: CalcPvAutonome.php:941
+#: CalcPvAutonome.php:942
 msgid "Percentage of days with this charge state"
 msgstr "Pourcentage de jours avec cet de charge"
 
-#: CalcPvAutonome.php:985
+#: CalcPvAutonome.php:986
 msgid "Budget"
 msgstr "Budget"
 
-#: CalcPvAutonome.php:986
+#: CalcPvAutonome.php:987
 msgid "This is an approximate estimation for new equipment, it can't be considered as a quote."
 msgstr "Ceci est une estimation grossière pour du matériel neuf, elle ne fait en aucun cas office de devis."
 
-#: CalcPvAutonome.php:991 CalcPvAutonome.php:1000 CalcPvAutonome.php:1012
-#: CalcPvAutonome.php:1026
+#: CalcPvAutonome.php:992 CalcPvAutonome.php:1002 CalcPvAutonome.php:1017
+#: CalcPvAutonome.php:1031
 #, php-format
 msgid "between"
 msgstr "entre"
 
-#: CalcPvAutonome.php:991 CalcPvAutonome.php:1000 CalcPvAutonome.php:1012
-#: CalcPvAutonome.php:1026
+#: CalcPvAutonome.php:992 CalcPvAutonome.php:1002 CalcPvAutonome.php:1017
+#: CalcPvAutonome.php:1031
 #, php-format
 msgid "and"
 msgstr "et"
 
-#: CalcPvAutonome.php:992
+#: CalcPvAutonome.php:993
 #, php-format
 msgid "Estimated cost %s&euro;/W at low range cost and %s&euro;/W at high range cost"
 msgstr "Coût estimé de %s&euro;/W en fourchette basse & %s&euro;/W en haute"
 
-#: CalcPvAutonome.php:1004
+#: CalcPvAutonome.php:1005
+msgid "You will need a BMS for your batteries litium, it is not included in the price estimate<"
+msgstr "Vous aurez besoin d'un BMS pour vos batterie litium, il n'est pas inclus dans l'estimation du prix<"
+
+#: CalcPvAutonome.php:1009
 msgid "sorry, no hypothesis for charge controller"
 msgstr "désolé nous n'avons pas réussi à faire une hypothèse pour le régulateur"
 
-#: CalcPvAutonome.php:1007 CalcPvAutonome.php:1029 CalcPvAutonome.php:1030
+#: CalcPvAutonome.php:1012 CalcPvAutonome.php:1034 CalcPvAutonome.php:1035
 msgid "approximately"
 msgstr "environ"
 
-#: CalcPvAutonome.php:1013
+#: CalcPvAutonome.php:1018
 #, php-format
 msgid "Estimated cost %s&euro;/string at low range cost and %s&euro;/string at high range cost"
 msgstr "Coût estimé de %s&euro;/parallèles en fourchette basse & %s&euro;/parallèles en haute"
 
-#: CalcPvAutonome.php:1027
+#: CalcPvAutonome.php:1032
 #, php-format
 msgid "Estimated cost %s&euro;/VA at low range cost and %s&euro;/VA at high range cost"
 msgstr "Coût estimé de %s&euro;/VA en fourchette basse & %s&euro;/VA en haute"
 
-#: CalcPvAutonome.php:1030 CalcPvAutonome.php:1501
+#: CalcPvAutonome.php:1035 CalcPvAutonome.php:1533
 msgid "Wiring"
 msgstr "Câblage"
 
-#: CalcPvAutonome.php:1034
+#: CalcPvAutonome.php:1039
 #, php-format
 msgid "Which brings to a total budget <b>between %s and %s&euro;</b>. Cost of panels support, wire, wire terminal and protection elements (fuse, battery cut-off, ...) is not included"
 msgstr "Ce qui nous fait un budget total <b>entre %s et %s&euro;</b>. A ça, il faut ajouter le prix des supports de panneaux, du câblage, des cosses ainsi que celui des éléments de protections (fusibles, coupe batterie...)"
 
-#: CalcPvAutonome.php:1036 CalcPvAutonome.php:1527
+#: CalcPvAutonome.php:1041 CalcPvAutonome.php:1559
 #, php-format
 msgid "Support, contribute"
 msgstr "Soutenir, contribuer"
 
-#: CalcPvAutonome.php:1037
+#: CalcPvAutonome.php:1042
 #, php-format
 msgid "If this software was helpfull and/or you want to thank"
 msgstr "Si ce logiciel vous a été utile et/ou que vous voulez exprimer de la reconnaissance"
 
-#: CalcPvAutonome.php:1039
+#: CalcPvAutonome.php:1044
 #, php-format
-msgid "<a href=\"http://david.mercereau.info/contact/\"  target=\"_blank\">Say thank you !</a> (it's always a pleasure)"
-msgstr "<a href=\"http://david.mercereau.info/contact/\"  target=\"_blank\">Dites merci !</a> (ça fait toujours plaisir)"
+msgid "<a href=\"https://david.mercereau.info/soutenir/#respond\"  target=\"_blank\">Say thank you !</a> (it's always a pleasure)"
+msgstr "<a href=\"https://david.mercereau.info/soutenir/#respond\"  target=\"_blank\">Dites merci !</a> (ça fait toujours plaisir)"
 
-#: CalcPvAutonome.php:1040
+#: CalcPvAutonome.php:1045
 #, php-format
 msgid "Support by making a secure donation"
 msgstr "Soutenez en faisant un don (sécurisé)"
 
-#: CalcPvAutonome.php:1041
+#: CalcPvAutonome.php:1046
 #, php-format
 msgid "Contribute / improve / translate this software"
 msgstr "Contribuer / améliorer / traduire ce logiciel"
 
-#: CalcPvAutonome.php:1045
+#: CalcPvAutonome.php:1050
 #, php-format
 msgid "Summary"
 msgstr "Récapitulatif"
 
-#: CalcPvAutonome.php:1046
+#: CalcPvAutonome.php:1051
 #, php-format
 msgid "<a href=\"%s\">This simulation</a> estimates that with your consumption of %dWh/d you would need:"
 msgstr "<a href=\"%s\">Cette simulation</a> estime, qu'avec votre consommation électrique de %dWh/j, vous auriez besoins de :"
 
-#: CalcPvAutonome.php:1047 CalcPvAutonome.php:1052
+#: CalcPvAutonome.php:1052 CalcPvAutonome.php:1057
 #, php-format
 msgid "~%dW panel (%d\"%dW for example)"
 msgstr "~%dW de panneau solaire (%d\"%dW par exemple)"
 
-#: CalcPvAutonome.php:1048 CalcPvAutonome.php:1053
+#: CalcPvAutonome.php:1053 CalcPvAutonome.php:1058
 #, php-format
 msgid "~%dAh battery in %dV (%d\"%dAh in %dV for example)"
 msgstr "~%dAh de batterie en %dV (%d\"%dAh en %dV par exemple)"
 
-#: CalcPvAutonome.php:1050 CalcPvAutonome.php:1054
+#: CalcPvAutonome.php:1055 CalcPvAutonome.php:1059
 #, php-format
 msgid "The budget estimated between %s and %s&euro;"
 msgstr "Le budget est estimé entre %s et %s&euro;"
 
-#: CalcPvAutonome.php:1051
+#: CalcPvAutonome.php:1056
 #, php-format
 msgid "[url=%s]This simulation[url] estimates that with your consumption of %dWh/d you would need:"
 msgstr "[url=%s]Cette simulation[url] estime, qu'avec votre consommation électrique de %dWh/j, vous auriez besoins de :"
 
-#: CalcPvAutonome.php:1136
+#: CalcPvAutonome.php:1142
 msgid "Your degree of knowledge in photovoltaics"
 msgstr "Votre degré de connaissance en photovoltaïque"
 
-#: CalcPvAutonome.php:1138
+#: CalcPvAutonome.php:1144
 msgid "Beginner"
 msgstr "Débutant"
 
-#: CalcPvAutonome.php:1139
+#: CalcPvAutonome.php:1145
 msgid "Enlightened"
 msgstr "Eclairé"
 
-#: CalcPvAutonome.php:1140
+#: CalcPvAutonome.php:1146
 msgid "Expert"
 msgstr "Expert"
 
-#: CalcPvAutonome.php:1150
+#: CalcPvAutonome.php:1156
 msgid "Your consumption"
 msgstr "Votre consommation"
 
-#: CalcPvAutonome.php:1152
+#: CalcPvAutonome.php:1158
 msgid "This is the most important step for sizing."
 msgstr "C'est l'étape la plus importante pour votre dimensionnement."
 
-#: CalcPvAutonome.php:1152
+#: CalcPvAutonome.php:1158
 #, php-format
 msgid "If you don't know this value go to <b><a href=\"%s?from=CalcPvAutonome\" id=\"DemandeCalcPvAutonome\">daily needs calculator</a></b>"
 msgstr "Si vous ne connaissez pas cette valeur rendez-vous sur notre <b><a href=\"%s?from=CalcPvAutonome\" id=\"DemandeCalcPvAutonome\">interface de calcul de besoins journaliers</a></b>"
 
-#: CalcPvAutonome.php:1176
+#: CalcPvAutonome.php:1182
 msgid "Geographical location"
 msgstr "Localisation géographique"
 
-#: CalcPvAutonome.php:1179
+#: CalcPvAutonome.php:1185
 msgid "Map"
 msgstr "Carte"
 
-#: CalcPvAutonome.php:1180
+#: CalcPvAutonome.php:1186
 msgid "Manual"
 msgstr "Manuel"
 
-#: CalcPvAutonome.php:1185
+#: CalcPvAutonome.php:1191
 msgid "Click on the map to set your position and deduce solar resource"
 msgstr "Cliquer sur la carte pour déterminer votre position géographique et ainsi déduire l'ensoleillement"
 
-#: CalcPvAutonome.php:1226
+#: CalcPvAutonome.php:1232
 msgid "Selected position"
 msgstr "Position sélectionnée"
 
-#: CalcPvAutonome.php:1247
+#: CalcPvAutonome.php:1253
 msgid "Latitude"
 msgstr "Latitude"
 
-#: CalcPvAutonome.php:1249
+#: CalcPvAutonome.php:1255
 msgid "Longitude"
 msgstr "Longitude"
 
-#: CalcPvAutonome.php:1252
+#: CalcPvAutonome.php:1258
 msgid "Solar irradiation data is collected on <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\"> PVGIS </a>"
 msgstr "Les données de rayonnement sont collectées sur <a href=\"http://re.jrc.ec.europa.eu/PVGIS5-release.html\" target=\"_blank\">PVGIS</a>"
 
-#: CalcPvAutonome.php:1256
+#: CalcPvAutonome.php:1262
 msgid "Enter the mid value of solar radiation for the worst month and panel plane (inclination)"
 msgstr "Donner la valeur du rayonnement moyen quotidien du mois le plus défavorable dans le plan (l'inclinaison) du panneau"
 
-#: CalcPvAutonome.php:1272
+#: CalcPvAutonome.php:1278
 msgid "Sizing of photovoltaic panels"
 msgstr "Dimensionnement des panneaux photovoltaïques"
 
-#: CalcPvAutonome.php:1283
+#: CalcPvAutonome.php:1289
 msgid "Incline of the panel"
 msgstr "Inclinaison des panneaux"
 
-#: CalcPvAutonome.php:1289
+#: CalcPvAutonome.php:1295
 msgid "Orientation of the panels"
 msgstr "Orientation des panneaux"
 
-#: CalcPvAutonome.php:1294
+#: CalcPvAutonome.php:1300
 msgid "I use a solar tracker on the 2 axes"
 msgstr "J'utilise un traqueur solaire sur les 2 axes"
 
-#: CalcPvAutonome.php:1297
+#: CalcPvAutonome.php:1303
 msgid "Desired autonomous"
 msgstr "Autonomie souhaitée"
 
-#: CalcPvAutonome.php:1299
+#: CalcPvAutonome.php:1305
 msgid "Annual / complete"
 msgstr "Annuelle / complète"
 
-#: CalcPvAutonome.php:1300
+#: CalcPvAutonome.php:1306
 msgid "Seasonal / partial"
 msgstr "Saisonnière / partielle"
 
-#: CalcPvAutonome.php:1303
+#: CalcPvAutonome.php:1309
 msgid "Select period"
 msgstr "Sélectiononer la période"
 
-#: CalcPvAutonome.php:1328
+#: CalcPvAutonome.php:1334
 msgid "Panel template"
 msgstr "Modèle de panneau"
 
-#: CalcPvAutonome.php:1330 CalcPvAutonome.php:1403 CalcPvAutonome.php:1458
+#: CalcPvAutonome.php:1336 CalcPvAutonome.php:1409 CalcPvAutonome.php:1490
 msgid "Automatic"
 msgstr "Automatique"
 
-#: CalcPvAutonome.php:1331 CalcPvAutonome.php:1404 CalcPvAutonome.php:1459
+#: CalcPvAutonome.php:1337 CalcPvAutonome.php:1410 CalcPvAutonome.php:1491
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: CalcPvAutonome.php:1343
+#: CalcPvAutonome.php:1349
 msgid "Preferred panel technology"
 msgstr "Technologie préférée de panneau"
 
-#: CalcPvAutonome.php:1351
+#: CalcPvAutonome.php:1357
 msgid "You can detail the technical specifications of your panel"
 msgstr "Vous pouvez détailler les caractéristiques techniques de votre panneau"
 
-#: CalcPvAutonome.php:1354 Modeles.php:9
+#: CalcPvAutonome.php:1360 Modeles.php:9
 msgid "Max power (Pmax)"
 msgstr "Puissance maximum (Pmax)"
 
-#: CalcPvAutonome.php:1358 Modeles.php:10
+#: CalcPvAutonome.php:1364 Modeles.php:10
 msgid "Open circuit voltage (Voc)"
 msgstr "Tension en circuit ouvert (Voc)"
 
-#: CalcPvAutonome.php:1362 Modeles.php:11
+#: CalcPvAutonome.php:1368 Modeles.php:11
 msgid "Short-circuit current (Isc)"
 msgstr "Courant de court circuit (Isc)"
 
-#: CalcPvAutonome.php:1369
+#: CalcPvAutonome.php:1375
 msgid "Electrical yield of batteries"
 msgstr "Rendement électrique des batteries"
 
-#: CalcPvAutonome.php:1373
+#: CalcPvAutonome.php:1379
 msgid "Electrical yield for the remaining installation (charge controller,...)"
 msgstr "Rendement électrique du reste de l’installation (régulateur de charge…)"
 
-#: CalcPvAutonome.php:1381
+#: CalcPvAutonome.php:1387
 msgid "Battery plant sizing"
 msgstr "Dimensionnement du parc de batteries"
 
-#: CalcPvAutonome.php:1382
+#: CalcPvAutonome.php:1388
 msgid "This software is preset for lead batteries"
 msgstr "Cette application est pré-paramétrée pour des batteries plomb"
 
-#: CalcPvAutonome.php:1384
+#: CalcPvAutonome.php:1390
 msgid "Autonomous days amount"
 msgstr "Nombre de jours d'autonomie"
 
-#: CalcPvAutonome.php:1397
+#: CalcPvAutonome.php:1403
 msgid "Discharge level limit"
 msgstr "Degré de décharge limite"
 
-#: CalcPvAutonome.php:1401
+#: CalcPvAutonome.php:1407
 msgid "Battery model"
 msgstr "Modèle de batterie"
 
-#: CalcPvAutonome.php:1401
+#: CalcPvAutonome.php:1407
 msgid "(<a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">expressed in C10</a>)"
 msgstr "(<a href=\"http://www.batterie-solaire.com/batterie-delestage-electrique.htm\" target=\"_blank\">exprimé en C10</a>)"
 
-#: CalcPvAutonome.php:1413
+#: CalcPvAutonome.php:1419
 msgid "In automatic mode, GEL & OPzS batteries will be used above 500A"
-msgstr "En mode automatique, au dessus de 500A, seront utilisées des batteries GEL OPzV 2V"
+msgstr "En mode automatique, au dessus de 500A, seront utilisées des batteries GEL OPzV"
 
-#: CalcPvAutonome.php:1416
+#: CalcPvAutonome.php:1422
 msgid "Preferred battery technology"
 msgstr "Technologie de batteries préférée"
 
-#: CalcPvAutonome.php:1426
+#: CalcPvAutonome.php:1458
 msgid "You can detail the technical characteristics of your battery"
 msgstr "Vous pouvez détailler les caractéristiques techniques de votre batterie"
 
-#: CalcPvAutonome.php:1429 Modeles.php:29
+#: CalcPvAutonome.php:1461 Modeles.php:29
 msgid "Capacity (C10)"
 msgstr "Capacité (C10)"
 
-#: CalcPvAutonome.php:1433 Modeles.php:30
+#: CalcPvAutonome.php:1465 Modeles.php:30
 msgid "Voltage"
 msgstr "Tension"
 
-#: CalcPvAutonome.php:1444
+#: CalcPvAutonome.php:1476
 msgid "Charge current max capacity"
 msgstr "Capacité de courant de charge max"
 
-#: CalcPvAutonome.php:1448
+#: CalcPvAutonome.php:1480
 msgid "Discharge current max capacity"
 msgstr "Capacité de courant de décharge max"
 
-#: CalcPvAutonome.php:1456
+#: CalcPvAutonome.php:1488
 msgid "Charge controller model"
 msgstr "Modèle de régulateur"
 
-#: CalcPvAutonome.php:1475
+#: CalcPvAutonome.php:1507
 msgid "You can detail the technical characteristics of your charge controller"
 msgstr "Vous pouvez détailler les caractéristiques techniques de votre régulateur solaire"
 
-#: CalcPvAutonome.php:1478
+#: CalcPvAutonome.php:1510
 msgid "Batteries final voltage"
 msgstr "Tension finale des batteries"
 
-#: CalcPvAutonome.php:1478
+#: CalcPvAutonome.php:1510
 msgid "This value can be changed in 'battery plant sizing'"
 msgstr "Cette valeur se change dans 'Dimensionnement du parc batteries'"
 
-#: CalcPvAutonome.php:1485
+#: CalcPvAutonome.php:1517
 msgid "Open circuit max PV voltage"
 msgstr "Tension PV maximale de circuit ouvert"
 
-#: CalcPvAutonome.php:1489
+#: CalcPvAutonome.php:1521
 msgid "PV current max. (power / voltage)"
 msgstr "Max. PV courant (Puissance / Tension)"
 
-#: CalcPvAutonome.php:1495
+#: CalcPvAutonome.php:1527
 msgid "Panels Icc short-circuit current security margin"
 msgstr "Marge de sécurité du courant de court-circuit Icc des panneaux"
 
-#: CalcPvAutonome.php:1502
+#: CalcPvAutonome.php:1534
 msgid "Considering solar flexible copper wiring"
 msgstr "On considère un câblage solaire souple en cuivre"
 
-#: CalcPvAutonome.php:1504
+#: CalcPvAutonome.php:1536
 msgid "One-way distance between panels and charge controller"
 msgstr "Distance (aller simple) entre les panneaux et le régulateur"
 
-#: CalcPvAutonome.php:1508
+#: CalcPvAutonome.php:1540
 msgid "One-way distance between charge controller and batteries"
 msgstr "Distance (aller simple) entre le régulateur et les batteries"
 
-#: CalcPvAutonome.php:1512
+#: CalcPvAutonome.php:1544
 msgid "Conductor resistivity (rho) mm&sup2;/m"
 msgstr "La résistivité du conducteur (rhô) mm&sup2;/m"
 
-#: CalcPvAutonome.php:1516
+#: CalcPvAutonome.php:1548
 msgid "Tolerable voltage drop"
 msgstr "Chute de tension tolérable"
 
-#: CalcPvAutonome.php:1520
+#: CalcPvAutonome.php:1552
 msgid "Ratio in order to prevent wire heating"
 msgstr "Ratio pour se prémunir de l'échauffement du câble"
 
-#: CalcPvAutonome.php:1526
+#: CalcPvAutonome.php:1558
 msgid "Reset"
 msgstr "Remise à 0"
 
-#: CalcPvAutonome.php:1528 CalcPvAutonome.php:1529
+#: CalcPvAutonome.php:1560 CalcPvAutonome.php:1561
 msgid "Start the calculation"
 msgstr "Lancer le calcul"
 
-#: CalcPvAutonome.php:1529
+#: CalcPvAutonome.php:1561
 msgid "At a minimum you must : <br />* Indicate your daily electrical needs<br />* Indicate your need in maximum electrical power  <br />* Your position (click on the map)"
-msgstr "Au minimum, vous devez : <br />* indiquer vos besoins électriques journéliers<br />* indiquer vos besoin en puissance électrique maximale  <br />* votre position (cliquez sur la carte)"
+msgstr "Au minimum, vous devez : <br />* indiquer vos besoins électriques journaliers<br />* indiquer vos besoin en puissance électrique maximale  <br />* votre position (cliquez sur la carte)"
 
-#: CalcPvAutonome.php:1529
+#: CalcPvAutonome.php:1561
 msgid "Why it's not possible to click on"
 msgstr "Pourquoi ce n'est pas possible de cliquer sur"
 
-#: CalcPvAutonome.php:1542
+#: CalcPvAutonome.php:1576
 msgid "Support CaclPvAutonome"
 msgstr "Soutenez CaclPvAutonome"
 
-#: CalcPvAutonome.php:1543
+#: CalcPvAutonome.php:1577
 msgid "This software is <b>open</b>, <b>free</b>, collaborative and <b>independent</b> financially. <b>So that he can stay, we need your support</b>."
 msgstr "Ce logiciel est <b>gratuit</b>, <b>libre de droit</b>, collaboratif et <b>indépendant</b> financièrement. Afin qu'il puisse le rester, nous avons besoin de votre soutien."
 
-#: CalcPvAutonome.php:1544
+#: CalcPvAutonome.php:1578
 msgid "To help us, you can also <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribute to its improvement</a>, its <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">translation</a>."
 msgstr "Pour nous aider, vous pouvez aussi <a href=\"https://framagit.org/kepon/CalcPvAutonome\" target=\"_blank\">contribuer à son amélioration</a>, sa <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">traduction</a>."
 
-#: CalcPvAutonome.php:1545
+#: CalcPvAutonome.php:1579
 msgid "I want to make a secure one-time donation with Paypal"
 msgstr "Je souhaite faire un don sécurisé ponctuel avec Paypal"
 
-#: CalcPvAutonome.php:1546
+#: CalcPvAutonome.php:1580
 msgid "I want to make a recurring, free and secure donation with Liberapay"
 msgstr "Je souhaite faire un don récurent, libre et sécurisé avec liberapay"
 
-#: CalcPvAutonome.php:1547
+#: CalcPvAutonome.php:1581
 msgid "No thanks, I just want to <b>start the calculation</b>"
 msgstr "Non merci, je souhaite seulement lancer le calcul"
 
-#: CalcPvAutonome.php:1548
+#: CalcPvAutonome.php:1582
 msgid "I already support CalcPvAutonomous"
 msgstr "Je soutiens déjà CalcPvAutonome"
 
-#: index.php:74 index.php:146
+#: index.php:79 index.php:151
 msgid "Calculate/size photovoltaic stand-alone (autonomous) set"
 msgstr "Calculer/dimensionner son installation photovoltaïque isolée (autonome)"
 
-#: index.php:115
+#: index.php:120
 msgid "partial translation"
-msgstr "traduction partielle"
+msgstr "traduction partiel"
 
-#: index.php:137
+#: index.php:142
 msgid "Calculate daily electric needs"
 msgstr "Calculer ces besoins électriques journaliers"
 
-#: index.php:139 index.php:148 index.php:171
+#: index.php:144 index.php:153 index.php:176
 msgid "<p>Go to the <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">colaborative translation platform</a> to help us translate this free software.</p>"
 msgstr "<p>Rendez-vous sur la <a href=\"https://crwd.in/calcpvautonome\" target=\"_blank\">plateforme collaborative de traduction</a> pour nous aider à traduire ce logiciel.</p>"
 
-#: index.php:156
+#: index.php:161
 msgid "Thanks to"
 msgstr "Merci à"
 
-#: index.php:169
+#: index.php:174
 msgid "for this <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
 msgstr "pour cette <a target=\"_blank\" href=\"https://crwd.in/calcpvautonome\">translation</a>"
 
-#: index.php:172
+#: index.php:177
 msgid "By"
 msgstr "Par"
 
-#: index.php:172
+#: index.php:177
 msgid "Git repository"
 msgstr "Dépôt Git"
 
-#: index.php:173
+#: index.php:178
 msgid "version"
 msgstr "version"
 
-#: index.php:173
+#: index.php:178
 msgid "is an open software licensed <a href=\"https://en.wikipedia.org/wiki/Beerware\">Beerware</a>"
 msgstr "est un logiciel libre sous licence <a href=\"https://fr.wikipedia.org/wiki/Beerware\">Beerware</a>"
 

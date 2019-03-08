@@ -1,9 +1,3 @@
-
-A chaque manipulation : 
-	Ajouter les contributeurs en fin de page index.php
-	Modifier le % d'avancement en début de page index.php
-
-
 Modification source traduction 
 	xgettext *.php -o lang/messages.pot --from-code="UTF-8"
 	# on ré-upload le .po expédit sur http://crowdin.com
@@ -12,6 +6,9 @@ Modification source traduction
 		vérifier la fin des fichiers mergé (le commenté), c'est ce qui n'est plus dans le .pot 
 			https://maxime.sh/2012/06/utilisation-pratique-de-gettext-avec-php/
 
+Télécharger les traductions depuis crowdin :
+	php crowdin-dl.php
+	service php7.0-fpm restart
 
 Ajout d'une langue : 
 	vérifier sa présence sur le système : locale -a

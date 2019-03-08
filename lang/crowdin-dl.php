@@ -143,7 +143,7 @@ $lang_ini_content.="translator2[name]='ppmt'\n";
 
 // Ecriture
 file_put_contents($tradDir.'/lang.ini', $lang_ini_content);
-
+/*
 // Restart de php-fpm pour éviter les problème de cache
 // Chez vous ça peut être directement apache si c'est du mod-php...
 if (is_file('/etc/init.d/php7.0-fpm')) {
@@ -152,5 +152,5 @@ if (is_file('/etc/init.d/php7.0-fpm')) {
 		exit('Erreur au redémarrage de php : '.$return_var);
 	} 
 }
-
+*/
 ?>

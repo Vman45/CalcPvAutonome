@@ -28,6 +28,7 @@ Pour l'utilisateur de base :
 Pour les utilisateurs avancés : 
 
   - Intégration sur votre site web
+  - Multilingues
   - Modifier le fichier config.ini pour changer
 	- Les valeurs par défaut du formulaire
 	- Les valeurs d'irradiation de la carte par zone
@@ -38,7 +39,7 @@ Pour les utilisateurs avancés :
 
 #### Requis pour le fonctionnement / l'installation du 
 
-  * PHP (5.6 minimum) + lib gd + GeoIP + CURL + Gettext
+  * PHP (5.6 minimum) + lib gd + GeoIP + CURL + Gettext + PDO
   * Apache/Nginx (ou autre serveur web, service d'hébergement mutualisé...) avec URL Rewriting
 
 #### Installation
@@ -47,8 +48,39 @@ Télécharger et décompresser le fichier zip du master : https://github.com/kep
 
 Le rendre accessible depuis votre serveur http et personnaliser les valeur du fichier config.ini
 
+Créer les bases de données et renommer le fichier config-db_default.ini en config-db.ini pour y indiquer notaement les identifiants de base (mysql ou autre PDO) et les tables :
+
+	CREATE TABLE `conso` (
+	  `id` int(11) NOT NULL,
+	  `date_create` datetime NOT NULL,
+	  `date_lastaccess` datetime NOT NULL,
+	  `email` varchar(120) DEFAULT NULL,
+	  `name` varchar(140) NOT NULL,
+	  `idpub` int(6) NOT NULL,
+	  `idadmin` int(9) NOT NULL
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+	CREATE TABLE `conso_equi` (
+	  `id` int(11) NOT NULL,
+	  `conso_id` int(11) NOT NULL,
+	  `name` varchar(255) DEFAULT NULL,
+	  `p` int(11) NOT NULL,
+	  `pmax` tinyint(1) NOT NULL DEFAULT '1',
+	  `nb` tinyint(140) NOT NULL,
+	  `uti` varchar(5) NOT NULL DEFAULT '24',
+	  `calcauto` tinyint(1) NOT NULL DEFAULT '1',
+	  `pj` int(11) DEFAULT NULL'
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 ### Changelog
 
+ - 4.4
+	 - Grosse refonte de l'interface de calcul des besoins : 
+		- Possibilité d'enregistrer les tableaux (conservé 900 jours après dernièr accès)
+		- Partager les tableaux (lien public / lien admin)
+	 - Début de la prise en compte du litium (pas d'estimation BMS ni de shéma de câblage poussé)
+	 - Partage les résultats sur les réseaux sociaux (avec sharingbuttons)
  - 4.2.1
 	 - Bug détection langue navigateur
  - 4.2

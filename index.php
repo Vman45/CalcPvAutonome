@@ -1,5 +1,5 @@
 <?php
-$CalcPvAutonomeVersion='4.2';
+$CalcPvAutonomeVersion='4.4';
 include_once('./lib/Fonction.php');
 $config_ini = parse_ini_file('./config.ini', true); 
 $lang_ini = parse_ini_file('./lang/lang.ini',true);
@@ -63,13 +63,17 @@ textdomain("messages");
 // Définition du pays (selon l'IP
 $country = @geoip_country_code_by_name(get_ip());
 
+// Pour l'interface de conso : 
+if (isset($_POST['email'])) {
+	setcookie ('email', $_POST['email'], time() + 31536000);
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <?php if ($localeshort == 'fa') { ?>
-	<html xmlns="http://www.w3.org/1999/xhtml"  dir="rtl"  xml:lang="<?= $localeshort ?>" lang="<?= $localeshort ?>
+	<html xmlns="http://www.w3.org/1999/xhtml"  dir="rtl"  xml:lang="<?= $localeshort ?>" lang="<?= $localeshort ?>">
 <?php } else { ?>
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?= $localeshort ?>" lang="<?= $localeshort ?>
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?= $localeshort ?>" lang="<?= $localeshort ?>">
 <?php } ?>
 <head>
 	<title>[CalcPvAutonome] <?= _('Calculate/size photovoltaic stand-alone (autonomous) set') ?></title>

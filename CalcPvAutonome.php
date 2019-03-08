@@ -126,6 +126,7 @@ if (isset($_GET['submit'])) {
 	?>
 
 	<h2 class="titre"><?= _('Result of the dimension calculation') ?></h2>
+	<div style="float: right"><?php socialShare((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?></div>
 	<p><?= _('<b>Warning</b>: Results are approximate, it is recommended to doublecheck with sales representative and validate your installation before buying materials.') ?> </p>
 	<!-- 
 		Les PV
@@ -238,7 +239,7 @@ if (isset($_GET['submit'])) {
 	
 	<p><?= _('Photovoltaic panels produce electricity from sunlight (solar radiation).') ?></p>
 	<p><?php printf(_('According entered data, <b>%sW</b> of solar panel are required to fulfill your daily needs of %sWh/d.'), convertNumber($Pc, 'print'), $_GET['Bj']); ?> </p>
-	<p><a id="resultCalcPvShow"><?= ('See, understand the procedure, the calculation') ?></a></p>
+	<p><a id="resultCalcPvShow"><?= _('See, understand the procedure, the calculation') ?></a></p>
 	
 	<?php	
 	
@@ -993,12 +994,16 @@ if (isset($_GET['submit'])) {
 			if ($meilleurParcBatterie['nbBatterieParalle'] != 99999) { 
 				$BudgetBarBas=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
 				$BudgetBarHaut=$config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['Ah']*$meilleurParcBatterie['V']*$meilleurParcBatterie['nbBatterieParalle']*$meilleurParcBatterie['nbBatterieSerie'];
+				$BatType=$meilleurParcBatterie['type'];
 			} else { 
 				$BudgetBarBas=$config_ini['prix']['bat_'.$BatType.'_bas']*$Cap*$U;
 				$BudgetBarHaut=$config_ini['prix']['bat_'.$BatType.'_haut']*$Cap*$U;
 			} 
 			echo '<li>'._('Batterie').' : '._('between').' '.convertNumber($BudgetBarBas, 'print').'&euro; '._('and').' '.convertNumber($BudgetBarHaut, 'print').'&euro; ';
 			printf('(<a rel="tooltip" class="bulles" title="'.('Estimated cost %s&euro;/Ah at low range cost and %s&euro;/Ah at high range cost').'\">?</a>)</li>', $config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_bas']*$meilleurParcBatterie['V'], $config_ini['prix']['bat_'.$meilleurParcBatterie['type'].'_haut']*$meilleurParcBatterie['V']);
+			if ($BatType == 'Litium') {
+				echo '<li>'._('You will need a BMS for your batteries litium, it is not included in the price estimate<').'/li>';
+			}
 			if (!$meilleurRegulateur['nom']) {
 				$budgetRegulateur=0;
 				echo '<li>'._('Charge controller').' : '._('sorry, no hypothesis for charge controller').'.</li>';
@@ -1036,7 +1041,7 @@ if (isset($_GET['submit'])) {
 	printf('<h3 id="resultatDon">'._('Support, contribute').'</h3>');
 	printf('<p>'._('If this software was helpfull and/or you want to thank').' :  </p>');
 	printf('<ul>');
-	printf('	<li>'._('<a href="http://david.mercereau.info/contact/"  target="_blank">Say thank you !</a> (it\'s always a pleasure)').'</li>');
+	printf('	<li>'._('<a href="https://david.mercereau.info/soutenir/#respond"  target="_blank">Say thank you !</a> (it\'s always a pleasure)').'</li>');
 	printf('	<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MBDD2TG6D4TPC&lc=FR&item_name=CalcPvAutonome&item_number=calcpvautonome&currency_code=EUR&bn=PP%%2dDonationsBF%%3abtn_donate_SM%%2egif%%3aNonHosted"  target="_blank">'._('Support by making a secure donation').'</a></li>');
 	printf('	<li><a href="https://framagit.org/kepon/CalcPvAutonome/" target="_blank">'._('Contribute / improve / translate this software').'</a></li>');
 	printf('</ul>');
@@ -1053,6 +1058,7 @@ if (isset($_GET['submit'])) {
 	printf('[*]'._('~%dAh battery in %dV (%d"%dAh in %dV for example)').'[/list]</br />', convertNumber($Cap, 'print'), $U, $meilleurParcBatterie['nbBatterieTotal'], $meilleurParcBatterie['Ah'], $meilleurParcBatterie['V']);
 	printf(_('The budget estimated between %s and %s&euro;').'</p></div>', convertNumber($budgetTotalBas, 'print'), convertNumber($budgetTotalHaut, 'print'));
 	?>
+
 	<!-- Afficher ou non les informations complémentaire du formulaire -->
 	<script type="text/javascript">
 		$( "#hrefResumeBBCode" ).click(function() {
@@ -1398,7 +1404,7 @@ if (isset($_GET['submit'])) {
 				<input maxlength="2" size="2" id="DD" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('DD'); ?>" name="DD" /> %
 			</div>
 			<div class="form ModBat">
-				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','<?= _('Battery model') ?>','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');"><?= _('Battery model') ?></a> <? _('(<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">expressed in C10</a>)') ?> : </label>
+				<label><a onclick="window.open('<?= $config_ini['formulaire']['UrlModeles'] ?>&data=batterie','<?= _('Battery model') ?>','directories=no,menubar=no,status=no,location=no,resizable=yes,scrollbars=yes,height=500,width=600,fullscreen=no');"><?= _('Battery model') ?></a> <?= _('(<a href="http://www.batterie-solaire.com/batterie-delestage-electrique.htm" target="_blank">expressed in C10</a>)') ?> : </label>
 				<select id="ModBat" name="ModBat">
 					<option value="auto"><?= _('Automatic') ?></option>
 					<option value="perso" style="font-weight: bold"<?php echo valeurRecupSelect('ModBat', 'perso'); ?>><?= _('Customize') ?></option>
@@ -1420,8 +1426,34 @@ if (isset($_GET['submit'])) {
 					<option value="GEL"<?php echo valeurRecupSelect('TypeBat', 'GEL'); ?>>Gel</option>
 					<option value="OPzV"<?php echo valeurRecupSelect('TypeBat', 'OPzV'); ?>>OPzV</option>
 					<option value="OPzS"<?php echo valeurRecupSelect('TypeBat', 'OPzS'); ?>>OPzS</option>
+					<option value="Litium"<?php echo valeurRecupSelect('TypeBat', 'Litium'); ?>>Litium</option>
 				</select> 
 			</div>
+			<script type="text/javascript">
+				$( "#TypeBat" ).change(function () {
+					if ($( "#TypeBat" ).val() == 'Litium') {
+						$( "#DD" ).val(<?= $config_ini['formulaire']['DD_Litium'] ?>);
+						$( "#IbatCharge" ).val(<?= $config_ini['formulaire']['IbatCharge_Litium'] ?>);
+						$( "#IbatDecharge" ).val(<?= $config_ini['formulaire']['IbatDecharge_Litium'] ?>);
+					} else {
+						$( "#DD" ).val(<?= $config_ini['formulaire']['DD'] ?>);
+						$( "#IbatCharge" ).val(<?= $config_ini['formulaire']['IbatCharge'] ?>);
+						$( "#IbatDecharge" ).val(<?= $config_ini['formulaire']['IbatDecharge'] ?>);
+					}
+				});
+				$( "#ModBat" ).change(function () {
+					var MotBatSplit = $( "#ModBat" ).val().split("_");
+					if (MotBatSplit[0] == 'LITIUM') {
+						$( "#DD" ).val(<?= $config_ini['formulaire']['DD_Litium'] ?>);
+						$( "#IbatCharge" ).val(<?= $config_ini['formulaire']['IbatCharge_Litium'] ?>);
+						$( "#IbatDecharge" ).val(<?= $config_ini['formulaire']['IbatDecharge_Litium'] ?>);
+					} else {
+						$( "#DD" ).val(<?= $config_ini['formulaire']['DD'] ?>);
+						$( "#IbatCharge" ).val(<?= $config_ini['formulaire']['IbatCharge'] ?>);
+						$( "#IbatDecharge" ).val(<?= $config_ini['formulaire']['IbatDecharge'] ?>);
+					}
+				});
+			</script>
 			<div class="form PersoBat">
 				<p><?= _('You can detail the technical characteristics of your battery') ?> : </p>
 				<ul>
@@ -1532,6 +1564,8 @@ if (isset($_GET['submit'])) {
 	<div class="form ModeDebug"><input type="checkbox" name="debug" <?php if (isset($_GET['debug'])) echo 'checked="checked"'; ?> />Activer le mode transparent/debug pour mieux comprendre le fonctionnement</div>
 	<?php } ?>
 </form>
+
+<?php socialShare((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>
 
 <!-- Donate campagne -->
 <div id="myModal" class="modal">
