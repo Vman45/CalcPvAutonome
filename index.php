@@ -99,7 +99,26 @@ if (isset($_POST['email'])) {
 	try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
 	catch(e){window.attachEvent("onload", $buo_f)}
 	</script>
-	<script src="./lib/jquery-3.1.1.slim.min.js"></script> 
+	<script src="./lib/jquery-3.1.1.slim.min.js"></script>
+	<!-- Cookies -->
+	<link rel="stylesheet" type="text/css" href="./lib/cookieconsent.min.css" />
+	<script src="./lib//cookieconsent.min.js"></script>
+	<script>
+	window.addEventListener("load", function(){
+	window.cookieconsent.initialise({
+	  "palette": {
+	    "popup": {
+	      "background": "#eaf7f7",
+	      "text": "#5c7291"
+	    },
+	    "button": {
+	      "background": "#56cbdb",
+	      "text": "#ffffff"
+	    }
+	  },
+	  "position": "bottom-left"
+	})});
+	</script>
 </head>
 <body>
 		<div id="langues">
