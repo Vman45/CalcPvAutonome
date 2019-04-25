@@ -89,7 +89,7 @@ function valeurRecupSelect($nom, $valeur) {
 // Convertie les nombre pour l'affichage ou pour les calculs
 function convertNumber($number, $to = null) {
 	if ($to == 'print') {
-		return number_format($number, 0, ',', ' ');
+		return number_format($number, 0, ',', '');
 	} else {
 		return number_format($number, 3, '.', '');
 	}
