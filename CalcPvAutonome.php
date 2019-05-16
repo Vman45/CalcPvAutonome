@@ -1388,7 +1388,7 @@ if (isset($_GET['submit'])) {
 			<p><?= _('This software is preset for lead batteries') ?> (AGM/Gel/OPvS/OPzV)</p>
 			<div class="form Aut">
 				<label><?= _('Autonomous days amount') ?> : </label>
-				<input maxlength="2" size="2" id="Aut" type="number" step="1" min="0" max="50" style="width: 50px" value="<?php echo valeurRecup('Aut'); ?>" name="Aut" />
+				<input maxlength="2" size="2" id="Aut" type="number" step="0.1" min="0" max="50" style="width: 50px" value="<?php echo valeurRecup('Aut'); ?>" name="Aut" />
 			</div>
 			<div class="form U">
 				<label><?= _('Final battery plant voltage') ?> : </label>
