@@ -310,10 +310,14 @@ function pgvisGetSHScalc($FichierDataCsv, $raddatabase) {
 	if (!file_exists($FichierDataCsv)) {
 		$url=$config_ini['pvgis']['urlSHScalc'].'?raddatabase='.$raddatabase.'&lat='.$_GET['lat'].'&lon='.$_GET['lon'].'&angle='.$_GET['inclinaison'].'&aspect='.$_GET['orientation'].'&peakpower='.convertNumber($Pc, 'print').'&batterysize='.convertNumber($Cap, 'print')*$U.'&cutoff='.$config_ini['pvgis']['cutoff'].'&consumptionday='.$_GET['Bj'].'&usehorizon=1outputformat=csv&browser=0';
 		debug('On télécharge les données depuis PGVIS avec l\'URL '.$url, 'p');
-		$fp = fopen($FichierDataCsv, 'w');
+		$fp = fopen($FichierDataCsv, 'w+');
 		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 		curl_setopt($ch, CURLOPT_FILE, $fp);
-		$data = curl_exec($ch);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 1000);     
+		curl_setopt($ch, CURLOPT_USERAGENT, 'any');
+		curl_exec($ch);
 		$curl_errno = curl_errno($ch);
 		$curl_error = curl_error($ch);
 		curl_close($ch);
@@ -347,10 +351,14 @@ function pgvisGetDRcalc($FichierDataCsv, $raddatabase) {
 			$url=$config_ini['pvgis']['urlDRcalc'].'?raddatabase='.$raddatabase.'&lat='.$_GET['lat'].'&lon='.$_GET['lon'].'&angle='.$_GET['inclinaison'].'&aspect='.$_GET['orientation'].'&month=0&global=1&usehorizon=1&glob_2axis=0&clearsky=0&clearsky_2axis=0&showtemperatures=0&localtime=0&outputformat=csv&browser=0';
 		}
 		debug('On télécharge les données depuis PGVIS avec l\'URL '.$url, 'p');
-		$fp = fopen($FichierDataCsv, 'w');
+		$fp = fopen($FichierDataCsv, 'w+');
 		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 		curl_setopt($ch, CURLOPT_FILE, $fp);
-		$data = curl_exec($ch);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 1000);     
+		curl_setopt($ch, CURLOPT_USERAGENT, 'any');
+		curl_exec($ch);
 		$curl_errno = curl_errno($ch);
 		$curl_error = curl_error($ch);
 		curl_close($ch);
