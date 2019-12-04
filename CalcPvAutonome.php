@@ -97,7 +97,7 @@ if (isset($_GET['submit'])) {
 				}
 				if (!pgvisGetDRcalc($FichierDataCsv, $RadDatabase)) {
 					$erreurDansLeFormulaire['nb']++;
-					$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisGet', _('Unable to download solar irradiation data from <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank"> PVGIS </a>, switch to mode manual or use <a href="http://calcpvautonome.zici.fr/v2.2/"> the previous version </a> of CalcPvAutonome.'));
+					$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisGet', _('Unable to download solar irradiation data from <a href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html" target="_blank"> PVGIS </a>, switch to mode manual or use <a href="http://calcpvautonome.zici.fr/v2.2/"> the previous version </a> of CalcPvAutonome.'));
 					break;
 				} else {
 					$GlobalIradiation = pgvisParseData($FichierDataCsv);
@@ -108,7 +108,7 @@ if (isset($_GET['submit'])) {
 			}
 			if (empty($GlobalIradiation[12]) &&  $GlobalIradiation[12] == 0) {
 				$erreurDansLeFormulaire['nb']++;
-				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisParse', _('Incorrect solar irradiation data. The position shown on the map may not be covered by <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank"> PVGIS </a>.'));	
+				$erreurDansLeFormulaire['msg']=$erreurDansLeFormulaire['msg'].erreurPrint('pgvisParse', _('Incorrect solar irradiation data. The position shown on the map may not be covered by <a href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html" target="_blank"> PVGIS </a>.'));	
 			}
 
 		}
@@ -222,7 +222,7 @@ if (isset($_GET['submit'])) {
 				debug('</ul>');
 
 				echo '<ul>';
-				printf('<li>'._('According to data from <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank">PVGIS</a>, the value for the selected location is %s kWh/m&sup2;/d').'</li>', $Ej);
+				printf('<li>'._('According to data from <a href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html" target="_blank">PVGIS</a>, the value for the selected location is %s kWh/m&sup2;/d').'</li>', $Ej);
 				echo '</ul>';
 			} else {
 				$Ej = $Ej = $_GET['Ej'];
@@ -1255,7 +1255,7 @@ if (isset($_GET['submit'])) {
 					<?= _('Longitude') ?> : 
 					<input type="number" min="-180" max="180" step="0.00001" style="width: 100px;" name="lon" id="lon" value="<?= valeurRecupCookieSansConfig('lon'); ?>" />
 				</div>				
-				<p><small><?= _('Solar irradiation data is collected on <a href="http://re.jrc.ec.europa.eu/PVGIS5-release.html" target="_blank"> PVGIS </a>') ?>.</small></p>
+				<p><small><?= _('Solar irradiation data is collected on <a href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html" target="_blank"> PVGIS </a>') ?>.</small></p>
 			</div>
 			<div class="modeInput item">
 				<div class="form Ej">

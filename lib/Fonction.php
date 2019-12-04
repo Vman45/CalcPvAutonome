@@ -442,7 +442,7 @@ function pgvisParseData($FichierDataCsv) {
 			$GlobalIradiation[$mois]=$GlobalIradiation[$mois]+$Datas[1]/1000;
 		}
 		// on trouve 'time" c'est que c'est le début des données
-		if ($csvLigne[0] == 'Time') {
+		if (preg_match('/^time|Time/', $csvLigne[0])) {
 			$debutCollecte=true;
 		}
 		// Une ligne blanche signifie la fin des données
