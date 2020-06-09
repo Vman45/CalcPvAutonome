@@ -155,14 +155,14 @@ if (isset($_POST['equiIncrement'])) {
 				if (isset($_POST['AutoEquiTotal'.$i])) {
 					// Calcul auto
 					$insertcmd->bindParam('nb', $_POST['EquiNb'.$i], PDO::PARAM_INT);
-					$insertcmd->bindParam('uti', $_POST['EquiUti'.$i], PDO::PARAM_INT);
+					$insertcmd->bindParam('uti', $_POST['EquiUti'.$i], PDO::PARAM_STR);
 					$insertcmd->bindParam('calcauto', $boolean1, PDO::PARAM_INT);
 					$insertcmd->bindParam('pj', $null, PDO::PARAM_NULL);
 					
 				} else {
 					// Calcul manuel
 					$insertcmd->bindParam('nb', $boolean1, PDO::PARAM_INT);
-					$insertcmd->bindParam('uti', $utilDefaut, PDO::PARAM_INT);
+					$insertcmd->bindParam('uti', $utilDefaut, PDO::PARAM_STR);
 					$insertcmd->bindParam('calcauto', $boolean0, PDO::PARAM_INT);
 					$insertcmd->bindParam('pj', $_POST['EquiTotalInput'.$i], PDO::PARAM_INT);
 				}
@@ -712,6 +712,6 @@ if (isset($_GET['pub'])) {
 	// Social share 
 	socialShare($config_ini['formulaire']['UrlCalcConsommation'].'?pub='.$_GET['pub']);
 } else {
-	socialShare();
+	socialShare('');
 }
 ?>

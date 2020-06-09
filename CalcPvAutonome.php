@@ -64,7 +64,8 @@ if (isset($_GET['submit'])) {
 	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Rb', _('Electrical yield of batteries is not correct because < 0'));
 	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('Ri', _('Installation electrical efficiency is not correct because < 0'));
 	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('DD', _('Discharge level is not correct because < 0'));
-	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('reguMargeIcc', _('The safety margin Icc of the charge controller is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('reguMargeIsc', _('The safety margin Isc of the charge controller is not correct because < 0'));
+	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('reguMargeVoc', _('The safety margin Voc of the charge controller is not correct because < 0'));
 	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('distancePvRegu', _('Panels and charge controller in-between distance is not correct because < 0'));
 	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('distanceReguBat', _('Batteries and charge controller in-between distance is not correct because < 0'));
 	$erreurDansLeFormulaire=erreurDansLeFormulaireValue0('cablageRho', _('Conductor resistivity is not correct because < 0'));
@@ -543,8 +544,8 @@ if (isset($_GET['submit'])) {
 			$VdocParcPv=$meilleurParcPv['Vdoc']*$nbPvSerie;
 			$IscParcPv=$meilleurParcPv['Isc']*$nbPvParalele;
 			$parcPvW = $nbPvSerie*$nbPvParalele * $meilleurParcPv['W'];
-			$parcPvV = $VdocParcPv;
-			$parcPvI = $IscParcPv*$_GET['reguMargeIcc']/100+$IscParcPv;
+			$parcPvV = $VdocParcPv*$_GET['reguMargeVoc']/100+$VdocParcPv;
+			$parcPvI = $IscParcPv*$_GET['reguMargeIsc']/100+$IscParcPv;
 			
 			$meilleurRegulateur = chercherRegulateur();
 			
@@ -615,9 +616,9 @@ if (isset($_GET['submit'])) {
 		printf('		<li>'._('<b>%dW</b> max panel power : ').'</li>',$meilleurRegulateur['PmaxPv']);
 		printf('			<ul><li>'._('With a total of %d %dW panel(s), we reach <b>%dW</b>').' (<a rel="tooltip" class="bulles" title="'.$meilleurParcPv['W'].'W x '.$nbPvParalele*$nbPvSerie.' '._('panel(s)').' ">?</a>)</li></ul>', $nbPvSerie*$nbPvParalele, $meilleurParcPv['W'],$meilleurParcPv['W']*$nbPvParalele*$nbPvSerie);
 		printf('		<li>'._('<b>%dV</b> max PV voltage of open circuit : ').'</li>',$meilleurRegulateur['VmaxPv']);
-		printf('			<ul><li>'._('With %d serialized panel(s) of %dV of (Vdoc) voltage, we reach <b>%dV</b>').' (<a rel="tooltip" class="bulles" title="'.$meilleurParcPv['Vdoc'].'V (Vdoc) x '.$nbPvSerie.' '._('serialized panels').'">?</a>)</li></ul>', $nbPvSerie, $meilleurParcPv['Vdoc'], $nbPvSerie*$meilleurParcPv['Vdoc']);
+		printf('			<ul><li>'._('With %d serialized panel(s) of %dV of (Voc) voltage and a %d%% security margin, we reach <b>%dV</b>').' (<a rel="tooltip" class="bulles" title="('.$meilleurParcPv['Vdoc'].'V (Voc) * '.$_GET['reguMargeVoc'].'/100 + '.$meilleurParcPv['Vdoc'].'V (Voc)) x '.$nbPvSerie.' '._('serialized panels').'">?</a>)</li></ul>', $nbPvSerie, $meilleurParcPv['Vdoc'], $_GET['reguMargeVoc'], $nbPvSerie*($meilleurParcPv['Vdoc']+$meilleurParcPv['Vdoc']*$_GET['reguMargeVoc']/100));
 		printf('		<li>'._('<b>%dA</b> max PV short-circuit current :').' </li>', $meilleurRegulateur['ImaxPv']);
-		printf('			<ul><li>'._('With %d parallel panel(s) having %dA intensity (Isc) and a %d%% security margin, we reach <b>%dA</b>').' (<a rel="tooltip" class="bulles" title="('.$meilleurParcPv['Isc'].'A (Isc) * '.$_GET['reguMargeIcc'].'/100 + '.$meilleurParcPv['Isc'].'A (Isc)) x '.$nbPvParalele.' '._('parallel panel(s)').'">?</a>)</li></ul>', $nbPvParalele, $meilleurParcPv['Isc'], $_GET['reguMargeIcc'], $nbPvParalele*($meilleurParcPv['Isc']+$meilleurParcPv['Isc']*$_GET['reguMargeIcc']/100));
+		printf('			<ul><li>'._('With %d parallel panel(s) having %dA intensity (Isc) and a %d%% security margin, we reach <b>%dA</b>').' (<a rel="tooltip" class="bulles" title="('.$meilleurParcPv['Isc'].'A (Isc) * '.$_GET['reguMargeIsc'].'/100 + '.$meilleurParcPv['Isc'].'A (Isc)) x '.$nbPvParalele.' '._('parallel panel(s)').'">?</a>)</li></ul>', $nbPvParalele, $meilleurParcPv['Isc'], $_GET['reguMargeIsc'], $nbPvParalele*($meilleurParcPv['Isc']+$meilleurParcPv['Isc']*$_GET['reguMargeIsc']/100));
 		echo '	</ul>';
 		echo '	<p>'._('Note: serialization multiplies voltage (V) and paralleling multiplies the intensity (I)').'</p>';
 		echo '	<p>'._('All these characteristics are available in the product\'s technical sheet. You can customize your charge controller characteristics in <i>Export</i> mode.').'</p>';
@@ -1523,9 +1524,13 @@ if (isset($_GET['submit'])) {
 					</li>
 				</ul>
 			</div>
-			<div class="form reguMargeIcc">
-				<label><?= _('Panels Icc short-circuit current security margin') ?> : </label>
-				<input maxlength="2" size="2" id="reguMargeIcc" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('reguMargeIcc'); ?>" name="reguMargeIcc" /> %
+			<div class="form reguMargeIsc">
+				<label><?= _('Panels Isc (short-circuit current) security margin') ?> : </label>
+				<input maxlength="2" size="2" id="reguMargeIsc" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('reguMargeIsc'); ?>" name="reguMargeIsc" /> %
+			</div>
+			<div class="form reguMargeVoc">
+				<label><?= _('Panels Voc (open circuit voltage) security margin') ?> : </label>
+				<input maxlength="2" size="2" id="reguMargeVoc" type="number" step="1" min="0" max="100" style="width: 70px" value="<?php echo valeurRecup('reguMargeVoc'); ?>" name="reguMargeVoc" /> %
 			</div>
 		</div>
 		
