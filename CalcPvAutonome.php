@@ -1209,6 +1209,13 @@ if (isset($_GET['submit'])) {
 					?>
 					var mymap = L.map('mapid').setView([<?php valeurRecupCookie('lat') ?>, <?php valeurRecupCookie('lon') ?>], <?= $mapZoom ?>);
 
+					// Tentative migration
+					//~ L.tileLayer('https://api.mapbox.com/styles/v1/kepon/{id}/static/{z},{x},{y}/?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+						//~ maxZoom: 18,
+						//~ attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+						//~ id: 'mapbox.streets'
+					//~ }).addTo(mymap);
+
 					L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 						maxZoom: 18,
 						attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>',

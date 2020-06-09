@@ -99,7 +99,7 @@ if (isset($_POST['email'])) {
 	try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
 	catch(e){window.attachEvent("onload", $buo_f)}
 	</script>
-	<script src="./lib/jquery-3.1.1.slim.min.js"></script> 
+	<script src="./lib/jquery-3.1.1.min.js"></script> 
 </head>
 <body>
 		<div id="langues">

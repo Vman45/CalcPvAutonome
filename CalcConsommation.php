@@ -209,8 +209,9 @@ if (isset($_POST['equiIncrement'])) {
 
 
 ?>
+<link rel="stylesheet" href="./lib/jquery-ui.css">
+<script src="./lib/jquery-ui.js"></script> 
 
-<script src="./lib/jquery-3.1.1.slim.min.js"></script> 
 <?php if (empty($_GET['ad']) && empty($_GET['pub']) && empty($_GET['EquiNom1'])) { ?>
 <p><?= _('In order to know the electric consumption (in Watts) of your devices you may') ?> : 
 <ul>
@@ -314,7 +315,6 @@ if ($conso != null) {
 <br /><?= _('Your need in maximum electrical power') ?> : <b><span id="PmaxTotal">0</span> W</b> '<a rel="tooltip" class="bulles" title="<?= _('Total addition of power required by devices that are likely to be plugged and on at the same time OR consumption of the most power demanding appliance in case it is not plugged simultaneously with the rest') ?>">?</a>
 <br /><a href="" id="hrefCalcPvAutonome"><?= _('Click here to introduce those values to calculate <br/> the dimension of your autonomous solar installation') ?></a></p>
 
-
 <p><input type="button" class="add" value="<?= _('Add an empty line') ?>" /> 
 <select id="addEquiModele" name="addEquiModele">
 <option value="0"><?= _('Add a line according to a template...') ?></option>
@@ -325,6 +325,23 @@ foreach ($config_ini['equipement'] as $equipement) {
 ?>
 </select> <a rel="tooltip" class="bulles" title="<?= _('The models\' values are approximate estimations, if you need more precise measurement consider using Wattmeter to determine the exact consumption of each of yours devices') ?>">?</a></p>
 
+<?php 
+// Pour l'autocompletion
+$i=0;
+foreach ($config_ini['equipement'] as $equipement) {	
+	$equipementAutocompletion[$i]['id'] = $i;
+	$equipementAutocompletion[$i]['value'] = $equipement['nom'];
+	$equipementAutocompletion[$i]['puissance'] = $equipement['conso'];
+	// if ($equipement['consoJ'] != null) {
+		$equipementAutocompletion[$i]['consommation_quotidienne'] = $equipement['consoJ'];
+	// }
+	// if ($equipement['uti'] != null) {
+		$equipementAutocompletion[$i]['temps_utilisation'] = $equipement['uti'];
+	// }
+	$i++;
+}
+// echo json_encode($equipementAutocompletion);
+?>
 
 <!-- hidden -->
 <input type="hidden" value="0" name="equiIncrement" id="equiIncrement" />
@@ -348,7 +365,6 @@ foreach ($config_ini['equipement'] as $equipement) {
 </div>
 
 </form>
-
 
 <!-- Open popup -->
 <div id="openPopup" class="modal">
@@ -387,7 +403,7 @@ function ajoutUneLigne() {
         [
 		'\n<tr>', 
 			'<td>', 
-				'<input type="text" value="Equipement ' + $('#equiIncrement').val() + '" name="EquiNom' + $('#equiIncrement').val() + '" id="EquiNom' + $('#equiIncrement').val() + '" />', 
+				'<input class="nom" type="text" placeholder="Equipement ' + $('#equiIncrement').val() + '" name="EquiNom' + $('#equiIncrement').val() + '" id="EquiNom' + $('#equiIncrement').val() + '" />', 
 			'</td>', 
 			'<td>', 
 				'<input class="Puis" onChange="calcTableau();" type="number"  style="width: 80px;" value="0" min="0" max="99999" name="EquiPuis' + $('#equiIncrement').val() + '" id="EquiPuis' + $('#equiIncrement').val() + '" />W', 
@@ -448,6 +464,7 @@ function ajoutUneLigne() {
 // Ajout d'une ligne dans le tableau
 $('.add').on('click', function() {    
 	ajoutUneLigne();
+	autocomplete();
 	calcTableau();
 });
 // Suppression d'une ligne dans le tableau
@@ -483,6 +500,34 @@ $('#addEquiModele').change(function() {
 	}
 });
 
+// Contrib quentin@electree.eu
+// récupère une liste d'équipement en bdd et propose une autocompletion lors de l'ajout d'un materiel
+function autocomplete() {
+	let availableTags = <?php echo json_encode($equipementAutocompletion); ?>;
+	console.log(availableTags);
+	$('input.nom').autocomplete({
+		source: availableTags,
+		select: function(event, ui) {
+			console.log(ui);
+			$(this).closest("tr").find("input.Puis").val(ui.item.puissance);
+			if (ui.item.temps_utilisation != null) {
+	            $(this).closest("tr").find("select.Uti").val(ui.item.temps_utilisation);
+	        } else {
+	            $(this).closest("tr").find("select.Uti").val(0);
+	        }
+	        if (ui.item.consommation_quotidienne != null) {
+	            $(this).closest("tr").find("input.AutoEquiTotal").prop('checked', false);
+	            $(this).closest("tr").find("input.EquiTotal").val(ui.item.consommation_quotidienne);
+	            $(this).closest("tr").find("span.consobdd").text(ui.item.consommation_quotidienne);
+
+	        } else {
+	            $(this).closest("tr").find("input.AutoEquiTotal").prop('checked', true);
+	        }
+			calcTableau();
+		}
+	});
+	};
+
 // Charger une ligne d'équipement
 function chargeEquipement (name, p, pmax, nb, uti, calcauto, pj) {
 	ajoutUneLigne();
@@ -505,6 +550,7 @@ function chargeEquipement (name, p, pmax, nb, uti, calcauto, pj) {
 	if (pj != null || pj != '') {
 		$( '#EquiTotalInput'+$('#equiIncrement').val()).val(pj);
 	}
+	autocomplete();
 	calcTableau();
 }
 
@@ -647,6 +693,7 @@ $(document).ready(function() {
 		}
 	?>
 	calcTableau();
+	autocomplete();
 
 	// Check modification
 	$( "#save" ).attr("disabled", "disabled");
