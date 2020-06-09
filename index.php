@@ -1,5 +1,5 @@
 <?php
-$CalcPvAutonomeVersion='4.4';
+$CalcPvAutonomeVersion='4.5';
 include_once('./lib/Fonction.php');
 $config_ini = parse_ini_file('./config.ini', true); 
 $lang_ini = parse_ini_file('./lang/lang.ini',true);

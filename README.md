@@ -75,6 +75,8 @@ Créer les bases de données et renommer le fichier config-db_default.ini en con
 
 ### Changelog
 
+ - 4.5
+	 - Autocomplete sur CalcConso avec les modèles. Contribution Quentin (@electree.eu)
  - 4.4
 	 - Grosse refonte de l'interface de calcul des besoins : 
 		- Possibilité d'enregistrer les tableaux (conservé 900 jours après dernièr accès)
@@ -191,6 +193,7 @@ Créer les bases de données et renommer le fichier config-db_default.ini en con
   - David Mercereau [david #arobase# mercereau #point# info](http://david.mercereau.info/contact/) (auteur)
 	  - Largement inspiré du [tableur posté par lr83](http://forum-photovoltaique.fr/viewtopic.php?p=403856#p403837)
   - Guillaume Piton de [SolisION-event](http://solision-event.centerblog.net) (contribution technique)
+  - Quentin (@electree.eu) pour l'auto complétion des modèles dans CalcConso
 
 ### License
 
